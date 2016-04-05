@@ -22,6 +22,15 @@ public class Empleado {
     private int tipo;
     private int tipoempleado; 
 
+    //constructores
+
+    public Empleado(int idEmpleado) {
+        this.idEmpleado = idEmpleado;
+    }
+    
+    
+    
+    
     public int getIdEmpleado() {
         return idEmpleado;
     }

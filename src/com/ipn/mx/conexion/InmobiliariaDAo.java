@@ -6,11 +6,13 @@
 package com.ipn.mx.conexion;
 
 import static com.ipn.mx.conexion.ClienteDao.st;
+import static com.ipn.mx.conexion.EmpleadoDao.st;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -33,6 +35,8 @@ public class InmobiliariaDAo {
             st.setString (4, calle);
             st.setString (5,numero);
             st.setString(6, codigo);
+            st.executeUpdate();
+           JOptionPane.showMessageDialog(null, "El registro fue exitoso!");
         } catch (SQLException ex) {
             Logger.getLogger(InmobiliariaDAo.class.getName()).log(Level.SEVERE, null, ex);
         }

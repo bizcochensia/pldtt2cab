@@ -178,7 +178,8 @@ public class Cliente {
 
     @Override
     public String toString() {
-        return nombre; //To change body of generated methods, choose Tools | Templates.
+        String regreso= nombre + "  RFC asociado :"+rfc;
+        return regreso; //To change body of generated methods, choose Tools | Templates.
     }
     
     

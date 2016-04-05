@@ -58,4 +58,24 @@ public class logindao {
         return nombre;
     }
     
+    
+    public int obtenid(String usuario,String contrasena){
+    int id=0;
+    try {
+             Conexion con=new Conexion();
+             Connection reg=con.conectar();
+             prState = reg.prepareStatement(login);
+             prState.setString(1,usuario);
+             prState.setString(2,contrasena);
+             result=prState.executeQuery();
+             while(result.next()){
+             id=result.getInt("id_Empleado");
+             }
+        } catch (SQLException ex) {
+            Logger.getLogger(logindao.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return id;
+    }
+    
+    
 }

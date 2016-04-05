@@ -5,23 +5,29 @@
  */
 package com.ipn.mx.vistas;
 
+import UpperEssential.UpperEssentialLookAndFeel;
 import com.ipn.mx.conexion.logindao;
+import java.awt.Color;
+import java.awt.GraphicsConfiguration;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
  * @author Clemente
  */
 public class Login extends javax.swing.JFrame {
-
     String usuario="";
     String pass="";
-    
+    public static int vendedor;
     /**
      * Creates new form Login
      */
-    public Login() {
-        initComponents();
+    public Login() throws UnsupportedLookAndFeelException {
+        initComponents();      
     }
 
     /**
@@ -41,9 +47,15 @@ public class Login extends javax.swing.JFrame {
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Usuario");
+
+        recibeusuario.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recibeusuarioActionPerformed(evt);
+            }
+        });
 
         jLabel2.setText("Contraseña");
 
@@ -138,6 +150,7 @@ public class Login extends javax.swing.JFrame {
         if(!"".equals(usuario) && !"".equals(pass) ){
         String res=l.aceso(usuario, pass);
         String nombre=l.obtennombre(usuario, pass);
+        vendedor=l.obtenid(usuario,pass);
         switch (res){
         
             case "1":
@@ -151,6 +164,7 @@ public class Login extends javax.swing.JFrame {
             case "2":
                 JOptionPane.showMessageDialog(null,"Bienvenido Oficial "+nombre);
                 VistaOficial oc=new VistaOficial();
+           
                 oc.setVisible(true);
                 oc.pack();
                 Login.this.setVisible(false);
@@ -173,15 +187,22 @@ public class Login extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void recibeusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recibeusuarioActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_recibeusuarioActionPerformed
+
     /**
      * @param args the command line arguments
      */
-    public static void main(String args[]) {
+    public static void main(String args[]) throws UnsupportedLookAndFeelException {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
          * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
          */
+        
+       // UIManager.setLookAndFeel((new UpperEssentialLookAndFeel("C:\\Users\\Clemente\\Documents\\NetBeansProjects\\PLD\\Prueba.theme")));
+        
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -197,13 +218,18 @@ public class Login extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(Login.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
+        } 
         //</editor-fold>
+
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new Login().setVisible(true);
+                try {
+                    new Login().setVisible(true);
+                } catch (UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }

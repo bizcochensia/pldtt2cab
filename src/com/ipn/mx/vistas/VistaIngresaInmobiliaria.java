@@ -228,7 +228,6 @@ public class VistaIngresaInmobiliaria extends javax.swing.JFrame {
           e= (EntidadFederativa) comboEntidad.getSelectedItem();
           InmobiliariaDAo in= new InmobiliariaDAo();
           in.RegistaraInmobiliaria(recibenombre.getText(), recibeclave.getText(),e.getIdEntidadFederativa(), recibecalle.getText(), recibenumero.getText(), recibeCP.getText());
-          JOptionPane.showMessageDialog(null, "El registro fue exitoso!");
           }
           else {JOptionPane.showMessageDialog(null, "Cadenas no validas para la seccion de direcciones"); }
         }
