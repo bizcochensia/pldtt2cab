@@ -40,7 +40,7 @@ public class EmpleadoDao {
            st.setString (7, contraseña);
            st.setInt (8, tipo_empleado);
            st.executeUpdate();
-           JOptionPane.showMessageDialog(null, "El registro fue exitoso!");
+          
            }
         catch(Exception ex) {
             System.out.println(ex);
