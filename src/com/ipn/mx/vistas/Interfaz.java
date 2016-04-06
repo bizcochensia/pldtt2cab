@@ -3,6 +3,8 @@ package com.ipn.mx.vistas;
 
 
 import com.ipn.mx.conexion.ClienteDao;
+import com.mx.ipn.clases.MiPanel;
+import java.awt.BorderLayout;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -32,6 +34,16 @@ JTable tabla;
      */
     public Interfaz() throws SQLException {
         initComponents();
+         MiPanel p = new MiPanel(); 
+      this.add( p , BorderLayout.CENTER); 
+       p.repaint(); 
+         setLayout(null);
+        setLocationRelativeTo(null);        // Centering on screen...
+       setSize(900, 700);                  // Setting dimensions...
+        setTitle("SisPLD");
+        setResizable(false);
+        
+        
         actualizarTabla();
         
         id.setEditable(false);
