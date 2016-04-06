@@ -5,7 +5,6 @@
  */
 package com.ipn.mx.conexion;
 
-import static com.ipn.mx.conexion.ClienteDao.st;
 import static com.ipn.mx.conexion.EmpleadoDao.st;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
