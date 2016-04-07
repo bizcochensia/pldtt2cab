@@ -18,7 +18,7 @@ import java.util.logging.Logger;
  * @author Clemente
  */
 public class daobusquedas {
-    private static final String busquedausuario= "SELECT * FROM empleado";
+    private static final String busquedausuario= "SELECT e.id_Empleado,e.nombre,e.apellido_Pat,e.apellido_Mat,e.RFC,e.numero_tel,e.usuario,e.contrasena,t.descripcion as tipo_empleado FROM empleado e INNER JOIN  tipoempleado t ON e.tipo_empleado = t.id_TipoEmpleado";
     private static final String busquedacliente="Select c.nombre,c.apellido_Pat,c.apellido_Mat,c.numero_Telefono,c.ingreso_Promedio,c.calle,c.numero,c.codigo_postal,p.nombre_Pais,e.nombre as entidad,l.nombre as localidad,ac.actividad,tc.descripcion from cliente c inner join pais p on c.pais_Origen=p.id_Pais inner join entidad_federativa e on e.id_Entidad=c.entidad inner join localidad l on l.id_Localidad=c.localidad inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join tcliente tc on tc.id_tipo=c.tipo where l.id_localidad=c.localidad;";
     static PreparedStatement prState;
     ResultSet result;

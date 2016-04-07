@@ -112,7 +112,7 @@ public class ClienteDao {
         ResultSet rs = null;
         try{
             st=reg.createStatement();
-            rs = st.executeQuery("SELECT * FROM cliente");
+            rs = st.executeQuery("Select c.id_cliente,c.nombre,c.apellido_Pat,c.apellido_Mat,c.numero_Telefono,c.ingreso_Promedio,c.calle,c.numero,c.codigo_postal,p.nombre_Pais,e.nombre as entidad,l.nombre as localidad,ac.actividad,tc.descripcion from cliente c inner join pais p on c.pais_Origen=p.id_Pais inner join entidad_federativa e on e.id_Entidad=c.entidad inner join localidad l on l.id_Localidad=c.localidad inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join tcliente tc on tc.id_tipo=c.tipo where l.id_localidad=c.localidad;");
         } catch (Exception ex){
             System.out.println(ex);
         }
