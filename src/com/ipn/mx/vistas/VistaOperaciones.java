@@ -200,6 +200,11 @@ public class VistaOperaciones extends javax.swing.JFrame {
         combooperacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione.." }));
 
         combomoneda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione..." }));
+        combomoneda.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combomonedaActionPerformed(evt);
+            }
+        });
 
         combomonetario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione..." }));
 
@@ -528,10 +533,18 @@ public class VistaOperaciones extends javax.swing.JFrame {
          JOptionPane.showMessageDialog(null, "Todos los combobox necesitan tener una elección");
         }
         else{
-            OperacionDAO op=new OperacionDAO();
-            op.RegistroOperacion(numcontrato, monto, fecha , 20 ,descripcion , c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(),moneda.getId_moneda(),mone.getId_clavemonetario());
+            try {
+                OperacionDAO op = new OperacionDAO();
+                op.RegistroOperacion(numcontrato, monto, fecha, 20, descripcion, c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario());
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Se necesitan estar todos los campos llenos para completar el registro");
+            }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void combomonedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combomonedaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combomonedaActionPerformed
 
     public void cargarClientes() throws SQLException {
      Statement st;
@@ -577,7 +590,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
             m.setClave(rs.getString(2));
             m.setMoneda(rs.getString(3));
             m.setPais_moneda(rs.getString(4));
-            combomoneda.addItem(m);
+            combomoneda.addItem(m.getClave());
             }
         } catch (SQLException ex) {
             Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);

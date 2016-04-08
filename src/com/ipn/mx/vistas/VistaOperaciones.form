@@ -264,6 +264,12 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="combomonedaActionPerformed"/>
+              </Events>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="VistaOperaciones_combomoneda"/>
+              </AuxValues>
             </Component>
             <Component class="javax.swing.JComboBox" name="combomonetario">
               <Properties>
