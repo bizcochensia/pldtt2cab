@@ -259,6 +259,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
         jLabel2.setText("Cliente asociado a la operación");
 
         jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre"));
+        jPanel4.setOpaque(false);
 
         jLabel4.setText("Nombre");
 
@@ -318,6 +319,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
         );
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Dirección"));
+        jPanel6.setOpaque(false);
 
         jLabel9.setText("Actividad ");
 
