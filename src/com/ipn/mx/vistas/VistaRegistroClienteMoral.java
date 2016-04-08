@@ -104,17 +104,17 @@ public class VistaRegistroClienteMoral extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Dirección"));
         jPanel2.setOpaque(false);
 
-        jLabel4.setText("Pais Origen");
+        jLabel4.setText("*Pais Origen:");
 
-        jLabel5.setText("Entidad federativa");
+        jLabel5.setText("*Entidad federativa:");
 
-        jLabel6.setText("Localidad");
+        jLabel6.setText("*Localidad:");
 
-        jLabel10.setText("Calle");
+        jLabel10.setText("*Calle:");
 
-        jLabel11.setText("Numero");
+        jLabel11.setText("*Numero:");
 
-        jLabel12.setText("Codigo postal");
+        jLabel12.setText("*Codigo postal:");
 
         combopais.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -228,9 +228,9 @@ public class VistaRegistroClienteMoral extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanel1.setOpaque(false);
 
-        jLabel1.setText("Nombre(s)");
+        jLabel1.setText("*Nombre(s):");
 
-        jLabel13.setText("RFC");
+        jLabel13.setText("*RFC:");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -241,11 +241,11 @@ public class VistaRegistroClienteMoral extends javax.swing.JFrame {
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
                 .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
+                .addGap(87, 87, 87)
                 .addComponent(jLabel13)
-                .addGap(32, 32, 32)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(RFC, javax.swing.GroupLayout.PREFERRED_SIZE, 228, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(127, Short.MAX_VALUE))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -262,11 +262,11 @@ public class VistaRegistroClienteMoral extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder("Otros datos"));
         jPanel3.setOpaque(false);
 
-        jLabel7.setText("Numero telefonico");
+        jLabel7.setText("*Telefono:");
 
-        jLabel8.setText("Actividad principal");
+        jLabel8.setText("*Actividad principal:");
 
-        jLabel9.setText("Ingreso promedio");
+        jLabel9.setText("*Ingreso promedio:");
 
         comboactividad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione..." }));
         comboactividad.addActionListener(new java.awt.event.ActionListener() {
@@ -275,7 +275,7 @@ public class VistaRegistroClienteMoral extends javax.swing.JFrame {
             }
         });
 
-        jLabel15.setText("Fecha Nacimiento");
+        jLabel15.setText("*Fecha Nacimiento:");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -283,15 +283,13 @@ public class VistaRegistroClienteMoral extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel7)
-                        .addGap(18, 18, 18)
-                        .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel3Layout.createSequentialGroup()
-                        .addComponent(jLabel9)
-                        .addGap(18, 18, 18)
-                        .addComponent(ingreso, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(telefono, javax.swing.GroupLayout.PREFERRED_SIZE, 238, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(ingreso, javax.swing.GroupLayout.PREFERRED_SIZE, 241, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel8)
@@ -346,7 +344,7 @@ public class VistaRegistroClienteMoral extends javax.swing.JFrame {
                             .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(57, Short.MAX_VALUE))
+                .addContainerGap(37, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
