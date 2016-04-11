@@ -8,16 +8,21 @@ package com.ipn.mx.vistas;
 import UpperEssential.UpperEssentialLookAndFeel;
 import com.mx.ipn.clases.MiPanel;
 import java.awt.BorderLayout;
+import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JFrame;
+import javax.swing.JInternalFrame;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
+import static javax.swing.text.StyleConstants.Size;
 
 /**
  *
@@ -29,18 +34,20 @@ public class VistaAdministrador extends javax.swing.JFrame {
      * Creates new form VistaAdministrador
      */
     public VistaAdministrador() {
+        
         initComponents();
         ///
-        
+      //   setSize(Toolkit.getDefaultToolkit().getScreenSize());
+
        
          MiPanel p = new MiPanel(); 
       this.add( p , BorderLayout.CENTER); 
        p.repaint(); 
          setLayout(null);
         setLocationRelativeTo(null);        // Centering on screen...
-       setSize(900, 700);                  // Setting dimensions...
+                         // Setting dimensions...
         setTitle("SisPLD");
-        setResizable(false);
+        //setResizable(false);
         
                                              
  
@@ -63,10 +70,12 @@ public class VistaAdministrador extends javax.swing.JFrame {
         cerrar = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        myDesktop = new javax.swing.JDesktopPane();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Administrador");
-        setPreferredSize(new java.awt.Dimension(900, 700));
+        setPreferredSize(null);
+        setSize(getMaximumSize());
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ipn/mx/imagenes/BotonClienteFisico.png"))); // NOI18N
         jButton1.setText("Registrar Empleado");
@@ -109,41 +118,56 @@ public class VistaAdministrador extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
         jLabel1.setText("Menu");
 
+        myDesktop.setBackground(new java.awt.Color(255, 255, 255));
+        myDesktop.setOpaque(false);
+
+        javax.swing.GroupLayout myDesktopLayout = new javax.swing.GroupLayout(myDesktop);
+        myDesktop.setLayout(myDesktopLayout);
+        myDesktopLayout.setHorizontalGroup(
+            myDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 986, Short.MAX_VALUE)
+        );
+        myDesktopLayout.setVerticalGroup(
+            myDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(cerrar)
-                .addContainerGap())
             .addGroup(layout.createSequentialGroup()
                 .addGap(53, 53, 53)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(597, Short.MAX_VALUE))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(myDesktop))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(96, 96, 96)
-                .addComponent(jLabel1)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel2)
-                .addGap(15, 15, 15)
-                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 160, Short.MAX_VALUE)
-                .addComponent(cerrar)
-                .addContainerGap())
+                .addGap(100, 100, 100)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(myDesktop)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 48, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(cerrar, javax.swing.GroupLayout.PREFERRED_SIZE, 56, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(329, 329, 329))))
         );
 
         pack();
@@ -152,14 +176,20 @@ public class VistaAdministrador extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         VistaRegistraEmpleado reg=new VistaRegistraEmpleado();
-        reg.setVisible(true);
+        //reg.setVisible(true);
+        JInternalFrame f = createFrame("Registro Empleados", reg); 
+        f.setLocation(10,10); 
+        myDesktop.add(f); 
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             // TODO add your handling code here:
             VistaVisualizarUsuarios us= new VistaVisualizarUsuarios();
-            us.setVisible(true);
+            //us.setVisible(true);
+            JInternalFrame f = createFrame("Visualizar Empleados", us); 
+            f.setLocation(10,10); 
+            myDesktop.add(f);
         } catch (ClassNotFoundException ex) {
             Logger.getLogger(VistaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         } catch (SQLException ex) {
@@ -171,7 +201,10 @@ public class VistaAdministrador extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         VistaIngresaInmobiliaria in= new VistaIngresaInmobiliaria();
-        in.setVisible(true);
+        //in.setVisible(true);
+        JInternalFrame f = createFrame("Ingresar inmobiliaria", in); 
+        f.setLocation(10,10); 
+        myDesktop.add(f);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void cerrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cerrarActionPerformed
@@ -186,7 +219,21 @@ public class VistaAdministrador extends javax.swing.JFrame {
         }
         this.dispose();
     }//GEN-LAST:event_cerrarActionPerformed
-
+    private static JInternalFrame createFrame(String t, JFrame frame) { 
+        JInternalFrame f = new JInternalFrame(t); 
+        f.setResizable(false); 
+        f.setClosable(false); 
+        f.setMaximizable(false); 
+        f.setIconifiable(false); 
+        f.setSize(frame.getSize()); 
+        f.setVisible(true); 
+        for (int i=0;i<=frame.getComponentCount()-1;i++) 
+        { 
+            Component comp = (Component)frame.getComponent(i); 
+            f.getContentPane().add(comp); 
+        } 
+        return f; 
+    } 
     /**
      * @param args the command line arguments
      */
@@ -232,5 +279,6 @@ public class VistaAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JDesktopPane myDesktop;
     // End of variables declaration//GEN-END:variables
 }

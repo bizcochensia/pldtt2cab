@@ -10,6 +10,7 @@ import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Image;
+import java.awt.Toolkit;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -23,7 +24,7 @@ import javax.swing.ImageIcon;
  */
 public class MiPanel extends javax.swing.JPanel {
     public MiPanel(){ 
-        this.setSize(900,700); 
+        this.setSize(Toolkit.getDefaultToolkit().getScreenSize()); 
     } 
     @Override 
 public void paint(Graphics g){ 
