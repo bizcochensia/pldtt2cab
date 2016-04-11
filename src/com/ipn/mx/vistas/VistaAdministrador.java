@@ -86,7 +86,7 @@ public class VistaAdministrador extends javax.swing.JFrame {
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ipn/mx/imagenes/BotonClienteFisico_opt.png"))); // NOI18N
         jButton1.setText("Registrar Empleado");
-        jButton1.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton1.setBorder(null);
         jButton1.setMaximumSize(new java.awt.Dimension(150, 50));
         jButton1.setMinimumSize(new java.awt.Dimension(150, 50));
         jButton1.setPreferredSize(new java.awt.Dimension(150, 50));
@@ -109,7 +109,7 @@ public class VistaAdministrador extends javax.swing.JFrame {
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ipn/mx/imagenes/botonInmobiliria_opt.png"))); // NOI18N
         jButton3.setText("Ingresar Inmobiliaria");
-        jButton3.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jButton3.setBorder(null);
         jButton3.setMaximumSize(new java.awt.Dimension(150, 50));
         jButton3.setMinimumSize(new java.awt.Dimension(150, 50));
         jButton3.setPreferredSize(new java.awt.Dimension(150, 50));

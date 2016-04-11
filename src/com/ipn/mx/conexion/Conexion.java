@@ -18,8 +18,9 @@ public class Conexion {
     Connection con=null;
     public Connection conectar(){
     try{
+        //104.197.27.176   NdtSa7Pp
        Class.forName("com.mysql.jdbc.Driver");
-       con=DriverManager.getConnection("jdbc:mysql://104.197.27.176/pldtt2cab","root","NdtSa7Pp");
+       con=DriverManager.getConnection("jdbc:mysql://localhost/pldtt2cab","root","admin");
        System.out.println("conexion establecida");
     } catch(ClassNotFoundException | SQLException e){
         System.out.println("error de conexion");
