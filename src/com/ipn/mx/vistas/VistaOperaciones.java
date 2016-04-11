@@ -65,8 +65,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
         am.setEditable(false);
         act.setEditable(false);
         ing.setEditable(false);
-        jButton2.setEnabled(false);
-        jButton3.setEnabled(false);
+        
          ///
             
          MiPanel p = new MiPanel(); 
@@ -509,8 +508,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
         else{
         
         }
-        jButton2.setEnabled(true);
-        jButton3.setEnabled(true);
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -592,7 +590,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
             m.setClave(rs.getString(2));
             m.setMoneda(rs.getString(3));
             m.setPais_moneda(rs.getString(4));
-            combomoneda.addItem(m.getClave());
+            combomoneda.addItem(m);
             }
         } catch (SQLException ex) {
             Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
