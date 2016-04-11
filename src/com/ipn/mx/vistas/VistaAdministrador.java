@@ -8,12 +8,16 @@ package com.ipn.mx.vistas;
 import com.mx.ipn.clases.MiPanel;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.awt.event.KeyEvent;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javafx.scene.paint.Color;
+import javax.swing.InputMap;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.KeyStroke;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
@@ -38,6 +42,8 @@ public class VistaAdministrador extends javax.swing.JFrame {
                          // Setting dimensions...
         setTitle("SisPLD");
         //setResizable(false);
+        myDesktop.setBackground(java.awt.Color.WHITE);
+   
         
                                              
  
@@ -229,12 +235,15 @@ public class VistaAdministrador extends javax.swing.JFrame {
     }//GEN-LAST:event_formWindowClosing
     private static JInternalFrame createFrame(String t, JFrame frame) { 
         JInternalFrame f = new JInternalFrame(t); 
+        f.toFront();
         f.setResizable(false); 
-        f.setClosable(false); 
+        f.setClosable(true); 
         f.setMaximizable(false); 
         f.setIconifiable(false); 
+        f.setOpaque(false);
         f.setSize(frame.getSize()); 
         f.setVisible(true); 
+        
         for (int i=0;i<=frame.getComponentCount()-1;i++) 
         { 
             Component comp = (Component)frame.getComponent(i); 

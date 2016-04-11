@@ -12,6 +12,9 @@ import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.UnsupportedLookAndFeelException;
 import com.mx.ipn.clases.MiPanel;
+import java.awt.event.KeyEvent;
+import javax.swing.InputMap;
+import javax.swing.KeyStroke;
 
 
 /**
@@ -36,6 +39,7 @@ public class Login extends javax.swing.JFrame {
        // setSize(900, 700);                  // Setting dimensions...
         setTitle("SisPLD");
         setResizable(false);
+              
     }
 
     /**
@@ -59,10 +63,15 @@ public class Login extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setBackground(new java.awt.Color(255, 255, 255));
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         setPreferredSize(new java.awt.Dimension(900, 700));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         jPanel1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         jPanel1.setOpaque(false);
@@ -250,6 +259,15 @@ public class Login extends javax.swing.JFrame {
     private void recibeusuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recibeusuarioActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_recibeusuarioActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+        if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente salir?",
+                "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+         {
+             System.exit(0);
+         }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
