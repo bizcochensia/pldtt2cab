@@ -11,6 +11,7 @@ import java.awt.BorderLayout;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
@@ -56,13 +57,17 @@ public class VistaVendedor extends javax.swing.JFrame {
 
         jMenu3.setText("jMenu3");
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Vendedor");
         setMinimumSize(new java.awt.Dimension(900, 700));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         ClienteFisico.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ipn/mx/imagenes/BotonClienteFisico.png"))); // NOI18N
         ClienteFisico.setText("Registrar Cliente Fisico");
-        ClienteFisico.setActionCommand("Registrar Cliente Fisico");
         ClienteFisico.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ClienteFisicoActionPerformed(evt);
@@ -238,6 +243,15 @@ public class VistaVendedor extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_OperaciónActionPerformed
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+         if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente salir?",
+                "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+         {
+             System.exit(0);
+         }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments

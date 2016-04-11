@@ -5,6 +5,8 @@
  */
 package com.ipn.mx.vistas;
 
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author Clemente
@@ -27,8 +29,13 @@ public class VistaOficial extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Oficial");
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowClosing(java.awt.event.WindowEvent evt) {
+                formWindowClosing(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -43,6 +50,15 @@ public class VistaOficial extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void formWindowClosing(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowClosing
+        // TODO add your handling code here:
+         if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realmente salir?",
+                "Salir del sistema", JOptionPane.YES_NO_OPTION) == JOptionPane.YES_OPTION)
+         {
+             System.exit(0);
+         }
+    }//GEN-LAST:event_formWindowClosing
 
     /**
      * @param args the command line arguments
