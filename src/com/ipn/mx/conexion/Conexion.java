@@ -30,7 +30,7 @@ public class Conexion {
         return con;
     }
     
-    modifiwursoef
+    modipos chido 
  
 
     Statement createStatement() {
