@@ -22,14 +22,14 @@ public class Conexion {
        Class.forName("com.mysql.jdbc.Driver");
        con=DriverManager.getConnection("jdbc:mysql://104.197.27.176 /pldtt2cab","root","admin");
        
-       yttytkjj
+     
        System.out.println("conexion establecida");
     } catch(ClassNotFoundException | SQLException e){
         System.out.println("error de conexion");
     }
         return con;
     }
-    washashita
+ 
 
     Statement createStatement() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
