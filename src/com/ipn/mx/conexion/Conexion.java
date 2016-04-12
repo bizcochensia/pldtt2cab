@@ -27,6 +27,7 @@ public class Conexion {
     }
         return con;
     }
+    washa ewahs 
 
     Statement createStatement() {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
