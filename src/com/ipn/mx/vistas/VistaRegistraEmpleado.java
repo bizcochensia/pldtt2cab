@@ -29,12 +29,12 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
     public VistaRegistraEmpleado() {
         initComponents();
         
-        /*MiPanel p = new MiPanel();
+        MiPanel p = new MiPanel();
         this.add( p , BorderLayout.CENTER);
         p.repaint();
         setLayout(null);
         setLocationRelativeTo(null);        // Centering on screen...
-        setSize(900, 700);*/                  // Setting dimensions...
+        setSize(900, 700);               // Setting dimensions...
         setTitle("SisPLD");
         setResizable(false);
     }
@@ -74,10 +74,9 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.DO_NOTHING_ON_CLOSE);
         setTitle("Registro Empleados");
         setBackground(new java.awt.Color(255, 255, 255));
-        setMinimumSize(super.getToolkit().getScreenSize());
+        setMinimumSize(new java.awt.Dimension(900, 700));
 
         RegistrarBoton.setBackground(new java.awt.Color(0, 153, 51));
         RegistrarBoton.setForeground(new java.awt.Color(255, 255, 255));
@@ -253,7 +252,7 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jButton1)
@@ -267,14 +266,14 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
                                 .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
-                .addContainerGap(37, Short.MAX_VALUE))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(31, 31, 31)
+                .addGap(87, 87, 87)
                 .addComponent(jLabel1)
-                .addGap(14, 14, 14)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -286,7 +285,7 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(RegistrarBoton))
-                .addContainerGap(34, Short.MAX_VALUE))
+                .addContainerGap(157, Short.MAX_VALUE))
         );
 
         pack();
