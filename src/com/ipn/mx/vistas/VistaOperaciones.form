@@ -279,6 +279,9 @@
                   </StringArray>
                 </Property>
               </Properties>
+              <AuxValues>
+                <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="VistaOperaciones_combomonetario"/>
+              </AuxValues>
             </Component>
           </SubComponents>
         </Container>

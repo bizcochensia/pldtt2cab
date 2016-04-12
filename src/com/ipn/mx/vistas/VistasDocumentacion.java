@@ -5,10 +5,15 @@
  */
 package com.ipn.mx.vistas;
 
+import com.ipn.mx.conexion.Conexion;
 import com.ipn.mx.conexion.DocumentacionDao;
+import com.mx.ipn.clases.Cliente;
+import com.mx.ipn.clases.Operacion;
+import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JCheckBox;
@@ -22,16 +27,22 @@ import javax.swing.table.TableModel;
  * @author Clemente
  */
 public class VistasDocumentacion extends javax.swing.JFrame {
-ResultSet rs;
+Conexion con=new Conexion();
+    Connection reg=con.conectar();
+    ResultSet rs;
 PreparedStatement st;
 JTable tabla;
-
+int riesgoresidencia;
+    
+    
+    Operacion c=new Operacion();
     /**
      * Creates new form VistasDocumentacion
      */
-    public VistasDocumentacion() {
+    public VistasDocumentacion() throws SQLException {
         initComponents();
          actualizarTabla();
+         cargarOperacion();
     }
 
     /**
@@ -48,8 +59,10 @@ JTable tabla;
         Cancelar = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jPanel6 = new javax.swing.JPanel();
+        jLabel12 = new javax.swing.JLabel();
+        comboOperacion = new javax.swing.JComboBox();
+        jButton9 = new javax.swing.JButton();
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Seleccione el documento que el Cliente Entrego y Escriba el numero de Folio:");
@@ -61,7 +74,7 @@ JTable tabla;
             }
         });
 
-        Cancelar.setText("Cancelar");
+        Cancelar.setText("Regresar");
         Cancelar.setActionCommand("");
         Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -99,38 +112,88 @@ JTable tabla;
         });
         jScrollPane2.setViewportView(jTable2);
 
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente"));
+
+        jLabel12.setText("Nombre:");
+
+        comboOperacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione...." }));
+        comboOperacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboOperacionMouseClicked(evt);
+            }
+        });
+        comboOperacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboOperacionActionPerformed(evt);
+            }
+        });
+
+        jButton9.setText("Seleccionar");
+        jButton9.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton9ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
+        jPanel6.setLayout(jPanel6Layout);
+        jPanel6Layout.setHorizontalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel12)
+                .addGap(18, 18, 18)
+                .addComponent(comboOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(29, 29, 29))
+        );
+        jPanel6Layout.setVerticalGroup(
+            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel6Layout.createSequentialGroup()
+                .addGap(18, 18, 18)
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(comboOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton9))
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
+                        .addGap(31, 31, 31))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 493, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addComponent(Aceptar)
                                 .addGap(36, 36, 36)
-                                .addComponent(Cancelar)))
-                        .addGap(93, 93, 93))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jLabel15)
-                        .addContainerGap(301, Short.MAX_VALUE))))
+                                .addComponent(Cancelar))
+                            .addComponent(jLabel15)
+                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(105, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(37, Short.MAX_VALUE)
+                .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(23, 23, 23)
                 .addComponent(jLabel15)
-                .addGap(35, 35, 35)
+                .addGap(18, 18, 18)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 152, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Aceptar)
                     .addComponent(Cancelar))
-                .addContainerGap(91, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -183,13 +246,94 @@ JTable tabla;
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
         // TODO add your handling code here:
-        System.exit(0);
+       this.dispose();
     }//GEN-LAST:event_CancelarActionPerformed
 
     private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
         // TODO add your handling code here:
     }//GEN-LAST:event_jTable2MouseClicked
 
+    private void comboOperacionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboOperacionMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboOperacionMouseClicked
+
+    private void comboOperacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboOperacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboOperacionActionPerformed
+
+    private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
+        /* try {
+        Cliente c=(Cliente) comboCliente.getSelectedItem();
+        String a=c.getRfc();
+        String aux="Select tc.descripcion,ac.actividad,ac.riesgo,e.nombre,p.nombre_Pais,p.riesgo as Pais,e.id_pais from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join entidad_federativa e on e.id_Entidad=c.entidad inner join pais p on c.pais_Origen=p.id_Pais inner join tcliente tc on tc.id_tipo=c.tipo where c.RFC='"+a+"' ";
+        Statement st;
+        st = reg.createStatement();
+        ResultSet rs=st.executeQuery(aux);
+        System.out.println(a);
+        
+        while (rs.next()){
+        tipoPersona.setText(rs.getString("descripcion"));
+        Actividad.setText(rs.getString("actividad"));
+        Residencia.setText(rs.getString("nombre"));
+        Nacionalidad.setText(rs.getString("nombre_Pais"));
+        int riesgoPais=rs.getInt("Pais");
+        int riesgoActividad=rs.getInt("riesgo");
+        riesgoresidencia=rs.getInt("id_pais");
+        
+        if(rs.getString("descripcion").equals("fisica")){
+        muestratipo.setText("Bajo");
+        }
+        else{muestraActividad.setText("Alto");}
+        
+        if(riesgoActividad==0){
+        muestraActividad.setText("Bajo");
+        }
+        else{muestraActividad.setText("Alto");}
+        
+        if(riesgoPais==0){
+        muestraNacionalidad.setText("Bajo");
+        }
+        else{muestraNacionalidad.setText("Alto");}
+        }
+        
+        if(riesgoresidencia==1){
+        muestraResidencia.setText("Bajo");
+        }else{
+        muestraResidencia.setText("Alto");
+        }
+        
+        } catch (SQLException ex) {
+        Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }*/
+
+    }//GEN-LAST:event_jButton9ActionPerformed
+ public void cargarOperacion() throws SQLException {
+     Statement st1;
+        try {
+            st1 = reg.createStatement();
+            ResultSet rs1=st1.executeQuery("Select * from operaciones");
+            while(rs1.next()){
+                Operacion act=new Operacion();
+                act.setIdOperacion(rs1.getInt(1));
+                act.setContrato(rs1.getString(2));
+                act.setMonto(rs1.getDouble(3));
+                act.setFecha(rs1.getString(4));
+                act.setRiesgo(rs1.getDouble(5));
+                act.setDescripcion(rs1.getString(6));
+                act.setClienteid(rs1.getInt(7));
+                act.setEmpleadoid(rs1.getInt(8));
+                act.setInmobiliariaid(rs1.getInt(9));
+                act.setTipoid(rs1.getInt(10));
+                act.setMonedaid(rs1.getInt(11));
+                act.setMonetarioid(rs1.getInt(12));
+                
+            comboOperacion.addItem(act);
+     }
+        } catch (SQLException ex) {
+          System.out.println(ex);
+        }
+     
+    }
         private void actualizarTabla() {
        
         DefaultTableModel dfm = new DefaultTableModel(){
@@ -258,7 +402,11 @@ JTable tabla;
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VistasDocumentacion().setVisible(true);
+                try {
+                    new VistasDocumentacion().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(VistasDocumentacion.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -266,7 +414,31 @@ JTable tabla;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar;
     private javax.swing.JButton Cancelar;
+    private javax.swing.JComboBox comboCliente;
+    private javax.swing.JComboBox comboCliente1;
+    private javax.swing.JComboBox comboCliente2;
+    private javax.swing.JComboBox comboCliente3;
+    private javax.swing.JComboBox comboOperacion;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
+    private javax.swing.JButton jButton9;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
+    private javax.swing.JPanel jPanel5;
+    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
