@@ -6,6 +6,8 @@
 package com.ipn.mx.vistas;
 
 import com.ipn.mx.conexion.OperacionDAO;
+import com.ipn.mx.conexion.ReporteDAO;
+import com.mx.ipn.clases.Operacion;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -24,9 +26,12 @@ import org.apache.poi.ss.usermodel.Workbook;
  *
  * @author Clemente
  */
-public class VerOperaciones extends javax.swing.JFrame {
+public class VistaDatosReporte extends javax.swing.JFrame {
 
-     String []encabezados= {"TIPO DE REPORTE","PERIODO DEL REPORTE","FOLIO","ORGANISMO SUPERVISOR","CLAVE DEL SUJETO OBLIGADO","LOCALIDAD",
+    public Operacion ope= new Operacion(VistaVerOperaciones.operacion);
+    ReporteDAO nrep=new ReporteDAO();
+    
+    String []encabezados= {"TIPO DE REPORTE","PERIODO DEL REPORTE","FOLIO","ORGANISMO SUPERVISOR","CLAVE DEL SUJETO OBLIGADO","LOCALIDAD",
          "CODIGO POSTAL DE LA SUCURSAL","TIPO DE OPERACION","INSTRUMENTO ETARIO","NUMERO DE CUENTA,CONTRATO U OPERACION","MONTO","MONEDA",
          "FECHA DE LA OPERACION","FECHA DE DETECCION","NACIONALIDAD","TIPO DE PERSONA","RAZON SOCIAL O DENOMINACION","NOMBRE",
          "APELLIDO PATERNO","APELLIDO MATERNO","RFC","CURP","FECHA NACIMIENTO O CONSTITUCION","DOMICILIO"
@@ -35,6 +40,7 @@ public class VerOperaciones extends javax.swing.JFrame {
          "NOMBRE DEL TITULAR DE LA CUENTA","APELLIDO PATERNO","APELLIDO MATERNO","DESCRIPCION DE LA OPERACION",
          "RAZONES POR LAS QUE LA OPERACION SE CONSIDERA INUSUAL"};
      ResultSet rs;
+     ResultSet aux2;
      String tipoReporte="";     String fechaop="";              String domicilio="";            String razones="";
      String periodo="";         String fechadet="";             String colonia="";              String monto="";
      String folio="";           String nacionalidad="";         String ciudad="";               String numcuenta2="";
@@ -46,11 +52,17 @@ public class VerOperaciones extends javax.swing.JFrame {
      String Instrumento="";     String RFC="";                  String appat2="";
      String numCuenta="";       String CURP="";                 String apmat2="";
      String moneda="";          String fechanac="";             String descripcion="";
-     
+    
+    
+    
+    
+    
+    
+    
     /**
-     * Creates new form VerOperaciones
+     * Creates new form VistaDatosReporte
      */
-    public VerOperaciones() {
+    public VistaDatosReporte() {
         initComponents();
     }
 
@@ -64,8 +76,12 @@ public class VerOperaciones extends javax.swing.JFrame {
     private void initComponents() {
 
         jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        recibenombre = new javax.swing.JTextField();
+        jTextField1 = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jButton1.setText("Generar Reporte");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -74,47 +90,75 @@ public class VerOperaciones extends javax.swing.JFrame {
             }
         });
 
+        jLabel1.setText("Nombre del Archivo");
+
+        jLabel2.setText("Periodo Informe");
+
+        recibenombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recibenombreActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(237, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(50, 50, 50))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel2)
+                    .addComponent(jLabel1))
+                .addGap(29, 29, 29)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(recibenombre, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
+                        .addComponent(jTextField1)))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(235, Short.MAX_VALUE)
+                .addGap(56, 56, 56)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(recibenombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(57, 57, 57)
                 .addComponent(jButton1)
-                .addGap(42, 42, 42))
+                .addContainerGap(39, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-         
-        try {                                         
+        // TODO add your handling code here:
+                try {                                         
             
-            String nombrearchivo=JOptionPane.showInputDialog("Ingrese nomnbre para el reporte");;
+            String nombrearchivo=recibenombre.getText();
             String rutaArchivo = "C:\\Users\\Clemente\\Documents\\NetBeansProjects\\PLD"+"/"+nombrearchivo+".xls";
             System.out.println(rutaArchivo);
             OperacionDAO d=new OperacionDAO();
-            rs=d.DatosReportes();
+            String a=Integer.toString(ope.getIdOperacion());
+            rs=d.DatosReportes(a);
             
              while(rs.next()){
                 clave=rs.getString("clave");
                 CPINM=rs.getString("codigoPostal");
                 tipoOp=rs.getString("clavetipoOp");
+                localidad=rs.getString("EntidadFede");
                 Instrumento=rs.getString("monetarioclave");
                 numCuenta=rs.getString("numeroContrato");
                 monto=rs.getString("monto");
                 moneda=rs.getString("claveMoneda");
                 fechaop=rs.getString("fechaOperacion");
                 nacionalidad=rs.getString("paisOrigen");
-                tipopersona=rs.getString("descripcion");
+                tipopersona=rs.getString("id_tipo");
                 Razonsocial=rs.getString("nombre");
                 nombre=rs.getString("nombre");
                 ApPat=rs.getString("apellido_Pat");
@@ -122,15 +166,31 @@ public class VerOperaciones extends javax.swing.JFrame {
                 RFC=rs.getString("RFC");
                 fechanac=rs.getString("fecha_nac");
                 domicilio=rs.getString("calle");
-                ciudad=rs.getString("localidad");
+                ciudad=rs.getString("clave");
                 telefono=rs.getString("numero_Telefono");
                 actividad=rs.getString("folio");
-                descripcion=rs.getString("descripcion");
-                
-             
+                descripcion=rs.getString("detalleop");                
             }
             
+             if(nacionalidad.equals("1")){}
+             else{nacionalidad="2";}
+             
+             if(tipopersona.equals("1")){
+             Razonsocial="";
+             }
+             else{
+             nombre="";
+             }
             
+             nrep.insertaReporte(ope.getIdOperacion(),rutaArchivo); //cambiar por rutaArchivo
+             
+             String b=Integer.toString(ope.getIdOperacion());
+             aux2=nrep.VerReportes(b);
+             
+             while(aux2.next()){
+             folio=aux2.getString("folio");
+             }
+             
             try {
                 File archivoXLS = new File(rutaArchivo);
                 String []datos= {tipoReporte,periodo,folio,organosup,clave,localidad,CPINM,tipoOp,Instrumento,numCuenta,monto,moneda,fechaop,fechadet,
@@ -173,13 +233,22 @@ public class VerOperaciones extends javax.swing.JFrame {
                 libro.write(archivo);
                 /*Cerramos el flujo de datos*/
                 archivo.close();
+                JOptionPane.showMessageDialog(null,"Archivo creado");
+                this.dispose();
             } catch (IOException ex) {
-                Logger.getLogger(VerOperaciones.class.getName()).log(Level.SEVERE, null, ex);
+                Logger.getLogger(VistaDatosReporte.class.getName()).log(Level.SEVERE, null, ex);
+                JOptionPane.showMessageDialog(null,"Ocurrio un error intentelo nuevamente");
             }
         } catch (SQLException ex) {
-             Logger.getLogger(VerOperaciones.class.getName()).log(Level.SEVERE, null, ex);
+             Logger.getLogger(VistaDatosReporte.class.getName()).log(Level.SEVERE, null, ex);
+             JOptionPane.showMessageDialog(null,"Ocurrio un error intentelo nuevamente");
          }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void recibenombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recibenombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_recibenombreActionPerformed
 
     /**
      * @param args the command line arguments
@@ -198,25 +267,32 @@ public class VerOperaciones extends javax.swing.JFrame {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(VerOperaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaDatosReporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(VerOperaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaDatosReporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(VerOperaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaDatosReporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(VerOperaciones.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaDatosReporte.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
+        //</editor-fold>
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VerOperaciones().setVisible(true);
+                new VistaDatosReporte().setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField recibenombre;
     // End of variables declaration//GEN-END:variables
 }

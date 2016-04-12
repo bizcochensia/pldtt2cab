@@ -5,6 +5,7 @@
  */
 package com.ipn.mx.vistas;
 
+import com.ipn.mx.conexion.ClienteDao;
 import com.ipn.mx.conexion.Conexion;
 import com.ipn.mx.conexion.OperacionDAO;
 import com.mx.ipn.clases.Cliente;
@@ -28,8 +29,19 @@ import javax.swing.JOptionPane;
  * @author Clemente
  */
 public class VistaOperaciones extends javax.swing.JFrame {
-    
    
+    
+   double APais=0;
+   double AA=0;
+   double AR=0;
+   double ATP=0;
+   double PEP=0;
+   int riesgoPais=0;
+   int riesgoActividad=0;
+   int riesgoresidencia=0;
+   String tipoPersona="";
+   ClienteDao cd=new ClienteDao();
+    
     Date f=new Date();
     String aux=f.toString();
     String dia;
@@ -46,6 +58,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
 
     Conexion con=new Conexion();
     Connection reg=con.conectar();
+    Connection reg2=con.conectar();
     private String numcontrato;
     private double monto;
     private String descripcion;
@@ -489,9 +502,14 @@ public class VistaOperaciones extends javax.swing.JFrame {
             try {
                 c=(Cliente) combocliente.getSelectedItem();
                 String a=c.getRfc();
+                int b=c.getIdCLiente();
                 String aux="Select c.nombre,c.apellido_Pat,c.apellido_Mat,c.ingreso_Promedio,ac.actividad from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad  where c.RFC='"+a+"' ";
+                String aux2="Select tc.descripcion,ac.actividad,ac.riesgo,e.nombre,p.nombre_Pais,p.riesgo as Pais,e.id_pais from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join entidad_federativa e on e.id_Entidad=c.entidad inner join pais p on c.pais_Origen=p.id_Pais inner join tcliente tc on tc.id_tipo=c.tipo where c.id_cliente='"+b+"' ";
                 Statement st;
+                Statement st2;
+                st2= reg2.createStatement();
                 st = reg.createStatement();
+                ResultSet rs2=st2.executeQuery(aux2);
                 ResultSet rs=st.executeQuery(aux);
                 while(rs.next()){
                 nombre.setText(rs.getString("nombre"));
@@ -500,8 +518,39 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 act.setText(rs.getString("actividad"));
                 ing.setText(rs.getString("ingreso_Promedio"));
                 }
+                while(rs2.next()){     
+                riesgoPais=rs.getInt("Pais");
+                riesgoActividad=rs.getInt("riesgo");
+                riesgoresidencia=rs.getInt("id_pais");
+                tipoPersona=rs.getString("descripcion");
+                }
                 
-            } catch (SQLException ex) {
+                if(tipoPersona.equals("fisica")){
+                ATP=0.40;
+                 }
+                else{ATP=0.60;}
+                
+                if(riesgoActividad==0){
+                AA=0.30;
+                }
+                else{AA=0.70;}
+                
+                if(riesgoPais==0){
+                APais=0.30;
+            }
+            else{APais=0.70;}
+                
+                
+                 if(riesgoresidencia==1){
+                 AR=0.30;
+                }else{
+                AR=0.70;
+                }
+ 
+             Double RTC=ATP*.20+AA*.25+AR*15+APais*.15+PEP*25;
+             cd.ActualizarRiesgo(RTC, b);
+                 
+            } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
         }

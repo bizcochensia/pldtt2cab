@@ -176,6 +176,11 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
         jLabel12.setText("Codigo postal");
 
         combopais.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione..." }));
+        combopais.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                combopaisActionPerformed(evt);
+            }
+        });
 
         comboEntidadFede.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione...." }));
         comboEntidadFede.addItemListener(new java.awt.event.ItemListener() {
@@ -395,7 +400,7 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
                             .addComponent(jButton1))
                         .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jPanel3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 825, Short.MAX_VALUE)
                             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(65, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
@@ -561,6 +566,10 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
     private void PaisOrigenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_PaisOrigenActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_PaisOrigenActionPerformed
+
+    private void combopaisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combopaisActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_combopaisActionPerformed
 
     public void cargarpais() throws SQLException {
      Statement st;
