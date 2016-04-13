@@ -142,9 +142,9 @@ int riesgoresidencia;
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jLabel12)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(comboOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(29, 29, 29))
         );
@@ -163,12 +163,10 @@ int riesgoresidencia;
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addGap(30, 30, 30)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 676, Short.MAX_VALUE)
-                        .addGap(31, 31, 31))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
@@ -178,12 +176,13 @@ int riesgoresidencia;
                                 .addComponent(Cancelar))
                             .addComponent(jLabel15)
                             .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(22, 22, 22))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(37, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(99, 99, 99)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
                 .addComponent(jLabel15)
@@ -193,7 +192,7 @@ int riesgoresidencia;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Aceptar)
                     .addComponent(Cancelar))
-                .addContainerGap())
+                .addContainerGap(241, Short.MAX_VALUE))
         );
 
         pack();
@@ -262,49 +261,7 @@ int riesgoresidencia;
     }//GEN-LAST:event_comboOperacionActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        /* try {
-        Cliente c=(Cliente) comboCliente.getSelectedItem();
-        String a=c.getRfc();
-        String aux="Select tc.descripcion,ac.actividad,ac.riesgo,e.nombre,p.nombre_Pais,p.riesgo as Pais,e.id_pais from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join entidad_federativa e on e.id_Entidad=c.entidad inner join pais p on c.pais_Origen=p.id_Pais inner join tcliente tc on tc.id_tipo=c.tipo where c.RFC='"+a+"' ";
-        Statement st;
-        st = reg.createStatement();
-        ResultSet rs=st.executeQuery(aux);
-        System.out.println(a);
-        
-        while (rs.next()){
-        tipoPersona.setText(rs.getString("descripcion"));
-        Actividad.setText(rs.getString("actividad"));
-        Residencia.setText(rs.getString("nombre"));
-        Nacionalidad.setText(rs.getString("nombre_Pais"));
-        int riesgoPais=rs.getInt("Pais");
-        int riesgoActividad=rs.getInt("riesgo");
-        riesgoresidencia=rs.getInt("id_pais");
-        
-        if(rs.getString("descripcion").equals("fisica")){
-        muestratipo.setText("Bajo");
-        }
-        else{muestraActividad.setText("Alto");}
-        
-        if(riesgoActividad==0){
-        muestraActividad.setText("Bajo");
-        }
-        else{muestraActividad.setText("Alto");}
-        
-        if(riesgoPais==0){
-        muestraNacionalidad.setText("Bajo");
-        }
-        else{muestraNacionalidad.setText("Alto");}
-        }
-        
-        if(riesgoresidencia==1){
-        muestraResidencia.setText("Bajo");
-        }else{
-        muestraResidencia.setText("Alto");
-        }
-        
-        } catch (SQLException ex) {
-        Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
-        }*/
+      
 
     }//GEN-LAST:event_jButton9ActionPerformed
  public void cargarOperacion() throws SQLException {
@@ -414,30 +371,10 @@ int riesgoresidencia;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar;
     private javax.swing.JButton Cancelar;
-    private javax.swing.JComboBox comboCliente;
-    private javax.swing.JComboBox comboCliente1;
-    private javax.swing.JComboBox comboCliente2;
-    private javax.swing.JComboBox comboCliente3;
     private javax.swing.JComboBox comboOperacion;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
-    private javax.swing.JButton jButton8;
     private javax.swing.JButton jButton9;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
