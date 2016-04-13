@@ -40,6 +40,16 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
         initComponents();
         cargardatos();
         mostrardatos(posicion);
+        muestracliente.setEditable(false);
+        muestracontrato.setEditable(false);
+        muestradescripcion.setEditable(false);
+        muestraempleado.setEditable(false);
+        muestrafecha.setEditable(false);
+        muestrainmobiliaria.setEditable(false);
+        muestramoneda.setEditable(false);
+        muestramonetario.setEditable(false);
+        muestramonto.setEditable(false);
+        muestratipoOperacion.setEditable(false);
          ///
         
          MiPanel p = new MiPanel(); 
