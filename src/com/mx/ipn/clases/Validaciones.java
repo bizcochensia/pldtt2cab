@@ -86,6 +86,14 @@ public class Validaciones {
       }
       
       
-      
+      public boolean periodo(String cadena){
+      boolean respuesta= false;
+      Pattern pat= Pattern.compile("[0-9]{6,6}");
+      Matcher mat=pat.matcher(cadena);
+      if(mat.find()){
+      respuesta=true;
+      }
+      return respuesta;
+      }
       
 }

@@ -8,6 +8,7 @@ package com.ipn.mx.vistas;
 import com.ipn.mx.conexion.OperacionDAO;
 import com.ipn.mx.conexion.ReporteDAO;
 import com.mx.ipn.clases.Operacion;
+import com.mx.ipn.clases.Validaciones;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -30,6 +31,7 @@ public class VistaDatosReporte extends javax.swing.JFrame {
 
     public Operacion ope= new Operacion(VistaVerOperaciones.operacion);
     ReporteDAO nrep=new ReporteDAO();
+    String nombrearchivo="";
     
     String []encabezados= {"TIPO DE REPORTE","PERIODO DEL REPORTE","FOLIO","ORGANISMO SUPERVISOR","CLAVE DEL SUJETO OBLIGADO","LOCALIDAD",
          "CODIGO POSTAL DE LA SUCURSAL","TIPO DE OPERACION","INSTRUMENTO ETARIO","NUMERO DE CUENTA,CONTRATO U OPERACION","MONTO","MONEDA",
@@ -41,7 +43,7 @@ public class VistaDatosReporte extends javax.swing.JFrame {
          "RAZONES POR LAS QUE LA OPERACION SE CONSIDERA INUSUAL"};
      ResultSet rs;
      ResultSet aux2;
-     String tipoReporte="";     String fechaop="";              String domicilio="";            String razones="";
+     String tipoReporte="1";     String fechaop="";              String domicilio="";            String razones="";
      String periodo="";         String fechadet="";             String colonia="";              String monto="";
      String folio="";           String nacionalidad="";         String ciudad="";               String numcuenta2="";
      String organosup="";       String tipopersona="";          String telefono="";
@@ -79,7 +81,7 @@ public class VistaDatosReporte extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         recibenombre = new javax.swing.JTextField();
-        jTextField1 = new javax.swing.JTextField();
+        recibeperiodo = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -114,7 +116,7 @@ public class VistaDatosReporte extends javax.swing.JFrame {
                     .addComponent(jButton1)
                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                         .addComponent(recibenombre, javax.swing.GroupLayout.DEFAULT_SIZE, 187, Short.MAX_VALUE)
-                        .addComponent(jTextField1)))
+                        .addComponent(recibeperiodo)))
                 .addContainerGap(102, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
@@ -127,7 +129,7 @@ public class VistaDatosReporte extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(recibeperiodo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(57, 57, 57)
                 .addComponent(jButton1)
                 .addContainerGap(39, Short.MAX_VALUE))
@@ -138,9 +140,14 @@ public class VistaDatosReporte extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-                try {                                         
-            
-            String nombrearchivo=recibenombre.getText();
+        nombrearchivo=recibenombre.getText();
+        periodo=recibeperiodo.getText();
+        Validaciones val=new Validaciones();
+        boolean n=val.sololetras(nombrearchivo);
+        boolean p=val.periodo(periodo);
+        
+        if(n && p){
+            try {                                         
             String rutaArchivo = "C:\\Users\\Clemente\\Documents\\NetBeansProjects\\PLD"+"/"+nombrearchivo+".xls";
             System.out.println(rutaArchivo);
             OperacionDAO d=new OperacionDAO();
@@ -243,6 +250,10 @@ public class VistaDatosReporte extends javax.swing.JFrame {
              Logger.getLogger(VistaDatosReporte.class.getName()).log(Level.SEVERE, null, ex);
              JOptionPane.showMessageDialog(null,"Ocurrio un error intentelo nuevamente");
          }
+        }
+        else{
+            JOptionPane.showMessageDialog(null,"Valores en los campos invalidos"+"\n"+"El nombre solo acpeta letras y una longitud de 15\n"+"El periodo debe tener el formato de AAAAMM ");
+        }
         
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -292,7 +303,7 @@ public class VistaDatosReporte extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField recibenombre;
+    private javax.swing.JTextField recibeperiodo;
     // End of variables declaration//GEN-END:variables
 }
