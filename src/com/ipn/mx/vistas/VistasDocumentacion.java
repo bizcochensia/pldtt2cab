@@ -284,7 +284,7 @@ int riesgoresidencia;
                 act.setMonedaid(rs1.getInt(11));
                 act.setMonetarioid(rs1.getInt(12));
                 
-            comboOperacion.addItem(act);
+            comboOperacion.addItem(act.getContrato());
      }
         } catch (SQLException ex) {
           System.out.println(ex);

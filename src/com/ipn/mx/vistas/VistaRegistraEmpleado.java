@@ -90,6 +90,12 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Nombre", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanel1.setOpaque(false);
 
+        nombreText.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                nombreTextActionPerformed(evt);
+            }
+        });
+
         Apell_PatText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Apell_PatTextActionPerformed(evt);
@@ -113,13 +119,13 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
                 .addComponent(nombreText, javax.swing.GroupLayout.PREFERRED_SIZE, 164, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel3)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(Apell_MatText, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(31, 31, 31)
-                .addComponent(jLabel4)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 10, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(Apell_PatText, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(32, 32, 32)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(Apell_MatText, javax.swing.GroupLayout.PREFERRED_SIZE, 155, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(21, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -263,7 +269,9 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel10)
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addGap(161, 161, 161))
                                 .addComponent(jPanel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addContainerGap(47, Short.MAX_VALUE))
@@ -322,7 +330,13 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
                 }
             }
         JOptionPane.showMessageDialog(null, "El registro fue exitoso!");
-        this.dispose();
+        nombreText.setText("");
+       Apell_PatText.setText("");
+       rfcText.setText("");
+       numTelText.setText("");
+       Apell_MatText.setText("");
+       usuarioText.setText("");
+       contraseñaText.setText("");
                 } 
                 else{
             JOptionPane.showMessageDialog(null, "El RFC no tiene la estructura indicada ");
@@ -336,7 +350,7 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "El campo Telefono  solo acepta numeros y necesita 8 digitos");
         }
         }
-        
+       
     }//GEN-LAST:event_RegistrarBotonActionPerformed
 
     private void Apell_PatTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Apell_PatTextActionPerformed
@@ -357,6 +371,10 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
         dispose();
        
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void nombreTextActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_nombreTextActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_nombreTextActionPerformed
 
     /**
      * @param args the command line arguments
