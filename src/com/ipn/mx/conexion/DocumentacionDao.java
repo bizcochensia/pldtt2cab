@@ -46,7 +46,7 @@ public class DocumentacionDao {
            }
         catch(Exception ex) {
             System.out.println(ex);
-            JOptionPane.showMessageDialog(null, "ex");    
+            JOptionPane.showMessageDialog(null, ex);    
         }
     
     }

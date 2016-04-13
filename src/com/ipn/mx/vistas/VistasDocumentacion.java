@@ -7,8 +7,9 @@ package com.ipn.mx.vistas;
 
 import com.ipn.mx.conexion.Conexion;
 import com.ipn.mx.conexion.DocumentacionDao;
-import com.mx.ipn.clases.Cliente;
+import com.mx.ipn.clases.MiPanel;
 import com.mx.ipn.clases.Operacion;
+import java.awt.BorderLayout;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,7 +34,8 @@ Conexion con=new Conexion();
 PreparedStatement st;
 JTable tabla;
 int riesgoresidencia;
-    
+int idOP;
+
     
     Operacion c=new Operacion();
     /**
@@ -43,6 +45,16 @@ int riesgoresidencia;
         initComponents();
          actualizarTabla();
          cargarOperacion();
+          
+        MiPanel p = new MiPanel();
+        this.add( p , BorderLayout.CENTER);
+        p.repaint();
+        setLayout(null);
+        setLocationRelativeTo(null);        // Centering on screen...
+        setSize(900, 700);               // Setting dimensions...
+        setTitle("SisPLD");
+        setResizable(false);
+       
     }
 
     /**
@@ -63,10 +75,13 @@ int riesgoresidencia;
         jLabel12 = new javax.swing.JLabel();
         comboOperacion = new javax.swing.JComboBox();
         jButton9 = new javax.swing.JButton();
+        jLabel9 = new javax.swing.JLabel();
+        Aceptar1 = new javax.swing.JButton();
 
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Seleccione el documento que el Cliente Entrego y Escriba el numero de Folio:");
 
+        Aceptar.setForeground(new java.awt.Color(0, 153, 51));
         Aceptar.setText("Aceptar");
         Aceptar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -74,6 +89,7 @@ int riesgoresidencia;
             }
         });
 
+        Cancelar.setForeground(new java.awt.Color(0, 153, 51));
         Cancelar.setText("Regresar");
         Cancelar.setActionCommand("");
         Cancelar.addActionListener(new java.awt.event.ActionListener() {
@@ -112,9 +128,9 @@ int riesgoresidencia;
         });
         jScrollPane2.setViewportView(jTable2);
 
-        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente"));
+        jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Operacion "));
 
-        jLabel12.setText("Nombre:");
+        jLabel12.setText("Contrato:");
 
         comboOperacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione...." }));
         comboOperacion.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -128,6 +144,8 @@ int riesgoresidencia;
             }
         });
 
+        jButton9.setBackground(new java.awt.Color(0, 153, 51));
+        jButton9.setForeground(new java.awt.Color(255, 255, 255));
         jButton9.setText("Seleccionar");
         jButton9.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -143,21 +161,38 @@ int riesgoresidencia;
                 .addContainerGap()
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(comboOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 14, Short.MAX_VALUE)
+                .addComponent(comboOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, 358, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62)
                 .addComponent(jButton9, javax.swing.GroupLayout.PREFERRED_SIZE, 104, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(29, 29, 29))
+                .addContainerGap(75, Short.MAX_VALUE))
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
-                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel12)
-                    .addComponent(comboOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton9))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(comboOperacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel6Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton9)))
+                .addContainerGap(47, Short.MAX_VALUE))
         );
+
+        jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel9.setText("Registrar Documentación");
+
+        Aceptar1.setBackground(new java.awt.Color(0, 153, 51));
+        Aceptar1.setForeground(new java.awt.Color(255, 255, 255));
+        Aceptar1.setText("Nuevo");
+        Aceptar1.setActionCommand("Nuevo");
+        Aceptar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Aceptar1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -166,23 +201,32 @@ int riesgoresidencia;
             .addGroup(layout.createSequentialGroup()
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
                             .addGroup(layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 513, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(Aceptar)
-                                .addGap(36, 36, 36)
-                                .addComponent(Cancelar))
-                            .addComponent(jLabel15)
-                            .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(22, 22, 22))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(432, 432, 432)
+                                        .addComponent(Aceptar1)
+                                        .addGap(28, 28, 28)
+                                        .addComponent(Aceptar)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(Cancelar))
+                                    .addComponent(jLabel15)
+                                    .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 142, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(22, 22, 22))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(99, 99, 99)
+                .addGap(62, 62, 62)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addComponent(jPanel6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(23, 23, 23)
                 .addComponent(jLabel15)
@@ -191,8 +235,9 @@ int riesgoresidencia;
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Aceptar)
-                    .addComponent(Cancelar))
-                .addContainerGap(241, Short.MAX_VALUE))
+                    .addComponent(Cancelar)
+                    .addComponent(Aceptar1))
+                .addContainerGap(229, Short.MAX_VALUE))
         );
 
         pack();
@@ -201,6 +246,7 @@ int riesgoresidencia;
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
         // TODO add your handling code here:
         int id = 0 ;
+        boolean check  ;
         String folio = null;
         DocumentacionDao cn = new DocumentacionDao();
         DefaultTableModel dfm = new DefaultTableModel(){
@@ -218,29 +264,37 @@ int riesgoresidencia;
         TableModel tableModel = tabla.getModel();
         int cols = tableModel.getColumnCount();
         int fils = tableModel.getRowCount();
+        
         for(int i=0; i<fils; i++) {
             for(int j=0; j<cols;j++ ){
                 if(j==0){
                     id = Integer.parseInt((String) tableModel.getValueAt(i,j));
-
-                }else if(j==3){
-                    folio = (String) tableModel.getValueAt(i, j);
+                       System.out.println(id);
                 }else if(j==2){
-
-                }
+                //check = (boolean) tableModel.getValueAt(i, j);
+                }else if(j==3){
+                      folio = (String) tableModel.getValueAt(i, j);
+                      System.out.println(folio);
+                                               
             }
-            if(folio != null){
-                try {
-                    cn.RegistroDocumento(1,id, folio);
-
-                } catch (ClassNotFoundException | SQLException ex) {
-                    Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+                if(folio != null){
+                     try {
+                    cn.RegistroDocumento(idOP,id, folio);
+                   
+                } catch (            ClassNotFoundException | SQLException ex) {
+                    Logger.getLogger(VistasDocumentacion.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                }
+        
             }
-
+              
+                
+               
+            
         }
+       
         //rs = cn.RegistroDocumento(1, id_documento, folio);
-
+    
     }//GEN-LAST:event_AceptarActionPerformed
 
     private void CancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelarActionPerformed
@@ -261,9 +315,32 @@ int riesgoresidencia;
     }//GEN-LAST:event_comboOperacionActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-      
+       jButton9.setEnabled(false);
+        String a=(String) comboOperacion.getSelectedItem();
+        System.out.println(a);
+       String aux="Select * from operaciones where numeroContrato='"+a+"'";
+            try {
+            Statement st2;
+            st2 = reg.createStatement();
+            ResultSet rs2 = st2.executeQuery(aux);
+            System.out.println(a);
 
+            while (rs2.next()) {
+                System.out.println(rs2.getString("id_Operacion"));
+               
+                idOP = Integer.parseInt(rs2.getString("id_Operacion"));
+            }
+            
+        } catch (SQLException ex) {
+            System.out.println(ex);
+        }
+            //jButton9.setEnabled(false);
     }//GEN-LAST:event_jButton9ActionPerformed
+
+    private void Aceptar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Aceptar1ActionPerformed
+        // TODO add your handling code here:
+        jButton9.setEnabled(true);
+    }//GEN-LAST:event_Aceptar1ActionPerformed
  public void cargarOperacion() throws SQLException {
      Statement st1;
         try {
@@ -327,6 +404,7 @@ int riesgoresidencia;
       
         }       
     }
+        
     
     
     /**
@@ -370,11 +448,13 @@ int riesgoresidencia;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar;
+    private javax.swing.JButton Aceptar1;
     private javax.swing.JButton Cancelar;
     private javax.swing.JComboBox comboOperacion;
     private javax.swing.JButton jButton9;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTable jTable2;
