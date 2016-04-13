@@ -14,6 +14,7 @@ import com.mx.ipn.clases.MiPanel;
 import com.mx.ipn.clases.Moneda;
 import com.mx.ipn.clases.Monetario;
 import com.mx.ipn.clases.TipoOperacion;
+import com.mx.ipn.clases.Validaciones;
 import java.awt.BorderLayout;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -41,7 +42,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
    int riesgoresidencia=0;
    String tipoPersona="";
    ClienteDao cd=new ClienteDao();
-    
+   Validaciones val=new Validaciones();
+   
     Date f=new Date();
     String aux=f.toString();
     String dia;
@@ -565,8 +567,9 @@ public class VistaOperaciones extends javax.swing.JFrame {
         numcontrato=contrato.getText();
         monto=  Double.parseDouble( operacion.getText());
         descripcion=des.getText();
-        
-        
+        boolean mo=val.Ingreso(operacion.getText());
+        boolean con=val.alfanumericos(numcontrato);
+       
         moneda= (Moneda) combomoneda.getSelectedItem();
         tp= (TipoOperacion) combooperacion.getSelectedItem();
         mone= (Monetario) combomonetario.getSelectedItem();
@@ -578,16 +581,26 @@ public class VistaOperaciones extends javax.swing.JFrame {
         año=aux.substring(24, 28);
         fecha=año+"-"+mes+"-"+dia;
         
-        if(combomoneda.getSelectedIndex()==0 || combomonetario.getSelectedIndex()==0 || combocliente.getSelectedIndex()==0 || combooperacion.getSelectedIndex()==0){
-         JOptionPane.showMessageDialog(null, "Todos los combobox necesitan tener una elección");
+        if(contrato.getText().equals("") || operacion.getText().equals("") || des.getText().equals("")){
+        JOptionPane.showMessageDialog(null, "Todos los campos en detalle de la operacion son requeridos");
         }
         else{
-            try {
+        if(combooperacion.getSelectedIndex()==0 || combomoneda.getSelectedIndex()==0 || combomonetario.getSelectedIndex()==0){
+        JOptionPane.showMessageDialog(null, "Los combobox deben tener una eleccion al igual que el cliente asociado.");
+        }
+        else{
+            if(mo && con){
+                        try {
                 OperacionDAO op = new OperacionDAO();
                 op.RegistroOperacion(numcontrato, monto, fecha, 20, descripcion, c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario());
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Se necesitan estar todos los campos llenos para completar el registro");
             }
+            }
+            else{
+                JOptionPane.showMessageDialog(null, "");
+            }
+        }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 
