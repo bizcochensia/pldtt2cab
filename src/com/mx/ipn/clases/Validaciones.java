@@ -55,6 +55,17 @@ public class Validaciones {
       return respuesta;
       }
       
+      public boolean alfanumericos(String cadena){
+      boolean respuesta= false;
+      Pattern pat= Pattern.compile("[a-zA-Z0-9]{1,15}");
+      Matcher mat=pat.matcher(cadena);
+      if(mat.find()){
+      respuesta=true;
+      }
+      return respuesta;
+      }
+      
+      
       public boolean contraseña(String cadena){
       boolean respuesta= false;
       Pattern pat= Pattern.compile("");
