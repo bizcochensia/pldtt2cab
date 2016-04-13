@@ -5,10 +5,15 @@
  */
 package com.ipn.mx.vistas;
 
+import com.ipn.mx.conexion.Conexion;
 import com.ipn.mx.conexion.ConocerDao;
+import com.mx.ipn.clases.Cliente;
 import com.mx.ipn.clases.MiPanel;
 import java.awt.BorderLayout;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
@@ -20,11 +25,17 @@ import javax.swing.JOptionPane;
  * @author bdfe_
  */
 public class ConocerC extends javax.swing.JFrame {
-
+   Conexion con=new Conexion();
+    Connection reg=con.conectar();
+    
+    Cliente c=new Cliente();
+    int eva[] = new int[50];
+    int i=0;
+    
     /**
      * Creates new form ConocerC
      */
-    public ConocerC() {
+    public ConocerC() throws SQLException {
         initComponents();
         MiPanel p = new MiPanel();
         this.add( p , BorderLayout.CENTER);
@@ -35,6 +46,8 @@ public class ConocerC extends javax.swing.JFrame {
         setTitle("SisPLD");
         setResizable(false);
         descrip.setEnabled(false);
+        cargarClientes();
+                
     }
 
     /**
@@ -54,56 +67,43 @@ public class ConocerC extends javax.swing.JFrame {
         buttonGroup6 = new javax.swing.ButtonGroup();
         buttonGroup7 = new javax.swing.ButtonGroup();
         jLabel1 = new javax.swing.JLabel();
-        Aceptar = new javax.swing.JButton();
-        Cancelar = new javax.swing.JButton();
         jLabel12 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         No4 = new javax.swing.JRadioButton();
-        Si4 = new javax.swing.JRadioButton();
+        javax.swing.JRadioButton Si4 = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
         No5 = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
-        Si5 = new javax.swing.JRadioButton();
+        javax.swing.JRadioButton Si5 = new javax.swing.JRadioButton();
         jLabel6 = new javax.swing.JLabel();
         No6 = new javax.swing.JRadioButton();
         jLabel7 = new javax.swing.JLabel();
-        Si6 = new javax.swing.JRadioButton();
+        javax.swing.JRadioButton Si6 = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
-        Si = new javax.swing.JRadioButton();
+        javax.swing.JRadioButton Si = new javax.swing.JRadioButton();
         No = new javax.swing.JRadioButton();
-        Si1 = new javax.swing.JRadioButton();
+        javax.swing.JRadioButton Si1 = new javax.swing.JRadioButton();
         No1 = new javax.swing.JRadioButton();
         No2 = new javax.swing.JRadioButton();
-        Si2 = new javax.swing.JRadioButton();
+        javax.swing.JRadioButton Si2 = new javax.swing.JRadioButton();
         No3 = new javax.swing.JRadioButton();
-        Si3 = new javax.swing.JRadioButton();
+        javax.swing.JRadioButton Si3 = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         descrip = new javax.swing.JTextArea();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
+        Aceptar = new javax.swing.JButton();
+        Cancelar = new javax.swing.JButton();
+        jPanel2 = new javax.swing.JPanel();
+        jLabel13 = new javax.swing.JLabel();
+        comboCliente = new javax.swing.JComboBox();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 700));
-
-        Aceptar.setBackground(new java.awt.Color(0, 153, 51));
-        Aceptar.setForeground(new java.awt.Color(255, 255, 255));
-        Aceptar.setText("Aceptar");
-        Aceptar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                AceptarActionPerformed(evt);
-            }
-        });
-
-        Cancelar.setForeground(new java.awt.Color(0, 153, 51));
-        Cancelar.setText("Regresar");
-        Cancelar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CancelarActionPerformed(evt);
-            }
-        });
 
         jLabel12.setText("Llene el siguiente Formulario deacuerdo a su persepción:");
 
@@ -254,6 +254,23 @@ public class ConocerC extends javax.swing.JFrame {
 
         jLabel11.setText(" Observaciones son obligatorias si selecciono 'si' a alguna de las peguntas anteriores");
 
+        Aceptar.setBackground(new java.awt.Color(0, 153, 51));
+        Aceptar.setForeground(new java.awt.Color(255, 255, 255));
+        Aceptar.setText("Aceptar");
+        Aceptar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                AceptarActionPerformed(evt);
+            }
+        });
+
+        Cancelar.setForeground(new java.awt.Color(0, 153, 51));
+        Cancelar.setText("Regresar");
+        Cancelar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                CancelarActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -262,9 +279,7 @@ public class ConocerC extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel10)
-                            .addComponent(jLabel11))
+                        .addComponent(jLabel10)
                         .addContainerGap())
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,7 +330,14 @@ public class ConocerC extends javax.swing.JFrame {
                                 .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 105, Short.MAX_VALUE))))
+                        .addGap(0, 105, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jLabel11)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Aceptar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(Cancelar)
+                        .addGap(55, 55, 55))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -369,8 +391,66 @@ public class ConocerC extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel11)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(Aceptar)
+                        .addComponent(Cancelar)))
                 .addContainerGap())
+        );
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente a  Evaluar"));
+        jPanel2.setOpaque(false);
+
+        jLabel13.setText("Nombre:");
+
+        comboCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione...." }));
+        comboCliente.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                comboClienteMouseClicked(evt);
+            }
+        });
+        comboCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboClienteActionPerformed(evt);
+            }
+        });
+
+        jButton1.setBackground(new java.awt.Color(0, 153, 51));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jButton1.setText("Seleccionar ");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
+        jPanel2.setLayout(jPanel2Layout);
+        jPanel2Layout.setHorizontalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel13)
+                .addGap(18, 18, 18)
+                .addComponent(comboCliente, 0, 276, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(jButton1)
+                .addGap(20, 20, 20))
+        );
+        jPanel2Layout.setVerticalGroup(
+            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(19, 19, 19)
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel13)
+                            .addComponent(comboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jButton1)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -380,25 +460,20 @@ public class ConocerC extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addGap(41, 41, 41)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel9)
+                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
                         .addGap(429, 429, 429)
-                        .addComponent(jLabel1)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGap(0, 13, Short.MAX_VALUE)
-                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Aceptar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Cancelar)
-                        .addGap(47, 47, 47)))
-                .addContainerGap())
-            .addGroup(layout.createSequentialGroup()
-                .addGap(41, 41, 41)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel1))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(111, 111, 111)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(13, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -410,12 +485,10 @@ public class ConocerC extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(jLabel12)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(Aceptar)
-                    .addComponent(Cancelar))
-                .addContainerGap())
+                .addGap(36, 36, 36))
         );
 
         pack();
@@ -435,21 +508,22 @@ public class ConocerC extends javax.swing.JFrame {
         if(No.isSelected()&No1.isSelected()&No2.isSelected()&No3.isSelected()&No4.isSelected()&No5.isSelected()&No6.isSelected()){
             this.dispose();
         }else{
-if(texto.length()==0 ){
+        if(texto.length()==0 ){
             JOptionPane.showMessageDialog(null, "Se requiere Descripcion");
             
         }
         else
         {
-            try {
-            ac.RegistroDescripcion(1, 1, sqlDate, descrip.getText());
-            System.exit(0);
+            for (int j=0;j<i;j++){
+                try { 
+                    ac.RegistroDescripcion(eva[j], 1, sqlDate, descrip.getText());
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(ConocerC.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConocerC.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
             
-        } catch (ClassNotFoundException | SQLException ex) {
-            System.out.println(ex);
-            Logger.getLogger(ConocerC.class.getName()).log(Level.SEVERE, null, ex);
-            
-        }
         }
             
         }
@@ -534,6 +608,70 @@ if(texto.length()==0 ){
         descrip.setText("");
     }//GEN-LAST:event_No4ActionPerformed
 
+    private void comboClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboClienteMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboClienteMouseClicked
+
+    private void comboClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboClienteActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        try {
+            Cliente c=(Cliente) comboCliente.getSelectedItem();
+            int a=c.getIdCLiente();
+            String aux="Select * from operaciones where Cliente_id='"+a+"'";
+            Statement st;
+            st = reg.createStatement();
+            ResultSet rs=st.executeQuery(aux);
+            System.out.println(a);
+            i=0;
+              while (rs.next()){
+                  System.out.println(rs.getString("id_Operacion"));
+                  eva[i] = Integer.parseInt(rs.getString("id_Operacion"));
+                  i++;
+              }
+           
+
+        } catch (SQLException ex) {
+            System.out.println(ex);
+            Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+
+    }//GEN-LAST:event_jButton1ActionPerformed
+public void cargarClientes() throws SQLException {
+     Statement st;
+        try {
+            st = reg.createStatement();
+            ResultSet rs=st.executeQuery("Select * from cliente");
+            while(rs.next()){
+                Cliente act=new Cliente();
+                act.setIdCLiente(rs.getInt(1));
+                act.setNombre(rs.getString(2));
+                act.setApellPat(rs.getString(3));
+                act.setApellMat(rs.getString(4));
+                act.setFecha_nac(rs.getString(5));
+                act.setTipo(rs.getInt(6));
+                act.setRfc(rs.getString(7));
+                act.setCalle(rs.getString(8));
+                act.setNumero(rs.getString(9));
+                act.setPaisOrigen(rs.getInt(10));
+                act.setPaisResidencia(rs.getInt(11));
+                act.setEntidad(rs.getInt(12));
+                act.setLocalidad(rs.getInt(13));
+                act.setCodigoPostal(rs.getString(14));
+                act.setNumTel(rs.getString(15));
+                act.setRiesgo(rs.getDouble(16));
+                act.setActividad(rs.getString(17));
+                act.setIngreso(rs.getDouble(18));
+            comboCliente.addItem(act);
+     }
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     
+    }
     /**
      * @param args the command line arguments
      */
@@ -565,7 +703,11 @@ if(texto.length()==0 ){
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new ConocerC().setVisible(true);
+                try {
+                    new ConocerC().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConocerC.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
@@ -580,13 +722,6 @@ if(texto.length()==0 ){
     private javax.swing.JRadioButton No4;
     private javax.swing.JRadioButton No5;
     private javax.swing.JRadioButton No6;
-    private javax.swing.JRadioButton Si;
-    private javax.swing.JRadioButton Si1;
-    private javax.swing.JRadioButton Si2;
-    private javax.swing.JRadioButton Si3;
-    private javax.swing.JRadioButton Si4;
-    private javax.swing.JRadioButton Si5;
-    private javax.swing.JRadioButton Si6;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
@@ -594,11 +729,14 @@ if(texto.length()==0 ){
     private javax.swing.ButtonGroup buttonGroup5;
     private javax.swing.ButtonGroup buttonGroup6;
     private javax.swing.ButtonGroup buttonGroup7;
+    private javax.swing.JComboBox comboCliente;
     private javax.swing.JTextArea descrip;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -608,6 +746,7 @@ if(texto.length()==0 ){
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
 }

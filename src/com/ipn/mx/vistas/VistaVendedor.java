@@ -347,7 +347,12 @@ public class VistaVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_Operación1ActionPerformed
 
     private void ConoceClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ConoceClienteActionPerformed
-        ConocerC cc = new ConocerC();
+        ConocerC cc = null;
+        try {
+            cc = new ConocerC();
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaVendedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
         cc.setVisible(true);
     }//GEN-LAST:event_ConoceClienteActionPerformed
 

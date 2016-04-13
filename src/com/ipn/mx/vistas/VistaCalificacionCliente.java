@@ -287,8 +287,8 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
             st = reg.createStatement();
             ResultSet rs=st.executeQuery(aux);
             System.out.println(a);
-            
-            while (rs.next()){
+             while (rs.next()){
+           
             tipoPersona.setText(rs.getString("descripcion"));
             Actividad.setText(rs.getString("actividad"));
             Residencia.setText(rs.getString("nombre"));
