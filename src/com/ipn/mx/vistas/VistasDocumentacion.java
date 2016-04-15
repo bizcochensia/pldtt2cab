@@ -131,6 +131,7 @@ int idOP;
         jScrollPane2.setViewportView(jTable2);
 
         jPanel6.setBorder(javax.swing.BorderFactory.createTitledBorder("Operacion "));
+        jPanel6.setOpaque(false);
 
         jLabel12.setText("Contrato:");
 
