@@ -78,6 +78,8 @@ int idOP;
         jLabel9 = new javax.swing.JLabel();
         Aceptar1 = new javax.swing.JButton();
 
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+
         jLabel15.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel15.setText("Seleccione el documento que el Cliente Entrego y Escriba el numero de Folio:");
 
@@ -187,7 +189,6 @@ int idOP;
         Aceptar1.setBackground(new java.awt.Color(0, 153, 51));
         Aceptar1.setForeground(new java.awt.Color(255, 255, 255));
         Aceptar1.setText("Nuevo");
-        Aceptar1.setActionCommand("Nuevo");
         Aceptar1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 Aceptar1ActionPerformed(evt);

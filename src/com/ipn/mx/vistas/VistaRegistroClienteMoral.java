@@ -320,7 +320,7 @@ public class VistaRegistroClienteMoral extends javax.swing.JFrame {
         );
 
         jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel16.setText("Registro Personas Fisicas");
+        jLabel16.setText("Registro Persona Moral");
 
         jLabel17.setText("Los campos marcados con (*) son obligatorios");
 

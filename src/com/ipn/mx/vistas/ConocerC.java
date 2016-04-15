@@ -102,7 +102,7 @@ public class ConocerC extends javax.swing.JFrame {
         comboCliente = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setPreferredSize(new java.awt.Dimension(900, 700));
 
         jLabel12.setText("Llene el siguiente Formulario deacuerdo a su persepción:");
