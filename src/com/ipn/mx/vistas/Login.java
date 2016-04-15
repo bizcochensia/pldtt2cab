@@ -263,10 +263,7 @@ public class Login extends javax.swing.JFrame {
         pass=recibepass.getText();
         captcha1 = captchatext.getText();
         logindao l=new logindao();
-        
-       System.out.println(captcha1+"<===");
-        System.out.println(capt+"<===");
-        
+    
         if(!"".equals(usuario) && !"".equals(pass) && !"".equals(captcha1) ){
          if(capt.equals(captcha1) ){
                 String res=l.aceso(usuario, pass);
