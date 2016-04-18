@@ -93,6 +93,7 @@ JTable tabla;
         contraseña = new javax.swing.JTextField();
         modificar = new javax.swing.JButton();
         eliminar = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -273,6 +274,9 @@ JTable tabla;
             }
         });
 
+        jButton1.setForeground(new java.awt.Color(0, 153, 51));
+        jButton1.setText("Regresar");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -282,6 +286,7 @@ JTable tabla;
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel16)
                     .addComponent(jLabel15)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -291,9 +296,12 @@ JTable tabla;
                                 .addComponent(modificar)
                                 .addGap(28, 28, 28)
                                 .addComponent(eliminar))
-                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                 .addContainerGap(42, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -311,8 +319,10 @@ JTable tabla;
                         .addComponent(modificar)
                         .addComponent(eliminar)))
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 193, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(39, Short.MAX_VALUE))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 167, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
@@ -424,6 +434,7 @@ JTable tabla;
     private javax.swing.JButton eliminar;
     public javax.swing.JTextField empleado;
     public javax.swing.JTextField id;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -460,7 +471,7 @@ JTable tabla;
         rs = cn.mostrarDatos();
         try{
             while(rs.next()){
-                dfm.addRow(new Object[]{rs.getInt("id_Empleado"),rs.getString("nombre"),rs.getString("apellido_Pat"),rs.getString("apellido_Mat"),rs.getString("RFC"),rs.getString("numero_tel"),rs.getString("usuario"),rs.getString("contrasena"),rs.getInt("tipo_empleado")});
+                dfm.addRow(new Object[]{rs.getInt("id_Empleado"),rs.getString("nombre"),rs.getString("apellido_Pat"),rs.getString("apellido_Mat"),rs.getString("RFC"),rs.getString("numero_tel"),rs.getString("usuario"),rs.getString("contrasena"),rs.getString("tipo_empleado")});
             }
         }catch(Exception e){
             System.out.println(e);

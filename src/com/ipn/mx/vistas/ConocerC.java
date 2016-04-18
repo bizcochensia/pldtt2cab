@@ -70,15 +70,9 @@ public class ConocerC extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
-        No4 = new javax.swing.JRadioButton();
-        javax.swing.JRadioButton Si4 = new javax.swing.JRadioButton();
         jLabel4 = new javax.swing.JLabel();
-        No5 = new javax.swing.JRadioButton();
         jLabel5 = new javax.swing.JLabel();
-        javax.swing.JRadioButton Si5 = new javax.swing.JRadioButton();
-        jLabel6 = new javax.swing.JLabel();
         No6 = new javax.swing.JRadioButton();
-        jLabel7 = new javax.swing.JLabel();
         javax.swing.JRadioButton Si6 = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
         javax.swing.JRadioButton Si = new javax.swing.JRadioButton();
@@ -112,45 +106,9 @@ public class ConocerC extends javax.swing.JFrame {
 
         jPanel1.setOpaque(false);
 
-        buttonGroup6.add(No4);
-        No4.setSelected(true);
-        No4.setText("No");
-        No4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                No4ActionPerformed(evt);
-            }
-        });
-
-        buttonGroup6.add(Si4);
-        Si4.setText("Si");
-        Si4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Si4ActionPerformed(evt);
-            }
-        });
-
         jLabel4.setText("3) ¿El cliente actua de manera sospechosa?");
 
-        buttonGroup5.add(No5);
-        No5.setSelected(true);
-        No5.setText("No");
-        No5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                No5ActionPerformed(evt);
-            }
-        });
-
         jLabel5.setText("4) ¿Considera usted que el cliente ha mentido?");
-
-        buttonGroup5.add(Si5);
-        Si5.setText("Si");
-        Si5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Si5ActionPerformed(evt);
-            }
-        });
-
-        jLabel6.setText("5) ¿Considera que el cliente viste de manera inadecuada?");
 
         buttonGroup7.add(No6);
         No6.setSelected(true);
@@ -161,9 +119,6 @@ public class ConocerC extends javax.swing.JFrame {
             }
         });
 
-        jLabel7.setText("6)¿Considera usted que el cliente posee bienes que no se relacionan con su actividad economica?");
-        jLabel7.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
-
         buttonGroup7.add(Si6);
         Si6.setText("Si");
         Si6.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +127,7 @@ public class ConocerC extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("7) Otras consideraciones");
+        jLabel8.setText("5) Otras consideraciones");
 
         buttonGroup1.add(Si);
         Si.setText("Si");
@@ -287,32 +242,14 @@ public class ConocerC extends javax.swing.JFrame {
                             .addComponent(jLabel3)
                             .addComponent(jLabel5)
                             .addComponent(jLabel2)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 482, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                        .addGroup(jPanel1Layout.createSequentialGroup()
-                                            .addComponent(Si3)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(No3))
-                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                                .addComponent(Si4)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(No4))
-                                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                                .addComponent(Si5)
-                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                                .addComponent(No5))))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(Si6)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(No6)))
-                                .addGap(129, 129, 129))
+                                .addComponent(Si3)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(No3)
+                                .addGap(131, 131, 131))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(Si)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -326,8 +263,12 @@ public class ConocerC extends javax.swing.JFrame {
                                         .addComponent(No1, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(Si2)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(No2)))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(No2))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(Si6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(No6)))
                                 .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -364,26 +305,12 @@ public class ConocerC extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Si3)
                     .addComponent(No3))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(91, 91, 91)
-                        .addComponent(No6))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(18, 18, 18)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(No5)
-                            .addComponent(Si5))
-                        .addGap(9, 9, 9)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(Si4)
-                            .addComponent(No4))
-                        .addGap(13, 13, 13)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel8)
-                            .addComponent(Si6))))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 11, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel8)
+                    .addComponent(Si6)
+                    .addComponent(No6))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 39, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -501,7 +428,7 @@ public class ConocerC extends javax.swing.JFrame {
        java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
         String texto=descrip.getText();
         texto=texto.replaceAll(" ", "");
-        if(No.isSelected()&No1.isSelected()&No2.isSelected()&No3.isSelected()&No4.isSelected()&No5.isSelected()&No6.isSelected()){
+        if(No.isSelected()&No1.isSelected()&No2.isSelected()&No3.isSelected()&No6.isSelected()){
             this.dispose();
         }else{
         if(texto.length()==0 ){
@@ -582,27 +509,6 @@ public class ConocerC extends javax.swing.JFrame {
         descrip.setEnabled(false);
         descrip.setText("");
     }//GEN-LAST:event_No6ActionPerformed
-
-    private void Si5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Si5ActionPerformed
-        descrip.setEnabled(true);      // TODO add your handling code here:
-    }//GEN-LAST:event_Si5ActionPerformed
-
-    private void No5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_No5ActionPerformed
-        // TODO add your handling code here:
-        descrip.setEnabled(false);
-        descrip.setText("");
-    }//GEN-LAST:event_No5ActionPerformed
-
-    private void Si4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Si4ActionPerformed
-        // TODO add your handling code here:
-        descrip.setEnabled(true);
-    }//GEN-LAST:event_Si4ActionPerformed
-
-    private void No4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_No4ActionPerformed
-        // TODO add your handling code here:
-        descrip.setEnabled(false);
-        descrip.setText("");
-    }//GEN-LAST:event_No4ActionPerformed
 
     private void comboClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboClienteMouseClicked
         // TODO add your handling code here:
@@ -715,8 +621,6 @@ public void cargarClientes() throws SQLException {
     private javax.swing.JRadioButton No1;
     private javax.swing.JRadioButton No2;
     private javax.swing.JRadioButton No3;
-    private javax.swing.JRadioButton No4;
-    private javax.swing.JRadioButton No5;
     private javax.swing.JRadioButton No6;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
@@ -737,8 +641,6 @@ public void cargarClientes() throws SQLException {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;

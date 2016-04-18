@@ -91,7 +91,7 @@ public class EmpleadoDao {
         ResultSet rs = null;
         try{
             st=reg.createStatement();
-            rs = st.executeQuery("SELECT * FROM empleado");
+            rs = st.executeQuery("SELECT e.id_Empleado,e.nombre,e.apellido_Pat,e.apellido_Mat,e.RFC,e.numero_tel,e.usuario,e.contrasena,t.descripcion as tipo_empleado FROM empleado e INNER JOIN  tipoempleado t ON e.tipo_empleado = t.id_TipoEmpleado");
         } catch (Exception ex){
             System.out.println(ex);
         }

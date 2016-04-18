@@ -166,7 +166,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
 
         jLabel7.setText("Moneda utilizada");
 
-        jLabel8.setText("Monetario");
+        jLabel8.setText("Tipo de pago");
 
         jLabel9.setText("Tipo Operación");
 

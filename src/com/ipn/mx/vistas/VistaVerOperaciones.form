@@ -216,7 +216,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel8">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Monetario"/>
+        <Property name="text" type="java.lang.String" value="Tipo de pago"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel9">
