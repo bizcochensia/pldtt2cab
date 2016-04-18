@@ -8,6 +8,7 @@ package com.ipn.mx.vistas;
 import com.mx.ipn.clases.Empleado;
 import com.mx.ipn.clases.MiPanel;
 import java.awt.BorderLayout;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -299,6 +300,8 @@ public class VistaVendedor extends javax.swing.JFrame {
             lo.setVisible(true);
             this.dispose();
         } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(VistaVendedor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(VistaVendedor.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton7ActionPerformed

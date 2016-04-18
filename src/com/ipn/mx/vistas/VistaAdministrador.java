@@ -8,6 +8,7 @@ package com.ipn.mx.vistas;
 import com.mx.ipn.clases.MiPanel;
 import java.awt.BorderLayout;
 import java.awt.Component;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -256,6 +257,8 @@ public class VistaAdministrador extends javax.swing.JFrame {
             log = new Login();
             log.setVisible(true);
         } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(VistaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
             Logger.getLogger(VistaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
         }
         this.dispose();
