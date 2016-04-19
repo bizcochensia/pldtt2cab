@@ -20,7 +20,7 @@ public class Conexion {
     try{
         //104.197.27.176   NdtSa7Pp
        Class.forName("com.mysql.jdbc.Driver");
-       con=DriverManager.getConnection("jdbc:mysql://104.197.27.176/pldtt2cab","root","NdtSa7Pp");
+       con=DriverManager.getConnection(/*"jdbc:mysql://localhost/pldtt2cab","root","Guadalajara"*/ "jdbc:mysql://104.197.27.176/pldtt2cab","root","NdtSa7Pp");
 
        System.out.println("conexion establecida");
     } catch(ClassNotFoundException | SQLException e){
