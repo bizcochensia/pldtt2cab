@@ -33,6 +33,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
     public Operacion op=new Operacion();
     public static int operacion;
     int parametro=0;
+    String nombre="";
     
     /**
      * Creates new form VistaVerOperaciones
@@ -65,7 +66,6 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
 
         public void cargardatos() {
              Statement st;
-             if(parametro!=0){
         try {
             st = reg.createStatement();
             ResultSet rs=st.executeQuery("Select * from operaciones");
@@ -89,20 +89,20 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
      }
         } catch (SQLException ex) {
             Logger.getLogger(VistaRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
-             }
+        }     
     }
-    
+        
     public void mostrardatos(int posicion) throws SQLException{
-        OperacionDAO dao=new OperacionDAO();
         op=lista.get(posicion);
         String a=Integer.toString(op.getIdOperacion());
         String e="Select op.id_Operacion, op.numeroContrato,op.monto,op.fecha,op.descripcion,tiop.tipo_operacion,mo.instrumento_monetario,m.moneda,c.nombre,e.nombre as empleado,i.nombre as inmobiliaria from operaciones op inner join monetario mo on op.monetario_id=mo.id_clavemonetario inner join moneda m on op.moneda_id=m.id_moneda inner join cliente c on op.Cliente_id=c.id_cliente inner join empleado e on op.Empleado_id=e.id_Empleado inner join inmobiliaria i on op.Inmobiliaria_id=i.id_inmobiliaria inner join tipo_operacion tiop on op.tipo_id=tiop.id_tipoOp where op.id_Operacion='"+a+"'    ";    
+        String nom="Select op.id_Operacion, op.numeroContrato,op.monto,op.fecha,op.descripcion,tiop.tipo_operacion,mo.instrumento_monetario,m.moneda,c.nombre,e.nombre as empleado,i.nombre as inmobiliaria from operaciones op inner join monetario mo on op.monetario_id=mo.id_clavemonetario inner join moneda m on op.moneda_id=m.id_moneda inner join cliente c on op.Cliente_id=c.id_cliente inner join empleado e on op.Empleado_id=e.id_Empleado inner join inmobiliaria i on op.Inmobiliaria_id=i.id_inmobiliaria inner join tipo_operacion tiop on op.tipo_id=tiop.id_tipoOp where op.id_Operacion='"+a+"' and c.nombre='"+nombre+"'    ";
+       
         Statement st;
         st = reg.createStatement();
+        
+        if(parametro==0){
         ResultSet rs=st.executeQuery(e);
-        
-        
         while(rs.next()){
         operacion=rs.getInt("id_Operacion");
         muestracontrato.setText(rs.getString("numeroContrato"));
@@ -115,6 +115,23 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
         muestramoneda.setText(rs.getString("moneda"));
         muestramonetario.setText(rs.getString("instrumento_monetario"));
         muestratipoOperacion.setText(rs.getString("tipo_operacion"));       
+        }
+        }
+        else if(parametro==1){
+                ResultSet s=st.executeQuery(nom);
+        while(s.next()){
+        operacion=s.getInt("id_Operacion");
+        muestracontrato.setText(s.getString("numeroContrato"));
+        muestramonto.setText(s.getString("monto"));
+        muestradescripcion.setText(s.getString("descripcion"));
+        muestrafecha.setText(s.getString("fecha"));
+        muestracliente.setText(s.getString("nombre"));
+        muestraempleado.setText(s.getString("empleado"));
+        muestrainmobiliaria.setText(s.getString("inmobiliaria"));
+        muestramoneda.setText(s.getString("moneda"));
+        muestramonetario.setText(s.getString("instrumento_monetario"));
+        muestratipoOperacion.setText(s.getString("tipo_operacion"));       
+        }
         }
         
     }
@@ -444,8 +461,15 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         parametro=filtro.getSelectedIndex();
-        String parametro=recibepara.getText();
-        
+        if(parametro==1){
+           nombre=recibepara.getText();
+            try {
+                posicion=0;
+                mostrardatos(posicion);
+            } catch (SQLException ex) {
+                Logger.getLogger(VistaVerOperaciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
         
     }//GEN-LAST:event_jButton6ActionPerformed
 
