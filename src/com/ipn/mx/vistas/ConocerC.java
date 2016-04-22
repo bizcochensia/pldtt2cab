@@ -11,11 +11,11 @@ import com.mx.ipn.clases.Cliente;
 import com.mx.ipn.clases.MiPanel;
 import java.awt.BorderLayout;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -30,7 +30,9 @@ public class ConocerC extends javax.swing.JFrame {
     
     Cliente c=new Cliente();
     int eva[] = new int[50];
-    int i=0;
+    int i=0, b=0;
+    String des = "";
+    int op [] =new int [50];
     
     /**
      * Creates new form ConocerC
@@ -73,16 +75,16 @@ public class ConocerC extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         No6 = new javax.swing.JRadioButton();
-        javax.swing.JRadioButton Si6 = new javax.swing.JRadioButton();
+        SID = new javax.swing.JRadioButton();
         jLabel8 = new javax.swing.JLabel();
-        javax.swing.JRadioButton Si = new javax.swing.JRadioButton();
+        Si = new javax.swing.JRadioButton();
         No = new javax.swing.JRadioButton();
-        javax.swing.JRadioButton Si1 = new javax.swing.JRadioButton();
+        Si1 = new javax.swing.JRadioButton();
         No1 = new javax.swing.JRadioButton();
         No2 = new javax.swing.JRadioButton();
-        javax.swing.JRadioButton Si2 = new javax.swing.JRadioButton();
+        Si2 = new javax.swing.JRadioButton();
         No3 = new javax.swing.JRadioButton();
-        javax.swing.JRadioButton Si3 = new javax.swing.JRadioButton();
+        Si3 = new javax.swing.JRadioButton();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -91,13 +93,13 @@ public class ConocerC extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         Aceptar = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
+        Cancelar1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         comboCliente = new javax.swing.JComboBox();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(900, 700));
 
         jLabel12.setText("Llene el siguiente Formulario deacuerdo a su persepción:");
 
@@ -119,11 +121,11 @@ public class ConocerC extends javax.swing.JFrame {
             }
         });
 
-        buttonGroup7.add(Si6);
-        Si6.setText("Si");
-        Si6.addActionListener(new java.awt.event.ActionListener() {
+        buttonGroup7.add(SID);
+        SID.setText("Si");
+        SID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Si6ActionPerformed(evt);
+                SIDActionPerformed(evt);
             }
         });
 
@@ -207,7 +209,7 @@ public class ConocerC extends javax.swing.JFrame {
 
         jLabel10.setText("Observaciones:");
 
-        jLabel11.setText(" Observaciones son obligatorias si selecciono 'si' a alguna de las peguntas anteriores");
+        jLabel11.setText(" Observaciones son obligatorias si selecciono 'si' al punto numero 5");
 
         Aceptar.setBackground(new java.awt.Color(0, 153, 51));
         Aceptar.setForeground(new java.awt.Color(255, 255, 255));
@@ -223,6 +225,14 @@ public class ConocerC extends javax.swing.JFrame {
         Cancelar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CancelarActionPerformed(evt);
+            }
+        });
+
+        Cancelar1.setForeground(new java.awt.Color(0, 153, 51));
+        Cancelar1.setText("Nueva Evaluacion");
+        Cancelar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Cancelar1ActionPerformed(evt);
             }
         });
 
@@ -266,7 +276,7 @@ public class ConocerC extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(No2))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(Si6)
+                                        .addComponent(SID)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(No6)))
                                 .addContainerGap())))
@@ -276,6 +286,8 @@ public class ConocerC extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Cancelar1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Aceptar)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(Cancelar)
@@ -308,7 +320,7 @@ public class ConocerC extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
-                    .addComponent(Si6)
+                    .addComponent(SID)
                     .addComponent(No6))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 39, Short.MAX_VALUE)
                 .addComponent(jLabel10)
@@ -318,7 +330,8 @@ public class ConocerC extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel11)
                     .addComponent(Aceptar)
-                    .addComponent(Cancelar))
+                    .addComponent(Cancelar)
+                    .addComponent(Cancelar1))
                 .addContainerGap())
         );
 
@@ -364,15 +377,11 @@ public class ConocerC extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addGap(19, 19, 19)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel13)
-                            .addComponent(comboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jButton1)))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(comboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -425,21 +434,35 @@ public class ConocerC extends javax.swing.JFrame {
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
         // TODO add your handling code here:
         ConocerDao ac = new ConocerDao();
+        
        java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
         String texto=descrip.getText();
         texto=texto.replaceAll(" ", "");
         if(No.isSelected()&No1.isSelected()&No2.isSelected()&No3.isSelected()&No6.isSelected()){
+            des = "";
             this.dispose();
         }else{
-        if(texto.length()==0 ){
+        if(SID.isSelected()&&descrip.getText().length()==0){
             JOptionPane.showMessageDialog(null, "Se requiere Descripcion");
             
         }
         else
         {
+           if(Si.isSelected()){
+                des = des +"El cliente se nego a entregar documentos de identificación"+", ";
+           }
+           if(Si1.isSelected()){
+               des = des + "El cliente intento sobornar"+", ";
+           }
+           if(Si2.isSelected()){
+               des = des + "El cliente actua de manera Sospechosa"+", ";
+           }
+           if(Si3.isSelected()){
+               des = des +"El cliente ha mentido"+", ";
+           }
             for (int j=0;j<i;j++){
                 try { 
-                    ac.RegistroDescripcion(eva[j], 1, sqlDate, descrip.getText());
+                    ac.RegistroDescripcion(eva[j], 7, sqlDate, des+descrip.getText());
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(ConocerC.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
@@ -459,6 +482,7 @@ public class ConocerC extends javax.swing.JFrame {
 
     private void Si3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Si3ActionPerformed
         // TODO add your handling code here:
+         
         descrip.setEnabled(true);
     }//GEN-LAST:event_Si3ActionPerformed
 
@@ -469,6 +493,7 @@ public class ConocerC extends javax.swing.JFrame {
 
     private void Si2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Si2ActionPerformed
         // TODO add your handling code here:
+         
         descrip.setEnabled(true);
     }//GEN-LAST:event_Si2ActionPerformed
 
@@ -485,7 +510,8 @@ public class ConocerC extends javax.swing.JFrame {
     }//GEN-LAST:event_No1ActionPerformed
 
     private void Si1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Si1ActionPerformed
-        descrip.setEnabled(true);       // TODO add your handling code here:
+        descrip.setEnabled(true);   
+         // TODO add your handling code here:
     }//GEN-LAST:event_Si1ActionPerformed
 
     private void NoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoActionPerformed
@@ -499,10 +525,10 @@ public class ConocerC extends javax.swing.JFrame {
         descrip.setEnabled(true);
     }//GEN-LAST:event_SiActionPerformed
 
-    private void Si6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Si6ActionPerformed
+    private void SIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SIDActionPerformed
         // TODO add your handling code here:
         descrip.setEnabled(true);
-    }//GEN-LAST:event_Si6ActionPerformed
+    }//GEN-LAST:event_SIDActionPerformed
 
     private void No6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_No6ActionPerformed
         // TODO add your handling code here:
@@ -534,6 +560,12 @@ public class ConocerC extends javax.swing.JFrame {
                   i++;
               }
            
+         
+                    
+               
+            
+             
+           jButton1.setEnabled(false);
 
         } catch (SQLException ex) {
             System.out.println(ex);
@@ -542,6 +574,12 @@ public class ConocerC extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void Cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancelar1ActionPerformed
+        // TODO add your handling code here:
+        jButton1.setEnabled(true);
+        comboCliente.setSelectedItem(0);
+    }//GEN-LAST:event_Cancelar1ActionPerformed
 public void cargarClientes() throws SQLException {
      Statement st;
         try {
@@ -574,6 +612,7 @@ public void cargarClientes() throws SQLException {
         }
      
     }
+
     /**
      * @param args the command line arguments
      */
@@ -617,11 +656,17 @@ public void cargarClientes() throws SQLException {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar;
     private javax.swing.JButton Cancelar;
+    private javax.swing.JButton Cancelar1;
     private javax.swing.JRadioButton No;
     private javax.swing.JRadioButton No1;
     private javax.swing.JRadioButton No2;
     private javax.swing.JRadioButton No3;
     private javax.swing.JRadioButton No6;
+    private javax.swing.JRadioButton SID;
+    private javax.swing.JRadioButton Si;
+    private javax.swing.JRadioButton Si1;
+    private javax.swing.JRadioButton Si2;
+    private javax.swing.JRadioButton Si3;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.ButtonGroup buttonGroup3;
