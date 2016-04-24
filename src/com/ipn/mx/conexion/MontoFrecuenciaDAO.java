@@ -17,7 +17,7 @@ public class MontoFrecuenciaDAO {
     
     
         public ResultSet obtenpoblacion(String a,String b){
-    String aux="Select count(*) from operaciones where monto between '"+a+"' and '"+b+"' ";    
+    String aux="Select count(*) as poblacion from operaciones where monto between '"+a+"' and '"+b+"' ";    
     Conexion cn = new Conexion ();
     Connection reg=cn.conectar();
     Statement st;

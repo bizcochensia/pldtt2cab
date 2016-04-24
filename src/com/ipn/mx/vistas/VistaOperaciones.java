@@ -34,13 +34,14 @@ public class VistaOperaciones extends javax.swing.JFrame {
    
     //calcular montos inusuales
     double promedio=0.0;
+    double suma=0.0;        
     double varianza=0.0;
     double desviacion=0.0;
     double montocomparar=0.0;
     int poblacion=0;
     String maximo="";
     String minimo="";
-    
+    int i=0;
     
     //resto variables
    double RTC=0.0; 
@@ -549,12 +550,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 String a=c.getRfc();
                 int b=c.getIdCLiente();
                 String aux="Select c.nombre,c.apellido_Pat,c.apellido_Mat,c.ingreso_Promedio,ac.actividad from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad  where c.RFC='"+a+"' ";
-                String aux2="Select tc.descripcion,ac.actividad,ac.riesgo,e.nombre,p.nombre_Pais,p.riesgo as Pais,e.id_pais from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join entidad_federativa e on e.id_Entidad=c.entidad inner join pais p on c.pais_Origen=p.id_Pais inner join tcliente tc on tc.id_tipo=c.tipo where c.id_cliente='"+b+"' ";
                 Statement st;
-                Statement st2;
-                st2= reg2.createStatement();
                 st = reg.createStatement();
-                ResultSet rs2=st2.executeQuery(aux2);
                 ResultSet rs=st.executeQuery(aux);
                 while(rs.next()){
                 nombre.setText(rs.getString("nombre"));
@@ -563,39 +560,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 act.setText(rs.getString("actividad"));
                 ing.setText(rs.getString("ingreso_Promedio"));
                 }
-                while(rs2.next()){     
-                riesgoPais=rs.getInt("Pais");
-                riesgoActividad=rs.getInt("riesgo");
-                riesgoresidencia=rs.getInt("id_pais");
-                tipoPersona=rs.getString("descripcion");
-                }
-                
-                if(tipoPersona.equals("fisica")){
-                ATP=0.40;
-                 }
-                else{ATP=0.60;}
-                
-                if(riesgoActividad==0){
-                AA=0.30;
-                }
-                else{AA=0.70;}
-                
-                if(riesgoPais==0){
-                APais=0.30;
-            }
-            else{APais=0.70;}
-                
-                
-                 if(riesgoresidencia==1){
-                 AR=0.30;
-                }else{
-                AR=0.70;
-                }
- 
-             RTC=ATP*.20+AA*.25+AR*15+APais*.15+PEP*25;
-             cd.ActualizarRiesgo(RTC, b);
                  
-            } catch (SQLException | ClassNotFoundException ex) {
+            } catch (SQLException ex) {
                 Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
@@ -606,59 +572,98 @@ public class VistaOperaciones extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        numcontrato=contrato.getText();
-        monto=  Double.parseDouble( operacion.getText());
-        descripcion=des.getText();
-        boolean mo=val.Ingreso(operacion.getText());
-        boolean con=val.alfanumericos(numcontrato);
-       
-        moneda= (Moneda) combomoneda.getSelectedItem();
-        tp= (TipoOperacion) combooperacion.getSelectedItem();
-        mone= (Monetario) combomonetario.getSelectedItem();
-        
-        dia=aux.substring(8,10);
-        auxmes=f.getMonth();
-        auxmes=auxmes+1;
-        mes= Integer.toString(auxmes);
-        año=aux.substring(24, 28);
-        fecha=año+"-"+mes+"-"+dia;
-        
-        if(contrato.getText().equals("") || operacion.getText().equals("") || des.getText().equals("")){
-        JOptionPane.showMessageDialog(null, "Todos los campos en detalle de la operacion son requeridos");
-        }
-        else{
-        if(combooperacion.getSelectedIndex()==0 || combomoneda.getSelectedIndex()==0 || combomonetario.getSelectedIndex()==0){
-        JOptionPane.showMessageDialog(null, "Los combobox deben tener una eleccion al igual que el cliente asociado.");
-        }
-        else{
-            if(mo && con){
-                        try {
-                OperacionDAO op = new OperacionDAO();
-                MontoFrecuenciaDAO MFD= new MontoFrecuenciaDAO();
-                
-                op.RegistroOperacion(numcontrato, monto, fecha, RTC , descripcion, c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario());
-                ResultSet t;
-                String auxcontrato="";
-                t=MFD.obtencontrato(numcontrato);
-                while(t.next())
-                {
-                auxcontrato=t.getString("numeroContrato");
-                }
-                if(auxcontrato.equals("")){}
-                else{
-                
-                }
-                
-                        } catch (Exception e) {
-                JOptionPane.showMessageDialog(null, "Se necesitan estar todos los campos llenos para completar el registro");
-            }
+        try {
+            // TODO add your handling code here:
+            numcontrato=contrato.getText();
+            monto=  Double.parseDouble( operacion.getText());
+            descripcion=des.getText();
+            boolean mo=val.Ingreso(operacion.getText());
+            boolean con=val.alfanumericos(numcontrato);
+            
+            moneda= (Moneda) combomoneda.getSelectedItem();
+            tp= (TipoOperacion) combooperacion.getSelectedItem();
+            mone= (Monetario) combomonetario.getSelectedItem();
+            
+            dia=aux.substring(8,10);
+            auxmes=f.getMonth();
+            auxmes=auxmes+1;
+            mes= Integer.toString(auxmes);
+            año=aux.substring(24, 28);
+            fecha=año+"-"+mes+"-"+dia;
+            
+            if(contrato.getText().equals("") || operacion.getText().equals("") || des.getText().equals("")){
+                JOptionPane.showMessageDialog(null, "Todos los campos en detalle de la operacion son requeridos");
             }
             else{
-                JOptionPane.showMessageDialog(null, "");
+                if(combooperacion.getSelectedIndex()==0 || combomoneda.getSelectedIndex()==0 || combomonetario.getSelectedIndex()==0){
+                    JOptionPane.showMessageDialog(null, "Los combobox deben tener una eleccion al igual que el cliente asociado.");
+                }
+                else{
+                    if(mo && con){
+                        try {
+                            OperacionDAO op = new OperacionDAO();
+                            MontoFrecuenciaDAO MFD= new MontoFrecuenciaDAO();
+                            
+                            op.RegistroOperacion(numcontrato, monto, fecha, RTC , descripcion, c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario());                
+                        } catch (Exception e) {
+                        }
+                    }
+                    else{
+                        JOptionPane.showMessageDialog(null, "");
+                    }
+                }
             }
+            
+            
+            ResultSet t;
+            MontoFrecuenciaDAO MFD=new MontoFrecuenciaDAO();
+            String auxcontrato="";
+            t=MFD.obtencontrato(numcontrato);
+            while(t.next())
+            {
+                auxcontrato=t.getString("numeroContrato");
+            }
+            if(auxcontrato.equals("")){}
+            else{
+                double auxmonto1=monto-5000;
+                double auxmonto2=monto+5000;
+                
+                maximo= String.valueOf(auxmonto2);
+                minimo=String.valueOf(auxmonto1);
+                
+                t=MFD.obtenpoblacion(minimo, maximo);
+                
+                while(t.next()){
+                    poblacion=t.getInt("poblacion");
+                }
+                
+                t=MFD.obtenmontos(minimo,maximo);
+                double[] Montoxcomp=new double[poblacion];
+                while(t.next()){
+                    Montoxcomp[i]=t.getDouble("monto");
+                    i++;
+                }
+                
+                for (int j=0;j<Montoxcomp.length;j++){
+                    suma=suma+Montoxcomp[j];
+                }
+                
+                promedio=suma/poblacion;
+                suma=0.0;
+                
+                for(int j=0;j<Montoxcomp.length;j++){
+                    suma=suma+Math.pow(Montoxcomp[j]-promedio,2);
+                    varianza=suma/(poblacion-1);
+                }
+                
+                desviacion=Math.pow(varianza,0.5);
+                
+                System.out.println("las operaciones parecidas son:"+poblacion+"\n"+"el promedioes de "+promedio+"\n"+"la varianza es de"+varianza+"\n"+"la desviacion estandar es de"+desviacion);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
         }
-        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void combomonedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combomonedaActionPerformed
