@@ -624,7 +624,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
                         try {
                 OperacionDAO op = new OperacionDAO();
                 op.RegistroOperacion(numcontrato, monto, fecha, 20, descripcion, c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario());
-            } catch (Exception e) {
+                
+                        } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Se necesitan estar todos los campos llenos para completar el registro");
             }
             }
