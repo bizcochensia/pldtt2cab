@@ -7,6 +7,7 @@ package com.ipn.mx.vistas;
 
 import com.ipn.mx.conexion.ClienteDao;
 import com.ipn.mx.conexion.Conexion;
+import com.ipn.mx.conexion.MontoFrecuenciaDAO;
 import com.ipn.mx.conexion.OperacionDAO;
 import com.mx.ipn.clases.Cliente;
 import com.mx.ipn.clases.Empleado;
@@ -31,7 +32,18 @@ import javax.swing.JOptionPane;
  */
 public class VistaOperaciones extends javax.swing.JFrame {
    
+    //calcular montos inusuales
+    double promedio=0.0;
+    double varianza=0.0;
+    double desviacion=0.0;
+    double montocomparar=0.0;
+    int poblacion=0;
+    String maximo="";
+    String minimo="";
     
+    
+    //resto variables
+   double RTC=0.0; 
    double APais=0;
    double AA=0;
    double AR=0;
@@ -580,7 +592,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 AR=0.70;
                 }
  
-             Double RTC=ATP*.20+AA*.25+AR*15+APais*.15+PEP*25;
+             RTC=ATP*.20+AA*.25+AR*15+APais*.15+PEP*25;
              cd.ActualizarRiesgo(RTC, b);
                  
             } catch (SQLException | ClassNotFoundException ex) {
@@ -623,7 +635,20 @@ public class VistaOperaciones extends javax.swing.JFrame {
             if(mo && con){
                         try {
                 OperacionDAO op = new OperacionDAO();
-                op.RegistroOperacion(numcontrato, monto, fecha, 20, descripcion, c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario());
+                MontoFrecuenciaDAO MFD= new MontoFrecuenciaDAO();
+                
+                op.RegistroOperacion(numcontrato, monto, fecha, RTC , descripcion, c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario());
+                ResultSet t;
+                String auxcontrato="";
+                t=MFD.obtencontrato(numcontrato);
+                while(t.next())
+                {
+                auxcontrato=t.getString("numeroContrato");
+                }
+                if(auxcontrato.equals("")){}
+                else{
+                
+                }
                 
                         } catch (Exception e) {
                 JOptionPane.showMessageDialog(null, "Se necesitan estar todos los campos llenos para completar el registro");
