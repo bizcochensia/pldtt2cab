@@ -412,7 +412,7 @@ public class ConocerC extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(jLabel1)
-                .addGap(17, 17, 17)
+                .addGap(37, 37, 37)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(jLabel12)
