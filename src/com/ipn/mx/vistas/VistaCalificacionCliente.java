@@ -510,7 +510,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
                 alarmaid=t.getInt("Alarma_id");
             }
             
-            if(alarmaid!=1){
+            if(alarmaid!=3){
             Muestrafecha.setText("La operacion no es considerada sospechosa por monto");  
             }
             else{
