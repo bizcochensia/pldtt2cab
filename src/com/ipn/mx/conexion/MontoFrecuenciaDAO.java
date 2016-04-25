@@ -43,7 +43,7 @@ public class MontoFrecuenciaDAO {
         
     public ResultSet obtenalarmas(int a){
  
-    String aux="Select fechadeteccion,Descripcion from intermedia_operacion_alarma  where Operacion_id="+a;    
+    String aux="Select Alarma_id,fechadeteccion,Descripcion from intermedia_operacion_alarma  where Operacion_id="+a;    
     Conexion cn = new Conexion ();
     Connection reg=cn.conectar();
     Statement st;

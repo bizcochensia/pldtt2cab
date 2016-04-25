@@ -709,7 +709,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 double razon=monto-(promedio+2*desviacion);
                 descripcionAlarma=""+razon;
                 
-                MFD.insertaalarma(l, 1, fecha, descripcionAlarma);
+                MFD.insertaalarma(l, 3, fecha, descripcionAlarma);
                 
                 
                 }
