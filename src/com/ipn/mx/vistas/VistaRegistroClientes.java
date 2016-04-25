@@ -685,7 +685,7 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
             public void run() {
                 try {
                     new VistaRegistroClientes().setVisible(true);
-                } catch (SQLException ex) {
+                } catch (Exception ex) {
                     Logger.getLogger(VistaRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
