@@ -12,9 +12,11 @@ import com.ipn.mx.conexion.ConexionListas;
 
 import com.ipn.mx.conexion.MontoFrecuenciaDAO;
 
+import com.ipn.mx.conexion.MontoFrecuenciaDAO;
 import com.mx.ipn.clases.Cliente;
-
 import com.mx.ipn.clases.Operacion;
+
+import com.mx.ipn.clases.Empleado;
 
 import com.mx.ipn.clases.Empleado;
 
@@ -42,15 +44,21 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
     Connection reg=con.conectar();
     String descripcionalarma="";
     String fechadeteccion="";
-    
 
     
+
+
     Cliente c=new Cliente();
     Operacion op = new Operacion();
     int id[] = new int[50]; 
 
     public Cliente clienteid= new Cliente(VistaVerOperaciones.idCliente);
     public Operacion Operacionid= new Operacion(VistaVerOperaciones.idOperacion);
+
+
+    public Cliente clienteid= new Cliente(VistaVerOperaciones.idCliente);
+    public Operacion Operacionid= new Operacion(VistaVerOperaciones.idOperacion);
+    
 
     
     /**
