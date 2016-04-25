@@ -36,6 +36,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
     String nombre="";
     public static int idOperacion=0;
     public static int idCliente=0;
+    public static int numalarmas=0;
     
     /**
      * Creates new form VistaVerOperaciones
@@ -54,6 +55,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
         muestramonetario.setEditable(false);
         muestramonto.setEditable(false);
         muestratipoOperacion.setEditable(false);
+       
          ///
         
          MiPanel p = new MiPanel(); 
@@ -70,7 +72,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
              Statement st;
         try {
             st = reg.createStatement();
-            ResultSet rs=st.executeQuery("Select * from operaciones");
+            ResultSet rs=st.executeQuery("Select * from operaciones o inner join intermedia_operacion_alarma ioa where o.id_Operacion=ioa.Operacion_id order by fecha " );
             while(rs.next()){
                 Operacion op=new Operacion();
                 op.setIdOperacion(rs.getInt(1));
@@ -97,8 +99,8 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
     public void mostrardatos(int posicion) throws SQLException{
         op=lista.get(posicion);
         String a=Integer.toString(op.getIdOperacion());
-        String e="Select op.id_Operacion, op.numeroContrato,op.monto,op.fecha,op.descripcion,tiop.tipo_operacion,mo.instrumento_monetario,m.moneda,c.id_cliente,c.nombre,e.nombre as empleado,i.nombre as inmobiliaria from operaciones op inner join monetario mo on op.monetario_id=mo.id_clavemonetario inner join moneda m on op.moneda_id=m.id_moneda inner join cliente c on op.Cliente_id=c.id_cliente inner join empleado e on op.Empleado_id=e.id_Empleado inner join inmobiliaria i on op.Inmobiliaria_id=i.id_inmobiliaria inner join tipo_operacion tiop on op.tipo_id=tiop.id_tipoOp where op.id_Operacion='"+a+"'    ";    
-        String nom="Select op.id_Operacion, op.numeroContrato,op.monto,op.fecha,op.descripcion,tiop.tipo_operacion,mo.instrumento_monetario,m.moneda,c.id_cliente,c.nombre,e.nombre as empleado,i.nombre as inmobiliaria from operaciones op inner join monetario mo on op.monetario_id=mo.id_clavemonetario inner join moneda m on op.moneda_id=m.id_moneda inner join cliente c on op.Cliente_id=c.id_cliente inner join empleado e on op.Empleado_id=e.id_Empleado inner join inmobiliaria i on op.Inmobiliaria_id=i.id_inmobiliaria inner join tipo_operacion tiop on op.tipo_id=tiop.id_tipoOp where op.id_Operacion='"+a+"' and c.nombre='"+nombre+"'    ";
+        String e="Select count(*) as numeroalarmas,op.id_Operacion, op.numeroContrato,op.monto,op.fecha,op.descripcion,tiop.tipo_operacion,mo.instrumento_monetario,m.moneda,c.id_cliente,c.nombre,e.nombre as empleado,i.nombre as inmobiliaria from operaciones op inner join monetario mo on op.monetario_id=mo.id_clavemonetario inner join moneda m on op.moneda_id=m.id_moneda inner join cliente c on op.Cliente_id=c.id_cliente inner join empleado e on op.Empleado_id=e.id_Empleado inner join inmobiliaria i on op.Inmobiliaria_id=i.id_inmobiliaria inner join tipo_operacion tiop on op.tipo_id=tiop.id_tipoOp inner join  intermedia_operacion_alarma ioa on ioa.Operacion_id=op.id_Operacion where op.id_Operacion='"+a+"'    ";    
+        String nom="Select count(*) as numeroalarmas,op.id_Operacion, op.numeroContrato,op.monto,op.fecha,op.descripcion,tiop.tipo_operacion,mo.instrumento_monetario,m.moneda,c.id_cliente,c.nombre,e.nombre as empleado,i.nombre as inmobiliaria from operaciones op inner join monetario mo on op.monetario_id=mo.id_clavemonetario inner join moneda m on op.moneda_id=m.id_moneda inner join cliente c on op.Cliente_id=c.id_cliente inner join empleado e on op.Empleado_id=e.id_Empleado inner join inmobiliaria i on op.Inmobiliaria_id=i.id_inmobiliaria inner join tipo_operacion tiop on op.tipo_id=tiop.id_tipoOp inner join  intermedia_operacion_alarma ioa on ioa.Operacion_id=op.id_Operacion where op.id_Operacion='"+a+"' and c.nombre='"+nombre+"'    ";
        
         Statement st;
         st = reg.createStatement();
@@ -117,6 +119,8 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
         muestramoneda.setText(rs.getString("moneda"));
         muestramonetario.setText(rs.getString("instrumento_monetario"));
         muestratipoOperacion.setText(rs.getString("tipo_operacion")); 
+        numeroalarma.setText(rs.getString("numeroalarmas"));
+        numalarmas=rs.getInt("numeroalarmas");
         idOperacion=rs.getInt("id_Operacion");
         idCliente=rs.getInt("id_cliente");
         }
@@ -183,6 +187,8 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
         recibepara = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jLabel14 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        numeroalarma = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -272,6 +278,8 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
 
         jLabel14.setText("Selecciona la flecha para ver la operación siguiente");
 
+        jLabel12.setText("Numero de alarmas");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -327,7 +335,12 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
                                         .addGap(162, 162, 162)
                                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                             .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 119, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGap(69, 69, 69)
+                                        .addComponent(jLabel12)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(numeroalarma, javax.swing.GroupLayout.PREFERRED_SIZE, 127, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(muestrafecha, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(muestratipoOperacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
@@ -381,10 +394,17 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton4)))
                 .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(muestramoneda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel7)
+                            .addComponent(muestramoneda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel12)
+                            .addComponent(numeroalarma, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(2, 2, 2)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(muestramonetario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -535,6 +555,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
@@ -555,6 +576,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
     private javax.swing.JTextField muestramonetario;
     private javax.swing.JTextField muestramonto;
     private javax.swing.JTextField muestratipoOperacion;
+    private javax.swing.JTextField numeroalarma;
     private javax.swing.JTextField recibepara;
     // End of variables declaration//GEN-END:variables
 }

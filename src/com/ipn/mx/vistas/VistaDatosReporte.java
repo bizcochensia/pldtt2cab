@@ -36,6 +36,8 @@ public class VistaDatosReporte extends javax.swing.JFrame {
     public Operacion ope= new Operacion(VistaVerOperaciones.operacion);
     ReporteDAO nrep=new ReporteDAO();
     String nombrearchivo="";
+    int alarmas=VistaVerOperaciones.numalarmas;
+    int idOperacion=VistaVerOperaciones.idOperacion;
     
     String []encabezados= {"TIPO DE REPORTE","PERIODO DEL REPORTE","FOLIO","ORGANISMO SUPERVISOR","CLAVE DEL SUJETO OBLIGADO","LOCALIDAD",
          "CODIGO POSTAL DE LA SUCURSAL","TIPO DE OPERACION","INSTRUMENTO ETARIO","NUMERO DE CUENTA,CONTRATO U OPERACION","MONTO","MONEDA",
@@ -47,7 +49,7 @@ public class VistaDatosReporte extends javax.swing.JFrame {
          "RAZONES POR LAS QUE LA OPERACION SE CONSIDERA INUSUAL"};
      ResultSet rs;
      ResultSet aux2;
-     String tipoReporte="1";     String fechaop="";              String domicilio="";            String razones="";
+     String tipoReporte="";     String fechaop="";              String domicilio="";            String razones="";
      String periodo="";         String fechadet="";             String colonia="";              String monto="";
      String folio="";           String nacionalidad="";         String ciudad="";               String numcuenta2="";
      String organosup="";       String tipopersona="";          String telefono="";
@@ -193,6 +195,9 @@ public class VistaDatosReporte extends javax.swing.JFrame {
                 descripcion=rs.getString("detalleop");                
             }
             
+             if(alarmas==1){tipoReporte="1";}
+             else{tipoReporte="2";}
+             
              if(nacionalidad.equals("1")){}
              else{nacionalidad="2";}
              
@@ -212,6 +217,11 @@ public class VistaDatosReporte extends javax.swing.JFrame {
              folio=aux2.getString("folio");
              }
              
+            ResultSet t=nrep.VerAlarmas(idOperacion);
+            while(t.next()){
+            razones=razones+t.getString("Descripcion");
+            } 
+            
             try {
                 File archivoXLS = new File(rutaArchivo);
                 String []datos= {tipoReporte,periodo,folio,organosup,clave,localidad,CPINM,tipoOp,Instrumento,numCuenta,monto,moneda,fechaop,fechadet,
