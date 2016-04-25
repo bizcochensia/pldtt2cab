@@ -37,11 +37,13 @@ public class VistaOperaciones extends javax.swing.JFrame {
     double suma=0.0;        
     double varianza=0.0;
     double desviacion=0.0;
-    double montocomparar=0.0;
+    double ingresocomparar=0.0;
     int poblacion=0;
+    int i=0;
+    int l=0;
     String maximo="";
     String minimo="";
-    int i=0;
+    String descripcionAlarma="";
     
     //resto variables
    double RTC=0.0; 
@@ -559,11 +561,13 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 am.setText(rs.getString("apellido_Mat"));
                 act.setText(rs.getString("actividad"));
                 ing.setText(rs.getString("ingreso_Promedio"));
+                ingresocomparar=rs.getDouble("ingreso_Promedio");
                 }
                  
             } catch (SQLException ex) {
                 Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
+            System.out.println("El ingreso que comparo en el clientes es de "+ingresocomparar);
         }
         else{
         
@@ -625,8 +629,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
             }
             if(auxcontrato.equals("")){}
             else{
-                double auxmonto1=monto-5000;
-                double auxmonto2=monto+5000;
+                double auxmonto1=ingresocomparar-5000;
+                double auxmonto2=ingresocomparar+5000;
                 
                 maximo= String.valueOf(auxmonto2);
                 minimo=String.valueOf(auxmonto1);
@@ -653,14 +657,31 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 
                 for(int j=0;j<Montoxcomp.length;j++){
                     suma=suma+Math.pow(Montoxcomp[j]-promedio,2);
-                    varianza=suma/(poblacion-1);
+                    varianza=suma/poblacion;
                 }
                 
                 desviacion=Math.pow(varianza,0.5);
                 
                 System.out.println("las operaciones parecidas son:"+poblacion+"\n"+"el promedioes de "+promedio+"\n"+"la varianza es de"+varianza+"\n"+"la desviacion estandar es de"+desviacion);
+                
+                if((promedio+2*desviacion)< monto ){
+                t=MFD.obtenidcontrato(numcontrato);
+                while(t.next()){
+                l=t.getInt("id_Operacion");
+                }
+                double razon=monto-(promedio+2*desviacion);
+                descripcionAlarma=""+razon;
+                
+                MFD.insertaalarma(l, 1, fecha, descripcionAlarma);
+                
+                
+                }
+                else{}
+            
             }
         } catch (SQLException ex) {
+            Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
         }
         
