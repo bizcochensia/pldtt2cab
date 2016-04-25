@@ -80,7 +80,7 @@ public class ConocerDao {
                   
            
            st.executeUpdate();
-           JOptionPane.showMessageDialog(null, "La Alarma se ha enviado");
+           
            }
         catch(Exception ex) {
             System.out.println(ex);

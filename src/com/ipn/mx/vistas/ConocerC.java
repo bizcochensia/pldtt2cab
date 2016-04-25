@@ -469,6 +469,7 @@ public class ConocerC extends javax.swing.JFrame {
                     Logger.getLogger(ConocerC.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
+            JOptionPane.showMessageDialog(null, "La Alarma se ha enviado");
             
         }
             

@@ -7,7 +7,9 @@ package com.ipn.mx.vistas;
 
 import com.ipn.mx.conexion.ClienteDao;
 import com.ipn.mx.conexion.Conexion;
+import com.ipn.mx.conexion.ConexionListas;
 import com.mx.ipn.clases.Cliente;
+import com.mx.ipn.clases.Operacion;
 import com.mx.ipn.clases.MiPanel;
 import java.awt.BorderLayout;
 import java.sql.Connection;
@@ -29,7 +31,10 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
     Conexion con=new Conexion();
     Connection reg=con.conectar();
     
+    
     Cliente c=new Cliente();
+    Operacion op = new Operacion();
+    int id[] = new int[50]; 
     
     /**
      * Creates new form VistaCalificacionCliente
@@ -38,7 +43,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
         initComponents();
         cargarClientes();
         ///
-        
+      
        Calendar c2 = new GregorianCalendar();
        
          MiPanel p = new MiPanel(); 
@@ -86,11 +91,16 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
         muestraNacionalidad = new javax.swing.JTextField();
         jPanel4 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
+        fechaC = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        descripcionC = new javax.swing.JTextArea();
         jPanel3 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
+        listasN = new javax.swing.JTextField();
+        pep = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -255,26 +265,60 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Origen y Actividad", jPanel1);
 
-        jLabel10.setText("Respuestas Cuestionario");
+        jPanel4.setOpaque(false);
+
+        jLabel10.setText("Persepción del empleado");
+
+        jLabel15.setText("Resultados:");
+
+        jLabel16.setText("Fecha:");
+
+        descripcionC.setColumns(20);
+        descripcionC.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        descripcionC.setRows(5);
+        descripcionC.setCursor(new java.awt.Cursor(java.awt.Cursor.TEXT_CURSOR));
+        descripcionC.setDebugGraphicsOptions(javax.swing.DebugGraphics.NONE_OPTION);
+        jScrollPane1.setViewportView(descripcionC);
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(27, 27, 27)
-                .addComponent(jLabel10)
-                .addContainerGap(647, Short.MAX_VALUE))
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addComponent(jLabel10))
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGap(76, 76, 76)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel15)
+                            .addComponent(jLabel16))
+                        .addGap(61, 61, 61)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 538, Short.MAX_VALUE)
+                            .addComponent(fechaC))))
+                .addContainerGap(61, Short.MAX_VALUE))
         );
         jPanel4Layout.setVerticalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
-                .addGap(19, 19, 19)
+                .addContainerGap(35, Short.MAX_VALUE)
                 .addComponent(jLabel10)
-                .addContainerGap(280, Short.MAX_VALUE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(fechaC, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel16))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel15)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 169, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(31, 31, 31))
         );
 
         jTabbedPane2.addTab("Conoce Cliente", jPanel4);
+
+        jPanel3.setOpaque(false);
 
         jLabel12.setText("Coincidencias en listas negras");
 
@@ -291,9 +335,9 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
                     .addComponent(jLabel12))
                 .addGap(36, 36, 36)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jTextField1)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 131, Short.MAX_VALUE))
-                .addContainerGap(378, Short.MAX_VALUE))
+                    .addComponent(listasN, javax.swing.GroupLayout.DEFAULT_SIZE, 425, Short.MAX_VALUE)
+                    .addComponent(pep))
+                .addContainerGap(84, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -301,11 +345,11 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
                 .addGap(55, 55, 55)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(listasN, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(38, 38, 38)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(pep, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(180, Short.MAX_VALUE))
         );
 
@@ -368,11 +412,19 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
         try {
             Cliente c=(Cliente) comboCliente.getSelectedItem();
             String a=c.getRfc();
+            int idC = c.getIdCLiente();
+            int idOP;
             String aux="Select tc.descripcion,ac.actividad,ac.riesgo,e.nombre,p.nombre_Pais,p.riesgo as Pais,e.id_pais from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join entidad_federativa e on e.id_Entidad=c.entidad inner join pais p on c.pais_Origen=p.id_Pais inner join tcliente tc on tc.id_tipo=c.tipo where c.RFC='"+a+"' ";    
             Statement st;
             st = reg.createStatement();
             ResultSet rs=st.executeQuery(aux);
             System.out.println(a);
+            //Obtiene el ID del cliente para asociarlo con la operacion;
+            idOP=Operacion(idC);
+            //Conoce a Tu Cliente 
+            ConoceCliente(idOP);
+            ListasNegras(idOP);
+            
              while (rs.next()){
            
             tipoPersona.setText(rs.getString("descripcion"));
@@ -450,7 +502,82 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
         }
      
     }
-    
+    public int Operacion(int a){
+       
+        int i = 0;
+        try {
+            String aux = "Select * from operaciones where Cliente_id='" + a + "'";
+            Statement st;
+            st = reg.createStatement();
+            ResultSet rs = st.executeQuery(aux);
+            System.out.println(a);
+            
+            while (rs.next()) {
+                //System.out.println(rs.getString("id_Operacion"));
+                i= Integer.parseInt(rs.getString("id_Operacion"));
+               
+            }
+        } catch (SQLException | NumberFormatException sQLException) {
+        }
+        return i;
+    }
+     private void ConoceCliente(int idOP) {
+        //To change body of generated methods, choose Tools | Templates.
+        int alarma;
+        try {
+            
+            String aux = "Select * from intermedia_operacion_alarma where Operacion_id='" + idOP+ "'";
+            Statement st;
+            st = reg.createStatement();
+            ResultSet rs = st.executeQuery(aux);
+            System.out.println(id[1]);
+            while (rs.next()) {
+                System.out.println(rs.getString("Operacion_id"));
+                System.out.println(rs.getString("Alarma_id"));
+                alarma =Integer.parseInt(rs.getString("Alarma_id"));
+                if(alarma == 7){
+                fechaC.setText(rs.getString("fechadeteccion"));
+                descripcionC.setText(rs.getString("Descripcion"));
+                }else{
+                    fechaC.setText("Sin Alarma");
+                    descripcionC.setText("Sin Alarma ");
+                }
+                
+                
+            }
+        } catch (SQLException sQLException) {
+        } catch (NumberFormatException numberFormatException) {
+        }
+    }
+        private void ListasNegras(int idOP) {
+     int alarma;
+        try {
+            
+            String aux = "Select * from intermedia_operacion_alarma where Operacion_id='" + idOP+ "'";
+            Statement st;
+            st = reg.createStatement();
+            ResultSet rs = st.executeQuery(aux);
+            System.out.println(id[1]);
+            while (rs.next()) {
+                System.out.println(rs.getString("Operacion_id"));
+                System.out.println(rs.getString("Alarma_id"));
+                alarma =Integer.parseInt(rs.getString("Alarma_id"));
+                switch(alarma){
+                    case 2:
+                        listasN.setText(rs.getString("Descripcion"));
+                    case 6:
+                        pep.setText(rs.getString("Descripcion"));
+                    default:
+                        listasN.setText("Sin Coincidencia");
+                        pep.setText("Sin Coincidencia");
+                }
+                
+                
+            }
+        } catch (SQLException sQLException) {
+        } catch (NumberFormatException numberFormatException) {
+        }
+    }
     /**
      * @param args the command line arguments
      */
@@ -495,6 +622,8 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
     private javax.swing.JTextField Nacionalidad;
     private javax.swing.JTextField Residencia;
     private javax.swing.JComboBox comboCliente;
+    private javax.swing.JTextArea descripcionC;
+    private javax.swing.JTextField fechaC;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
@@ -502,6 +631,8 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -515,13 +646,18 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField listasN;
     private javax.swing.JTextField muestraActividad;
     private javax.swing.JTextField muestraNacionalidad;
     private javax.swing.JTextField muestraResidencia;
     private javax.swing.JTextField muestratipo;
+    private javax.swing.JTextField pep;
     private javax.swing.JTextField tipoPersona;
     // End of variables declaration//GEN-END:variables
+
+
+
+   
 }
