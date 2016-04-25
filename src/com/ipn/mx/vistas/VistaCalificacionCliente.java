@@ -44,6 +44,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
     Connection reg=con.conectar();
     String descripcionalarma="";
     String fechadeteccion="";
+    int alarmaid=0;
 
     
 
@@ -506,9 +507,10 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
             while(t.next()){
                 descripcionalarma=t.getString("Descripcion");
                 fechadeteccion=t.getString("fechadeteccion");
+                alarmaid=t.getInt("Alarma_id");
             }
             
-            if(descripcionalarma.equals("")){
+            if(alarmaid!=1){
             Muestrafecha.setText("La operacion no es considerada sospechosa por monto");  
             }
             else{
