@@ -56,4 +56,17 @@ public class ReporteDAO{
         return result;
   }  
     
+    public ResultSet VerAlarmas(int a){
+        Conexion con = new Conexion();
+        Connection reg=con.conectar();
+        String consulta="Select * from intermedia_operacion_alarma where Operacion_id="+a;
+        try{
+            prState = reg.prepareStatement(consulta);
+            result=prState.executeQuery();
+        } catch (SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE,null, ex);
+        }
+        return result;
+  }
+  
 }
