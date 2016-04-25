@@ -54,10 +54,6 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
 
     public Cliente clienteid= new Cliente(VistaVerOperaciones.idCliente);
     public Operacion Operacionid= new Operacion(VistaVerOperaciones.idOperacion);
-
-
-    public Cliente clienteid= new Cliente(VistaVerOperaciones.idCliente);
-    public Operacion Operacionid= new Operacion(VistaVerOperaciones.idOperacion);
     
 
     
