@@ -37,11 +37,15 @@ public class VistaOperaciones extends javax.swing.JFrame {
     double suma=0.0;        
     double varianza=0.0;
     double desviacion=0.0;
-    double montocomparar=0.0;
+    double ingresocomparar=0.0;
     int poblacion=0;
+    int i=0;
+    int l=0;
     String maximo="";
     String minimo="";
-    int i=0;
+    String descripcionAlarma="";
+    ResultSet t;
+    MontoFrecuenciaDAO MFD=new MontoFrecuenciaDAO();
     
     //resto variables
    double RTC=0.0; 
@@ -546,21 +550,59 @@ public class VistaOperaciones extends javax.swing.JFrame {
         
         if(combocliente.getSelectedIndex()!=0){
             try {
-                c=(Cliente) combocliente.getSelectedItem();
-                String a=c.getRfc();
-                int b=c.getIdCLiente();
-                String aux="Select c.nombre,c.apellido_Pat,c.apellido_Mat,c.ingreso_Promedio,ac.actividad from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad  where c.RFC='"+a+"' ";
-                Statement st;
-                st = reg.createStatement();
-                ResultSet rs=st.executeQuery(aux);
-                while(rs.next()){
-                nombre.setText(rs.getString("nombre"));
-                ap.setText(rs.getString("apellido_Pat"));
-                am.setText(rs.getString("apellido_Mat"));
-                act.setText(rs.getString("actividad"));
-                ing.setText(rs.getString("ingreso_Promedio"));
+                try {
+                    c=(Cliente) combocliente.getSelectedItem();
+                    String a=c.getRfc();
+                    int b=c.getIdCLiente();
+                    String aux="Select c.nombre,c.apellido_Pat,c.apellido_Mat,c.ingreso_Promedio,ac.actividad from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad  where c.RFC='"+a+"' ";
+                    Statement st;
+                    st = reg.createStatement();
+                    ResultSet rs=st.executeQuery(aux);
+                    while(rs.next()){
+                        nombre.setText(rs.getString("nombre"));
+                        ap.setText(rs.getString("apellido_Pat"));
+                        am.setText(rs.getString("apellido_Mat"));
+                        act.setText(rs.getString("actividad"));
+                        ing.setText(rs.getString("ingreso_Promedio"));
+                        ingresocomparar=rs.getDouble("ingreso_Promedio");
+                    }
+                    
+                } catch (SQLException ex) {
+                    Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
                 }
-                 
+                double auxmonto1=ingresocomparar-5000;
+                double auxmonto2=ingresocomparar+5000;
+                
+                maximo= String.valueOf(auxmonto2);
+                minimo=String.valueOf(auxmonto1);
+                
+                t=MFD.obtenpoblacion(minimo, maximo);
+                
+                while(t.next()){
+                    poblacion=t.getInt("poblacion");
+                }
+                
+                t=MFD.obtenmontos(minimo,maximo);
+                double[] Montoxcomp=new double[poblacion];
+                while(t.next()){
+                    Montoxcomp[i]=t.getDouble("monto");
+                    i++;
+                }
+                
+                for (int j=0;j<Montoxcomp.length;j++){
+                    suma=suma+Montoxcomp[j];
+                }
+                
+                promedio=suma/poblacion;
+                suma=0.0;
+                
+                for(int j=0;j<Montoxcomp.length;j++){
+                    suma=suma+Math.pow(Montoxcomp[j]-promedio,2);
+                    varianza=suma/poblacion;
+                }
+                
+                desviacion=Math.pow(varianza,0.5);
+                System.out.println("las operaciones parecidas son:"+poblacion+"\n"+"el promedioes de "+promedio+"\n"+"la varianza es de"+varianza+"\n"+"la desviacion estandar es de"+desviacion);
             } catch (SQLException ex) {
                 Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -615,8 +657,6 @@ public class VistaOperaciones extends javax.swing.JFrame {
             }
             
             
-            ResultSet t;
-            MontoFrecuenciaDAO MFD=new MontoFrecuenciaDAO();
             String auxcontrato="";
             t=MFD.obtencontrato(numcontrato);
             while(t.next())
@@ -625,8 +665,9 @@ public class VistaOperaciones extends javax.swing.JFrame {
             }
             if(auxcontrato.equals("")){}
             else{
-                double auxmonto1=monto-5000;
-                double auxmonto2=monto+5000;
+                /*
+                double auxmonto1=ingresocomparar-5000;
+                double auxmonto2=ingresocomparar+5000;
                 
                 maximo= String.valueOf(auxmonto2);
                 minimo=String.valueOf(auxmonto1);
@@ -653,14 +694,31 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 
                 for(int j=0;j<Montoxcomp.length;j++){
                     suma=suma+Math.pow(Montoxcomp[j]-promedio,2);
-                    varianza=suma/(poblacion-1);
+                    varianza=suma/poblacion;
                 }
                 
                 desviacion=Math.pow(varianza,0.5);
                 
                 System.out.println("las operaciones parecidas son:"+poblacion+"\n"+"el promedioes de "+promedio+"\n"+"la varianza es de"+varianza+"\n"+"la desviacion estandar es de"+desviacion);
+                */
+                if((promedio+2*desviacion)< monto ){
+                t=MFD.obtenidcontrato(numcontrato);
+                while(t.next()){
+                l=t.getInt("id_Operacion");
+                }
+                double razon=monto-(promedio+2*desviacion);
+                descripcionAlarma=""+razon;
+                
+                MFD.insertaalarma(l, 1, fecha, descripcionAlarma);
+                
+                
+                }
+                else{}
+            
             }
         } catch (SQLException ex) {
+            Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
             Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
         }
         

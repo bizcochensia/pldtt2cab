@@ -30,6 +30,19 @@ public class Cliente {
     private String Actividad;
     private Double Ingreso;
 
+    //constructores
+
+    public Cliente(int idCLiente) {
+        this.idCLiente = idCLiente;
+    }
+
+    public Cliente() {
+    }
+    
+    
+    
+    
+    //getters and setters 
     public int getIdCLiente() {
         return idCLiente;
     }
