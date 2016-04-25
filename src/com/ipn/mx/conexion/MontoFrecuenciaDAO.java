@@ -40,6 +40,22 @@ public class MontoFrecuenciaDAO {
                     
         }
     }
+        
+    public ResultSet obtenalarmas(int a){
+ 
+    String aux="Select fechadeteccion,Descripcion from intermedia_operacion_alarma  where Operacion_id="+a;    
+    Conexion cn = new Conexion ();
+    Connection reg=cn.conectar();
+    Statement st;
+    ResultSet rs = null;
+        try{
+            st=reg.createStatement();
+            rs = st.executeQuery(aux);
+        } catch (Exception ex){
+            System.out.println(ex);
+        }
+        return rs;
+    } 
     
     
     

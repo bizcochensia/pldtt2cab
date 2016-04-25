@@ -7,6 +7,7 @@ package com.ipn.mx.vistas;
 
 import com.ipn.mx.conexion.ClienteDao;
 import com.ipn.mx.conexion.Conexion;
+import com.ipn.mx.conexion.MontoFrecuenciaDAO;
 import com.mx.ipn.clases.Cliente;
 import com.mx.ipn.clases.Empleado;
 import com.mx.ipn.clases.MiPanel;
@@ -28,8 +29,11 @@ import java.util.logging.Logger;
 public class VistaCalificacionCliente extends javax.swing.JFrame {
 
     int riesgoresidencia;
+    ResultSet t;
     Conexion con=new Conexion();
     Connection reg=con.conectar();
+    String descripcionalarma="";
+    String fechadeteccion="";
     
     public Cliente clienteid= new Cliente(VistaVerOperaciones.idCliente);
     public Operacion Operacionid= new Operacion(VistaVerOperaciones.idOperacion);
@@ -96,6 +100,8 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
+        Muestrafecha = new javax.swing.JLabel();
+        MuestraMonto = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Calificacion Cliente");
@@ -319,11 +325,21 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 793, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(61, 61, 61)
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(Muestrafecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(MuestraMonto, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
+                .addContainerGap(384, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 313, Short.MAX_VALUE)
+            .addGroup(jPanel5Layout.createSequentialGroup()
+                .addGap(57, 57, 57)
+                .addComponent(Muestrafecha, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(45, 45, 45)
+                .addComponent(MuestraMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(173, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Monto y Frecuencia", jPanel5);
@@ -413,7 +429,27 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        MontoFrecuenciaDAO MFD=new MontoFrecuenciaDAO();
+        t=MFD.obtenalarmas(Operacionid.getIdOperacion());
+        try {
+            while(t.next()){
+                descripcionalarma=t.getString("Descripcion");
+                fechadeteccion=t.getString("fechadeteccion");
+            }
             
+            if(descripcionalarma.equals("")){
+            Muestrafecha.setText("La operacion no es considerada sospechosa por monto");  
+            }
+            else{
+            Muestrafecha.setText("La operacion fue detectada en:"+fechadeteccion);
+            MuestraMonto.setText("Es considerada sospechosa ya que sobrepasa por un monto de: "+descripcionalarma+"  el estandar");
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -495,6 +531,8 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Actividad;
+    private javax.swing.JLabel MuestraMonto;
+    private javax.swing.JLabel Muestrafecha;
     private javax.swing.JTextField Nacionalidad;
     private javax.swing.JTextField Residencia;
     private javax.swing.JComboBox comboCliente;
