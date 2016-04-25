@@ -8,6 +8,7 @@ package com.ipn.mx.vistas;
 import com.ipn.mx.conexion.ClienteDao;
 import com.ipn.mx.conexion.Conexion;
 import com.mx.ipn.clases.Actividades;
+import com.mx.ipn.clases.AdvancedEncryptionStandard;
 import com.mx.ipn.clases.EntidadFederativa;
 import com.mx.ipn.clases.Localidad;
 import com.mx.ipn.clases.MiPanel;
@@ -40,11 +41,22 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
     /**
      * Creates new form VistaRegistroClientes
      */
-    public VistaRegistroClientes() throws SQLException {
+    public VistaRegistroClientes() throws SQLException, Exception {
         initComponents();
         cargaractividades();
         cargarpais();
         cargarpaisorigen();
+        //////CIRFRADOOOOOOOOO/////}
+        String encryptionKey = "MZygpewJsCpRrfOr";
+    String plainText = "Hello world!";
+    AdvancedEncryptionStandard advancedEncryptionStandard = new AdvancedEncryptionStandard(
+            encryptionKey);
+    String cipherText = advancedEncryptionStandard.encrypt(plainText);
+    String decryptedCipherText = advancedEncryptionStandard.decrypt(cipherText);
+
+    System.out.println(plainText);
+    System.out.println(cipherText);
+    System.out.println(decryptedCipherText);
         ///
         
        Calendar c2 = new GregorianCalendar();
