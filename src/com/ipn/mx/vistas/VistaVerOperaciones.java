@@ -34,6 +34,8 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
     public static int operacion;
     int parametro=0;
     String nombre="";
+    public static int idOperacion=0;
+    public static int idCliente=0;
     
     /**
      * Creates new form VistaVerOperaciones
@@ -95,8 +97,8 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
     public void mostrardatos(int posicion) throws SQLException{
         op=lista.get(posicion);
         String a=Integer.toString(op.getIdOperacion());
-        String e="Select op.id_Operacion, op.numeroContrato,op.monto,op.fecha,op.descripcion,tiop.tipo_operacion,mo.instrumento_monetario,m.moneda,c.nombre,e.nombre as empleado,i.nombre as inmobiliaria from operaciones op inner join monetario mo on op.monetario_id=mo.id_clavemonetario inner join moneda m on op.moneda_id=m.id_moneda inner join cliente c on op.Cliente_id=c.id_cliente inner join empleado e on op.Empleado_id=e.id_Empleado inner join inmobiliaria i on op.Inmobiliaria_id=i.id_inmobiliaria inner join tipo_operacion tiop on op.tipo_id=tiop.id_tipoOp where op.id_Operacion='"+a+"'    ";    
-        String nom="Select op.id_Operacion, op.numeroContrato,op.monto,op.fecha,op.descripcion,tiop.tipo_operacion,mo.instrumento_monetario,m.moneda,c.nombre,e.nombre as empleado,i.nombre as inmobiliaria from operaciones op inner join monetario mo on op.monetario_id=mo.id_clavemonetario inner join moneda m on op.moneda_id=m.id_moneda inner join cliente c on op.Cliente_id=c.id_cliente inner join empleado e on op.Empleado_id=e.id_Empleado inner join inmobiliaria i on op.Inmobiliaria_id=i.id_inmobiliaria inner join tipo_operacion tiop on op.tipo_id=tiop.id_tipoOp where op.id_Operacion='"+a+"' and c.nombre='"+nombre+"'    ";
+        String e="Select op.id_Operacion, op.numeroContrato,op.monto,op.fecha,op.descripcion,tiop.tipo_operacion,mo.instrumento_monetario,m.moneda,c.id_cliente,c.nombre,e.nombre as empleado,i.nombre as inmobiliaria from operaciones op inner join monetario mo on op.monetario_id=mo.id_clavemonetario inner join moneda m on op.moneda_id=m.id_moneda inner join cliente c on op.Cliente_id=c.id_cliente inner join empleado e on op.Empleado_id=e.id_Empleado inner join inmobiliaria i on op.Inmobiliaria_id=i.id_inmobiliaria inner join tipo_operacion tiop on op.tipo_id=tiop.id_tipoOp where op.id_Operacion='"+a+"'    ";    
+        String nom="Select op.id_Operacion, op.numeroContrato,op.monto,op.fecha,op.descripcion,tiop.tipo_operacion,mo.instrumento_monetario,m.moneda,c.id_cliente,c.nombre,e.nombre as empleado,i.nombre as inmobiliaria from operaciones op inner join monetario mo on op.monetario_id=mo.id_clavemonetario inner join moneda m on op.moneda_id=m.id_moneda inner join cliente c on op.Cliente_id=c.id_cliente inner join empleado e on op.Empleado_id=e.id_Empleado inner join inmobiliaria i on op.Inmobiliaria_id=i.id_inmobiliaria inner join tipo_operacion tiop on op.tipo_id=tiop.id_tipoOp where op.id_Operacion='"+a+"' and c.nombre='"+nombre+"'    ";
        
         Statement st;
         st = reg.createStatement();
@@ -114,7 +116,9 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
         muestrainmobiliaria.setText(rs.getString("inmobiliaria"));
         muestramoneda.setText(rs.getString("moneda"));
         muestramonetario.setText(rs.getString("instrumento_monetario"));
-        muestratipoOperacion.setText(rs.getString("tipo_operacion"));       
+        muestratipoOperacion.setText(rs.getString("tipo_operacion")); 
+        idOperacion=rs.getInt("id_Operacion");
+        idCliente=rs.getInt("id_cliente");
         }
         }
         else if(parametro==1){
@@ -130,7 +134,9 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
         muestrainmobiliaria.setText(s.getString("inmobiliaria"));
         muestramoneda.setText(s.getString("moneda"));
         muestramonetario.setText(s.getString("instrumento_monetario"));
-        muestratipoOperacion.setText(s.getString("tipo_operacion"));       
+        muestratipoOperacion.setText(s.getString("tipo_operacion"));
+        idOperacion=s.getInt("id_Operacion");
+        idCliente=s.getInt("id_cliente");
         }
         }
         

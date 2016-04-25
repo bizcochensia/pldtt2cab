@@ -8,7 +8,9 @@ package com.ipn.mx.vistas;
 import com.ipn.mx.conexion.ClienteDao;
 import com.ipn.mx.conexion.Conexion;
 import com.mx.ipn.clases.Cliente;
+import com.mx.ipn.clases.Empleado;
 import com.mx.ipn.clases.MiPanel;
+import com.mx.ipn.clases.Operacion;
 import java.awt.BorderLayout;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -29,7 +31,9 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
     Conexion con=new Conexion();
     Connection reg=con.conectar();
     
-    Cliente c=new Cliente();
+    public Cliente clienteid= new Cliente(VistaVerOperaciones.idCliente);
+    public Operacion Operacionid= new Operacion(VistaVerOperaciones.idOperacion);
+    
     
     /**
      * Creates new form VistaCalificacionCliente
@@ -366,9 +370,8 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         try {
-            Cliente c=(Cliente) comboCliente.getSelectedItem();
-            String a=c.getRfc();
-            String aux="Select tc.descripcion,ac.actividad,ac.riesgo,e.nombre,p.nombre_Pais,p.riesgo as Pais,e.id_pais from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join entidad_federativa e on e.id_Entidad=c.entidad inner join pais p on c.pais_Origen=p.id_Pais inner join tcliente tc on tc.id_tipo=c.tipo where c.RFC='"+a+"' ";    
+            int a=clienteid.getIdCLiente();
+            String aux="Select tc.descripcion,ac.actividad,ac.riesgo,e.nombre,p.nombre_Pais,p.riesgo as Pais,e.id_pais from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join entidad_federativa e on e.id_Entidad=c.entidad inner join pais p on c.pais_Origen=p.id_Pais inner join tcliente tc on tc.id_tipo=c.tipo where c.id_cliente="+a;    
             Statement st;
             st = reg.createStatement();
             ResultSet rs=st.executeQuery(aux);
