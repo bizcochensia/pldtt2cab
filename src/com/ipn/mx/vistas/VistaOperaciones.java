@@ -21,6 +21,7 @@ import com.mx.ipn.clases.TipoOperacion;
 import com.mx.ipn.clases.Validaciones;
 import java.awt.BorderLayout;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -52,6 +53,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
     MontoFrecuenciaDAO MFD=new MontoFrecuenciaDAO();
     int idCliente;
     int id []=new int[50];
+    int valid =0;
     
     //resto variables
    double RTC=0.0; 
@@ -951,6 +953,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
          
             for (int j=0;j<c1;j++){
                 try { 
+                    ValidaOp(id[j]);
+                    if(valid == 0)
                     ac.RegistroDescripcion(id[j], 6, sqlDate,"Listas Negras : "+string+" "+string0+" "+string1);
                 } catch (SQLException ex) {
                     Logger.getLogger(ConocerC.class.getName()).log(Level.SEVERE, null, ex);
@@ -974,5 +978,22 @@ public class VistaOperaciones extends javax.swing.JFrame {
               }   
 
     
+    }
+    public void ValidaOp(int op) {
+    ResultSet res;
+    PreparedStatement pstm;
+        try{
+            pstm = reg.prepareStatement("SELECT * FROM intermedia_operacion_alarma WHERE Operacion_id = '" + op+ "'");
+            res = pstm.executeQuery();
+            if(res.next()){
+                valid= 1;
+                 
+} else
+            valid = 0;
+            res.close();
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+ 
     }
 }

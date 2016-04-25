@@ -10,6 +10,7 @@ import com.ipn.mx.conexion.ConocerDao;
 import com.mx.ipn.clases.Cliente;
 import com.mx.ipn.clases.MiPanel;
 import java.awt.BorderLayout;
+import static java.lang.Math.exp;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -27,6 +28,7 @@ import javax.swing.JOptionPane;
 public class ConocerC extends javax.swing.JFrame {
    Conexion con=new Conexion();
     Connection reg=con.conectar();
+    int valid=0;
     
     Cliente c=new Cliente();
     int eva[] = new int[50];
@@ -462,7 +464,11 @@ public class ConocerC extends javax.swing.JFrame {
            }
             for (int j=0;j<i;j++){
                 try { 
-                    ac.RegistroDescripcion(eva[j], 7, sqlDate, des+descrip.getText());
+                    ValidaOp(eva[j]);
+                   if(valid == 0)
+                        ac.RegistroDescripcion(eva[j], 7, sqlDate, des+descrip.getText());
+                    
+                    
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(ConocerC.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
@@ -693,4 +699,21 @@ public void cargarClientes() throws SQLException {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
+public void ValidaOp(int op) {
+    ResultSet res;
+    PreparedStatement pstm;
+        try{
+            pstm = reg.prepareStatement("SELECT * FROM intermedia_operacion_alarma WHERE Operacion_id = '" + op+ "'");
+            res = pstm.executeQuery();
+            if(res.next()){
+                valid= 1;
+                 
+} else
+            valid = 0;
+            res.close();
+        } catch(SQLException e){
+            JOptionPane.showMessageDialog(null, e);
+        }
+ 
+    }
 }
