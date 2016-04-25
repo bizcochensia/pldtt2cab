@@ -5,8 +5,11 @@
  */
 package com.ipn.mx.vistas;
 
+
 import com.ipn.mx.conexion.ClienteDao;
 import com.ipn.mx.conexion.Conexion;
+import com.ipn.mx.conexion.ConexionListas;
+import com.ipn.mx.conexion.ConocerDao;
 import com.ipn.mx.conexion.MontoFrecuenciaDAO;
 import com.ipn.mx.conexion.OperacionDAO;
 import com.mx.ipn.clases.Cliente;
@@ -21,6 +24,7 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -31,7 +35,7 @@ import javax.swing.JOptionPane;
  * @author Clemente
  */
 public class VistaOperaciones extends javax.swing.JFrame {
-   
+   int c1=0;
     //calcular montos inusuales
     double promedio=0.0;
     double suma=0.0;        
@@ -46,6 +50,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
     String descripcionAlarma="";
     ResultSet t;
     MontoFrecuenciaDAO MFD=new MontoFrecuenciaDAO();
+    int idCliente;
+    int id []=new int[50];
     
     //resto variables
    double RTC=0.0; 
@@ -77,7 +83,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
 
     Conexion con=new Conexion();
     Connection reg=con.conectar();
-    Connection reg2=con.conectar();
+    ConexionListas con2 = new ConexionListas();
+    Connection reg2=con2.conectar();
     private String numcontrato;
     private double monto;
     private String descripcion;
@@ -551,14 +558,28 @@ public class VistaOperaciones extends javax.swing.JFrame {
         if(combocliente.getSelectedIndex()!=0){
             try {
                 try {
+                    
+                    
                     c=(Cliente) combocliente.getSelectedItem();
                     String a=c.getRfc();
+                    idCliente =c.getIdCLiente();
+                    operacion (idCliente);
                     int b=c.getIdCLiente();
+                     String Nombre=c.getNombre();
+                    String Appat = c.getApellPat();
+                     String ApMat = c.getApellMat();
+                    try {
+                        listasNegras(Nombre,Appat,ApMat);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
+                    }
                     String aux="Select c.nombre,c.apellido_Pat,c.apellido_Mat,c.ingreso_Promedio,ac.actividad from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad  where c.RFC='"+a+"' ";
                     Statement st;
                     st = reg.createStatement();
                     ResultSet rs=st.executeQuery(aux);
+                    
                     while(rs.next()){
+                        
                         nombre.setText(rs.getString("nombre"));
                         ap.setText(rs.getString("apellido_Pat"));
                         am.setText(rs.getString("apellido_Mat"));
@@ -902,4 +923,56 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField operacion;
     // End of variables declaration//GEN-END:variables
+
+    private void listasNegras(String Nombre,String Appat,String ApMat) throws ClassNotFoundException {
+        //To change body of generated methods, choose Tools | Templates.
+    try {
+           
+            String aux="Select * from listas_negras where nombre='"+Nombre+"' and paterno ='"+Appat+"' and materno = '"+ApMat+"'";
+            Statement st;
+            st = reg2.createStatement();
+            ResultSet rs=st.executeQuery(aux);
+              while (rs.next()){
+                  System.out.println(rs.getString("nombre"));
+                  asignacionlistas(rs.getString("nombre"),rs.getString("paterno"),rs.getString("materno"));
+              }
+                   } catch (SQLException ex) {
+            System.out.println(ex+ "-no existe");
+            Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+    }
+
+    private void asignacionlistas(String string, String string0, String string1) throws ClassNotFoundException, SQLException {
+    ConocerDao ac = new ConocerDao();
+        
+       java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
+        
+         
+            for (int j=0;j<c1;j++){
+                try { 
+                    ac.RegistroDescripcion(id[j], 6, sqlDate,"Listas Negras : "+string+" "+string0+" "+string1);
+                } catch (SQLException ex) {
+                    Logger.getLogger(ConocerC.class.getName()).log(Level.SEVERE, null, ex);
+                }
+            }
+            
+            
+        }  
+
+    private void operacion(int idCliente) throws SQLException {
+    
+            String aux="Select * from operaciones where Cliente_id='"+idCliente+"'";
+            Statement st;
+            st = reg.createStatement();
+            ResultSet rs=st.executeQuery(aux);
+            c1=0;
+              while (rs.next()){
+                  System.out.println(rs.getString("id_Operacion"));
+                  id[c1] = Integer.parseInt(rs.getString("id_Operacion"));
+                  c1++;
+              }   
+
+    
+    }
 }

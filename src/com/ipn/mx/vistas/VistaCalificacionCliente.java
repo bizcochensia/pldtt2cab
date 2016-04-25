@@ -621,12 +621,12 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
                 System.out.println(rs.getString("Operacion_id"));
                 System.out.println(rs.getString("Alarma_id"));
                 alarma =Integer.parseInt(rs.getString("Alarma_id"));
-                switch(alarma){
-                    case 2:
+                if(alarma == 6){
                         listasN.setText(rs.getString("Descripcion"));
-                    case 6:
-                        pep.setText(rs.getString("Descripcion"));
-                    default:
+                         pep.setText("Sin Coincidencia");
+                    
+                }else{
+                    
                         listasN.setText("Sin Coincidencia");
                         pep.setText("Sin Coincidencia");
                 }
