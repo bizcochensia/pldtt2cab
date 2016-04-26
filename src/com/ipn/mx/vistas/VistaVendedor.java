@@ -271,15 +271,13 @@ public class VistaVendedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void ClienteFisicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteFisicoActionPerformed
+        VistaRegistroClientes vrcf = null;
         try {
-            // TODO add your handling code here:
-            VistaRegistroClientes vrcf=new VistaRegistroClientes();
-            vrcf.setVisible(true);
-        } catch (SQLException ex) {
-            Logger.getLogger(VistaVendedor.class.getName()).log(Level.SEVERE, null, ex);
+            vrcf = new VistaRegistroClientes();
         } catch (Exception ex) {
             Logger.getLogger(VistaVendedor.class.getName()).log(Level.SEVERE, null, ex);
         }
+        vrcf.setVisible(true);
         
     }//GEN-LAST:event_ClienteFisicoActionPerformed
 

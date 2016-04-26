@@ -544,7 +544,7 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
                                 // se empieza a cifrar
                                 /*aes.encrypt(plainText); funcion cifrado
                                 aes.decrypt(cipherText);   funcion decifrado */
-                                cliente.RegistroCliente(aes.encrypt(nombre.getText()), aes.encrypt(apellidopat.getText()), aes.encrypt(apellidomat.getText()),insert,1, RFC.getText(),
+                                cliente.RegistroCliente(nombre.getText(), apellidopat.getText(), apellidomat.getText(),insert,1, RFC.getText(),
                                         calle.getText(), numero.getText(),p2.getIdPais(),p.getIdPais(),f.getIdEntidadFederativa(),lo.getIdlocalidad()
                                         , cp.getText(),telefono.getText(),0 ,act.getId_actividad(),aux);
                             } catch (Exception ex) {
