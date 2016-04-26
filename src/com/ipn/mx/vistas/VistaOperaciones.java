@@ -52,8 +52,17 @@ public class VistaOperaciones extends javax.swing.JFrame {
     ResultSet t;
     MontoFrecuenciaDAO MFD=new MontoFrecuenciaDAO();
     int idCliente;
-    int id []=new int[50];
+    int id[]=new int[50];
     int valid =0;
+    
+    //frecuencia
+    int ids=0;
+    int z=0;
+    int op=0;
+    double sumatoria=0.0;
+    double promediofrecuencia=0.0;
+    double varianzafrecuencia=0.0;
+    double desviacionfrecuencia=0.0;
     
     //resto variables
    double RTC=0.0; 
@@ -557,6 +566,13 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         
+        dia=aux.substring(8,10);
+            auxmes=f.getMonth();
+            auxmes=auxmes+1;
+            mes= Integer.toString(auxmes);
+            año=aux.substring(24, 28);
+            fecha=año+"-"+mes+"-"+dia;
+        
         if(combocliente.getSelectedIndex()!=0){
             try {
                 try {
@@ -621,11 +637,52 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 
                 for(int j=0;j<Montoxcomp.length;j++){
                     suma=suma+Math.pow(Montoxcomp[j]-promedio,2);
-                    varianza=suma/poblacion;
                 }
+                varianza=suma/poblacion;
                 
                 desviacion=Math.pow(varianza,0.5);
-                System.out.println("las operaciones parecidas son:"+poblacion+"\n"+"el promedioes de "+promedio+"\n"+"la varianza es de"+varianza+"\n"+"la desviacion estandar es de"+desviacion);
+                System.out.println("num de operaciones obtenidos:"+ poblacion+" promedio de:"+ promedio+"\n"+" varianza de :" +varianza+"desviacion "+desviacion);
+                //frecuencia
+                
+                t=MFD.obtenPoblacionFrecuencia(minimo, maximo);
+                while(t.next()){
+                ids=t.getInt("numeroIDS");
+                }
+                
+                int[] totalIds=new int[ids];
+                int[] dias=new int[ids];
+                
+                t=MFD.obtenIdsFrecuencia(minimo, maximo);
+                while(t.next()){
+                totalIds[z]=t.getInt("Cliente_id");
+                z++;
+                }
+                for(int u=0;u<totalIds.length;u++){
+                }
+                
+                //hasta aqui tengo los ids en una arreglo
+                
+                //recorro el arreglo y obtengo las operaciones x persona
+                for (int y=0;y<totalIds.length;y++){
+                t=MFD.operacionesxPersona(totalIds[y],"2016-01-01",fecha);
+                while(t.next()){
+                dias[y]=t.getInt("operacionxPersona");
+                sumatoria=sumatoria+t.getInt("operacionxPersona");
+                }
+                }
+                
+                promediofrecuencia=sumatoria/ids;
+                sumatoria=0.0;
+                
+                for(int j=0;j<dias.length;j++){
+                    sumatoria=sumatoria+Math.pow(dias[j]-promediofrecuencia,2);
+                }
+                varianzafrecuencia=sumatoria/ids;
+                
+                desviacionfrecuencia=Math.pow(varianzafrecuencia,0.5);
+                
+                System.out.println("num de ids obtenidos:"+ ids+" promedio de:"+ promediofrecuencia+"\n"+" varianza de :" +varianzafrecuencia+"desviacion "+desviacionfrecuencia);
+                
             } catch (SQLException ex) {
                 Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -649,12 +706,6 @@ public class VistaOperaciones extends javax.swing.JFrame {
             tp= (TipoOperacion) combooperacion.getSelectedItem();
             mone= (Monetario) combomonetario.getSelectedItem();
             
-            dia=aux.substring(8,10);
-            auxmes=f.getMonth();
-            auxmes=auxmes+1;
-            mes= Integer.toString(auxmes);
-            año=aux.substring(24, 28);
-            fecha=año+"-"+mes+"-"+dia;
             
             if(contrato.getText().equals("") || operacion.getText().equals("") || des.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "Todos los campos en detalle de la operacion son requeridos");
@@ -688,56 +739,36 @@ public class VistaOperaciones extends javax.swing.JFrame {
             }
             if(auxcontrato.equals("")){}
             else{
-                /*
-                double auxmonto1=ingresocomparar-5000;
-                double auxmonto2=ingresocomparar+5000;
-                
-                maximo= String.valueOf(auxmonto2);
-                minimo=String.valueOf(auxmonto1);
-                
-                t=MFD.obtenpoblacion(minimo, maximo);
-                
-                while(t.next()){
-                    poblacion=t.getInt("poblacion");
-                }
-                
-                t=MFD.obtenmontos(minimo,maximo);
-                double[] Montoxcomp=new double[poblacion];
-                while(t.next()){
-                    Montoxcomp[i]=t.getDouble("monto");
-                    i++;
-                }
-                
-                for (int j=0;j<Montoxcomp.length;j++){
-                    suma=suma+Montoxcomp[j];
-                }
-                
-                promedio=suma/poblacion;
-                suma=0.0;
-                
-                for(int j=0;j<Montoxcomp.length;j++){
-                    suma=suma+Math.pow(Montoxcomp[j]-promedio,2);
-                    varianza=suma/poblacion;
-                }
-                
-                desviacion=Math.pow(varianza,0.5);
-                
-                System.out.println("las operaciones parecidas son:"+poblacion+"\n"+"el promedioes de "+promedio+"\n"+"la varianza es de"+varianza+"\n"+"la desviacion estandar es de"+desviacion);
-                */
                 if((promedio+2*desviacion)< monto ){
                 t=MFD.obtenidcontrato(numcontrato);
                 while(t.next()){
                 l=t.getInt("id_Operacion");
                 }
                 double razon=monto-(promedio+2*desviacion);
-                descripcionAlarma=""+razon;
-                
-                MFD.insertaalarma(l, 3, fecha, descripcionAlarma);
-                
-                
+                descripcionAlarma=""+razon+"";
                 }
-                else{}
-            
+                
+                 
+                 t=MFD.operacionesxCliente(c.getIdCLiente());
+                 while(t.next()){
+                 op=t.getInt("NumOpCl");
+                 }
+                 
+                 //introducexFrecuencia
+                 
+                 if((promediofrecuencia+2*desviacionfrecuencia)<op){
+                t=MFD.obtenidcontrato(numcontrato);
+                while(t.next()){
+                l=t.getInt("id_Operacion");
+                }
+                double razon=op-(promediofrecuencia+2*desviacionfrecuencia);
+                descripcionAlarma=""+razon+"";
+                 }
+                 
+                 //introduce Alarma
+                 if(descripcionAlarma.equals("")){}
+                 else{
+                 MFD.insertaalarma(l, 3, fecha, descripcionAlarma);}
             }
         } catch (SQLException ex) {
             Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
