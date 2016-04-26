@@ -16,6 +16,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
@@ -36,9 +37,13 @@ public class VistaDatosReporte extends javax.swing.JFrame {
     public Operacion ope= new Operacion(VistaVerOperaciones.operacion);
     ReporteDAO nrep=new ReporteDAO();
     String nombrearchivo="";
+    int numContrato=0;
+    int i=0;
+    int auxalarmas=0;
     int idCliente=VistaVerOperaciones.idCliente;
     int alarmas=VistaVerOperaciones.numalarmas;
     int idOperacion=VistaVerOperaciones.idOperacion;
+    ResultSet t;
     
     String []encabezados= {"TIPO DE REPORTE","PERIODO DEL REPORTE","FOLIO","ORGANISMO SUPERVISOR","CLAVE DEL SUJETO OBLIGADO","LOCALIDAD",
          "CODIGO POSTAL DE LA SUCURSAL","TIPO DE OPERACION","INSTRUMENTO ETARIO","NUMERO DE CUENTA,CONTRATO U OPERACION","MONTO","MONEDA",
@@ -196,7 +201,33 @@ public class VistaDatosReporte extends javax.swing.JFrame {
                 descripcion=rs.getString("detalleop");                
             }
             
-             if(alarmas==1){tipoReporte="1";}
+             if(alarmas==1){tipoReporte="1";
+             
+             t=nrep.obtencantidadContratos(idCliente);
+             while(t.next())
+             { numContrato=t.getInt("cantidadContratos"); }
+             
+             String[] ContratosCliente = new String[numContrato]; 
+             
+             t=nrep.obtenContratos(idCliente);
+             while(t.next()){
+             ContratosCliente[i]=t.getString("numeroContrato");
+             i++;
+             }
+             
+             for(int j=0;j<ContratosCliente.length;j++){
+                 t=nrep.AlarmasporContrato(ContratosCliente[j]);
+                 while(t.next())
+                 {
+                 auxalarmas=t.getInt("numeroalarmas");
+                 }
+                 if(auxalarmas==1){
+                 consecutivo=consecutivo+ContratosCliente[j];
+                 }
+             }
+             }
+             
+             
              else{tipoReporte="2";}
              
              if(nacionalidad.equals("1")){}
