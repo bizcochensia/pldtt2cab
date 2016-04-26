@@ -277,6 +277,8 @@ public class VistaVendedor extends javax.swing.JFrame {
             vrcf.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(VistaVendedor.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(VistaVendedor.class.getName()).log(Level.SEVERE, null, ex);
         }
         
     }//GEN-LAST:event_ClienteFisicoActionPerformed

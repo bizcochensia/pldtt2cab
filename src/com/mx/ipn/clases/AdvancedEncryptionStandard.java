@@ -8,8 +8,9 @@ public class AdvancedEncryptionStandard
 {
     private String encryptionKey;
 
-    public AdvancedEncryptionStandard(String encryptionKey)
+    public AdvancedEncryptionStandard()
     {
+        String encryptionKey = "pldtt2cabaesciph";
         this.encryptionKey = encryptionKey;
     }
 
