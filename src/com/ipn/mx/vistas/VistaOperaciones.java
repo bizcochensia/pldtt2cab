@@ -745,7 +745,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 l=t.getInt("id_Operacion");
                 }
                 double razon=monto-(promedio+2*desviacion);
-                descripcionAlarma=""+razon+"";
+                descripcionAlarma= " "+descripcionAlarma+razon+"";
                 }
                 
                  
@@ -762,7 +762,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 l=t.getInt("id_Operacion");
                 }
                 double razon=op-(promediofrecuencia+2*desviacionfrecuencia);
-                descripcionAlarma=""+razon+"";
+                descripcionAlarma=" "+descripcionAlarma+razon+"";
                  }
                  
                  //introduce Alarma

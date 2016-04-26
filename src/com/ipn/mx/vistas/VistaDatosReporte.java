@@ -36,6 +36,7 @@ public class VistaDatosReporte extends javax.swing.JFrame {
     public Operacion ope= new Operacion(VistaVerOperaciones.operacion);
     ReporteDAO nrep=new ReporteDAO();
     String nombrearchivo="";
+    int idCliente=VistaVerOperaciones.idCliente;
     int alarmas=VistaVerOperaciones.numalarmas;
     int idOperacion=VistaVerOperaciones.idOperacion;
     
