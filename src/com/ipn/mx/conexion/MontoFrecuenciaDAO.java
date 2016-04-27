@@ -79,7 +79,6 @@ public class MontoFrecuenciaDAO {
     
     
         public ResultSet obtenpoblacion(String a,String b){
- 
     String aux="Select count(*) as poblacion from operaciones o inner join cliente c on c.id_cliente=o.Cliente_id where c.ingreso_Promedio between '"+a+"' and '"+b+"' ";    
     Conexion cn = new Conexion ();
     Connection reg=cn.conectar();
@@ -95,7 +94,7 @@ public class MontoFrecuenciaDAO {
     }
         
             public ResultSet obtencontrato(String a){
-    String aux="Select numeroContrato from operaciones where  numeroContrato='"+a+"' ";    
+    String aux="Select numeroContrato,fecha from operaciones where  numeroContrato='"+a+"' ";    
     Conexion cn = new Conexion ();
     Connection reg=cn.conectar();
     Statement st;
@@ -123,9 +122,10 @@ public class MontoFrecuenciaDAO {
         }
         return rs;
     }
+       
         
-                public ResultSet obtenerFechas(String a,String b){
-    String aux="Select count(*) from operaciones where monto between '"+a+"' and '"+b+"' ";    
+            public ResultSet obtenIdsFrecuencia(String a,String b){
+    String aux="Select distinct o.Cliente_id from operaciones o inner join cliente c on c.id_cliente=o.Cliente_id where c.ingreso_Promedio between   '"+a+"' and '"+b+"' ";    
     Conexion cn = new Conexion ();
     Connection reg=cn.conectar();
     Statement st;
@@ -133,11 +133,59 @@ public class MontoFrecuenciaDAO {
         try{
             st=reg.createStatement();
             rs = st.executeQuery(aux);
-            System.out.println("el resultado es"+aux);
         } catch (Exception ex){
             System.out.println(ex);
         }
         return rs;
-    }
+    } 
+     
     
+    public ResultSet obtenPoblacionFrecuencia(String a,String b){
+    String aux="Select count(distinct o.Cliente_id) as numeroIDS from operaciones o inner join cliente c on c.id_cliente=o.Cliente_id where c.ingreso_Promedio between   '"+a+"' and '"+b+"' ";    
+    Conexion cn = new Conexion ();
+    Connection reg=cn.conectar();
+    Statement st;
+    ResultSet rs = null;
+        try{
+            st=reg.createStatement();
+            rs = st.executeQuery(aux);
+        } catch (Exception ex){
+            System.out.println(ex);
+        }
+        return rs;
+    }        
+            
+            
+            
+            
+         public ResultSet operacionesxPersona(int a,String b,String c){
+    String aux= "Select count(*) as operacionxPersona from operaciones where Cliente_id="+a+" and fecha between '"+b+"' and '"+c+"' ";    
+    Conexion cn = new Conexion ();
+    Connection reg=cn.conectar();
+    Statement st;
+    ResultSet rs = null;
+        try{
+            st=reg.createStatement();
+            rs = st.executeQuery(aux);
+        } catch (Exception ex){
+            System.out.println(ex);
+        }
+        return rs;
+    }   
+       
+                  public ResultSet operacionesxCliente(int a){
+    String aux= "select count(*) as NumOpCl from operaciones where Cliente_id="+a;    
+    Conexion cn = new Conexion ();
+    Connection reg=cn.conectar();
+    Statement st;
+    ResultSet rs = null;
+        try{
+            st=reg.createStatement();
+            rs = st.executeQuery(aux);
+        } catch (Exception ex){
+            System.out.println(ex);
+        }
+        return rs;
+    } 
+         
 }

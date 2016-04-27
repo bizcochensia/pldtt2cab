@@ -68,5 +68,46 @@ public class ReporteDAO{
         }
         return result;
   }
+    
+    
+     public ResultSet obtencantidadContratos(int a){
+        Conexion con = new Conexion();
+        Connection reg=con.conectar();
+        String consulta="select count(*) as cantidadContratos from intermedia_operacion_alarma ioa inner join operaciones op on op.id_Operacion=ioa.Operacion_id where op.Cliente_id=1"+a;
+        try{
+            prState = reg.prepareStatement(consulta);
+            result=prState.executeQuery();
+        } catch (SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE,null, ex);
+        }
+        return result;
+  }
+    
+        public ResultSet obtenContratos(int a){
+        Conexion con = new Conexion();
+        Connection reg=con.conectar();
+        String consulta="select op.numeroContrato from intermedia_operacion_alarma ioa inner join operaciones op on op.id_Operacion=ioa.Operacion_id where op.Cliente_id=1"+a;
+        try{
+            prState = reg.prepareStatement(consulta);
+            result=prState.executeQuery();
+        } catch (SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE,null, ex);
+        }
+        return result;
+  }
   
+        public ResultSet AlarmasporContrato(String a){
+        Conexion con = new Conexion();
+        Connection reg=con.conectar();
+        String consulta="select count(*) as numeroalarmas from intermedia_operacion_alarma ioa inner join operaciones op on ioa.Operacion_id=op.id_Operacion where op.numeroContrato='"+a+"'";
+        try{
+            prState = reg.prepareStatement(consulta);
+            result=prState.executeQuery();
+        } catch (SQLException ex){
+            Logger.getLogger(Conexion.class.getName()).log(Level.SEVERE,null, ex);
+        }
+        return result;
+  }
+        
+        
 }

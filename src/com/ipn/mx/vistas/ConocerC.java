@@ -699,7 +699,8 @@ public void cargarClientes() throws SQLException {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     // End of variables declaration//GEN-END:variables
-public void ValidaOp(int op) {
+
+    public void ValidaOp(int op) {
     ResultSet res;
     PreparedStatement pstm;
         try{
