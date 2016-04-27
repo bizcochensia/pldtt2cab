@@ -343,6 +343,11 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
        Apell_MatText.setText("");
        usuarioText.setText("");
        contraseñaText.setText("");
+       if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realizar otro registro?",
+                "Registro nuevo", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION)
+         {
+             this.dispose();
+         }
                 } 
                 else{
             JOptionPane.showMessageDialog(null, "El RFC no tiene la estructura indicada ");

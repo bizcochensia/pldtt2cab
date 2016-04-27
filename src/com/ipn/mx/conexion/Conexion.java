@@ -5,10 +5,12 @@
  */
 package com.ipn.mx.conexion;
 
+import java.awt.Component;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.sql.Statement;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -25,6 +27,8 @@ public class Conexion {
        System.out.println("conexion establecida");
     } catch(ClassNotFoundException | SQLException e){
         System.out.println("error de conexion");
+        Component rootPane = null;
+        JOptionPane.showMessageDialog(rootPane, "Contacta a tu proveedor de servicio", "Error de conexion ", JOptionPane.ERROR_MESSAGE);
     }
         return con;
     }

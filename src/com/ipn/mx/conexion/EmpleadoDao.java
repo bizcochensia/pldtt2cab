@@ -48,8 +48,8 @@ public class EmpleadoDao {
             JOptionPane.showMessageDialog(null, "Empleado registrado previamente");    
         }
     }
-    public void ActualizarEmpleado(int id,String nombre, String apellido_Pat, String apellido_Mat,String rfc, String numero_Telefono, String usuario,String contraseña,int tipo_empleado) throws ClassNotFoundException, SQLException{
-       String update = "UPDATE empleado SET nombre='"+nombre+"',apellido_Pat='"+apellido_Pat+"' , apellido_Mat='"+apellido_Mat+"',RFC='"+rfc+"',numero_tel='"+numero_Telefono+"',usuario='"+usuario+"',contrasena='"+contraseña+"',tipo_empleado='"+tipo_empleado+"' where id_Empleado ="+id;
+    public void ActualizarEmpleado(int id,String nombre, String apellido_Pat, String apellido_Mat,String rfc, String numero_Telefono, String usuario,String contraseña) throws ClassNotFoundException, SQLException{
+       String update = "UPDATE empleado SET nombre='"+nombre+"',apellido_Pat='"+apellido_Pat+"' , apellido_Mat='"+apellido_Mat+"',RFC='"+rfc+"',numero_tel='"+numero_Telefono+"',usuario='"+usuario+"',contrasena='"+contraseña+"' where id_Empleado ="+id;
        System.out.println("?"+nombre+"?"+apellido_Pat);
        Conexion cn = new Conexion ();
        Connection reg=cn.conectar();

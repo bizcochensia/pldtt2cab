@@ -479,7 +479,22 @@ public class VistaRegistroClienteMoral extends javax.swing.JFrame {
                                             calle.getText(), numero.getText(),0,p.getIdPais(),f.getIdEntidadFederativa(),lo.getIdlocalidad()
                                             , cp.getText(),telefono.getText(),0,act.getId_actividad(),aux);
                                         JOptionPane.showMessageDialog(null, "El registro fue exitoso!");
-                                        this.dispose();
+                                         if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realizar otro registro?",
+                                            "Registro nuevo", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION)
+                                     {
+                                         this.dispose();
+                                     }else{
+                                             this.dispose();
+                                             VistaRegistroClienteMoral vrcm;
+                                            try {
+                                                vrcm = new VistaRegistroClienteMoral();
+                                                vrcm.setVisible(true);
+                                            } catch (SQLException ex) {
+                                                Logger.getLogger(VistaRegistroClienteMoral.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+                                                
+                                         }
+                                        
                                     }
                                     else{JOptionPane.showMessageDialog(null, "La estructura del RFC no es valida");}
                                 }

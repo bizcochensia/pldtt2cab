@@ -542,15 +542,28 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
                             double aux= Double.parseDouble(ingreso.getText());
                             try {
                                 // se empieza a cifrar
-                                /*aes.encrypt(plainText); funcion cifrado
-                                aes.decrypt(cipherText);   funcion decifrado */
                                 cliente.RegistroCliente(nombre.getText(), apellidopat.getText(), apellidomat.getText(),insert,1, RFC.getText(),
                                         calle.getText(), numero.getText(),p2.getIdPais(),p.getIdPais(),f.getIdEntidadFederativa(),lo.getIdlocalidad()
                                         , cp.getText(),telefono.getText(),0 ,act.getId_actividad(),aux);
                             } catch (Exception ex) {
                                 Logger.getLogger(VistaRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
                             }
-                            this.dispose();
+                            if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realizar otro registro?",
+                                            "Registro nuevo", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION)
+                                     {
+                                         this.dispose();
+                                     }else{
+                                             this.dispose();
+                                             VistaRegistroClientes vrcf = null;
+                                                try {
+                                                    vrcf = new VistaRegistroClientes();
+                                                    vrcf.setVisible(true);
+                                                } catch (Exception ex) {
+                                                    Logger.getLogger(VistaVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                                                }
+                                                
+                                                
+                                         }
                         }
                         else{JOptionPane.showMessageDialog(null, "La estructura del RFC no es valida");}
                     }

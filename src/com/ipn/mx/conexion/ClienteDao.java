@@ -28,7 +28,7 @@ public class ClienteDao {
     static PreparedStatement st;
     private static final String Insert = "INSERT INTO CLIENTE (nombre, apellido_Pat, apellido_Mat,fecha_nac,tipo , RFC, calle,numero"
             + ",pais_Origen,pais_residencia,entidad,localidad,codigo_postal,numero_Telefono,riesgo,actividad_Principal,ingreso_Promedio) "
-            + "VALUES (AES_ENCRYPT('?','"+llave+"'),?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+            + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     
     
     
