@@ -438,8 +438,8 @@ public class ConocerC extends javax.swing.JFrame {
         ConocerDao ac = new ConocerDao();
         
        java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
-        String texto=descrip.getText();
-        texto=texto.replaceAll(" ", "");
+        String des=descrip.getText();
+        //texto=texto.replaceAll(" ", "");
         if(No.isSelected()&No1.isSelected()&No2.isSelected()&No3.isSelected()&No6.isSelected()){
             des = "";
             this.dispose();
@@ -704,7 +704,7 @@ public void cargarClientes() throws SQLException {
     ResultSet res;
     PreparedStatement pstm;
         try{
-            pstm = reg.prepareStatement("SELECT * FROM intermedia_operacion_alarma WHERE Operacion_id = '" + op+ "'");
+            pstm = reg.prepareStatement("SELECT * FROM intermedia_operacion_alarma WHERE Operacion_id = '" + op+ "' and Alarma_id= 7 " );
             res = pstm.executeQuery();
             if(res.next()){
                 valid= 1;
