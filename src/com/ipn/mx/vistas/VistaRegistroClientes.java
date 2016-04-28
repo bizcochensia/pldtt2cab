@@ -545,6 +545,7 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
                                 cliente.RegistroCliente(nombre.getText(), apellidopat.getText(), apellidomat.getText(),insert,1, RFC.getText(),
                                         calle.getText(), numero.getText(),p2.getIdPais(),p.getIdPais(),f.getIdEntidadFederativa(),lo.getIdlocalidad()
                                         , cp.getText(),telefono.getText(),0 ,act.getId_actividad(),aux);
+                                
                             } catch (Exception ex) {
                                 Logger.getLogger(VistaRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
                             }
@@ -732,4 +733,5 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
     private javax.swing.JTextField numero;
     private javax.swing.JTextField telefono;
     // End of variables declaration//GEN-END:variables
+
 }

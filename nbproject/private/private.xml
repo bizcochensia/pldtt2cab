@@ -3,23 +3,29 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/ConocerC.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/conexion/ConexionListas.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/conexion/daobusquedas.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaVisualizarCliente.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaModificarEmpleado.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/conexion/logindao.java</file>
             <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/conexion/ClienteDao.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/conexion/ReporteDAO.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaOperaciones.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaCalificacionCliente.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/conexion/Conexion.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaVendedor.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/Interfaz.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaAdministrador.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/Login.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaRegistraEmpleado.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaRegistroClienteMoral.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaRegistroClientes.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/conexion/EmpleadoDao.java</file>
         </group>
         <group>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/ConocerC.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaModificarEmpleado.java</file>
             <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/conexion/ConexionListas.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/conexion/daobusquedas.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaVisualizarCliente.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/conexion/ClienteDao.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/conexion/ReporteDAO.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaOperaciones.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaVendedor.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaAdministrador.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/Login.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaRegistraEmpleado.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaRegistroClienteMoral.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaRegistroClientes.java</file>
+            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/conexion/EmpleadoDao.java</file>
             <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaCalificacionCliente.java</file>
         </group>
     </open-files>

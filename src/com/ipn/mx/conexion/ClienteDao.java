@@ -27,10 +27,13 @@ public class ClienteDao {
     public static String llave = "pldtt2cabciph";
     static PreparedStatement st;
     private static final String Insert = "INSERT INTO CLIENTE (nombre, apellido_Pat, apellido_Mat,fecha_nac,tipo , RFC, calle,numero"
-            + ",pais_Origen,pais_residencia,entidad,localidad,codigo_postal,numero_Telefono,riesgo,actividad_Principal,ingreso_Promedio) "
-            + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
+    + ",pais_Origen,pais_residencia,entidad,localidad,codigo_postal,numero_Telefono,riesgo,actividad_Principal,ingreso_Promedio) "
+    + "VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
     
-    
+    /* private static final String Insert = "INSERT INTO CLIENTE (nombre, apellido_Pat, apellido_Mat,fecha_nac,tipo , RFC, calle,numero"
+    + ",pais_Origen,pais_residencia,entidad,localidad,codigo_postal,numero_Telefono,riesgo,actividad_Principal,ingreso_Promedio) "
+    + "VALUES (hex(AES_ENCRYPT(?,'"+llave+"')),hex(AES_ENCRYPT(?,'"+llave+"')),hex(AES_ENCRYPT(?,'"+llave+"')),hex(AES_ENCRYPT(?,'"+llave+"')),?,hex(AES_ENCRYPT(?,'"+llave+"')),hex(AES_ENCRYPT(?,'"+llave+"')),hex(AES_ENCRYPT(?,'"+llave+"')),?,?,?,?,hex(AES_ENCRYPT(?,'"+llave+"')),hex(AES_ENCRYPT(?,'"+llave+"')),?,?,hex(AES_ENCRYPT(?,'"+llave+"')))";
+    */
     
     
     public void RegistroCliente(String nombre,String apellidopat,String apellidomat,String fechaNa,int tipo,String RFC,String calle,
@@ -96,6 +99,7 @@ public class ClienteDao {
         try {  
             st = reg.prepareStatement(delete);
             st.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Registro Eliminado");
            
         } catch (SQLException ex) {
              System.out.println(ex);
@@ -113,6 +117,7 @@ public class ClienteDao {
         ResultSet rs = null;
         try{
             st=reg.createStatement();
+           // AES_DECRYPT(PASSWD,'clave1')
             rs = st.executeQuery("Select * from cliente ");
         } catch (Exception ex){
             System.out.println(ex);
