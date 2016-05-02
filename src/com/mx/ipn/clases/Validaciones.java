@@ -26,7 +26,7 @@ public class Validaciones {
 
       public boolean Ingreso(String cadena){
       boolean respuesta= false;
-      Pattern pat= Pattern.compile("[0-9]{1,}.[0-9]{2,2}");
+      Pattern pat= Pattern.compile("[0-9]{1,}(\\.[0-9]{2,2})");
       Matcher mat=pat.matcher(cadena);
       if(mat.find()){
       respuesta=true;
@@ -47,7 +47,7 @@ public class Validaciones {
       
       public boolean sololetras(String cadena){
       boolean respuesta= false;
-      Pattern pat= Pattern.compile("[a-zA-Z]{1,15}");
+      Pattern pat= Pattern.compile("[A-Z]{1,1}[a-z]{1,14}"); 
       Matcher mat=pat.matcher(cadena);
       if(mat.find()){
       respuesta=true;
