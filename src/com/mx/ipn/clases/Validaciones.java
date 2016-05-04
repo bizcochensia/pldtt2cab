@@ -26,7 +26,7 @@ public class Validaciones {
 
       public boolean Ingreso(String cadena){
       boolean respuesta= false;
-      Pattern pat= Pattern.compile("[0-9]{1,}(\\.[0-9]{2,2})");
+      Pattern pat= Pattern.compile("[0-9]{1,}(\\.[0-9]*)");
       Matcher mat=pat.matcher(cadena);
       if(mat.find()){
       respuesta=true;

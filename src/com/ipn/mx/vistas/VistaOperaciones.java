@@ -751,7 +751,6 @@ public class VistaOperaciones extends javax.swing.JFrame {
             // TODO add your handling code here:
             numcontrato=contrato.getText();
             anticipo=Double.parseDouble(recibeAnticipo.getText());
-            monto=  Double.parseDouble( operacion.getText());
             descripcion=des.getText();
             boolean mo=val.Ingreso(operacion.getText());
             boolean con=val.alfanumericos(numcontrato);
@@ -785,7 +784,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
             }
             
             if(anticipo>500000){
-            t=MFD.obtenidcontrato(numcontrato);
+            t=MFD.obtenidcontrato(d.encrypt(numcontrato));
              while(t.next()){
                 l=t.getInt("id_Operacion");
                 }
@@ -794,7 +793,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
             }
             
             String auxcontrato="";
-            t=MFD.obtencontrato(numcontrato);
+            t=MFD.obtencontrato(d.encrypt(numcontrato));
             while(t.next())
             {
                 auxcontrato=t.getString("numeroContrato");
@@ -802,7 +801,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
             if(auxcontrato.equals("")){}
             else{
                 if((promedio+2*desviacion)< monto ){
-                t=MFD.obtenidcontrato(numcontrato);
+                t=MFD.obtenidcontrato(d.encrypt(numcontrato));
                 while(t.next()){
                 l=t.getInt("id_Operacion");
                 }
@@ -819,7 +818,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                  //introducexFrecuencia
                  
                  if((promediofrecuencia+2*desviacionfrecuencia)<op){
-                t=MFD.obtenidcontrato(numcontrato);
+                t=MFD.obtenidcontrato(d.encrypt(numcontrato));
                 while(t.next()){
                 l=t.getInt("id_Operacion");
                 }
@@ -848,7 +847,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(operacion.getText().equals("")){}
         else{
-        formato=NumberFormat.getInstance().format(Double.parseDouble(operacion.getText()));
+        monto=Double.parseDouble(operacion.getText());
+        formato=NumberFormat.getInstance().format(monto);
         if(formato.equals("")){}
         else{operacion.setText(formato);}}
     }//GEN-LAST:event_desMouseClicked
