@@ -18,9 +18,9 @@ import javax.swing.JOptionPane;
  */
 public class OperacionDAO {
     static PreparedStatement st;
-    private static final String Insert = "INSERT INTO OPERACIONES (numeroContrato,monto,fecha,riesgo,descripcion,Cliente_id,Empleado_id,Inmobiliaria_id,tipo_id,moneda_id,monetario_id ) VALUES (?,?,?,?,?,?,?,?,?,?,?)";
+    private static final String Insert = "INSERT INTO OPERACIONES (numeroContrato,monto,fecha,riesgo,descripcion,Cliente_id,Empleado_id,Inmobiliaria_id,tipo_id,moneda_id,monetario_id,anticipo ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?)";
     
-    public void RegistroOperacion(String contrato,double monto,String fecha,double riesgo,String descripcion,int cliente_id,int Empleado_id,int inmobiliaria_id,int tipo_id,int moneda_id,int monetario_id){
+    public void RegistroOperacion(String contrato,double monto,String fecha,double riesgo,String descripcion,int cliente_id,int Empleado_id,int inmobiliaria_id,int tipo_id,int moneda_id,int monetario_id,double anticipo){
     Conexion cn = new Conexion ();
     Connection reg=cn.conectar();
        
@@ -37,6 +37,7 @@ public class OperacionDAO {
            st.setInt (9, tipo_id);
            st.setInt (10, moneda_id);
            st.setInt (11, monetario_id);
+           st.setDouble(12,anticipo);
            st.executeUpdate();
            
            JOptionPane.showMessageDialog(null, "El registro fue exitoso!");

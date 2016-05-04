@@ -71,6 +71,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
    double AR=0;
    double ATP=0;
    double PEP=0;
+   double anticipo=0;
    int riesgoPais=0;
    int riesgoActividad=0;
    int riesgoresidencia=0;
@@ -159,6 +160,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
         combomoneda = new javax.swing.JComboBox();
         combomonetario = new javax.swing.JComboBox();
         jLabel18 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
+        recibeAnticipo = new javax.swing.JTextField();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         combocliente = new javax.swing.JComboBox();
@@ -271,6 +274,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
 
         jLabel18.setText("Seleccione los datos  para asociarlos a la operación:");
 
+        jLabel20.setText("Anticipo");
+
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
@@ -279,20 +284,23 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGap(42, 42, 42)
-                                .addComponent(jLabel16)
-                                .addGap(38, 38, 38))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                                 .addContainerGap()
                                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED))
+                            .addGroup(jPanel3Layout.createSequentialGroup()
+                                .addGap(42, 42, 42)
+                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel20)
+                                    .addComponent(jLabel16))
+                                .addGap(38, 38, 38)))
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(combooperacion, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(combomoneda, 0, 193, Short.MAX_VALUE)
-                            .addComponent(combomonetario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addComponent(combomonetario, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(recibeAnticipo)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGap(19, 19, 19)
                         .addComponent(jLabel18)))
@@ -315,7 +323,11 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel16)
                     .addComponent(combomonetario, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(242, Short.MAX_VALUE))
+                .addGap(34, 34, 34)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel20)
+                    .addComponent(recibeAnticipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(188, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Detalles Monetarios", jPanel3);
@@ -697,6 +709,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             numcontrato=contrato.getText();
+            anticipo=Double.parseDouble(recibeAnticipo.getText());
             monto=  Double.parseDouble( operacion.getText());
             descripcion=des.getText();
             boolean mo=val.Ingreso(operacion.getText());
@@ -720,7 +733,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                             OperacionDAO op = new OperacionDAO();
                             MontoFrecuenciaDAO MFD= new MontoFrecuenciaDAO();
                             
-                            op.RegistroOperacion(numcontrato, monto, fecha, RTC , descripcion, c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario());                
+                            op.RegistroOperacion(numcontrato, monto, fecha, RTC , descripcion, c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario(),anticipo);                
                         } catch (Exception e) {
                         }
                     }
@@ -730,6 +743,14 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 }
             }
             
+            if(anticipo>500000){
+            t=MFD.obtenidcontrato(numcontrato);
+             while(t.next()){
+                l=t.getInt("id_Operacion");
+                }
+             MFD.insertaalarma(l, 1, fecha,"El anticipo supero el limite de $500,000 en efectivo");
+             
+            }
             
             String auxcontrato="";
             t=MFD.obtencontrato(numcontrato);
@@ -765,7 +786,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 descripcionAlarma=" "+descripcionAlarma+razon+"";
                  }
                  
-                 //introduce Alarma
+                 //introduce Alarma monto o frecuencia
                  if(descripcionAlarma.equals("")){}
                  else{
                  MFD.insertaalarma(l, 3, fecha, descripcionAlarma);}
@@ -938,6 +959,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -955,6 +977,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField operacion;
+    private javax.swing.JTextField recibeAnticipo;
     // End of variables declaration//GEN-END:variables
 
     private void listasNegras(String Nombre,String Appat,String ApMat) throws ClassNotFoundException {
