@@ -84,10 +84,11 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
              Statement st;
         try {
             st = reg.createStatement();
-            ResultSet rs=st.executeQuery("Select * from operaciones o inner join intermedia_operacion_alarma ioa where o.id_Operacion=ioa.Operacion_id order by fecha " );
+            ResultSet rs=st.executeQuery("Select distinct id_Operacion from operaciones o inner join intermedia_operacion_alarma ioa where o.id_Operacion=ioa.Operacion_id order by fecha " );
             while(rs.next()){
                 Operacion op=new Operacion();
                 op.setIdOperacion(rs.getInt(1));
+              /*
                 op.setContrato(d.decrypt(rs.getString(2)));
                 op.setMonto(rs.getDouble(3));
                 op.setFecha(rs.getString(4));
@@ -98,7 +99,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
                 op.setInmobiliariaid(rs.getInt(9));
                 op.setTipoid(rs.getInt(10));
                 op.setMonedaid(rs.getInt(11));
-                op.setMonetarioid(rs.getInt(12));
+                op.setMonetarioid(rs.getInt(12));*/
                 lista.add(op);
                 
                 

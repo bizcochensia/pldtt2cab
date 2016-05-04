@@ -212,7 +212,6 @@
                               <EmptySpace min="-2" pref="47" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" attributes="0">
                                   <Component id="muestraActividad" min="-2" pref="89" max="-2" attributes="0"/>
-                                  <Component id="muestratipo" min="-2" pref="89" max="-2" attributes="0"/>
                                   <Component id="muestraResidencia" alignment="0" min="-2" pref="89" max="-2" attributes="0"/>
                                   <Component id="muestraNacionalidad" min="-2" pref="89" max="-2" attributes="0"/>
                               </Group>
@@ -242,7 +241,6 @@
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jLabel4" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="tipoPersona" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="muestratipo" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
@@ -262,7 +260,7 @@
                           <Component id="Nacionalidad" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="muestraNacionalidad" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
+                      <EmptySpace min="0" pref="67" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -310,8 +308,6 @@
             <Component class="javax.swing.JTextField" name="Residencia">
             </Component>
             <Component class="javax.swing.JTextField" name="Nacionalidad">
-            </Component>
-            <Component class="javax.swing.JTextField" name="muestratipo">
             </Component>
             <Component class="javax.swing.JTextField" name="muestraActividad">
             </Component>

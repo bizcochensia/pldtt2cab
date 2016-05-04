@@ -122,7 +122,6 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
         Actividad = new javax.swing.JTextField();
         Residencia = new javax.swing.JTextField();
         Nacionalidad = new javax.swing.JTextField();
-        muestratipo = new javax.swing.JTextField();
         muestraActividad = new javax.swing.JTextField();
         muestraResidencia = new javax.swing.JTextField();
         muestraNacionalidad = new javax.swing.JTextField();
@@ -257,7 +256,6 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
                         .addGap(47, 47, 47)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(muestraActividad, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(muestratipo, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(muestraResidencia, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(muestraNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addContainerGap(156, Short.MAX_VALUE))
@@ -279,8 +277,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
-                    .addComponent(tipoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(muestratipo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tipoPersona, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Actividad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -296,7 +293,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
                     .addComponent(jLabel7)
                     .addComponent(Nacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(muestraNacionalidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addGap(0, 67, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Origen y Actividad", jPanel1);
@@ -464,7 +461,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
             int idOP;
             String aux="Select tc.descripcion,ac.actividad,ac.riesgo,e.nombre,p.nombre_Pais,p.riesgo as Pais,e.id_pais from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join entidad_federativa e on e.id_Entidad=c.entidad inner join pais p on c.pais_Origen=p.id_Pais inner join tcliente tc on tc.id_tipo=c.tipo where c.RFC='"+d.encrypt(a)+"' ";    
 
-            /*   int a=clienteid.getIdCLiente();
+            /*int a=clienteid.getIdCLiente();
             String aux="Select tc.descripcion,ac.actividad,ac.riesgo,e.nombre,p.nombre_Pais,p.riesgo as Pais,e.id_pais from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join entidad_federativa e on e.id_Entidad=c.entidad inner join pais p on c.pais_Origen=p.id_Pais inner join tcliente tc on tc.id_tipo=c.tipo where c.id_cliente="+a;    */
             Statement st;
             st = reg.createStatement();
@@ -485,11 +482,6 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
             int riesgoPais=rs.getInt("Pais");
             int riesgoActividad=rs.getInt("riesgo");
             riesgoresidencia=rs.getInt("id_pais");
-            
-            if(rs.getString("descripcion").equals("fisica")){
-            muestratipo.setText("Bajo");
-            }
-            else{muestraActividad.setText("Alto");}
             
             if(riesgoActividad==0){
             muestraActividad.setText("Bajo");
@@ -726,7 +718,6 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
     private javax.swing.JTextField muestraActividad;
     private javax.swing.JTextField muestraNacionalidad;
     private javax.swing.JTextField muestraResidencia;
-    private javax.swing.JTextField muestratipo;
     private javax.swing.JTextField pep;
     private javax.swing.JTextField tipoPersona;
     // End of variables declaration//GEN-END:variables
