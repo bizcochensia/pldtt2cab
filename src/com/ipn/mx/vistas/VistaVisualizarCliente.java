@@ -6,6 +6,7 @@
 package com.ipn.mx.vistas;
 
 import com.ipn.mx.conexion.daobusquedas;
+import com.mx.ipn.clases.AESDemo;
 import com.mx.ipn.clases.MiPanel;
 import java.awt.BorderLayout;
 import java.awt.event.KeyAdapter;
@@ -14,6 +15,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.RowFilter;
 import javax.swing.table.DefaultTableModel;
@@ -27,6 +30,7 @@ public class VistaVisualizarCliente extends javax.swing.JFrame {
     private TableRowSorter trsFiltro;
     JTable tabla;
     ResultSet rs;
+    AESDemo d = new AESDemo();
     
     /**
      * Creates new form VistaVisualizarCliente
@@ -34,7 +38,17 @@ public class VistaVisualizarCliente extends javax.swing.JFrame {
     public VistaVisualizarCliente() throws ClassNotFoundException, SQLException {
         initComponents();
              ///
-            
+           JPasswordField pwd = new JPasswordField(10);
+        int Action =JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+   
+        while("".equals(new String(pwd.getPassword()))& Action !=0){
+            if(Action <0){
+             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+            }
+        }
+        d.addKey(new String(pwd.getPassword())); 
+        
          MiPanel p = new MiPanel(); 
       this.add( p , BorderLayout.CENTER); 
        p.repaint(); 
@@ -55,7 +69,7 @@ public class VistaVisualizarCliente extends javax.swing.JFrame {
         rs = reg.SeleccionaCliente();
         try{
             while(rs.next()){
-                dfm.addRow(new Object[]{rs.getString("nombre"),rs.getString("apellido_Pat"),rs.getString("apellido_Mat"),rs.getString("numero_Telefono"),rs.getDouble("ingreso_Promedio"),rs.getString("calle"),rs.getString("numero"),rs.getString("codigo_postal"),rs.getString("nombre_Pais"),rs.getString("entidad"),rs.getString("localidad"),rs.getString("actividad"),rs.getString("descripcion")});
+                dfm.addRow(new Object[]{d.decrypt(rs.getString("nombre")),d.decrypt(rs.getString("apellido_Pat")),d.decrypt(rs.getString("apellido_Mat")),d.decrypt(rs.getString("numero_Telefono")),rs.getDouble("ingreso_Promedio"),d.decrypt(rs.getString("calle")),d.decrypt(rs.getString("numero")),d.decrypt(rs.getString("codigo_postal")),rs.getString("nombre_Pais"),rs.getString("entidad"),rs.getString("localidad"),rs.getString("actividad"),rs.getString("descripcion")});
             }
         }catch(Exception e){
                     

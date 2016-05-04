@@ -7,8 +7,8 @@ package com.ipn.mx.vistas;
 
 import com.ipn.mx.conexion.ClienteDao;
 import com.ipn.mx.conexion.Conexion;
+import com.mx.ipn.clases.AESDemo;
 import com.mx.ipn.clases.Actividades;
-import com.mx.ipn.clases.AdvancedEncryptionStandard;
 import com.mx.ipn.clases.EntidadFederativa;
 import com.mx.ipn.clases.Localidad;
 import com.mx.ipn.clases.MiPanel;
@@ -24,6 +24,7 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -32,27 +33,30 @@ import javax.swing.JOptionPane;
 public class VistaRegistroClientes extends javax.swing.JFrame {
     
     Conexion con=new Conexion();
+    AESDemo d = new AESDemo();
     
     Connection reg=con.conectar();
     String dia;
     String año;
     String aux;
     int mes;
-    AdvancedEncryptionStandard aes = new AdvancedEncryptionStandard();
     /**
      * Creates new form VistaRegistroClientes
      */
     public VistaRegistroClientes() throws SQLException, Exception {
         initComponents();
+        JPasswordField pwd = new JPasswordField(10);
+        JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+   
+        while("".equals(new String(pwd.getPassword()))){
+             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+        }
+        d.addKey(new String(pwd.getPassword()));
         cargaractividades();
         cargarpais();
         cargarpaisorigen();
-        //////CIRFRADOOOOOOOOO/////}
-    
-    String plainText = "Hello world!";
-    
-    
-        ///
+ 
         
        Calendar c2 = new GregorianCalendar();
         calendario.setCalendar(c2);
@@ -491,6 +495,7 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+  
         Validaciones v=new Validaciones();
         boolean n=v.sololetras(nombre.getText());
         boolean ap=v.sololetras(apellidopat.getText());
@@ -542,9 +547,13 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
                             double aux= Double.parseDouble(ingreso.getText());
                             try {
                                 // se empieza a cifrar
-                                cliente.RegistroCliente(nombre.getText(), apellidopat.getText(), apellidomat.getText(),insert,1, RFC.getText(),
-                                        calle.getText(), numero.getText(),p2.getIdPais(),p.getIdPais(),f.getIdEntidadFederativa(),lo.getIdlocalidad()
-                                        , cp.getText(),telefono.getText(),0 ,act.getId_actividad(),aux);
+                                /* cliente.RegistroCliente(nombre.getText(), apellidopat.getText(), apellidomat.getText(),insert,1, RFC.getText(),
+                                calle.getText(), numero.getText(),p2.getIdPais(),p.getIdPais(),f.getIdEntidadFederativa(),lo.getIdlocalidad()
+                                , cp.getText(),telefono.getText(),0 ,act.getId_actividad(),aux);*/
+                                 cliente.RegistroCliente(d.encrypt(nombre.getText()), d.encrypt(apellidopat.getText()), d.encrypt(apellidomat.getText()),insert,1,d.encrypt(RFC.getText()) ,
+                                        d.encrypt(calle.getText()), d.encrypt(numero.getText()),p2.getIdPais(),p.getIdPais(),f.getIdEntidadFederativa(),lo.getIdlocalidad()
+                                        , d.encrypt(cp.getText()),d.encrypt(telefono.getText()),0 ,act.getId_actividad(),aux);
+                                
                                 
                             } catch (Exception ex) {
                                 Logger.getLogger(VistaRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
@@ -554,14 +563,12 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
                                      {
                                          this.dispose();
                                      }else{
-                                             this.dispose();
-                                             VistaRegistroClientes vrcf = null;
-                                                try {
-                                                    vrcf = new VistaRegistroClientes();
-                                                    vrcf.setVisible(true);
-                                                } catch (Exception ex) {
-                                                    Logger.getLogger(VistaVendedor.class.getName()).log(Level.SEVERE, null, ex);
-                                                }
+                                         nombre.setText("");apellidopat.setText("");apellidomat.setText("");
+                                        RFC.setText(""); 
+                                        calle.setText("");
+                                        numero.setText("");
+                                        cp.setText("");telefono.setText("");
+                                        ingreso.setText("");
                                                 
                                                 
                                          }
@@ -578,6 +585,7 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
             }
             }    
             }
+    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void comboactividadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboactividadActionPerformed

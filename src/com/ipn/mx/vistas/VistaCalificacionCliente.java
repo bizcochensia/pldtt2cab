@@ -13,6 +13,7 @@ import com.ipn.mx.conexion.ConexionListas;
 import com.ipn.mx.conexion.MontoFrecuenciaDAO;
 
 import com.ipn.mx.conexion.MontoFrecuenciaDAO;
+import com.mx.ipn.clases.AESDemo;
 import com.mx.ipn.clases.Cliente;
 import com.mx.ipn.clases.Operacion;
 
@@ -33,6 +34,7 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -50,7 +52,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
     String fechadeteccion="";
     int alarmaid=0;
     int valid=0;
-
+    AESDemo d = new AESDemo();
     
 
 
@@ -68,6 +70,14 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
      */
     public VistaCalificacionCliente() throws SQLException {
         initComponents();
+        JPasswordField pwd = new JPasswordField(10);
+         JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+   
+        while("".equals(new String(pwd.getPassword()))){
+             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+        }
+        d.addKey(new String(pwd.getPassword()));
         cargarClientes();
         ///
       
@@ -452,7 +462,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
             int idC=0;
              idC= c.getIdCLiente();
             int idOP;
-            String aux="Select tc.descripcion,ac.actividad,ac.riesgo,e.nombre,p.nombre_Pais,p.riesgo as Pais,e.id_pais from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join entidad_federativa e on e.id_Entidad=c.entidad inner join pais p on c.pais_Origen=p.id_Pais inner join tcliente tc on tc.id_tipo=c.tipo where c.RFC='"+a+"' ";    
+            String aux="Select tc.descripcion,ac.actividad,ac.riesgo,e.nombre,p.nombre_Pais,p.riesgo as Pais,e.id_pais from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join entidad_federativa e on e.id_Entidad=c.entidad inner join pais p on c.pais_Origen=p.id_Pais inner join tcliente tc on tc.id_tipo=c.tipo where c.RFC='"+d.encrypt(a)+"' ";    
 
             /*   int a=clienteid.getIdCLiente();
             String aux="Select tc.descripcion,ac.actividad,ac.riesgo,e.nombre,p.nombre_Pais,p.riesgo as Pais,e.id_pais from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join entidad_federativa e on e.id_Entidad=c.entidad inner join pais p on c.pais_Origen=p.id_Pais inner join tcliente tc on tc.id_tipo=c.tipo where c.id_cliente="+a;    */
@@ -540,20 +550,20 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
             while(rs.next()){
                 Cliente act=new Cliente();
                 act.setIdCLiente(rs.getInt(1));
-                act.setNombre(rs.getString(2));
-                act.setApellPat(rs.getString(3));
-                act.setApellMat(rs.getString(4));
+                act.setNombre(d.decrypt(rs.getString(2)));
+                act.setApellPat(d.decrypt(rs.getString(3)));
+                act.setApellMat(d.decrypt(rs.getString(4)));
                 act.setFecha_nac(rs.getString(5));
                 act.setTipo(rs.getInt(6));
-                act.setRfc(rs.getString(7));
-                act.setCalle(rs.getString(8));
-                act.setNumero(rs.getString(9));
+                act.setRfc(d.decrypt(rs.getString(7)));
+                act.setCalle(d.decrypt(rs.getString(8)));
+                act.setNumero(d.decrypt(rs.getString(9)));
                 act.setPaisOrigen(rs.getInt(10));
                 act.setPaisResidencia(rs.getInt(11));
                 act.setEntidad(rs.getInt(12));
                 act.setLocalidad(rs.getInt(13));
-                act.setCodigoPostal(rs.getString(14));
-                act.setNumTel(rs.getString(15));
+                act.setCodigoPostal(d.decrypt(rs.getString(14)));
+                act.setNumTel(d.decrypt(rs.getString(15)));
                 act.setRiesgo(rs.getDouble(16));
                 act.setActividad(rs.getString(17));
                 act.setIngreso(rs.getDouble(18));

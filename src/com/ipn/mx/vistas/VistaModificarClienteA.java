@@ -27,7 +27,7 @@ import javax.swing.table.DefaultTableModel;
  * @author bdfernandez
  */
 
-public class Interfaz extends javax.swing.JFrame {
+public class VistaModificarClienteA extends javax.swing.JFrame {
 ResultSet rs;
 PreparedStatement st;
 JTable tabla;
@@ -36,7 +36,7 @@ AESDemo d = new AESDemo();
      * Creates new form Interfaz
      * @throws java.sql.SQLException
      */
-    public Interfaz() throws SQLException {
+    public VistaModificarClienteA() throws SQLException {
         initComponents();
          MiPanel p = new MiPanel(); 
       this.add( p , BorderLayout.CENTER); 
@@ -46,36 +46,22 @@ AESDemo d = new AESDemo();
        setSize(900, 700);                  // Setting dimensions...
         setTitle("SisPLD");
         setResizable(false);
-        int cancelar;
         JPasswordField pwd = new JPasswordField(10);
-         JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-   
-        while("".equals(new String(pwd.getPassword()))){
-             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-        }
-        d.addKey(new String(pwd.getPassword()));
-        
-    
+         int action = JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+    if(action < 0){
+        JOptionPane.showMessageDialog(null,"Se necesita contraseña para registrar");
+    }
+    else {
+        JOptionPane.showMessageDialog(null,"Your password is "+new String(pwd.getPassword()));
+         d.addKey(new String(pwd.getPassword()));
+    }
         
         actualizarTabla();
         
         id.setEditable(false);
         id.setEnabled(false);
-        tipo.setEditable(false);
-        tipo.setEnabled(false);
-        actividad.setEditable(false);
-        actividad.setEnabled(false);
-        pais.setEditable(false);
-        pais.setEnabled(false);
-        rfc.setEditable(false);
-        rfc.setEnabled(false);
-        ingreso.setEditable(false);
-        ingreso.setEnabled(false);
-        entidad.setEditable(false);
-        entidad.setEnabled(false);
-        cp.setEditable(false);
-        cp.setEnabled(false);
+       
+        
        
         
     }
@@ -396,7 +382,7 @@ AESDemo d = new AESDemo();
         ac.ActualizarCliente(ids, d.encrypt(nombre.getText()), d.encrypt(ap_pat.getText()), d.encrypt(ap_mat.getText()),tipos, d.encrypt(rfc.getText()), d.encrypt(calle.getText()), d.encrypt(numero.getText()), paiss, entidads, d.encrypt(cp.getText()), d.encrypt(numerotel.getText()), actividad.getText(),ingresos);
         actualizarTabla();
     } catch (ClassNotFoundException | SQLException ex) {
-        Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(VistaModificarClienteA.class.getName()).log(Level.SEVERE, null, ex);
     }
        
         
@@ -424,7 +410,7 @@ AESDemo d = new AESDemo();
        
         
     } catch (SQLException ex) {
-        Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+        Logger.getLogger(VistaModificarClienteA.class.getName()).log(Level.SEVERE, null, ex);
     }
     }//GEN-LAST:event_eliminarActionPerformed
 
@@ -484,23 +470,24 @@ AESDemo d = new AESDemo();
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaModificarClienteA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaModificarClienteA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaModificarClienteA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(Interfaz.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(VistaModificarClienteA.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
+        //</editor-fold>
         //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new Interfaz().setVisible(true);
+                    new VistaModificarClienteA().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(Interfaz.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(VistaModificarClienteA.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

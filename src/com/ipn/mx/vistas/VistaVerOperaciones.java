@@ -7,6 +7,7 @@ package com.ipn.mx.vistas;
 
 import com.ipn.mx.conexion.Conexion;
 import com.ipn.mx.conexion.OperacionDAO;
+import com.mx.ipn.clases.AESDemo;
 import com.mx.ipn.clases.MiPanel;
 import com.mx.ipn.clases.Operacion;
 import java.awt.BorderLayout;
@@ -20,6 +21,7 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -37,12 +39,22 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
     public static int idOperacion=0;
     public static int idCliente=0;
     public static int numalarmas=0;
+    AESDemo d = new AESDemo ();
     
     /**
      * Creates new form VistaVerOperaciones
      */
     public VistaVerOperaciones() throws SQLException {
         initComponents();
+        JPasswordField pwd = new JPasswordField(10);
+         JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+   
+        while("".equals(new String(pwd.getPassword()))){
+             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+        }
+        d.addKey(new String(pwd.getPassword()));
+        
         cargardatos();
         mostrardatos(posicion);
         muestracliente.setEditable(false);
@@ -76,11 +88,11 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
             while(rs.next()){
                 Operacion op=new Operacion();
                 op.setIdOperacion(rs.getInt(1));
-                op.setContrato(rs.getString(2));
+                op.setContrato(d.decrypt(rs.getString(2)));
                 op.setMonto(rs.getDouble(3));
                 op.setFecha(rs.getString(4));
                 op.setRiesgo(rs.getDouble(5));
-                op.setDescripcion(rs.getString(6));
+                op.setDescripcion(d.decrypt(rs.getString(6)));
                 op.setClienteid(rs.getInt(7));
                 op.setEmpleadoid(rs.getInt(8));
                 op.setInmobiliariaid(rs.getInt(9));
@@ -109,11 +121,11 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
         ResultSet rs=st.executeQuery(e);
         while(rs.next()){
         operacion=rs.getInt("id_Operacion");
-        muestracontrato.setText(rs.getString("numeroContrato"));
+        muestracontrato.setText(d.decrypt(rs.getString("numeroContrato")));
         muestramonto.setText(rs.getString("monto"));
-        muestradescripcion.setText(rs.getString("descripcion"));
+        muestradescripcion.setText(d.decrypt(rs.getString("descripcion")));
         muestrafecha.setText(rs.getString("fecha"));
-        muestracliente.setText(rs.getString("nombre"));
+        muestracliente.setText(d.decrypt(rs.getString("nombre")));
         muestraempleado.setText(rs.getString("empleado"));
         muestrainmobiliaria.setText(rs.getString("inmobiliaria"));
         muestramoneda.setText(rs.getString("moneda"));

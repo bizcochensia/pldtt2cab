@@ -12,6 +12,7 @@ import com.ipn.mx.conexion.ConexionListas;
 import com.ipn.mx.conexion.ConocerDao;
 import com.ipn.mx.conexion.MontoFrecuenciaDAO;
 import com.ipn.mx.conexion.OperacionDAO;
+import com.mx.ipn.clases.AESDemo;
 import com.mx.ipn.clases.Cliente;
 import com.mx.ipn.clases.Empleado;
 import com.mx.ipn.clases.MiPanel;
@@ -30,13 +31,15 @@ import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 /**
  *
  * @author Clemente
  */
 public class VistaOperaciones extends javax.swing.JFrame {
-   int c1=0;
+   AESDemo d = new AESDemo ();
+    int c1=0;
     //calcular montos inusuales
     double promedio=0.0;
     double suma=0.0;        
@@ -106,6 +109,15 @@ public class VistaOperaciones extends javax.swing.JFrame {
      */
     public VistaOperaciones() throws SQLException {
         initComponents();
+        JPasswordField pwd = new JPasswordField(10);
+         JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+   
+        while("".equals(new String(pwd.getPassword()))){
+             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+        }
+        d.addKey(new String(pwd.getPassword()));
+        System.out.println(new String(pwd.getPassword()));
         cargarClientes();
         cargarmoneda();
         cargarmonetario();
@@ -592,27 +604,31 @@ public class VistaOperaciones extends javax.swing.JFrame {
                     
                     c=(Cliente) combocliente.getSelectedItem();
                     String a=c.getRfc();
+                    System.out.println(a+"<===RFC sin cifrar");
+                   
                     idCliente =c.getIdCLiente();
                     operacion (idCliente);
                     int b=c.getIdCLiente();
                      String Nombre=c.getNombre();
                     String Appat = c.getApellPat();
                      String ApMat = c.getApellMat();
+                     System.out.println(Nombre+Appat+ApMat+"<===RFC sin cifrar");
+                    
                     try {
                         listasNegras(Nombre,Appat,ApMat);
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
                     }
-                    String aux="Select c.nombre,c.apellido_Pat,c.apellido_Mat,c.ingreso_Promedio,ac.actividad from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad  where c.RFC='"+a+"' ";
+                    String aux="Select c.nombre,c.apellido_Pat,c.apellido_Mat,c.ingreso_Promedio,ac.actividad from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad  where c.RFC='"+d.encrypt(a)+"' ";
                     Statement st;
                     st = reg.createStatement();
                     ResultSet rs=st.executeQuery(aux);
                     
                     while(rs.next()){
                         
-                        nombre.setText(rs.getString("nombre"));
-                        ap.setText(rs.getString("apellido_Pat"));
-                        am.setText(rs.getString("apellido_Mat"));
+                        nombre.setText(d.decrypt(rs.getString("nombre")));
+                        ap.setText(d.decrypt(rs.getString("apellido_Pat")));
+                        am.setText(d.decrypt(rs.getString("apellido_Mat")));
                         act.setText(rs.getString("actividad"));
                         ing.setText(rs.getString("ingreso_Promedio"));
                         ingresocomparar=rs.getDouble("ingreso_Promedio");
@@ -733,12 +749,12 @@ public class VistaOperaciones extends javax.swing.JFrame {
                             OperacionDAO op = new OperacionDAO();
                             MontoFrecuenciaDAO MFD= new MontoFrecuenciaDAO();
                             
-                            op.RegistroOperacion(numcontrato, monto, fecha, RTC , descripcion, c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario(),anticipo);                
+                            op.RegistroOperacion(d.encrypt(numcontrato), monto, fecha, RTC , d.encrypt(descripcion), c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario(),anticipo);                
                         } catch (Exception e) {
                         }
                     }
                     else{
-                        JOptionPane.showMessageDialog(null, "");
+                        JOptionPane.showMessageDialog(null, "El monto debe tener decimales");
                     }
                 }
             }
@@ -811,20 +827,20 @@ public class VistaOperaciones extends javax.swing.JFrame {
             while(rs.next()){
                 Cliente act=new Cliente();
                 act.setIdCLiente(rs.getInt(1));
-                act.setNombre(rs.getString(2));
-                act.setApellPat(rs.getString(3));
-                act.setApellMat(rs.getString(4));
+                act.setNombre(d.decrypt(rs.getString(2)));
+                act.setApellPat(d.decrypt(rs.getString(3)));
+                act.setApellMat(d.decrypt(rs.getString(4)));
                 act.setFecha_nac(rs.getString(5));
                 act.setTipo(rs.getInt(6));
-                act.setRfc(rs.getString(7));
-                act.setCalle(rs.getString(8));
-                act.setNumero(rs.getString(9));
+                act.setRfc(d.decrypt(rs.getString(7)));
+                act.setCalle(d.decrypt(rs.getString(8)));
+                act.setNumero(d.decrypt(rs.getString(9)));
                 act.setPaisOrigen(rs.getInt(10));
                 act.setPaisResidencia(rs.getInt(11));
                 act.setEntidad(rs.getInt(12));
                 act.setLocalidad(rs.getInt(13));
-                act.setCodigoPostal(rs.getString(14));
-                act.setNumTel(rs.getString(15));
+                act.setCodigoPostal(d.decrypt(rs.getString(14)));
+                act.setNumTel(d.decrypt(rs.getString(15)));
                 act.setRiesgo(rs.getDouble(16));
                 act.setActividad(rs.getString(17));
                 act.setIngreso(rs.getDouble(18));

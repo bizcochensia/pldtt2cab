@@ -149,6 +149,7 @@ public class VistaOficial extends javax.swing.JFrame {
             vvo.setVisible(true);
         } catch (SQLException ex) {
             Logger.getLogger(VistaOficial.class.getName()).log(Level.SEVERE, null, ex);
+
         }
         
     }//GEN-LAST:event_jButton1ActionPerformed

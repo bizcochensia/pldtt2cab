@@ -7,6 +7,7 @@ package com.ipn.mx.vistas;
 
 import com.ipn.mx.conexion.OperacionDAO;
 import com.ipn.mx.conexion.ReporteDAO;
+import com.mx.ipn.clases.AESDemo;
 import com.mx.ipn.clases.MiPanel;
 import com.mx.ipn.clases.Operacion;
 import com.mx.ipn.clases.Validaciones;
@@ -22,6 +23,7 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.Cell;
 import org.apache.poi.ss.usermodel.Row;
@@ -36,6 +38,7 @@ public class VistaDatosReporte extends javax.swing.JFrame {
 
     public Operacion ope= new Operacion(VistaVerOperaciones.operacion);
     ReporteDAO nrep=new ReporteDAO();
+    AESDemo daes = new AESDemo();
     String nombrearchivo="";
     int numContrato=0;
     int i=0;
@@ -78,6 +81,14 @@ public class VistaDatosReporte extends javax.swing.JFrame {
      */
     public VistaDatosReporte() {
         initComponents();
+        JPasswordField pwd = new JPasswordField(10);
+         JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+   
+        while("".equals(new String(pwd.getPassword()))){
+             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+        }
+        daes.addKey(new String(pwd.getPassword()));
          MiPanel p = new MiPanel(); 
       this.add( p , BorderLayout.CENTER); 
        p.repaint(); 
@@ -182,23 +193,23 @@ public class VistaDatosReporte extends javax.swing.JFrame {
                 tipoOp=rs.getString("clavetipoOp");
                 localidad=rs.getString("EntidadFede");
                 Instrumento=rs.getString("monetarioclave");
-                numCuenta=rs.getString("numeroContrato");
+                numCuenta=daes.decrypt(rs.getString("numeroContrato"));
                 monto=rs.getString("monto");
                 moneda=rs.getString("claveMoneda");
                 fechaop=rs.getString("fechaOperacion");
                 nacionalidad=rs.getString("paisOrigen");
                 tipopersona=rs.getString("id_tipo");
                 Razonsocial=rs.getString("nombre");
-                nombre=rs.getString("nombre");
-                ApPat=rs.getString("apellido_Pat");
-                ApMat=rs.getString("apellido_Mat");
-                RFC=rs.getString("RFC");
+                nombre=daes.decrypt(rs.getString("nombre"));
+                ApPat=daes.decrypt(rs.getString("apellido_Pat"));
+                ApMat=daes.decrypt(rs.getString("apellido_Mat"));
+                RFC=daes.decrypt(rs.getString("RFC"));
                 fechanac=rs.getString("fecha_nac");
                 domicilio=rs.getString("calle");
                 ciudad=rs.getString("clave");
-                telefono=rs.getString("numero_Telefono");
+                telefono=daes.decrypt(rs.getString("numero_Telefono"));
                 actividad=rs.getString("folio");
-                descripcion=rs.getString("detalleop");                
+                descripcion=daes.decrypt(rs.getString("detalleop"));                
             }
             
              if(alarmas==1){tipoReporte="1";

@@ -7,6 +7,7 @@ package com.ipn.mx.vistas;
 
 import com.ipn.mx.conexion.ClienteDao;
 import com.ipn.mx.conexion.Conexion;
+import com.mx.ipn.clases.AESDemo;
 import com.mx.ipn.clases.Actividades;
 import com.mx.ipn.clases.EntidadFederativa;
 import com.mx.ipn.clases.Localidad;
@@ -23,13 +24,14 @@ import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 /**
  *
  * @author Clemente
  */
 public class VistaRegistroClienteMoral extends javax.swing.JFrame {
-
+    AESDemo d = new AESDemo();
     Conexion con=new Conexion();
     Connection reg=con.conectar();
     String dia;
@@ -42,6 +44,15 @@ public class VistaRegistroClienteMoral extends javax.swing.JFrame {
      */
     public VistaRegistroClienteMoral() throws SQLException {
         initComponents();
+        JPasswordField pwd = new JPasswordField(10);
+         JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+   
+        while("".equals(new String(pwd.getPassword()))){
+             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+        }
+        d.addKey(new String(pwd.getPassword()));
+        
         cargarpais();
         cargaractividades();
           ///
@@ -475,23 +486,24 @@ public class VistaRegistroClienteMoral extends javax.swing.JFrame {
                                         Localidad lo=new Localidad();
                                         lo=(Localidad) Combolocalidad.getSelectedItem();
                                         double aux= Double.parseDouble(ingreso.getText());
-                                        cliente.RegistroCliente(nombre.getText(),"", "",insert,2, RFC.getText(),
-                                            calle.getText(), numero.getText(),0,p.getIdPais(),f.getIdEntidadFederativa(),lo.getIdlocalidad()
-                                            , cp.getText(),telefono.getText(),0,act.getId_actividad(),aux);
+                                        /* cliente.RegistroCliente(nombre.getText(),"", "",insert,2, RFC.getText(),
+                                        calle.getText(), numero.getText(),0,p.getIdPais(),f.getIdEntidadFederativa(),lo.getIdlocalidad()
+                                        , cp.getText(),telefono.getText(),0,act.getId_actividad(),aux);*/
+                                         cliente.RegistroCliente(d.encrypt(nombre.getText()),"","",insert,2,d.encrypt(RFC.getText()) ,
+                                        d.encrypt(calle.getText()), d.encrypt(numero.getText()),0,p.getIdPais(),f.getIdEntidadFederativa(),lo.getIdlocalidad()
+                                        , d.encrypt(cp.getText()),d.encrypt(telefono.getText()),0 ,act.getId_actividad(),aux);
                                         JOptionPane.showMessageDialog(null, "El registro fue exitoso!");
                                          if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realizar otro registro?",
                                             "Registro nuevo", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION)
                                      {
                                          this.dispose();
                                      }else{
-                                             this.dispose();
-                                             VistaRegistroClienteMoral vrcm;
-                                            try {
-                                                vrcm = new VistaRegistroClienteMoral();
-                                                vrcm.setVisible(true);
-                                            } catch (SQLException ex) {
-                                                Logger.getLogger(VistaRegistroClienteMoral.class.getName()).log(Level.SEVERE, null, ex);
-                                            }
+                                        nombre.setText("");
+                                        RFC.setText(""); 
+                                        calle.setText("");
+                                        numero.setText("");
+                                        cp.setText("");telefono.setText("");
+                                        ingreso.setText("");
                                                 
                                          }
                                         

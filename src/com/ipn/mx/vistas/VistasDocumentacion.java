@@ -7,6 +7,7 @@ package com.ipn.mx.vistas;
 
 import com.ipn.mx.conexion.Conexion;
 import com.ipn.mx.conexion.DocumentacionDao;
+import com.mx.ipn.clases.AESDemo;
 import com.mx.ipn.clases.MiPanel;
 import com.mx.ipn.clases.Operacion;
 import java.awt.BorderLayout;
@@ -19,6 +20,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JCheckBox;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableModel;
@@ -35,6 +37,7 @@ PreparedStatement st;
 JTable tabla;
 int riesgoresidencia;
 int idOP;
+AESDemo d = new AESDemo ();
 
     
     Operacion c=new Operacion();
@@ -43,6 +46,15 @@ int idOP;
      */
     public VistasDocumentacion() throws SQLException {
         initComponents();
+        JPasswordField pwd = new JPasswordField(10);
+         JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+   
+        while("".equals(new String(pwd.getPassword()))){
+             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+        }
+        d.addKey(new String(pwd.getPassword()));
+        
          actualizarTabla();
          cargarOperacion();
           
@@ -320,7 +332,7 @@ int idOP;
        jButton9.setEnabled(false);
         String a=(String) comboOperacion.getSelectedItem();
         System.out.println(a);
-       String aux="Select * from operaciones where numeroContrato='"+a+"'";
+       String aux="Select * from operaciones where numeroContrato='"+d.encrypt(a)+"'";
             try {
             Statement st2;
             st2 = reg.createStatement();
@@ -351,11 +363,11 @@ int idOP;
             while(rs1.next()){
                 Operacion act=new Operacion();
                 act.setIdOperacion(rs1.getInt(1));
-                act.setContrato(rs1.getString(2));
+                act.setContrato(d.decrypt(rs1.getString(2)));
                 act.setMonto(rs1.getDouble(3));
                 act.setFecha(rs1.getString(4));
                 act.setRiesgo(rs1.getDouble(5));
-                act.setDescripcion(rs1.getString(6));
+                act.setDescripcion(d.decrypt(rs1.getString(6)));
                 act.setClienteid(rs1.getInt(7));
                 act.setEmpleadoid(rs1.getInt(8));
                 act.setInmobiliariaid(rs1.getInt(9));
@@ -363,7 +375,7 @@ int idOP;
                 act.setMonedaid(rs1.getInt(11));
                 act.setMonetarioid(rs1.getInt(12));
                 
-            comboOperacion.addItem(act.getContrato());
+            comboOperacion.addItem(act);
      }
         } catch (SQLException ex) {
           System.out.println(ex);

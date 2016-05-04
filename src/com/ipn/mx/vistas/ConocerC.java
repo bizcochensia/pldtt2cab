@@ -7,6 +7,7 @@ package com.ipn.mx.vistas;
 
 import com.ipn.mx.conexion.Conexion;
 import com.ipn.mx.conexion.ConocerDao;
+import com.mx.ipn.clases.AESDemo;
 import com.mx.ipn.clases.Cliente;
 import com.mx.ipn.clases.MiPanel;
 import java.awt.BorderLayout;
@@ -20,13 +21,15 @@ import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 /**
  *
  * @author bdfe_
  */
 public class ConocerC extends javax.swing.JFrame {
-   Conexion con=new Conexion();
+   AESDemo d = new AESDemo();
+    Conexion con=new Conexion();
     Connection reg=con.conectar();
     int valid=0;
     
@@ -50,6 +53,14 @@ public class ConocerC extends javax.swing.JFrame {
         setTitle("SisPLD");
         setResizable(false);
         descrip.setEnabled(false);
+        JPasswordField pwd = new JPasswordField(10);
+         JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+   
+        while("".equals(new String(pwd.getPassword()))){
+             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+        }
+        d.addKey(new String(pwd.getPassword()));
         cargarClientes();
                 
     }
@@ -555,6 +566,7 @@ public class ConocerC extends javax.swing.JFrame {
         try {
             Cliente c=(Cliente) comboCliente.getSelectedItem();
             int a=c.getIdCLiente();
+            System.out.println(a+"RFC <==== conocer");
             String aux="Select * from operaciones where Cliente_id='"+a+"'";
             Statement st;
             st = reg.createStatement();
@@ -588,27 +600,28 @@ public class ConocerC extends javax.swing.JFrame {
         comboCliente.setSelectedItem(0);
     }//GEN-LAST:event_Cancelar1ActionPerformed
 public void cargarClientes() throws SQLException {
-     Statement st;
+     
+    Statement st;
         try {
             st = reg.createStatement();
             ResultSet rs=st.executeQuery("Select * from cliente");
             while(rs.next()){
                 Cliente act=new Cliente();
                 act.setIdCLiente(rs.getInt(1));
-                act.setNombre(rs.getString(2));
-                act.setApellPat(rs.getString(3));
-                act.setApellMat(rs.getString(4));
+                act.setNombre(d.decrypt(rs.getString(2)));
+                act.setApellPat(d.decrypt(rs.getString(3)));
+                act.setApellMat(d.decrypt(rs.getString(4)));
                 act.setFecha_nac(rs.getString(5));
                 act.setTipo(rs.getInt(6));
-                act.setRfc(rs.getString(7));
-                act.setCalle(rs.getString(8));
-                act.setNumero(rs.getString(9));
+                act.setRfc(d.decrypt(rs.getString(7)));
+                act.setCalle(d.decrypt(rs.getString(8)));
+                act.setNumero(d.decrypt(rs.getString(9)));
                 act.setPaisOrigen(rs.getInt(10));
                 act.setPaisResidencia(rs.getInt(11));
                 act.setEntidad(rs.getInt(12));
                 act.setLocalidad(rs.getInt(13));
-                act.setCodigoPostal(rs.getString(14));
-                act.setNumTel(rs.getString(15));
+                act.setCodigoPostal(d.decrypt(rs.getString(14)));
+                act.setNumTel(d.decrypt(rs.getString(15)));
                 act.setRiesgo(rs.getDouble(16));
                 act.setActividad(rs.getString(17));
                 act.setIngreso(rs.getDouble(18));

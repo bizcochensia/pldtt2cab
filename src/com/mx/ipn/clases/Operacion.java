@@ -130,5 +130,11 @@ public class Operacion {
     }
     
     
+     @Override
+    public String toString() {
+        return contrato; //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
     
 }

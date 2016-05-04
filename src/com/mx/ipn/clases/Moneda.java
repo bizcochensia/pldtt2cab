@@ -51,7 +51,7 @@ public class Moneda {
 
     @Override
     public String toString() {
-        return  moneda;
+        return  clave;
     }
     
     
