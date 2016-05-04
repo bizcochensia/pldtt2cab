@@ -7,12 +7,14 @@ package com.ipn.mx.vistas;
 
 import com.mx.ipn.clases.MiPanel;
 import java.awt.BorderLayout;
+import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
+import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
@@ -139,6 +141,15 @@ public class VistaOficial extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+       Login log;
+        try {
+            log = new Login();
+            log.setVisible(true);
+        } catch (UnsupportedLookAndFeelException ex) {
+            Logger.getLogger(VistaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (IOException ex) {
+            Logger.getLogger(VistaAdministrador.class.getName()).log(Level.SEVERE, null, ex);
+        }
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
