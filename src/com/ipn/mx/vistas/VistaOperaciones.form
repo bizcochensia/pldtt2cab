@@ -159,6 +159,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="contrato">
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="contratoMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel12">
               <Properties>
@@ -166,6 +169,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="operacion">
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="operacionActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
               <Properties>
@@ -184,6 +190,9 @@
                     <Property name="columns" type="int" value="20"/>
                     <Property name="rows" type="int" value="5"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="desMouseClicked"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -609,6 +618,9 @@
                 <Component class="javax.swing.JTextField" name="act">
                 </Component>
                 <Component class="javax.swing.JTextField" name="ing">
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="ingActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>

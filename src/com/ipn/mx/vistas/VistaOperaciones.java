@@ -26,6 +26,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.logging.Level;
@@ -79,6 +80,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
    int riesgoActividad=0;
    int riesgoresidencia=0;
    String tipoPersona="";
+   String formato="";
    ClienteDao cd=new ClienteDao();
    Validaciones val=new Validaciones();
    
@@ -210,12 +212,29 @@ public class VistaOperaciones extends javax.swing.JFrame {
 
         jLabel11.setText("Número de contrato:");
 
+        contrato.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                contratoMouseClicked(evt);
+            }
+        });
+
         jLabel12.setText("Monto de la operación:");
+
+        operacion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                operacionActionPerformed(evt);
+            }
+        });
 
         jLabel13.setText("Descripción del Bien: ");
 
         des.setColumns(20);
         des.setRows(5);
+        des.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                desMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(des);
 
         jLabel19.setText("Escriba los datos necesarios para registrar una operación");
@@ -424,6 +443,12 @@ public class VistaOperaciones extends javax.swing.JFrame {
 
         jLabel10.setText("Ingreso:");
 
+        ing.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -630,8 +655,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
                         ap.setText(d.decrypt(rs.getString("apellido_Pat")));
                         am.setText(d.decrypt(rs.getString("apellido_Mat")));
                         act.setText(rs.getString("actividad"));
-                        ing.setText(rs.getString("ingreso_Promedio"));
                         ingresocomparar=rs.getDouble("ingreso_Promedio");
+                        ing.setText(NumberFormat.getInstance().format(ingresocomparar));
                     }
                     
                 } catch (SQLException ex) {
@@ -818,6 +843,32 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private void combomonedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combomonedaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combomonedaActionPerformed
+
+    private void desMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desMouseClicked
+        // TODO add your handling code here:
+        if(operacion.getText().equals("")){}
+        else{
+        formato=NumberFormat.getInstance().format(Double.parseDouble(operacion.getText()));
+        if(formato.equals("")){}
+        else{operacion.setText(formato);}}
+    }//GEN-LAST:event_desMouseClicked
+
+    private void contratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contratoMouseClicked
+        // TODO add your handling code here:
+        if(operacion.getText().equals("")){}
+        else{
+        formato=NumberFormat.getInstance().format(Double.parseDouble(operacion.getText()));
+        if(formato.equals("")){}
+        else{operacion.setText(formato);}}
+    }//GEN-LAST:event_contratoMouseClicked
+
+    private void operacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_operacionActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_operacionActionPerformed
+
+    private void ingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ingActionPerformed
 
     public void cargarClientes() throws SQLException {
      Statement st;
