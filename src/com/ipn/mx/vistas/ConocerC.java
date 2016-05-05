@@ -114,7 +114,7 @@ public class ConocerC extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel12.setText("Llene el siguiente Formulario deacuerdo a su persepción:");
+        jLabel12.setText("Llene el siguiente Formulario deacuerdo a su percepción:");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("Conoce a tu Cliente");
@@ -390,12 +390,15 @@ public class ConocerC extends javax.swing.JFrame {
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(18, 18, 18)
+                .addGap(19, 19, 19)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(comboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(comboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(13, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -473,6 +476,7 @@ public class ConocerC extends javax.swing.JFrame {
            if(Si3.isSelected()){
                des = des +"El cliente ha mentido"+", ";
            }
+           System.out.println(des );
             for (int j=0;j<i;j++){
                 try { 
                     ValidaOp(eva[j]);
@@ -571,13 +575,17 @@ public class ConocerC extends javax.swing.JFrame {
             Statement st;
             st = reg.createStatement();
             ResultSet rs=st.executeQuery(aux);
-            System.out.println(a);
+            //System.out.println(a);
             i=0;
-              while (rs.next()){
-                  System.out.println(rs.getString("id_Operacion"));
-                  eva[i] = Integer.parseInt(rs.getString("id_Operacion"));
-                  i++;
-              }
+              try {
+                while (rs.next()) {
+                    System.out.println(rs.getString("id_Operacion") );
+                    eva[i] = Integer.parseInt(rs.getString("id_Operacion"));
+                    i++;
+                }
+            } catch (SQLException | NumberFormatException sQLException) {
+                System.out.println(sQLException);
+            }
            
          
                     
