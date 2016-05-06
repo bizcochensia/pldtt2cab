@@ -26,6 +26,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.text.DecimalFormat;
 import java.text.NumberFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -215,6 +216,11 @@ public class VistaOperaciones extends javax.swing.JFrame {
         contrato.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 contratoMouseClicked(evt);
+            }
+        });
+        contrato.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contratoActionPerformed(evt);
             }
         });
 
@@ -629,18 +635,17 @@ public class VistaOperaciones extends javax.swing.JFrame {
                     
                     c=(Cliente) combocliente.getSelectedItem();
                     String a=c.getRfc();
+                    int r=(int) c.getRiesgo();
                     System.out.println(a+"<===RFC sin cifrar");
+                    System.out.println(r+"<===riesgo sin cifrar");
                    
                     idCliente =c.getIdCLiente();
                     operacion (idCliente);
                     int b=c.getIdCLiente();
-                     String Nombre=c.getNombre();
-                    String Appat = c.getApellPat();
-                     String ApMat = c.getApellMat();
-                     System.out.println(Nombre+Appat+ApMat+"<===RFC sin cifrar");
+                     
                     
                     try {
-                        listasNegras(Nombre,Appat,ApMat);
+                        listasNegras(a,r);
                     } catch (ClassNotFoundException ex) {
                         Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
                     }
@@ -845,21 +850,21 @@ public class VistaOperaciones extends javax.swing.JFrame {
 
     private void desMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desMouseClicked
         // TODO add your handling code here:
-        if(operacion.getText().equals("")){}
+        /*     if(operacion.getText().equals("")){}
         else{
+        DecimalFormat formato = new DecimalFormat("#,###.00");
         monto=Double.parseDouble(operacion.getText());
-        formato=NumberFormat.getInstance().format(monto);
-        if(formato.equals("")){}
-        else{operacion.setText(formato);}}
+        //formato=NumberFormat.getInstance().format(monto);
+        operacion.setText(formato.format(monto));}*/
     }//GEN-LAST:event_desMouseClicked
 
     private void contratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contratoMouseClicked
         // TODO add your handling code here:
-        if(operacion.getText().equals("")){}
+        /*   if(operacion.getText().equals("")){}
         else{
         formato=NumberFormat.getInstance().format(Double.parseDouble(operacion.getText()));
         if(formato.equals("")){}
-        else{operacion.setText(formato);}}
+        else{operacion.setText(formato);}}*/
     }//GEN-LAST:event_contratoMouseClicked
 
     private void operacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_operacionActionPerformed
@@ -869,6 +874,10 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private void ingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_ingActionPerformed
+
+    private void contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contratoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contratoActionPerformed
 
     public void cargarClientes() throws SQLException {
      Statement st;
@@ -892,7 +901,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 act.setLocalidad(rs.getInt(13));
                 act.setCodigoPostal(d.decrypt(rs.getString(14)));
                 act.setNumTel(d.decrypt(rs.getString(15)));
-                act.setRiesgo(rs.getDouble(16));
+                act.setRiesgo(rs.getInt(16));
                 act.setActividad(rs.getString(17));
                 act.setIngreso(rs.getDouble(18));
             combocliente.addItem(act);
@@ -1047,18 +1056,19 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private javax.swing.JTextField recibeAnticipo;
     // End of variables declaration//GEN-END:variables
 
-    private void listasNegras(String Nombre,String Appat,String ApMat) throws ClassNotFoundException {
+    private void listasNegras(String RFCC, int riesgo) throws ClassNotFoundException {
         //To change body of generated methods, choose Tools | Templates.
     try {
            
-            String aux="Select * from listas_negras where nombre='"+Nombre+"' and paterno ='"+Appat+"' and materno = '"+ApMat+"'";
-            Statement st;
-            st = reg2.createStatement();
-            ResultSet rs=st.executeQuery(aux);
-              while (rs.next()){
-                  System.out.println(rs.getString("nombre"));
-                  asignacionlistas(rs.getString("nombre"),rs.getString("paterno"),rs.getString("materno"));
-              }
+            
+                  if(riesgo == 10){
+                      System.out.println("10");
+                      asignacionlistas("El cliente se encuentra en listas negras",2);
+                  }else if (riesgo == 11){
+                      System.out.println("11");
+                      asignacionlistas("El cliente se considera PPE",6);
+                  }
+              
                    } catch (SQLException ex) {
             System.out.println(ex+ "-no existe");
             Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
@@ -1066,7 +1076,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
         }
     }
 
-    private void asignacionlistas(String string, String string0, String string1) throws ClassNotFoundException, SQLException {
+    private void asignacionlistas(String string,int alarma) throws ClassNotFoundException, SQLException {
     ConocerDao ac = new ConocerDao();
         
        java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
@@ -1076,7 +1086,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 try { 
                     ValidaOp(id[j]);
                     if(valid == 0)
-                    ac.RegistroDescripcion(id[j], 6, sqlDate,"Listas Negras : "+string+" "+string0+" "+string1);
+                    ac.RegistroDescripcion(id[j], alarma, sqlDate,string);
                 } catch (SQLException ex) {
                     Logger.getLogger(ConocerC.class.getName()).log(Level.SEVERE, null, ex);
                 }

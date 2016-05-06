@@ -26,7 +26,7 @@ public class Cliente {
     private int localidad;
     private String codigoPostal;
     private String numTel;
-    private double riesgo;
+    private int riesgo;
     private String Actividad;
     private Double Ingreso;
 
@@ -79,7 +79,7 @@ public class Cliente {
         return riesgo;
     }
 
-    public void setRiesgo(double riesgo) {
+    public void setRiesgo(int riesgo) {
         this.riesgo = riesgo;
     }
 

@@ -7,6 +7,8 @@ package com.ipn.mx.vistas;
 
 import com.ipn.mx.conexion.ClienteDao;
 import com.ipn.mx.conexion.Conexion;
+import com.ipn.mx.conexion.ConexionListas;
+import com.ipn.mx.conexion.ConocerDao;
 import com.mx.ipn.clases.AESDemo;
 import com.mx.ipn.clases.Actividades;
 import com.mx.ipn.clases.EntidadFederativa;
@@ -34,12 +36,14 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
     
     Conexion con=new Conexion();
     AESDemo d = new AESDemo();
-    
+    ConexionListas con2 = new ConexionListas();
+    Connection reg2=con2.conectar();
     Connection reg=con.conectar();
     String dia;
     String año;
     String aux;
     int mes;
+    int riesgo;
     /**
      * Creates new form VistaRegistroClientes
      */
@@ -550,9 +554,11 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
                                 /* cliente.RegistroCliente(nombre.getText(), apellidopat.getText(), apellidomat.getText(),insert,1, RFC.getText(),
                                 calle.getText(), numero.getText(),p2.getIdPais(),p.getIdPais(),f.getIdEntidadFederativa(),lo.getIdlocalidad()
                                 , cp.getText(),telefono.getText(),0 ,act.getId_actividad(),aux);*/
+                                listasNegras(RFC.getText());
+                                PEP(RFC.getText());
                                  cliente.RegistroCliente(d.encrypt(nombre.getText()), d.encrypt(apellidopat.getText()), d.encrypt(apellidomat.getText()),insert,1,d.encrypt(RFC.getText()) ,
                                         d.encrypt(calle.getText()), d.encrypt(numero.getText()),p2.getIdPais(),p.getIdPais(),f.getIdEntidadFederativa(),lo.getIdlocalidad()
-                                        , d.encrypt(cp.getText()),d.encrypt(telefono.getText()),0 ,act.getId_actividad(),aux);
+                                        , d.encrypt(cp.getText()),d.encrypt(telefono.getText()),riesgo ,act.getId_actividad(),aux);
                                 
                                 
                             } catch (Exception ex) {
@@ -741,5 +747,51 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
     private javax.swing.JTextField numero;
     private javax.swing.JTextField telefono;
     // End of variables declaration//GEN-END:variables
+   private void listasNegras(String RFCC) throws ClassNotFoundException {
+        //To change body of generated methods, choose Tools | Templates.
+    try {
+           
+            String aux="Select * from listas_negras where rfc='"+RFCC+"' and pep_listas = 0";
+            Statement st;
+            st = reg2.createStatement();
+            ResultSet rs=st.executeQuery(aux);
+              while (rs.next()){
+                  System.out.println(rs.getString("estatus")+","+rs.getString("dependencia")+","+rs.getString("puesto"));
+                  riesgo = 10;
+                  JOptionPane.showMessageDialog(rootPane, "estatus:"+rs.getString("estatus")+", en la dependencia: "+rs.getString("dependencia")+", puesto:"+rs.getString("puesto"), "Persona Encontrada en Listas negras ", JOptionPane.WARNING_MESSAGE);
+                     }
+                   } catch (SQLException ex) {
+            System.out.println(ex+ "-no existe");
+            riesgo = 0;
+            Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+    }
+   private void PEP(String RFCC) throws ClassNotFoundException {
+        //To change body of generated methods, choose Tools | Templates.
+       if(riesgo == 0){
+             try {
+           
+            String aux="Select * from listas_negras where rfc='"+RFCC+"' and pep_listas = 1";
+            Statement st;
+            st = reg2.createStatement();
+            ResultSet rs=st.executeQuery(aux);
+              while (rs.next()){
+                  System.out.println(rs.getString("estatus")+","+rs.getString("dependencia")+","+rs.getString("puesto"));
+                  //asignacionlistas(rs.getString("nombre"),rs.getString("paterno"),rs.getString("materno"));
+                JOptionPane.showMessageDialog(rootPane, "estatus:"+rs.getString("estatus")+", en la dependencia: "+rs.getString("dependencia")+", puesto:"+rs.getString("puesto"), "Persona Encontrada en Listas negras ", JOptionPane.WARNING_MESSAGE);
 
+                  riesgo = 11;
+              }
+                   } catch (SQLException ex) {
+            System.out.println(ex+ "-no existe");
+            Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }
+       }else{
+           System.out.println("ya aparece en listas negras");
+       }
+    }
+
+    
 }

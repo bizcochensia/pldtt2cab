@@ -630,7 +630,7 @@ public void cargarClientes() throws SQLException {
                 act.setLocalidad(rs.getInt(13));
                 act.setCodigoPostal(d.decrypt(rs.getString(14)));
                 act.setNumTel(d.decrypt(rs.getString(15)));
-                act.setRiesgo(rs.getDouble(16));
+                act.setRiesgo(rs.getInt(16));
                 act.setActividad(rs.getString(17));
                 act.setIngreso(rs.getDouble(18));
             comboCliente.addItem(act);

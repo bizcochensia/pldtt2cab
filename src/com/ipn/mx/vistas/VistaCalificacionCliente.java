@@ -556,7 +556,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
                 act.setLocalidad(rs.getInt(13));
                 act.setCodigoPostal(d.decrypt(rs.getString(14)));
                 act.setNumTel(d.decrypt(rs.getString(15)));
-                act.setRiesgo(rs.getDouble(16));
+                act.setRiesgo(rs.getInt(16));
                 act.setActividad(rs.getString(17));
                 act.setIngreso(rs.getDouble(18));
             comboCliente.addItem(act);
@@ -627,13 +627,16 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
                 System.out.println(rs.getString("Alarma_id"));
                 alarma =Integer.parseInt(rs.getString("Alarma_id"));
                 if(alarma == 6){
-                        listasN.setText(rs.getString("Descripcion"));
-                         pep.setText("Sin Coincidencia");
+                   pep.setText(rs.getString("Descripcion"));
+                   listasN.setText("Sin Coincidencia");
                     
+                }else if (alarma ==2){
+                    
+                  listasN.setText(rs.getString("Descripcion"));
+                   pep.setText("Sin Coincidencia");
                 }else{
-                    
-                        listasN.setText("Sin Coincidencia");
-                        pep.setText("Sin Coincidencia");
+                    listasN.setText("Sin Coincidencia");
+                    pep.setText("Sin Coincidencia");
                 }
                 
                 
