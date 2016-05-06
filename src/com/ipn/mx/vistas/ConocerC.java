@@ -212,9 +212,9 @@ public class ConocerC extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("1) ¿El cliente se nego a entregar documentos de identificacion? ");
+        jLabel2.setText("1) ¿El cliente contesto de forma fehaciente? ");
 
-        jLabel3.setText("2) ¿El cliento intento sobornar a algun empleado?");
+        jLabel3.setText("2) ¿El cliento acepto las condiciones del contrato?");
 
         descrip.setColumns(20);
         descrip.setRows(5);
@@ -266,7 +266,7 @@ public class ConocerC extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel2)
                             .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 333, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 402, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(Si3)
@@ -295,7 +295,7 @@ public class ConocerC extends javax.swing.JFrame {
                                 .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 105, Short.MAX_VALUE))
+                        .addGap(0, 106, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -421,7 +421,7 @@ public class ConocerC extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(13, Short.MAX_VALUE))
+                .addContainerGap(12, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -464,11 +464,11 @@ public class ConocerC extends javax.swing.JFrame {
         }
         else
         {
-           if(Si.isSelected()){
-                des = des +"El cliente se nego a entregar documentos de identificación"+", ";
+           if(No.isSelected()){
+                des = des +"El cliente no contesto de manera fehaciente"+", ";
            }
-           if(Si1.isSelected()){
-               des = des + "El cliente intento sobornar"+", ";
+           if(No1.isSelected()){
+               des = des + "El cliente no acepto las condiciones del contrato"+", ";
            }
            if(Si2.isSelected()){
                des = des + "El cliente actua de manera Sospechosa"+", ";
@@ -505,57 +505,50 @@ public class ConocerC extends javax.swing.JFrame {
     private void Si3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Si3ActionPerformed
         // TODO add your handling code here:
          
-        descrip.setEnabled(true);
+     
     }//GEN-LAST:event_Si3ActionPerformed
 
     private void No3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_No3ActionPerformed
-        descrip.setEnabled(false);
-        descrip.setText("");
+       
     }//GEN-LAST:event_No3ActionPerformed
 
     private void Si2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Si2ActionPerformed
         // TODO add your handling code here:
-         
-        descrip.setEnabled(true);
+     
     }//GEN-LAST:event_Si2ActionPerformed
 
     private void No2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_No2ActionPerformed
-        // TODO add your handling code here:
-        descrip.setEnabled(false);
-        descrip.setText("");
+        
     }//GEN-LAST:event_No2ActionPerformed
 
     private void No1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_No1ActionPerformed
         // TODO add your handling code here:
-        descrip.setEnabled(false);
-        descrip.setText("");
+      ;
     }//GEN-LAST:event_No1ActionPerformed
 
     private void Si1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Si1ActionPerformed
-        descrip.setEnabled(true);   
+      
          // TODO add your handling code here:
     }//GEN-LAST:event_Si1ActionPerformed
 
     private void NoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NoActionPerformed
         // TODO add your handling code here:
-        descrip.setEnabled(false);
-        descrip.setText("");
+    
     }//GEN-LAST:event_NoActionPerformed
 
     private void SiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SiActionPerformed
         // TODO add your handling code here:
-        descrip.setEnabled(true);
+        
     }//GEN-LAST:event_SiActionPerformed
 
     private void SIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SIDActionPerformed
         // TODO add your handling code here:
-        descrip.setEnabled(true);
+       
     }//GEN-LAST:event_SIDActionPerformed
 
     private void No6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_No6ActionPerformed
         // TODO add your handling code here:
-        descrip.setEnabled(false);
-        descrip.setText("");
+      
     }//GEN-LAST:event_No6ActionPerformed
 
     private void comboClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboClienteMouseClicked

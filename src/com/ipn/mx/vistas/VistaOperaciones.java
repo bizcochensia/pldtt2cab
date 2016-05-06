@@ -211,7 +211,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
 
         jPanel2.setOpaque(false);
 
-        jLabel11.setText("Número de contrato:");
+        jLabel11.setText("Número de Identificación:");
 
         contrato.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -266,7 +266,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                                 .addComponent(contrato)
                                 .addComponent(operacion, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(193, Short.MAX_VALUE))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)

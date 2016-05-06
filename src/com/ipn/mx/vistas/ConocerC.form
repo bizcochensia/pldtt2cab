@@ -61,7 +61,7 @@
                       <Component id="jPanel1" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
-              <EmptySpace pref="13" max="32767" attributes="0"/>
+              <EmptySpace pref="12" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -122,7 +122,7 @@
                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="333" max="32767" attributes="0"/>
+                          <EmptySpace pref="402" max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="Si3" min="-2" max="-2" attributes="0"/>
@@ -160,7 +160,7 @@
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jScrollPane1" min="-2" pref="741" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="105" max="32767" attributes="0"/>
+                          <EmptySpace min="0" pref="106" max="32767" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
                           <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
@@ -360,12 +360,12 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel2">
           <Properties>
-            <Property name="text" type="java.lang.String" value="1) &#xbf;El cliente se nego a entregar documentos de identificacion? "/>
+            <Property name="text" type="java.lang.String" value="1) &#xbf;El cliente contesto de forma fehaciente? "/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel3">
           <Properties>
-            <Property name="text" type="java.lang.String" value="2) &#xbf;El cliento intento sobornar a algun empleado?"/>
+            <Property name="text" type="java.lang.String" value="2) &#xbf;El cliento acepto las condiciones del contrato?"/>
           </Properties>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">

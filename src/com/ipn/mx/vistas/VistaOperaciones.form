@@ -123,7 +123,7 @@
                               </Group>
                           </Group>
                       </Group>
-                      <EmptySpace pref="193" max="32767" attributes="0"/>
+                      <EmptySpace pref="180" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -155,7 +155,7 @@
           <SubComponents>
             <Component class="javax.swing.JLabel" name="jLabel11">
               <Properties>
-                <Property name="text" type="java.lang.String" value="N&#xfa;mero de contrato:"/>
+                <Property name="text" type="java.lang.String" value="N&#xfa;mero de Identificaci&#xf3;n:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="contrato">
