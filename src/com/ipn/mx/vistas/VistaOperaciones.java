@@ -41,6 +41,7 @@ import javax.swing.JPasswordField;
  */
 public class VistaOperaciones extends javax.swing.JFrame {
    AESDemo d = new AESDemo ();
+   int respuesta;
     int c1=0;
     //calcular montos inusuales
     double promedio=0.0;
@@ -114,13 +115,19 @@ public class VistaOperaciones extends javax.swing.JFrame {
         initComponents();
         JPasswordField pwd = new JPasswordField(10);
          JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-   
-        while("".equals(new String(pwd.getPassword()))){
-             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-        }
+          if(respuesta==JOptionPane.OK_OPTION){
+            if("".equals(new String(pwd.getPassword()))){
+            JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+            JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+            }
+            else{
         d.addKey(new String(pwd.getPassword()));
-        System.out.println(new String(pwd.getPassword()));
+            }
+        }
+        else{
+        JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+        this.setVisible(false);
+        }
         cargarClientes();
         cargarmoneda();
         cargarmonetario();

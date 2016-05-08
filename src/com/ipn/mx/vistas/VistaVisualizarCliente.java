@@ -31,6 +31,7 @@ public class VistaVisualizarCliente extends javax.swing.JFrame {
     JTable tabla;
     ResultSet rs;
     AESDemo d = new AESDemo();
+    int respuesta;
     
     /**
      * Creates new form VistaVisualizarCliente
@@ -41,14 +42,19 @@ public class VistaVisualizarCliente extends javax.swing.JFrame {
            JPasswordField pwd = new JPasswordField(10);
         int Action =JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
    
-        while("".equals(new String(pwd.getPassword()))& Action !=0){
-            if(Action <0){
-             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+               if(respuesta==JOptionPane.OK_OPTION){
+            if("".equals(new String(pwd.getPassword()))){
+            JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+            JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+            }
+            else{
+        d.addKey(new String(pwd.getPassword()));
             }
         }
-        d.addKey(new String(pwd.getPassword())); 
-        
+        else{
+        JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+        this.setVisible(false);
+        }
          MiPanel p = new MiPanel(); 
       this.add( p , BorderLayout.CENTER); 
        p.repaint(); 

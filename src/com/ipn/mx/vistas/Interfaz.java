@@ -29,6 +29,7 @@ import javax.swing.table.DefaultTableModel;
 
 public class Interfaz extends javax.swing.JFrame {
 ResultSet rs;
+int respuesta;
 PreparedStatement st;
 JTable tabla;
 AESDemo d = new AESDemo();
@@ -49,12 +50,19 @@ AESDemo d = new AESDemo();
         int cancelar;
         JPasswordField pwd = new JPasswordField(10);
          JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-   
-        while("".equals(new String(pwd.getPassword()))){
-             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-        }
+          if(respuesta==JOptionPane.OK_OPTION){
+            if("".equals(new String(pwd.getPassword()))){
+            JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+            JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+            }
+            else{
         d.addKey(new String(pwd.getPassword()));
+            }
+        }
+        else{
+        JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+        this.setVisible(false);
+        }
         
     
         

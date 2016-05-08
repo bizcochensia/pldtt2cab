@@ -50,13 +50,21 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
     public VistaRegistroClientes() throws SQLException, Exception {
         initComponents();
         JPasswordField pwd = new JPasswordField(10);
-        JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+        int respuesta=JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
    
-        while("".equals(new String(pwd.getPassword()))){
-             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-        }
+        if(respuesta==JOptionPane.OK_OPTION){
+            if("".equals(new String(pwd.getPassword()))){
+            JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+            JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+            }
+            else{
         d.addKey(new String(pwd.getPassword()));
+            }
+        }
+        else{
+        JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+        this.setVisible(false);
+        }
         cargaractividades();
         cargarpais();
         cargarpaisorigen();

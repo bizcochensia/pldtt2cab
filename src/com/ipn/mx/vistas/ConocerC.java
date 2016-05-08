@@ -32,7 +32,7 @@ public class ConocerC extends javax.swing.JFrame {
     Conexion con=new Conexion();
     Connection reg=con.conectar();
     int valid=0;
-    
+    int respuesta;
     Cliente c=new Cliente();
     int eva[] = new int[50];
     int i=0, b=0;
@@ -56,11 +56,19 @@ public class ConocerC extends javax.swing.JFrame {
         JPasswordField pwd = new JPasswordField(10);
          JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
    
-        while("".equals(new String(pwd.getPassword()))){
-             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-        }
+               if(respuesta==JOptionPane.OK_OPTION){
+            if("".equals(new String(pwd.getPassword()))){
+            JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+            JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+            }
+            else{
         d.addKey(new String(pwd.getPassword()));
+            }
+        }
+        else{
+        JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+        this.setVisible(false);
+        }
         cargarClientes();
                 
     }

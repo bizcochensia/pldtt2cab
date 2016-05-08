@@ -31,6 +31,7 @@ public class VistaModificarClienteA extends javax.swing.JFrame {
 ResultSet rs;
 PreparedStatement st;
 JTable tabla;
+int respuesta;
 AESDemo d = new AESDemo();
     /**
      * Creates new form Interfaz
@@ -47,14 +48,19 @@ AESDemo d = new AESDemo();
         setTitle("SisPLD");
         setResizable(false);
         JPasswordField pwd = new JPasswordField(10);
-         int action = JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-    if(action < 0){
-        JOptionPane.showMessageDialog(null,"Se necesita contraseña para registrar");
-    }
-    else {
-        JOptionPane.showMessageDialog(null,"Your password is "+new String(pwd.getPassword()));
-         d.addKey(new String(pwd.getPassword()));
-    }
+                if(respuesta==JOptionPane.OK_OPTION){
+            if("".equals(new String(pwd.getPassword()))){
+            JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+            JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+            }
+            else{
+        d.addKey(new String(pwd.getPassword()));
+            }
+        }
+        else{
+        JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+        this.setVisible(false);
+        }
         
         actualizarTabla();
         

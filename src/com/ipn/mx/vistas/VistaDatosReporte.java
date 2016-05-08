@@ -40,6 +40,7 @@ public class VistaDatosReporte extends javax.swing.JFrame {
     ReporteDAO nrep=new ReporteDAO();
     AESDemo daes = new AESDemo();
     String nombrearchivo="";
+    int respuesta;
     int numContrato=0;
     int i=0;
     int auxalarmas=0;
@@ -84,11 +85,19 @@ public class VistaDatosReporte extends javax.swing.JFrame {
         JPasswordField pwd = new JPasswordField(10);
          JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
    
-        while("".equals(new String(pwd.getPassword()))){
-             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-        }
+               if(respuesta==JOptionPane.OK_OPTION){
+            if("".equals(new String(pwd.getPassword()))){
+            JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+            JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+            }
+            else{
         daes.addKey(new String(pwd.getPassword()));
+            }
+        }
+        else{
+        JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+        this.setVisible(false);
+        }
          MiPanel p = new MiPanel(); 
       this.add( p , BorderLayout.CENTER); 
        p.repaint(); 
