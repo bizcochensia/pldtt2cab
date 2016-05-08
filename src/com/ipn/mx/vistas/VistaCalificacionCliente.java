@@ -87,7 +87,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
         JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
         this.setVisible(false);
         }
-        cargarClientes();
+        muestratodo();
         ///
       
        Calendar c2 = new GregorianCalendar();
@@ -111,13 +111,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPanel2 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        comboCliente = new javax.swing.JComboBox();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
         jLabel9 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -149,77 +143,13 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         Muestrafecha = new javax.swing.JLabel();
         MuestraMonto = new javax.swing.JLabel();
+        jButton2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Calificacion Cliente");
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente a  Evaluar"));
-        jPanel2.setOpaque(false);
-
-        jLabel8.setText("Nombre:");
-
-        comboCliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione...." }));
-        comboCliente.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                comboClienteMouseClicked(evt);
-            }
-        });
-        comboCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comboClienteActionPerformed(evt);
-            }
-        });
-
-        jButton1.setBackground(new java.awt.Color(0, 153, 51));
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Ver Riesgo");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setForeground(new java.awt.Color(0, 153, 51));
-        jButton2.setText("Regresar");
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel8)
-                .addGap(18, 18, 18)
-                .addComponent(comboCliente, 0, 276, Short.MAX_VALUE)
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(20, 20, 20))
-        );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel8)
-                        .addComponent(comboCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 21, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
-                .addContainerGap(16, Short.MAX_VALUE))
-        );
-
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel9.setText("Calificación Cliente");
-
-        jLabel11.setText("Selecciona el cliente para mostrar sus operaciones asociadas:");
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Riesgo"));
         jPanel1.setOpaque(false);
@@ -420,62 +350,66 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Monto y Frecuencia", jPanel5);
 
+        jButton2.setForeground(new java.awt.Color(0, 153, 51));
+        jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+            .addGroup(layout.createSequentialGroup()
                 .addContainerGap(42, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel9)
-                    .addComponent(jLabel11, javax.swing.GroupLayout.PREFERRED_SIZE, 318, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(22, 22, 22)
-                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(38, 38, 38))
+                        .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 798, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(647, 647, 647)
+                        .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(128, 128, 128))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(95, Short.MAX_VALUE)
+                .addContainerGap(84, Short.MAX_VALUE)
                 .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(10, 10, 10)
-                .addComponent(jLabel11)
-                .addGap(18, 18, 18)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(22, 22, 22)
+                .addComponent(jButton2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jTabbedPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 341, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(68, 68, 68))
+                .addGap(193, 193, 193))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comboClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboClienteActionPerformed
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comboClienteActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void comboClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboClienteMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboClienteMouseClicked
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
+    
+    public void muestratodo(){
+    try {
             descripcionC.setText("");
-            Cliente c=(Cliente) comboCliente.getSelectedItem();
-            String a=c.getRfc();
             int idC=0;
-             idC= c.getIdCLiente();
+             idC= clienteid.getIdCLiente();
             int idOP;
-            String aux="Select tc.descripcion,ac.actividad,ac.riesgo,e.nombre,p.nombre_Pais,p.riesgo as Pais,e.id_pais from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join entidad_federativa e on e.id_Entidad=c.entidad inner join pais p on c.pais_Origen=p.id_Pais inner join tcliente tc on tc.id_tipo=c.tipo where c.RFC='"+d.encrypt(a)+"' ";    
+            String aux="Select tc.descripcion,ac.actividad,ac.riesgo,e.nombre,p.nombre_Pais,p.riesgo as Pais,e.id_pais from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join entidad_federativa e on e.id_Entidad=c.entidad inner join pais p on c.pais_Origen=p.id_Pais inner join tcliente tc on tc.id_tipo=c.tipo where c.id_Cliente="+idC;    
 
             /*int a=clienteid.getIdCLiente();
             String aux="Select tc.descripcion,ac.actividad,ac.riesgo,e.nombre,p.nombre_Pais,p.riesgo as Pais,e.id_pais from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad inner join entidad_federativa e on e.id_Entidad=c.entidad inner join pais p on c.pais_Origen=p.id_Pais inner join tcliente tc on tc.id_tipo=c.tipo where c.id_cliente="+a;    */
             Statement st;
             st = reg.createStatement();
             ResultSet rs=st.executeQuery(aux);
-            System.out.println(a);
             //Obtiene el ID del cliente para asociarlo con la operacion;
             idOP=Operacion(idC);
             //Conoce a Tu Cliente 
@@ -535,46 +469,10 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jButton2ActionPerformed
-
-    public void cargarClientes() throws SQLException {
-     Statement st;
-        try {
-            st = reg.createStatement();
-            ResultSet rs=st.executeQuery("Select * from cliente");
-            while(rs.next()){
-                Cliente act=new Cliente();
-                act.setIdCLiente(rs.getInt(1));
-                act.setNombre(d.decrypt(rs.getString(2)));
-                act.setApellPat(d.decrypt(rs.getString(3)));
-                act.setApellMat(d.decrypt(rs.getString(4)));
-                act.setFecha_nac(rs.getString(5));
-                act.setTipo(rs.getInt(6));
-                act.setRfc(d.decrypt(rs.getString(7)));
-                act.setCalle(d.decrypt(rs.getString(8)));
-                act.setNumero(d.decrypt(rs.getString(9)));
-                act.setPaisOrigen(rs.getInt(10));
-                act.setPaisResidencia(rs.getInt(11));
-                act.setEntidad(rs.getInt(12));
-                act.setLocalidad(rs.getInt(13));
-                act.setCodigoPostal(d.decrypt(rs.getString(14)));
-                act.setNumTel(d.decrypt(rs.getString(15)));
-                act.setRiesgo(rs.getInt(16));
-                act.setActividad(rs.getString(17));
-                act.setIngreso(rs.getDouble(18));
-            comboCliente.addItem(act);
-     }
-        } catch (SQLException ex) {
-            Logger.getLogger(VistaRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
-        }
      
     }
+    
+    
     public int Operacion(int a){
        
         int i = 0;
@@ -699,14 +597,11 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
     private javax.swing.JLabel Muestrafecha;
     private javax.swing.JTextField Nacionalidad;
     private javax.swing.JTextField Residencia;
-    private javax.swing.JComboBox comboCliente;
     private javax.swing.JTextArea descripcionC;
     private javax.swing.JTextField fechaC;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
@@ -717,10 +612,8 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
