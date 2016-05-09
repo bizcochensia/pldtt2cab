@@ -292,12 +292,16 @@ AESDemo d = new AESDemo ();
                                                
             }
                 if(folio != null){
-                     try {
+                    try {
                     cn.RegistroDocumento(idOP,id, folio);
-                   
+                   id =0;
+                   folio = "";
                 } catch (            ClassNotFoundException | SQLException ex) {
                     Logger.getLogger(VistasDocumentacion.class.getName()).log(Level.SEVERE, null, ex);
                 }
+                   
+                }else{
+                      System.out.println("sin folio");
                 }
         
             }
@@ -306,6 +310,7 @@ AESDemo d = new AESDemo ();
                
             
         }
+         JOptionPane.showMessageDialog(null, "La Documentacion  ha sido Registrada");
        
         //rs = cn.RegistroDocumento(1, id_documento, folio);
     
@@ -330,20 +335,20 @@ AESDemo d = new AESDemo ();
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
        jButton9.setEnabled(false);
-        String a=(String) comboOperacion.getSelectedItem();
-        System.out.println(a);
+        c=(Operacion) comboOperacion.getSelectedItem();
+       String a=c.getContrato();
+       System.out.println(a);
        String aux="Select * from operaciones where numeroContrato='"+d.encrypt(a)+"'";
             try {
             Statement st2;
             st2 = reg.createStatement();
             ResultSet rs2 = st2.executeQuery(aux);
-            System.out.println(a);
-
             while (rs2.next()) {
                 System.out.println(rs2.getString("id_Operacion"));
                
                 idOP = Integer.parseInt(rs2.getString("id_Operacion"));
             }
+           
             
         } catch (SQLException ex) {
             System.out.println(ex);

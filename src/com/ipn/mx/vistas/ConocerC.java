@@ -52,7 +52,7 @@ public class ConocerC extends javax.swing.JFrame {
         setSize(900, 700);               // Setting dimensions...
         setTitle("SisPLD");
         setResizable(false);
-        descrip.setEnabled(false);
+     
         JPasswordField pwd = new JPasswordField(10);
          JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
    

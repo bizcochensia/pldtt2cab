@@ -42,7 +42,7 @@ public class DocumentacionDao {
            st.setInt (2, id_documento);
            st.setString (3, folio);
            st.executeUpdate();
-           JOptionPane.showMessageDialog(null, "La Documentacion  ha sido Registrada");
+           
            }
         catch(Exception ex) {
             System.out.println(ex);
