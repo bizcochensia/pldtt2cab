@@ -1093,7 +1093,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 try { 
                     ValidaOp(id[j]);
                     if(valid == 0)
-                    ac.RegistroDescripcion(id[j], alarma, sqlDate,string);
+                    ac.RegistroDescripcion(id[j], alarma, sqlDate,string,0);
                 } catch (SQLException ex) {
                     Logger.getLogger(ConocerC.class.getName()).log(Level.SEVERE, null, ex);
                 }

@@ -2,6 +2,7 @@ package com.ipn.mx.conexion;
 
 
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -26,7 +27,7 @@ import javax.swing.JTextField;
 public class ConocerDao {
     static PreparedStatement st;
     int id = 1;
-    private static final String Insert = "INSERT INTO intermedia_operacion_alarma (Operacion_id, Alarma_id, fechadeteccion, Descripcion) VALUES (?,?,?,?)"; 
+    private static final String Insert = "INSERT INTO intermedia_operacion_alarma (Operacion_id, Alarma_id, fechadeteccion, Descripcion,realizaOp) VALUES (?,?,?,?,?)"; 
 
 
     
@@ -65,7 +66,7 @@ public class ConocerDao {
     }
    
     
-    public void RegistroDescripcion (int id_operacion, int id_alarma, java.sql.Date fechadeteccion, String Descripcion) throws ClassNotFoundException, SQLException{
+    public void RegistroDescripcion (int id_operacion, int id_alarma, java.sql.Date fechadeteccion, String Descripcion,int realizaOp) throws ClassNotFoundException, SQLException{
        Conexion cn = new Conexion ();
        Connection reg=cn.conectar();
        
@@ -76,10 +77,8 @@ public class ConocerDao {
            st.setInt (2, id_alarma);
            st.setDate (3, fechadeteccion);
            st.setString (4, Descripcion);
-         
-                  
-           
-           st.executeUpdate();
+           st.setInt (5, realizaOp);
+            st.executeUpdate();
            
            }
         catch(Exception ex) {
@@ -87,5 +86,7 @@ public class ConocerDao {
                     
         }
     }
+
+   
     
     }

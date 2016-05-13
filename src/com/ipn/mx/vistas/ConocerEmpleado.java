@@ -9,6 +9,7 @@ import com.ipn.mx.conexion.Conexion;
 import com.ipn.mx.conexion.ConocerDao;
 import com.mx.ipn.clases.AESDemo;
 import com.mx.ipn.clases.Cliente;
+import com.mx.ipn.clases.Empleado;
 import com.mx.ipn.clases.MiPanel;
 import java.awt.BorderLayout;
 import static java.lang.Math.exp;
@@ -27,7 +28,7 @@ import javax.swing.JPasswordField;
  *
  * @author bdfe_
  */
-public class ConocerC extends javax.swing.JFrame {
+public class ConocerEmpleado extends javax.swing.JFrame {
    AESDemo d = new AESDemo();
     Conexion con=new Conexion();
     Connection reg=con.conectar();
@@ -42,7 +43,7 @@ public class ConocerC extends javax.swing.JFrame {
     /**
      * Creates new form ConocerC
      */
-    public ConocerC() throws SQLException {
+    public ConocerEmpleado() throws SQLException {
         initComponents();
         MiPanel p = new MiPanel();
         this.add( p , BorderLayout.CENTER);
@@ -125,7 +126,7 @@ public class ConocerC extends javax.swing.JFrame {
         jLabel12.setText("Llene el siguiente Formulario deacuerdo a su percepción:");
 
         jLabel9.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel9.setText("Conoce a tu Cliente");
+        jLabel9.setText("Conoce a tu Empleado");
 
         jPanel1.setOpaque(false);
 
@@ -356,7 +357,7 @@ public class ConocerC extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Cliente a  Evaluar"));
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Empleado a  Evaluar"));
         jPanel2.setOpaque(false);
 
         jLabel13.setText("Nombre:");
@@ -493,9 +494,9 @@ public class ConocerC extends javax.swing.JFrame {
                     
                     
                 } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(ConocerC.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ConocerEmpleado.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
-                    Logger.getLogger(ConocerC.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ConocerEmpleado.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
             JOptionPane.showMessageDialog(null, "La Alarma se ha enviado");
@@ -568,39 +569,38 @@ public class ConocerC extends javax.swing.JFrame {
     }//GEN-LAST:event_comboClienteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        /*try {
+        Empleado c=(Empleado) comboCliente.getSelectedItem();
+        int a=c.getIdEmpleado();
+        System.out.println(a+"RFC <==== conocer");
+        String aux="Select * from operaciones where id_Empleado='"+a+"'";
+        Statement st;
+        st = reg.createStatement();
+        ResultSet rs=st.executeQuery(aux);
+        //System.out.println(a);
+        i=0;
         try {
-            Cliente c=(Cliente) comboCliente.getSelectedItem();
-            int a=c.getIdCLiente();
-            System.out.println(a+"RFC <==== conocer");
-            String aux="Select * from operaciones where Cliente_id='"+a+"'";
-            Statement st;
-            st = reg.createStatement();
-            ResultSet rs=st.executeQuery(aux);
-            //System.out.println(a);
-            i=0;
-              try {
-                while (rs.next()) {
-                    System.out.println(rs.getString("id_Operacion") );
-                    eva[i] = Integer.parseInt(rs.getString("id_Operacion"));
-                    i++;
-                }
-            } catch (SQLException | NumberFormatException sQLException) {
-                System.out.println(sQLException);
-            }
+        while (rs.next()) {
+        System.out.println(rs.getString("id_Operacion") );
+        eva[i] = Integer.parseInt(rs.getString("id_Operacion"));
+        i++;
+        }
+        } catch (SQLException | NumberFormatException sQLException) {
+        System.out.println(sQLException);
+        }*/
            
          
                     
                
             
              
-           jButton1.setEnabled(false);
-
+        /*jButton1.setEnabled(false);
+        
         } catch (SQLException ex) {
-            System.out.println(ex);
-            Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
-            
-        }
-
+        System.out.println(ex);
+        Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
+        
+        }*/
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void Cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancelar1ActionPerformed
@@ -659,13 +659,13 @@ public void cargarClientes() throws SQLException {
                 }
             }
         } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(ConocerC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConocerEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(ConocerC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConocerEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(ConocerC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConocerEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(ConocerC.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(ConocerEmpleado.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
         //</editor-fold>
@@ -674,9 +674,9 @@ public void cargarClientes() throws SQLException {
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 try {
-                    new ConocerC().setVisible(true);
+                    new ConocerEmpleado().setVisible(true);
                 } catch (SQLException ex) {
-                    Logger.getLogger(ConocerC.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(ConocerEmpleado.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         });

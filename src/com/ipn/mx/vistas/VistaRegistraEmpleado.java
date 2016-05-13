@@ -5,11 +5,20 @@
  */
 package com.ipn.mx.vistas;
 
+import com.ipn.mx.conexion.ConexionListas;
+import com.ipn.mx.conexion.ConocerDao;
 import com.ipn.mx.conexion.EmpleadoDao;
+import com.ipn.mx.conexion.MontoFrecuenciaDAO;
+import com.ipn.mx.conexion.OperacionDAO;
+import com.mx.ipn.clases.AESDemo;
 import com.mx.ipn.clases.MiPanel;
 import com.mx.ipn.clases.Validaciones;
 import java.awt.BorderLayout;
+import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -19,9 +28,11 @@ import javax.swing.JOptionPane;
  * @author Clemente
  */
 public class VistaRegistraEmpleado extends javax.swing.JFrame {
-
+    ConexionListas con2 = new ConexionListas();
+    Connection reg2=con2.conectar();
     int tipo=-1;
     String []TipoEmpleado= {"Administrador","Oficial de Cumplimiento","Vendedor"};
+    AESDemo d = new AESDemo();
     
     /**
      * Creates new form VistaRegistraEmpleado
@@ -328,7 +339,10 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
                 if(rfc){
              EmpleadoDao empleado=new EmpleadoDao();
             try {
+                
                 int tipo=jComboBox1.getSelectedIndex();
+                listasNegras(rfcText.getText());
+                PEP(rfcText.getText());
                 empleado.RegistroUsuarios(nombreText.getText(), Apell_PatText.getText(), Apell_MatText.getText(), rfcText.getText(), numTelText.getText(), usuarioText.getText(), contraseñaText.getText(),tipo );
             } catch (SQLException | ClassNotFoundException ex) {
                 Logger.getLogger(VistaRegistraEmpleado.class.getName()).log(Level.SEVERE, null, ex);
@@ -447,4 +461,67 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
     private javax.swing.JTextField rfcText;
     private javax.swing.JTextField usuarioText;
     // End of variables declaration//GEN-END:variables
+
+    private void listasNegras(String text) {
+       try {
+           
+            String aux="Select * from listas_negras where rfc='"+text+"' and pep_listas = 0";
+            Statement st;
+            st = reg2.createStatement();
+            ResultSet rs=st.executeQuery(aux);
+              while (rs.next()){
+                  System.out.println(rs.getString("estatus")+","+rs.getString("dependencia")+","+rs.getString("puesto"));
+                  try {
+                            OperacionDAO op = new OperacionDAO();
+                            MontoFrecuenciaDAO MFD= new MontoFrecuenciaDAO();
+                            
+                           // op.RegistroOperacion(d.encrypt("0"), "0", "0", RTC , d.encrypt(descripcion), c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario(),anticipo);                
+                        } catch (Exception e) {
+                        } 
+                  asignacionlistas("El empleado se encuentra en listas negras",2);
+                   
+                  JOptionPane.showMessageDialog(rootPane, "estatus:"+rs.getString("estatus")+", en la dependencia: "+rs.getString("dependencia")+", puesto:"+rs.getString("puesto"), "Persona Encontrada en Listas negras ", JOptionPane.WARNING_MESSAGE);
+                     }
+            } catch (SQLException ex) {
+            System.out.println(ex+ "-no existe");
+            Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
+            
+        }  
+    }
+
+    private void PEP(String text) {
+   
+             try {
+           
+            String aux="Select * from listas_negras where rfc='"+text+"' and pep_listas = 1";
+            Statement st;
+            st = reg2.createStatement();
+            ResultSet rs=st.executeQuery(aux);
+              while (rs.next()){
+                  System.out.println(rs.getString("estatus")+","+rs.getString("dependencia")+","+rs.getString("puesto"));
+                 asignacionlistas("El empleado se considera PPE",6);
+                JOptionPane.showMessageDialog(rootPane, "estatus:"+rs.getString("estatus")+", en la dependencia: "+rs.getString("dependencia")+", puesto:"+rs.getString("puesto"), "Persona Encontrada en Listas negras ", JOptionPane.WARNING_MESSAGE);
+
+              }
+                   } catch (SQLException ex) {
+            System.out.println(ex+ "-no existe");
+            Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
+            
+        
+    }
+             
 }
+
+    private void asignacionlistas(String string, int alarma) {
+       ConocerDao ac = new ConocerDao();
+       java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
+        try {
+            ac.RegistroDescripcion(0, alarma, sqlDate,string,1);
+        } catch (ClassNotFoundException | SQLException ex) {
+            Logger.getLogger(VistaRegistraEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+        }
+                
+            
+    }
+}
+
