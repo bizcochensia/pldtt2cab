@@ -122,7 +122,7 @@
                               <Component id="jLabel2" alignment="0" min="-2" max="-2" attributes="0"/>
                               <Component id="jLabel8" alignment="0" min="-2" max="-2" attributes="0"/>
                           </Group>
-                          <EmptySpace pref="402" max="32767" attributes="0"/>
+                          <EmptySpace max="32767" attributes="0"/>
                           <Group type="103" groupAlignment="0" attributes="0">
                               <Group type="102" alignment="1" attributes="0">
                                   <Component id="Si3" min="-2" max="-2" attributes="0"/>
@@ -158,18 +158,19 @@
                               </Group>
                           </Group>
                       </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jScrollPane1" min="-2" pref="741" max="-2" attributes="0"/>
-                          <EmptySpace min="0" pref="106" max="32767" attributes="0"/>
-                      </Group>
-                      <Group type="102" alignment="0" attributes="0">
-                          <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="32767" attributes="0"/>
-                          <Component id="Cancelar1" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Aceptar" min="-2" max="-2" attributes="0"/>
-                          <EmptySpace max="-2" attributes="0"/>
-                          <Component id="Cancelar" min="-2" max="-2" attributes="0"/>
+                      <Group type="102" alignment="1" attributes="0">
+                          <Group type="103" groupAlignment="1" attributes="0">
+                              <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
+                              <Group type="102" alignment="0" attributes="0">
+                                  <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="32767" attributes="0"/>
+                                  <Component id="Cancelar1" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="Aceptar" min="-2" max="-2" attributes="0"/>
+                                  <EmptySpace max="-2" attributes="0"/>
+                                  <Component id="Cancelar" min="-2" max="-2" attributes="0"/>
+                              </Group>
+                          </Group>
                           <EmptySpace min="-2" pref="55" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -211,7 +212,7 @@
                       <Component id="SID" alignment="3" min="-2" max="-2" attributes="0"/>
                       <Component id="No6" alignment="3" min="-2" max="-2" attributes="0"/>
                   </Group>
-                  <EmptySpace type="unrelated" pref="39" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" pref="58" max="32767" attributes="0"/>
                   <Component id="jLabel10" min="-2" max="-2" attributes="0"/>
                   <EmptySpace min="-2" max="-2" attributes="0"/>
                   <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
@@ -230,12 +231,12 @@
       <SubComponents>
         <Component class="javax.swing.JLabel" name="jLabel4">
           <Properties>
-            <Property name="text" type="java.lang.String" value="3) &#xbf;El cliente actua de manera sospechosa?"/>
+            <Property name="text" type="java.lang.String" value="3) &#xbf;El cliente proporcion&#xf3; la informaci&#xf3;n que se le solicita sobre su persona?"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel5">
           <Properties>
-            <Property name="text" type="java.lang.String" value="4) &#xbf;Considera usted que el cliente ha mentido?"/>
+            <Property name="text" type="java.lang.String" value="4) &#xbf;El cliente proporcion&#xf3; la informaci&#xf3;n que se le solicita sobre el origen de los recursos con que realiz&#xf3; sus pagos?"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="No6">
@@ -263,7 +264,7 @@
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel8">
           <Properties>
-            <Property name="text" type="java.lang.String" value="5) Otras consideraciones"/>
+            <Property name="text" type="java.lang.String" value="5)&#xbf;En caso de pago anticipado, por montos elevados, puede probar el origen de los recursos?"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JRadioButton" name="Si">

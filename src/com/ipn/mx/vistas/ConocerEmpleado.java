@@ -96,9 +96,6 @@ public class ConocerEmpleado extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        No6 = new javax.swing.JRadioButton();
-        SID = new javax.swing.JRadioButton();
-        jLabel8 = new javax.swing.JLabel();
         Si = new javax.swing.JRadioButton();
         No = new javax.swing.JRadioButton();
         Si1 = new javax.swing.JRadioButton();
@@ -130,28 +127,9 @@ public class ConocerEmpleado extends javax.swing.JFrame {
 
         jPanel1.setOpaque(false);
 
-        jLabel4.setText("3) ¿El cliente actua de manera sospechosa?");
+        jLabel4.setText("3) ¿El empleado renuencia injustificadamente a gozar de vacaciones?");
 
-        jLabel5.setText("4) ¿Considera usted que el cliente ha mentido?");
-
-        buttonGroup7.add(No6);
-        No6.setSelected(true);
-        No6.setText("No");
-        No6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                No6ActionPerformed(evt);
-            }
-        });
-
-        buttonGroup7.add(SID);
-        SID.setText("Si");
-        SID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SIDActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setText("5) Otras consideraciones");
+        jLabel5.setText("4) ¿El empleado recibe regalos o atenciones de clientes?");
 
         buttonGroup1.add(Si);
         Si.setText("Si");
@@ -221,9 +199,9 @@ public class ConocerEmpleado extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("1) ¿El cliente contesto de forma fehaciente? ");
+        jLabel2.setText("1) ¿El empleado a tenido variaciones abruptas en  su nivel de vida? ");
 
-        jLabel3.setText("2) ¿El cliento acepto las condiciones del contrato?");
+        jLabel3.setText("2) ¿El empleado tiene  posibilidades financieras que no se correspondan con el nivel salarial, de ingresos, patrimonial o de endeudamiento?");
 
         descrip.setColumns(20);
         descrip.setRows(5);
@@ -273,9 +251,8 @@ public class ConocerEmpleado extends javax.swing.JFrame {
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 402, Short.MAX_VALUE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 38, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(Si3)
@@ -296,15 +273,11 @@ public class ConocerEmpleado extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(Si2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(No2))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(SID)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(No6)))
+                                        .addComponent(No2)))
                                 .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 106, Short.MAX_VALUE))
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel11)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -339,12 +312,7 @@ public class ConocerEmpleado extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Si3)
                     .addComponent(No3))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(SID)
-                    .addComponent(No6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -430,7 +398,7 @@ public class ConocerEmpleado extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -463,27 +431,22 @@ public class ConocerEmpleado extends javax.swing.JFrame {
        java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
         String des=descrip.getText();
         //texto=texto.replaceAll(" ", "");
-        if(No.isSelected()&No1.isSelected()&No2.isSelected()&No3.isSelected()&No6.isSelected()){
+        if(No.isSelected()&No1.isSelected()&No2.isSelected()&No3.isSelected()){
             des = "";
             this.dispose();
         }else{
-        if(SID.isSelected()&&descrip.getText().length()==0){
-            JOptionPane.showMessageDialog(null, "Se requiere Descripcion");
-            
-        }
-        else
-        {
+        
            if(No.isSelected()){
-                des = des +"El cliente no contesto de manera fehaciente"+", ";
+                des = des +"El empleado a tenido variaciones abruptas en  su nivel de vida"+", ";
            }
            if(No1.isSelected()){
-               des = des + "El cliente no acepto las condiciones del contrato"+", ";
+               des = des + "El empleado tiene  posibilidades financieras que no se correspondan con el nivel salarial, de ingresos, patrimonial o de endeudamiento"+", ";
            }
            if(Si2.isSelected()){
-               des = des + "El cliente actua de manera Sospechosa"+", ";
+               des = des + "El empleado renuencia injustificadamente a gozar de vacaciones"+", ";
            }
            if(Si3.isSelected()){
-               des = des +"El cliente ha mentido"+", ";
+               des = des +"El empleado recibe regalos o atenciones de clientes"+", ";
            }
            System.out.println(des );
             for (int j=0;j<i;j++){
@@ -501,7 +464,7 @@ public class ConocerEmpleado extends javax.swing.JFrame {
             }
             JOptionPane.showMessageDialog(null, "La Alarma se ha enviado");
             
-        }
+        
             
         }
 
@@ -549,16 +512,6 @@ public class ConocerEmpleado extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_SiActionPerformed
-
-    private void SIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SIDActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_SIDActionPerformed
-
-    private void No6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_No6ActionPerformed
-        // TODO add your handling code here:
-      
-    }//GEN-LAST:event_No6ActionPerformed
 
     private void comboClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboClienteMouseClicked
         // TODO add your handling code here:
@@ -690,8 +643,6 @@ public void cargarClientes() throws SQLException {
     private javax.swing.JRadioButton No1;
     private javax.swing.JRadioButton No2;
     private javax.swing.JRadioButton No3;
-    private javax.swing.JRadioButton No6;
-    private javax.swing.JRadioButton SID;
     private javax.swing.JRadioButton Si;
     private javax.swing.JRadioButton Si1;
     private javax.swing.JRadioButton Si2;
@@ -715,7 +666,6 @@ public void cargarClientes() throws SQLException {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;

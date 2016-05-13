@@ -129,9 +129,9 @@ public class ConocerC extends javax.swing.JFrame {
 
         jPanel1.setOpaque(false);
 
-        jLabel4.setText("3) ¿El cliente actua de manera sospechosa?");
+        jLabel4.setText("3) ¿El cliente proporcionó la información que se le solicita sobre su persona?");
 
-        jLabel5.setText("4) ¿Considera usted que el cliente ha mentido?");
+        jLabel5.setText("4) ¿El cliente proporcionó la información que se le solicita sobre el origen de los recursos con que realizó sus pagos?");
 
         buttonGroup7.add(No6);
         No6.setSelected(true);
@@ -150,7 +150,7 @@ public class ConocerC extends javax.swing.JFrame {
             }
         });
 
-        jLabel8.setText("5) Otras consideraciones");
+        jLabel8.setText("5)¿En caso de pago anticipado, por montos elevados, puede probar el origen de los recursos?");
 
         buttonGroup1.add(Si);
         Si.setText("Si");
@@ -274,7 +274,7 @@ public class ConocerC extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addComponent(jLabel2)
                             .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 402, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(Si3)
@@ -301,17 +301,17 @@ public class ConocerC extends javax.swing.JFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(No6)))
                                 .addContainerGap())))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 741, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 106, Short.MAX_VALUE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel11)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(Cancelar1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Aceptar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(Cancelar)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel11)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(Cancelar1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Aceptar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(Cancelar)))
                         .addGap(55, 55, 55))))
         );
         jPanel1Layout.setVerticalGroup(
@@ -343,7 +343,7 @@ public class ConocerC extends javax.swing.JFrame {
                     .addComponent(jLabel8)
                     .addComponent(SID)
                     .addComponent(No6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 39, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 58, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -462,27 +462,25 @@ public class ConocerC extends javax.swing.JFrame {
        java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
         String des=descrip.getText();
         //texto=texto.replaceAll(" ", "");
-        if(No.isSelected()&No1.isSelected()&No2.isSelected()&No3.isSelected()&No6.isSelected()){
+        if(No.isSelected()&No1.isSelected()&No2.isSelected()&No3.isSelected()){
             des = "";
             this.dispose();
         }else{
-        if(SID.isSelected()&&descrip.getText().length()==0){
-            JOptionPane.showMessageDialog(null, "Se requiere Descripcion");
-            
-        }
-        else
-        {
            if(No.isSelected()){
                 des = des +"El cliente no contesto de manera fehaciente"+", ";
            }
            if(No1.isSelected()){
                des = des + "El cliente no acepto las condiciones del contrato"+", ";
            }
-           if(Si2.isSelected()){
-               des = des + "El cliente actua de manera Sospechosa"+", ";
+           if(No2.isSelected()){
+               des = des + "El cliente no proporcionó la información que se le solicitó sobre su persona, y en su caso, sobre el origen de los recursos con que realiza sus pagos"+", ";
            }
-           if(Si3.isSelected()){
-               des = des +"El cliente ha mentido"+", ";
+           
+           if(No3.isSelected()){
+               des = des +"El cliente no proporcionó la información que se le solicitó sobre el origen de los recursos con que realizó sus pagos"+", ";
+           }
+           if(No6.isSelected()){
+               des = des +"En el caso de pago anticipado, el cliente no puede probar el origen de los recursos"+", ";
            }
            System.out.println(des );
             for (int j=0;j<i;j++){
@@ -500,7 +498,7 @@ public class ConocerC extends javax.swing.JFrame {
             }
             JOptionPane.showMessageDialog(null, "La Alarma se ha enviado");
             
-        }
+     
             
         }
 
@@ -548,16 +546,6 @@ public class ConocerC extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_SiActionPerformed
-
-    private void SIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SIDActionPerformed
-        // TODO add your handling code here:
-       
-    }//GEN-LAST:event_SIDActionPerformed
-
-    private void No6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_No6ActionPerformed
-        // TODO add your handling code here:
-      
-    }//GEN-LAST:event_No6ActionPerformed
 
     private void comboClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboClienteMouseClicked
         // TODO add your handling code here:
@@ -608,6 +596,16 @@ public class ConocerC extends javax.swing.JFrame {
         jButton1.setEnabled(true);
         comboCliente.setSelectedItem(0);
     }//GEN-LAST:event_Cancelar1ActionPerformed
+
+    private void No6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_No6ActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_No6ActionPerformed
+
+    private void SIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SIDActionPerformed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_SIDActionPerformed
 public void cargarClientes() throws SQLException {
      
     Statement st;
