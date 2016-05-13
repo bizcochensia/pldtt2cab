@@ -159,6 +159,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="contrato">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Referencia de Operacion "/>
+              </Properties>
               <Events>
                 <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="contratoMouseClicked"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="contratoActionPerformed"/>
@@ -170,6 +173,9 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="operacion">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Monto total de la Venta del Inmueble"/>
+              </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="operacionActionPerformed"/>
               </Events>
@@ -309,6 +315,7 @@
                     <StringItem index="0" value="Seleccione.."/>
                   </StringArray>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Modo de transacci&#xf3;n"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="combomoneda">
@@ -318,6 +325,7 @@
                     <StringItem index="0" value="Seleccione..."/>
                   </StringArray>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="MXN (pesos Mexicanos), USD (dolares americanos)"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="combomonedaActionPerformed"/>
@@ -333,6 +341,7 @@
                     <StringItem index="0" value="Seleccione..."/>
                   </StringArray>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Modo de Transacci&#xf3;n "/>
               </Properties>
               <AuxValues>
                 <AuxValue name="JavaCodeGenerator_SerializeTo" type="java.lang.String" value="VistaOperaciones_combomonetario"/>
@@ -345,10 +354,13 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel20">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Anticipo"/>
+                <Property name="text" type="java.lang.String" value="Monto de Anticipo:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="recibeAnticipo">
+              <Properties>
+                <Property name="toolTipText" type="java.lang.String" value="Este campo debe ser llenado solo si existe un anticipo "/>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
@@ -437,6 +449,7 @@
                     <StringItem index="0" value="Seleccione..."/>
                   </StringArray>
                 </Property>
+                <Property name="toolTipText" type="java.lang.String" value="Seleccion el cliente para asociarlo a la operaci&#xf3;n"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboclienteActionPerformed"/>

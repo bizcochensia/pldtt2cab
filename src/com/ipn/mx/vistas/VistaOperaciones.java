@@ -220,6 +220,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
 
         jLabel11.setText("Número de Identificación:");
 
+        contrato.setToolTipText("Referencia de Operacion ");
         contrato.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 contratoMouseClicked(evt);
@@ -233,6 +234,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
 
         jLabel12.setText("Monto de la operación:");
 
+        operacion.setToolTipText("Monto total de la Venta del Inmueble");
         operacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 operacionActionPerformed(evt);
@@ -306,8 +308,10 @@ public class VistaOperaciones extends javax.swing.JFrame {
         jLabel16.setText("Tipo de Pago (Monetario):");
 
         combooperacion.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione.." }));
+        combooperacion.setToolTipText("Modo de transacción");
 
         combomoneda.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione..." }));
+        combomoneda.setToolTipText("MXN (pesos Mexicanos), USD (dolares americanos)");
         combomoneda.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 combomonedaActionPerformed(evt);
@@ -315,10 +319,13 @@ public class VistaOperaciones extends javax.swing.JFrame {
         });
 
         combomonetario.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione..." }));
+        combomonetario.setToolTipText("Modo de Transacción ");
 
         jLabel18.setText("Seleccione los datos  para asociarlos a la operación:");
 
-        jLabel20.setText("Anticipo");
+        jLabel20.setText("Monto de Anticipo:");
+
+        recibeAnticipo.setToolTipText("Este campo debe ser llenado solo si existe un anticipo ");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -381,6 +388,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
         jLabel1.setText("Cliente:");
 
         combocliente.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione..." }));
+        combocliente.setToolTipText("Seleccion el cliente para asociarlo a la operación");
         combocliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboclienteActionPerformed(evt);

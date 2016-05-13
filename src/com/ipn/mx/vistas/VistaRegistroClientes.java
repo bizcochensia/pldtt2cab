@@ -142,6 +142,8 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
 
         jLabel13.setText("*RFC:");
 
+        RFC.setToolTipText("El RFC debe estar escrito en mayusculas ");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -299,12 +301,18 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
 
         jLabel9.setText("*Ingreso promedio Mensual:");
 
+        telefono.setToolTipText("Debe contener 10 digitos");
+
         comboactividad.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione..." }));
         comboactividad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comboactividadActionPerformed(evt);
             }
         });
+
+        ingreso.setToolTipText("El monto debe tener 2 decimales");
+
+        calendario.setToolTipText("DD/MM/AAAA");
 
         jLabel15.setText("*Fecha Nacimiento:");
 

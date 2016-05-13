@@ -325,6 +325,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="RFC">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="El RFC debe estar escrito en mayusculas "/>
+          </Properties>
         </Component>
       </SubComponents>
     </Container>
@@ -412,6 +415,9 @@
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="telefono">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="debe tener 10 digitos"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JComboBox" name="comboactividad">
           <Properties>
@@ -420,14 +426,21 @@
                 <StringItem index="0" value="Seleccione..."/>
               </StringArray>
             </Property>
+            <Property name="toolTipText" type="java.lang.String" value="Giro de la empresa"/>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="comboactividadActionPerformed"/>
           </Events>
         </Component>
         <Component class="javax.swing.JTextField" name="ingreso">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="debe conter 2 decimales"/>
+          </Properties>
         </Component>
         <Component class="com.toedter.calendar.JDateChooser" name="calendario">
+          <Properties>
+            <Property name="toolTipText" type="java.lang.String" value="DD/MM/AAAA"/>
+          </Properties>
         </Component>
         <Component class="javax.swing.JLabel" name="jLabel15">
           <Properties>

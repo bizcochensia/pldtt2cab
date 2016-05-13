@@ -39,6 +39,8 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
      */
     public VistaRegistraEmpleado() {
         initComponents();
+        rfcText.setToolTipText("El RFC debe ser escrito con mayusculas");
+        numTelText.setToolTipText("El telefono debe tener 8 digitos");
         
         MiPanel p = new MiPanel();
         this.add( p , BorderLayout.CENTER);
@@ -155,6 +157,7 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Otros datos"));
         jPanel2.setOpaque(false);
 
+        rfcText.setToolTipText("");
         rfcText.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rfcTextActionPerformed(evt);
