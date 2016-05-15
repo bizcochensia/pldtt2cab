@@ -27,7 +27,8 @@ import javax.swing.JTextField;
 public class ConocerDao {
     static PreparedStatement st;
     int id = 1;
-    private static final String Insert = "INSERT INTO intermedia_operacion_alarma (Operacion_id, Alarma_id, fechadeteccion, Descripcion,realizaOp) VALUES (?,?,?,?,?)"; 
+    private static final String Insert = "INSERT INTO intermedia_operacion_alarma (Operacion_id, Alarma_id, fechadeteccion, Descripcion,realizaOp) VALUES (?,?,?,?,?)";
+    private static final String Insert2 = "INSERT INTO intermedia_operacion_alarma (Alarma_id, fechadeteccion, Descripcion,realizaOp,Empleado_id) VALUES (?,?,?,?,?)";
 
 
     
@@ -86,7 +87,32 @@ public class ConocerDao {
                     
         }
     }
-
    
+        public void RegistroDescripcionListas (int id_alarma, java.sql.Date fechadeteccion, String Descripcion,int realizaOp,int empleado) throws ClassNotFoundException, SQLException{
+       Conexion cn = new Conexion ();
+       Connection reg=cn.conectar();
+       
+        try{
+           
+           st = reg.prepareStatement(Insert2);
+           st.setInt (1, id_alarma);
+           st.setDate (2, fechadeteccion);
+           st.setString (3, Descripcion);
+           st.setInt (4, realizaOp);
+           st.setInt(5, empleado);
+            st.executeUpdate();
+           
+           }
+        catch(Exception ex) {
+            System.out.println(ex);
+                    
+        }
+        
+    }
+     
+        
+    
+    
+    
     
     }

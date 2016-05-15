@@ -19,8 +19,8 @@ public class MontoFrecuenciaDAO {
     static PreparedStatement st;
     
     
-        public void insertaalarma(int idoperacion,int idalarma,String fecha, String descripcion) throws ClassNotFoundException, SQLException{
-       String inserta = "insert into intermedia_operacion_alarma(Operacion_id,Alarma_id,fechadeteccion,Descripcion) values(?,?,?,?) ";
+        public void insertaalarma(int idoperacion,int idalarma,String fecha, String descripcion,int realiza) throws ClassNotFoundException, SQLException{
+       String inserta = "insert into intermedia_operacion_alarma(Operacion_id,Alarma_id,fechadeteccion,Descripcion,realizaOp) values(?,?,?,?,?) ";
        
        Conexion cn = new Conexion ();
        Connection reg=cn.conectar();
@@ -32,6 +32,7 @@ public class MontoFrecuenciaDAO {
            st.setInt (2, idalarma);
            st.setString (3, fecha);
            st.setString (4, descripcion);
+           st.setInt(5, realiza);
            st.executeUpdate();
            
            }

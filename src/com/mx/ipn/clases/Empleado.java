@@ -24,6 +24,11 @@ public class Empleado {
 
     //constructores
 
+    public Empleado() {
+    }
+    
+    
+
     public Empleado(int idEmpleado) {
         this.idEmpleado = idEmpleado;
     }
@@ -110,6 +115,14 @@ public class Empleado {
     public void setTipoempleado(int tipoempleado) {
         this.tipoempleado = tipoempleado;
     }
+    
+    
+     @Override
+    public String toString() {
+        String regreso= nombre+"  "+apellPat;
+        return regreso; //To change body of generated methods, choose Tools | Templates.
+    }
+    
     
 }
 

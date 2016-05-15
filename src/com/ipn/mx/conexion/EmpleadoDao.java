@@ -23,9 +23,10 @@ import javax.swing.JOptionPane;
  */
 public class EmpleadoDao {
     static PreparedStatement st;
+    int id;
     private static final String Insert = "INSERT INTO EMPLEADO (nombre, apellido_Pat, apellido_MAT, RFC, numero_tel, usuario, contrasena, tipo_empleado) VALUES (?,?,?,?,?,?,?,?)"; 
     
-    public void RegistroUsuarios(String nombre, String apellido_Pat, String apellido_Mat, String RFC, String numero_tel, String usuario, String contraseña, int tipo_empleado) throws ClassNotFoundException, SQLException{
+    public int RegistroUsuarios(String nombre, String apellido_Pat, String apellido_Mat, String RFC, String numero_tel, String usuario, String contraseña, int tipo_empleado) throws ClassNotFoundException, SQLException{
        Conexion cn = new Conexion ();
        Connection reg=cn.conectar();
        
@@ -41,12 +42,22 @@ public class EmpleadoDao {
            st.setString (7, contraseña);
            st.setInt (8, tipo_empleado);
            st.executeUpdate();
-          
+           
+           ResultSet rs = null;
+                String key = "SELECT LAST_INSERT_ID()";
+                st = reg.prepareCall(key);
+                rs = st.executeQuery();
+                if(rs.next()){
+                    id = Integer.parseInt(rs.getString(1));
+                    System.out.println(id + "<<=");
+                }
+        
            }
         catch(Exception ex) {
             System.out.println(ex);
             JOptionPane.showMessageDialog(null, "Empleado registrado previamente");    
         }
+    return id;
     }
     public void ActualizarEmpleado(int id,String nombre, String apellido_Pat, String apellido_Mat,String rfc, String numero_Telefono, String usuario,String contraseña) throws ClassNotFoundException, SQLException{
        String update = "UPDATE empleado SET nombre='"+nombre+"',apellido_Pat='"+apellido_Pat+"' , apellido_Mat='"+apellido_Mat+"',RFC='"+rfc+"',numero_tel='"+numero_Telefono+"',usuario='"+usuario+"',contrasena='"+contraseña+"' where id_Empleado ="+id;
@@ -97,5 +108,18 @@ public class EmpleadoDao {
         }
         return rs;
     }
+        public int Obtenerid() throws SQLException{
+        Conexion cn = new Conexion ();
+       Connection reg=cn.conectar();
+       ResultSet rs = null;
+                String key = "SELECT empleado LAST_INSERT_ID()";
+                st = reg.prepareCall(key);
+                rs = st.executeQuery();
+                if(rs.next()){
+                    id = Integer.parseInt(rs.getString(1));
+                    System.out.println(id + "<<=");
+                }
+        return id;
+        }
 
 }

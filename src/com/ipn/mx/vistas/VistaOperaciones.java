@@ -52,6 +52,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
     int poblacion=0;
     int i=0;
     int l=0;
+    
     String maximo="";
     String minimo="";
     String descripcionAlarma="";
@@ -94,6 +95,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
     String fecha;
     int auxmes;
     Cliente c=new Cliente();
+    Cliente cl=new Cliente();
     Monetario mone=new Monetario();
     TipoOperacion tp=new TipoOperacion();
     Moneda moneda=new Moneda();
@@ -204,6 +206,26 @@ public class VistaOperaciones extends javax.swing.JFrame {
         ing = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel17 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel21 = new javax.swing.JLabel();
+        ClienteVendedor = new javax.swing.JComboBox();
+        jLabel22 = new javax.swing.JLabel();
+        jPanel8 = new javax.swing.JPanel();
+        jLabel23 = new javax.swing.JLabel();
+        jLabel24 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
+        nombreVendedor = new javax.swing.JTextField();
+        apellidoPaternoVendedor = new javax.swing.JTextField();
+        apellidoMaternoVendedor = new javax.swing.JTextField();
+        jPanel9 = new javax.swing.JPanel();
+        jPanel10 = new javax.swing.JPanel();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        jLabel28 = new javax.swing.JLabel();
+        actividadVendedor = new javax.swing.JTextField();
+        ingresoVendedor = new javax.swing.JTextField();
+        SeleccionaClienteV = new javax.swing.JButton();
+        jLabel29 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -563,7 +585,189 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 .addGap(183, 183, 183))
         );
 
-        jTabbedPane1.addTab("Selección Cliente", jPanel1);
+        jTabbedPane1.addTab("Selección Cliente Comprador", jPanel1);
+
+        jPanel7.setOpaque(false);
+
+        jLabel21.setText("Cliente:");
+
+        ClienteVendedor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione..." }));
+        ClienteVendedor.setToolTipText("Seleccion el cliente para asociarlo a la operación");
+        ClienteVendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ClienteVendedorActionPerformed(evt);
+            }
+        });
+
+        jLabel22.setText("Cliente asociado a la operación");
+
+        jPanel8.setBorder(javax.swing.BorderFactory.createTitledBorder("Nombre"));
+        jPanel8.setOpaque(false);
+
+        jLabel23.setText("Nombre:");
+
+        jLabel24.setText("Apellido Paterno:");
+
+        jLabel25.setText("Apellido Materno:");
+
+        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
+        jPanel8.setLayout(jPanel8Layout);
+        jPanel8Layout.setHorizontalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addGap(39, 39, 39)
+                        .addComponent(jLabel23)
+                        .addGap(18, 18, 18)
+                        .addComponent(nombreVendedor))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel24)
+                        .addGap(18, 18, 18)
+                        .addComponent(apellidoPaternoVendedor))
+                    .addGroup(jPanel8Layout.createSequentialGroup()
+                        .addComponent(jLabel25)
+                        .addGap(18, 18, 18)
+                        .addComponent(apellidoMaternoVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 174, Short.MAX_VALUE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
+        jPanel8Layout.setVerticalGroup(
+            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel8Layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel23)
+                    .addComponent(nombreVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel24)
+                    .addComponent(apellidoPaternoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel25)
+                    .addComponent(apellidoMaternoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(21, Short.MAX_VALUE))
+        );
+
+        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
+        jPanel9.setLayout(jPanel9Layout);
+        jPanel9Layout.setHorizontalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+        jPanel9Layout.setVerticalGroup(
+            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        jPanel10.setBorder(javax.swing.BorderFactory.createTitledBorder("Dirección"));
+        jPanel10.setOpaque(false);
+
+        jLabel27.setText("Actividad:");
+
+        jLabel28.setText("Ingreso:");
+
+        ingresoVendedor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ingresoVendedorActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
+        jPanel10.setLayout(jPanel10Layout);
+        jPanel10Layout.setHorizontalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createSequentialGroup()
+                        .addComponent(jLabel26)
+                        .addGap(91, 91, 91))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel10Layout.createSequentialGroup()
+                        .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel27)
+                            .addComponent(jLabel28))
+                        .addGap(18, 18, 18)))
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(actividadVendedor)
+                    .addComponent(ingresoVendedor, javax.swing.GroupLayout.DEFAULT_SIZE, 243, Short.MAX_VALUE))
+                .addContainerGap(38, Short.MAX_VALUE))
+        );
+        jPanel10Layout.setVerticalGroup(
+            jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel10Layout.createSequentialGroup()
+                .addGap(22, 22, 22)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel27)
+                        .addComponent(actividadVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel26))
+                .addGap(21, 21, 21)
+                .addGroup(jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel28)
+                    .addComponent(ingresoVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(57, Short.MAX_VALUE))
+        );
+
+        SeleccionaClienteV.setText("Seleccionar");
+        SeleccionaClienteV.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                SeleccionaClienteVActionPerformed(evt);
+            }
+        });
+
+        jLabel29.setText("Seleccione el cliente para asociarlo a la operacion con los datos registrados previamente:");
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(30, 30, 30)
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel29)
+                            .addComponent(jLabel22)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(33, 33, 33)
+                                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jPanel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(173, 173, 173)
+                        .addComponent(jLabel21)
+                        .addGap(34, 34, 34)
+                        .addComponent(ClienteVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(SeleccionaClienteV)))
+                .addContainerGap(110, Short.MAX_VALUE))
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jLabel22)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel29)
+                .addGap(29, 29, 29)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel21)
+                            .addComponent(ClienteVendedor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(SeleccionaClienteV))
+                        .addGap(17, 17, 17)
+                        .addComponent(jPanel8, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jPanel10, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(19, 19, 19)
+                .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(183, 183, 183))
+        );
+
+        jTabbedPane1.addTab("Selección Cliente Vendedor", jPanel7);
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel7.setText("Registro de Operación");
@@ -624,147 +828,10 @@ public class VistaOperaciones extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comboclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboclienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comboclienteActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        
-        dia=aux.substring(8,10);
-            auxmes=f.getMonth();
-            auxmes=auxmes+1;
-            mes= Integer.toString(auxmes);
-            año=aux.substring(24, 28);
-            fecha=año+"-"+mes+"-"+dia;
-        
-        if(combocliente.getSelectedIndex()!=0){
-            try {
-                try {
-                    
-                    
-                    c=(Cliente) combocliente.getSelectedItem();
-                    String a=c.getRfc();
-                    int r=(int) c.getRiesgo();
-                    System.out.println(a+"<===RFC sin cifrar");
-                    System.out.println(r+"<===riesgo sin cifrar");
-                   
-                    idCliente =c.getIdCLiente();
-                    operacion (idCliente);
-                    int b=c.getIdCLiente();
-                     
-                    
-                    try {
-                        listasNegras(a,r);
-                    } catch (ClassNotFoundException ex) {
-                        Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                    String aux="Select c.nombre,c.apellido_Pat,c.apellido_Mat,c.ingreso_Promedio,ac.actividad from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad  where c.RFC='"+d.encrypt(a)+"' ";
-                    Statement st;
-                    st = reg.createStatement();
-                    ResultSet rs=st.executeQuery(aux);
-                    
-                    while(rs.next()){
-                        
-                        nombre.setText(d.decrypt(rs.getString("nombre")));
-                        ap.setText(d.decrypt(rs.getString("apellido_Pat")));
-                        am.setText(d.decrypt(rs.getString("apellido_Mat")));
-                        act.setText(rs.getString("actividad"));
-                        ingresocomparar=rs.getDouble("ingreso_Promedio");
-                        ing.setText(NumberFormat.getInstance().format(ingresocomparar));
-                    }
-                    
-                } catch (SQLException ex) {
-                    Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
-                }
-                double auxmonto1=ingresocomparar-5000;
-                double auxmonto2=ingresocomparar+5000;
-                
-                maximo= String.valueOf(auxmonto2);
-                minimo=String.valueOf(auxmonto1);
-                
-                t=MFD.obtenpoblacion(minimo, maximo);
-                
-                while(t.next()){
-                    poblacion=t.getInt("poblacion");
-                }
-                
-                t=MFD.obtenmontos(minimo,maximo);
-                double[] Montoxcomp=new double[poblacion];
-                while(t.next()){
-                    Montoxcomp[i]=t.getDouble("monto");
-                    i++;
-                }
-                
-                for (int j=0;j<Montoxcomp.length;j++){
-                    suma=suma+Montoxcomp[j];
-                }
-                
-                promedio=suma/poblacion;
-                suma=0.0;
-                
-                for(int j=0;j<Montoxcomp.length;j++){
-                    suma=suma+Math.pow(Montoxcomp[j]-promedio,2);
-                }
-                varianza=suma/poblacion;
-                
-                desviacion=Math.pow(varianza,0.5);
-                System.out.println("num de operaciones obtenidos:"+ poblacion+" promedio de:"+ promedio+"\n"+" varianza de :" +varianza+"desviacion "+desviacion);
-                //frecuencia
-                
-                t=MFD.obtenPoblacionFrecuencia(minimo, maximo);
-                while(t.next()){
-                ids=t.getInt("numeroIDS");
-                }
-                
-                int[] totalIds=new int[ids];
-                int[] dias=new int[ids];
-                
-                t=MFD.obtenIdsFrecuencia(minimo, maximo);
-                while(t.next()){
-                totalIds[z]=t.getInt("Cliente_id");
-                z++;
-                }
-                for(int u=0;u<totalIds.length;u++){
-                }
-                
-                //hasta aqui tengo los ids en una arreglo
-                
-                //recorro el arreglo y obtengo las operaciones x persona
-                for (int y=0;y<totalIds.length;y++){
-                t=MFD.operacionesxPersona(totalIds[y],"2016-01-01",fecha);
-                while(t.next()){
-                dias[y]=t.getInt("operacionxPersona");
-                sumatoria=sumatoria+t.getInt("operacionxPersona");
-                }
-                }
-                
-                promediofrecuencia=sumatoria/ids;
-                sumatoria=0.0;
-                
-                for(int j=0;j<dias.length;j++){
-                    sumatoria=sumatoria+Math.pow(dias[j]-promediofrecuencia,2);
-                }
-                varianzafrecuencia=sumatoria/ids;
-                
-                desviacionfrecuencia=Math.pow(varianzafrecuencia,0.5);
-                
-                System.out.println("num de ids obtenidos:"+ ids+" promedio de:"+ promediofrecuencia+"\n"+" varianza de :" +varianzafrecuencia+"desviacion "+desviacionfrecuencia);
-                
-            } catch (SQLException ex) {
-                Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
-            }
-        }
-        else{
-        
-        }
-        
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
@@ -793,7 +860,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                             OperacionDAO op = new OperacionDAO();
                             MontoFrecuenciaDAO MFD= new MontoFrecuenciaDAO();
                             
-                            op.RegistroOperacion(d.encrypt(numcontrato), monto, fecha, RTC , d.encrypt(descripcion), c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario(),anticipo);                
+                            op.RegistroOperacion(d.encrypt(numcontrato), monto, fecha, RTC , d.encrypt(descripcion), c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario(),anticipo,cl.getIdCLiente());                
                         } catch (Exception e) {
                         }
                     }
@@ -808,7 +875,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
              while(t.next()){
                 l=t.getInt("id_Operacion");
                 }
-             MFD.insertaalarma(l, 1, fecha,"El anticipo supero el limite de $500,000 en efectivo");
+             MFD.insertaalarma(l, 1, fecha,"El anticipo supero el limite de $500,000 en efectivo",1);
              
             }
             
@@ -849,7 +916,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                  //introduce Alarma monto o frecuencia
                  if(descripcionAlarma.equals("")){}
                  else{
-                 MFD.insertaalarma(l, 3, fecha, descripcionAlarma);}
+                 MFD.insertaalarma(l, 3, fecha, descripcionAlarma,1);}
             }
         } catch (SQLException ex) {
             Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
@@ -859,6 +926,191 @@ public class VistaOperaciones extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jButton2ActionPerformed
 
+    private void SeleccionaClienteVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionaClienteVActionPerformed
+        // TODO add your handling code here:
+
+        if(ClienteVendedor.getSelectedIndex()!=0){
+            try {
+
+                cl=(Cliente) ClienteVendedor.getSelectedItem();
+                String a=cl.getRfc();
+                int r=(int) cl.getRiesgo();
+
+                idCliente =cl.getIdCLiente();
+                operacion (idCliente);
+                int b=cl.getIdCLiente();
+
+                try {
+                    listasNegras(a,r);
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                String aux="Select c.nombre,c.apellido_Pat,c.apellido_Mat,c.ingreso_Promedio,ac.actividad from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad  where c.RFC='"+d.encrypt(a)+"' ";
+                Statement st;
+                st = reg.createStatement();
+                ResultSet rs=st.executeQuery(aux);
+
+                while(rs.next()){
+
+                    nombreVendedor.setText(d.decrypt(rs.getString("nombre")));
+                    apellidoPaternoVendedor.setText(d.decrypt(rs.getString("apellido_Pat")));
+                    apellidoMaternoVendedor.setText(d.decrypt(rs.getString("apellido_Mat")));
+                    actividadVendedor.setText(rs.getString("actividad"));
+                    ingresocomparar=rs.getDouble("ingreso_Promedio");
+                    ingresoVendedor.setText(NumberFormat.getInstance().format(ingresocomparar));
+                }
+
+            }
+            catch (SQLException ex) {
+                Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }//GEN-LAST:event_SeleccionaClienteVActionPerformed
+
+    private void ingresoVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingresoVendedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ingresoVendedorActionPerformed
+
+    private void ClienteVendedorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ClienteVendedorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ClienteVendedorActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+
+        dia=aux.substring(8,10);
+        auxmes=f.getMonth();
+        auxmes=auxmes+1;
+        mes= Integer.toString(auxmes);
+        año=aux.substring(24, 28);
+        fecha=año+"-"+mes+"-"+dia;
+
+        if(combocliente.getSelectedIndex()!=0){
+            try {
+                try {
+
+                    c=(Cliente) combocliente.getSelectedItem();
+                    String a=c.getRfc();
+                    int r=(int) c.getRiesgo();
+                    
+                    idCliente =c.getIdCLiente();
+                    operacion (idCliente);
+                    int b=c.getIdCLiente();
+
+                    try {
+                        listasNegras(a,r);
+                    } catch (ClassNotFoundException ex) {
+                        Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
+                    }
+                    String aux="Select c.nombre,c.apellido_Pat,c.apellido_Mat,c.ingreso_Promedio,ac.actividad from cliente c inner join actividades ac on c.actividad_Principal=ac.id_actividad  where c.RFC='"+d.encrypt(a)+"' ";
+                    Statement st;
+                    st = reg.createStatement();
+                    ResultSet rs=st.executeQuery(aux);
+
+                    while(rs.next()){
+
+                        nombre.setText(d.decrypt(rs.getString("nombre")));
+                        ap.setText(d.decrypt(rs.getString("apellido_Pat")));
+                        am.setText(d.decrypt(rs.getString("apellido_Mat")));
+                        act.setText(rs.getString("actividad"));
+                        ingresocomparar=rs.getDouble("ingreso_Promedio");
+                        ing.setText(NumberFormat.getInstance().format(ingresocomparar));
+                    }
+
+                } catch (SQLException ex) {
+                    Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
+                }
+                double auxmonto1=ingresocomparar-5000;
+                double auxmonto2=ingresocomparar+5000;
+
+                maximo= String.valueOf(auxmonto2);
+                minimo=String.valueOf(auxmonto1);
+
+                t=MFD.obtenpoblacion(minimo, maximo);
+
+                while(t.next()){
+                    poblacion=t.getInt("poblacion");
+                }
+
+                t=MFD.obtenmontos(minimo,maximo);
+                double[] Montoxcomp=new double[poblacion];
+                while(t.next()){
+                    Montoxcomp[i]=t.getDouble("monto");
+                    i++;
+                }
+
+                for (int j=0;j<Montoxcomp.length;j++){
+                    suma=suma+Montoxcomp[j];
+                }
+
+                promedio=suma/poblacion;
+                suma=0.0;
+
+                for(int j=0;j<Montoxcomp.length;j++){
+                    suma=suma+Math.pow(Montoxcomp[j]-promedio,2);
+                }
+                varianza=suma/poblacion;
+
+                desviacion=Math.pow(varianza,0.5);
+                System.out.println("num de operaciones obtenidos:"+ poblacion+" promedio de:"+ promedio+"\n"+" varianza de :" +varianza+"desviacion "+desviacion);
+                //frecuencia
+
+                t=MFD.obtenPoblacionFrecuencia(minimo, maximo);
+                while(t.next()){
+                    ids=t.getInt("numeroIDS");
+                }
+
+                int[] totalIds=new int[ids];
+                int[] dias=new int[ids];
+
+                t=MFD.obtenIdsFrecuencia(minimo, maximo);
+                while(t.next()){
+                    totalIds[z]=t.getInt("Cliente_id");
+                    z++;
+                }
+                for(int u=0;u<totalIds.length;u++){
+                }
+
+                //hasta aqui tengo los ids en una arreglo
+
+                //recorro el arreglo y obtengo las operaciones x persona
+                for (int y=0;y<totalIds.length;y++){
+                    t=MFD.operacionesxPersona(totalIds[y],"2016-01-01",fecha);
+                    while(t.next()){
+                        dias[y]=t.getInt("operacionxPersona");
+                        sumatoria=sumatoria+t.getInt("operacionxPersona");
+                    }
+                }
+
+                promediofrecuencia=sumatoria/ids;
+                sumatoria=0.0;
+
+                for(int j=0;j<dias.length;j++){
+                    sumatoria=sumatoria+Math.pow(dias[j]-promediofrecuencia,2);
+                }
+                varianzafrecuencia=sumatoria/ids;
+
+                desviacionfrecuencia=Math.pow(varianzafrecuencia,0.5);
+
+                System.out.println("num de ids obtenidos:"+ ids+" promedio de:"+ promediofrecuencia+"\n"+" varianza de :" +varianzafrecuencia+"desviacion "+desviacionfrecuencia);
+
+            } catch (SQLException ex) {
+                Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        else{
+
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void ingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ingActionPerformed
+
+    private void comboclienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboclienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboclienteActionPerformed
+
     private void combomonedaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_combomonedaActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_combomonedaActionPerformed
@@ -867,32 +1119,28 @@ public class VistaOperaciones extends javax.swing.JFrame {
         // TODO add your handling code here:
         /*     if(operacion.getText().equals("")){}
         else{
-        DecimalFormat formato = new DecimalFormat("#,###.00");
-        monto=Double.parseDouble(operacion.getText());
-        //formato=NumberFormat.getInstance().format(monto);
-        operacion.setText(formato.format(monto));}*/
+            DecimalFormat formato = new DecimalFormat("#,###.00");
+            monto=Double.parseDouble(operacion.getText());
+            //formato=NumberFormat.getInstance().format(monto);
+            operacion.setText(formato.format(monto));}*/
     }//GEN-LAST:event_desMouseClicked
-
-    private void contratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contratoMouseClicked
-        // TODO add your handling code here:
-        /*   if(operacion.getText().equals("")){}
-        else{
-        formato=NumberFormat.getInstance().format(Double.parseDouble(operacion.getText()));
-        if(formato.equals("")){}
-        else{operacion.setText(formato);}}*/
-    }//GEN-LAST:event_contratoMouseClicked
 
     private void operacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_operacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_operacionActionPerformed
 
-    private void ingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ingActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ingActionPerformed
-
     private void contratoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contratoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_contratoActionPerformed
+
+    private void contratoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_contratoMouseClicked
+        // TODO add your handling code here:
+        /*   if(operacion.getText().equals("")){}
+        else{
+            formato=NumberFormat.getInstance().format(Double.parseDouble(operacion.getText()));
+            if(formato.equals("")){}
+            else{operacion.setText(formato);}}*/
+    }//GEN-LAST:event_contratoMouseClicked
 
     public void cargarClientes() throws SQLException {
      Statement st;
@@ -920,6 +1168,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 act.setActividad(rs.getString(17));
                 act.setIngreso(rs.getDouble(18));
             combocliente.addItem(act);
+            ClienteVendedor.addItem(act);
      }        } catch (SQLException ex) {
             Logger.getLogger(VistaRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -1023,9 +1272,14 @@ public class VistaOperaciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox ClienteVendedor;
+    private javax.swing.JButton SeleccionaClienteV;
     private javax.swing.JTextField act;
+    private javax.swing.JTextField actividadVendedor;
     private javax.swing.JTextField am;
     private javax.swing.JTextField ap;
+    private javax.swing.JTextField apellidoMaternoVendedor;
+    private javax.swing.JTextField apellidoPaternoVendedor;
     private javax.swing.JComboBox combocliente;
     private javax.swing.JComboBox combomoneda;
     private javax.swing.JComboBox combomonetario;
@@ -1033,6 +1287,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private javax.swing.JTextField contrato;
     private javax.swing.JTextArea des;
     private javax.swing.JTextField ing;
+    private javax.swing.JTextField ingresoVendedor;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -1051,6 +1306,15 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
+    private javax.swing.JLabel jLabel21;
+    private javax.swing.JLabel jLabel22;
+    private javax.swing.JLabel jLabel23;
+    private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -1059,14 +1323,19 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
+    private javax.swing.JPanel jPanel8;
+    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField nombre;
+    private javax.swing.JTextField nombreVendedor;
     private javax.swing.JTextField operacion;
     private javax.swing.JTextField recibeAnticipo;
     // End of variables declaration//GEN-END:variables
@@ -1101,7 +1370,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 try { 
                     ValidaOp(id[j]);
                     if(valid == 0)
-                    ac.RegistroDescripcion(id[j], alarma, sqlDate,string,0);
+                    ac.RegistroDescripcion(id[j], alarma, sqlDate,string,1);
                 } catch (SQLException ex) {
                     Logger.getLogger(ConocerC.class.getName()).log(Level.SEVERE, null, ex);
                 }

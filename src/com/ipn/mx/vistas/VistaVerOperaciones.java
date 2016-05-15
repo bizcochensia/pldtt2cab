@@ -93,7 +93,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
              Statement st;
         try {
             st = reg.createStatement();
-            ResultSet rs=st.executeQuery("Select distinct id_Operacion from operaciones o inner join intermedia_operacion_alarma ioa where o.id_Operacion=ioa.Operacion_id order by fecha " );
+            ResultSet rs=st.executeQuery("Select distinct id_Operacion from operaciones o inner join intermedia_operacion_alarma ioa where o.id_Operacion=ioa.Operacion_id and ioa.realizaOp=1 order by fecha");
             while(rs.next()){
                 Operacion op=new Operacion();
                 op.setIdOperacion(rs.getInt(1));

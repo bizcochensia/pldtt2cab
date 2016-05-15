@@ -33,6 +33,7 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
     int tipo=-1;
     String []TipoEmpleado= {"Administrador","Oficial de Cumplimiento","Vendedor"};
     AESDemo d = new AESDemo();
+    int idEmpleado=0;
     
     /**
      * Creates new form VistaRegistraEmpleado
@@ -331,6 +332,7 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
         boolean ap= v.sololetras(Apell_PatText.getText());
         boolean am= v.sololetras(Apell_MatText.getText());
         boolean rfc=v.RFCfisica(rfcText.getText());
+        ConocerDao ac = new ConocerDao();
         
         
         if( jComboBox1.getSelectedIndex()==0 ||numTelText.getText().equals("") || rfcText.getText().equals("") || nombreText.getText().equals("") || Apell_MatText.getText().equals("") || Apell_PatText.getText().equals("") || contraseñaText.getText().equals("") || usuarioText.getText().equals("")){
@@ -344,15 +346,11 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
             try {
                 
                 int tipo=jComboBox1.getSelectedIndex();
+                idEmpleado=empleado.RegistroUsuarios(nombreText.getText(), Apell_PatText.getText(), Apell_MatText.getText(), rfcText.getText(), numTelText.getText(), usuarioText.getText(), contraseñaText.getText(),tipo );
+                
                 listasNegras(rfcText.getText());
                 PEP(rfcText.getText());
-                empleado.RegistroUsuarios(nombreText.getText(), Apell_PatText.getText(), Apell_MatText.getText(), rfcText.getText(), numTelText.getText(), usuarioText.getText(), contraseñaText.getText(),tipo );
-            } catch (SQLException | ClassNotFoundException ex) {
-                Logger.getLogger(VistaRegistraEmpleado.class.getName()).log(Level.SEVERE, null, ex);
-                if(ex.equals("")){//pruebas para empleados registrados anteriormente
-                }
-            }
-        JOptionPane.showMessageDialog(null, "El registro fue exitoso!");
+                        JOptionPane.showMessageDialog(null, "El registro fue exitoso!");
         nombreText.setText("");
        Apell_PatText.setText("");
        rfcText.setText("");
@@ -365,6 +363,14 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
          {
              this.dispose();
          }
+                
+                
+            } catch (SQLException | ClassNotFoundException ex) {
+                Logger.getLogger(VistaRegistraEmpleado.class.getName()).log(Level.SEVERE, null, ex);
+                if(ex.equals("")){//pruebas para empleados registrados anteriormente
+                }
+            }
+
                 } 
                 else{
             JOptionPane.showMessageDialog(null, "El RFC no tiene la estructura indicada ");
@@ -481,7 +487,7 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
                            // op.RegistroOperacion(d.encrypt("0"), "0", "0", RTC , d.encrypt(descripcion), c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario(),anticipo);                
                         } catch (Exception e) {
                         } 
-                  asignacionlistas("El empleado se encuentra en listas negras",2);
+                  asignacionlistas("El empleado se encuentra en Listas Negras",2);
                    
                   JOptionPane.showMessageDialog(rootPane, "estatus:"+rs.getString("estatus")+", en la dependencia: "+rs.getString("dependencia")+", puesto:"+rs.getString("puesto"), "Persona Encontrada en Listas negras ", JOptionPane.WARNING_MESSAGE);
                      }
@@ -519,12 +525,14 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
        ConocerDao ac = new ConocerDao();
        java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
         try {
-            ac.RegistroDescripcion(0, alarma, sqlDate,string,1);
+            ac.RegistroDescripcionListas(alarma, sqlDate,string,0,idEmpleado);
         } catch (ClassNotFoundException | SQLException ex) {
             Logger.getLogger(VistaRegistraEmpleado.class.getName()).log(Level.SEVERE, null, ex);
         }
                 
             
     }
+
+   
 }
 

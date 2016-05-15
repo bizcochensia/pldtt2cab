@@ -487,7 +487,7 @@ public class ConocerC extends javax.swing.JFrame {
                 try { 
                     ValidaOp(eva[j]);
                    if(valid == 0)
-                        ac.RegistroDescripcion(eva[j], 7, sqlDate, des+descrip.getText(),0);
+                        ac.RegistroDescripcion(eva[j], 7, sqlDate, des+descrip.getText(),1);
                     
                     
                 } catch (ClassNotFoundException ex) {

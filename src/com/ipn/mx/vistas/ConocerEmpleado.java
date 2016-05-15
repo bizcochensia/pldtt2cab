@@ -39,6 +39,7 @@ public class ConocerEmpleado extends javax.swing.JFrame {
     int i=0, b=0;
     String des = "";
     int op [] =new int [50];
+    Empleado Emp = new Empleado();
     
     /**
      * Creates new form ConocerC
@@ -449,20 +450,18 @@ public class ConocerEmpleado extends javax.swing.JFrame {
                des = des +"El empleado recibe regalos o atenciones de clientes"+", ";
            }
            System.out.println(des );
-            for (int j=0;j<i;j++){
+           
                 try { 
-                    ValidaOp(eva[j]);
-                   if(valid == 0)
-                        ac.RegistroDescripcion(eva[j], 7, sqlDate, des+descrip.getText(),0);
                     
+                        ac.RegistroDescripcionListas(7, sqlDate, des+descrip.getText(),0,Emp.getIdEmpleado());
+                        JOptionPane.showMessageDialog(null, "La Alarma se ha enviado");
                     
                 } catch (ClassNotFoundException ex) {
                     Logger.getLogger(ConocerEmpleado.class.getName()).log(Level.SEVERE, null, ex);
                 } catch (SQLException ex) {
                     Logger.getLogger(ConocerEmpleado.class.getName()).log(Level.SEVERE, null, ex);
                 }
-            }
-            JOptionPane.showMessageDialog(null, "La Alarma se ha enviado");
+            
             
         
             
@@ -522,6 +521,8 @@ public class ConocerEmpleado extends javax.swing.JFrame {
     }//GEN-LAST:event_comboClienteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        Emp= (Empleado) comboCliente.getSelectedItem();
+        System.out.println("el empleado elegido es:"+Emp);
         /*try {
         Empleado c=(Empleado) comboCliente.getSelectedItem();
         int a=c.getIdEmpleado();
@@ -566,27 +567,18 @@ public void cargarClientes() throws SQLException {
     Statement st;
         try {
             st = reg.createStatement();
-            ResultSet rs=st.executeQuery("Select * from cliente");
+            ResultSet rs=st.executeQuery("Select * from empleado");
             while(rs.next()){
-                Cliente act=new Cliente();
-                act.setIdCLiente(rs.getInt(1));
-                act.setNombre(d.decrypt(rs.getString(2)));
-                act.setApellPat(d.decrypt(rs.getString(3)));
-                act.setApellMat(d.decrypt(rs.getString(4)));
-                act.setFecha_nac(rs.getString(5));
-                act.setTipo(rs.getInt(6));
-                act.setRfc(d.decrypt(rs.getString(7)));
-                act.setCalle(d.decrypt(rs.getString(8)));
-                act.setNumero(d.decrypt(rs.getString(9)));
-                act.setPaisOrigen(rs.getInt(10));
-                act.setPaisResidencia(rs.getInt(11));
-                act.setEntidad(rs.getInt(12));
-                act.setLocalidad(rs.getInt(13));
-                act.setCodigoPostal(d.decrypt(rs.getString(14)));
-                act.setNumTel(d.decrypt(rs.getString(15)));
-                act.setRiesgo(rs.getInt(16));
-                act.setActividad(rs.getString(17));
-                act.setIngreso(rs.getDouble(18));
+                Empleado act=new Empleado();
+                act.setIdEmpleado(rs.getInt(1));
+                act.setNombre(rs.getString(2));
+                act.setApellPat(rs.getString(3));
+                act.setApellMat(rs.getString(4));
+                act.setRfc(rs.getString(5));
+                act.setNumTel(rs.getString(6));
+                act.setUsurario(rs.getString(7));
+                act.setContraseña(rs.getString(8));
+                act.setTipoempleado(rs.getInt(9));
             comboCliente.addItem(act);
      }
         } catch (SQLException ex) {
