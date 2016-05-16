@@ -442,10 +442,10 @@ public class ConocerEmpleado extends javax.swing.JFrame {
             this.dispose();
         }else{
         
-           if(No.isSelected()){
+           if(Si.isSelected()){
                 des = des +"El empleado a tenido variaciones abruptas en  su nivel de vida"+", ";
            }
-           if(No1.isSelected()){
+           if(Si1.isSelected()){
                des = des + "El empleado tiene  posibilidades financieras que no se correspondan con el nivel salarial, de ingresos, patrimonial o de endeudamiento"+", ";
            }
            if(Si2.isSelected()){
