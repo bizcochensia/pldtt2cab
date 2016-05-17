@@ -82,6 +82,9 @@
       <AccessibilityProperties>
         <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="Detalles de la operaci&#xf3;n"/>
       </AccessibilityProperties>
+      <Events>
+        <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jTabbedPane1MouseClicked"/>
+      </Events>
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout"/>
       <SubComponents>
@@ -361,6 +364,9 @@
               <Properties>
                 <Property name="toolTipText" type="java.lang.String" value="Este campo debe ser llenado solo si existe un anticipo "/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="recibeAnticipoActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

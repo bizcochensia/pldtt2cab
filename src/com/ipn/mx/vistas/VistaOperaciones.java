@@ -43,6 +43,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
    AESDemo d = new AESDemo ();
    int respuesta;
     int c1=0;
+    String MontoOperacion,MontoAnticipo;
     //calcular montos inusuales
     double promedio=0.0;
     double suma=0.0;        
@@ -238,6 +239,12 @@ public class VistaOperaciones extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
+
         jPanel2.setOpaque(false);
 
         jLabel11.setText("Número de Identificación:");
@@ -348,6 +355,11 @@ public class VistaOperaciones extends javax.swing.JFrame {
         jLabel20.setText("Monto de Anticipo:");
 
         recibeAnticipo.setToolTipText("Este campo debe ser llenado solo si existe un anticipo ");
+        recibeAnticipo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recibeAnticipoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -837,9 +849,9 @@ public class VistaOperaciones extends javax.swing.JFrame {
         try {
             // TODO add your handling code here:
             numcontrato=contrato.getText();
-            anticipo=Double.parseDouble(recibeAnticipo.getText());
+            anticipo=Double.parseDouble(MontoAnticipo);
             descripcion=des.getText();
-            boolean mo=val.Ingreso(operacion.getText());
+            boolean mo=val.Ingreso(MontoOperacion);
             boolean con=val.alfanumericos(numcontrato);
             
             moneda= (Moneda) combomoneda.getSelectedItem();
@@ -1117,12 +1129,19 @@ public class VistaOperaciones extends javax.swing.JFrame {
 
     private void desMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desMouseClicked
         // TODO add your handling code here:
-        /*     if(operacion.getText().equals("")){}
-        else{
-            DecimalFormat formato = new DecimalFormat("#,###.00");
+      
+        
+        
+             if(operacion.getText().equals("")){}
+             else{
+            MontoOperacion = operacion.getText()+".00";
+            DecimalFormat formato = new DecimalFormat("$#,###.00");
+    
             monto=Double.parseDouble(operacion.getText());
+            System.out.println(MontoOperacion+"<<<");
             //formato=NumberFormat.getInstance().format(monto);
-            operacion.setText(formato.format(monto));}*/
+            operacion.setText(formato.format(monto));}
+
     }//GEN-LAST:event_desMouseClicked
 
     private void operacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_operacionActionPerformed
@@ -1141,6 +1160,23 @@ public class VistaOperaciones extends javax.swing.JFrame {
             if(formato.equals("")){}
             else{operacion.setText(formato);}}*/
     }//GEN-LAST:event_contratoMouseClicked
+
+    private void recibeAnticipoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recibeAnticipoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_recibeAnticipoActionPerformed
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        // TODO add your handling code here:
+          if(recibeAnticipo.getText().equals("")){}
+             else{
+            MontoAnticipo = recibeAnticipo.getText()+".00";
+            DecimalFormat formato = new DecimalFormat("$#,###.00");
+    
+            monto=Double.parseDouble(recibeAnticipo.getText());
+            System.out.println(MontoAnticipo+"<<<");
+            //formato=NumberFormat.getInstance().format(monto);
+            recibeAnticipo.setText(formato.format(monto));}
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     public void cargarClientes() throws SQLException {
      Statement st;
