@@ -158,4 +158,21 @@ public class ClienteDao {
         }
     
     }
+    public void ActualizarIngreso(Double ingreso,int id) throws ClassNotFoundException, SQLException{
+       String update = "UPDATE cliente SET ingreso_Promedio='"+ingreso+"' where id_cliente ="+id;
+       Conexion cn = new Conexion ();
+       Connection reg=cn.conectar();
+       
+        try{
+           
+           st = reg.prepareStatement(update);
+           st.executeUpdate();
+           JOptionPane.showMessageDialog(null, "Actualizacion exitosa");
+           }
+        catch(SQLException ex) {
+            System.out.println(ex);
+                    
+        }
+    
+    }
     }
