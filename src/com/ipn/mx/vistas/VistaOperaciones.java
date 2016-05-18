@@ -180,6 +180,10 @@ public class VistaOperaciones extends javax.swing.JFrame {
         jLabel31 = new javax.swing.JLabel();
         numeroBien = new javax.swing.JTextField();
         CPBien = new javax.swing.JTextField();
+        jLabel32 = new javax.swing.JLabel();
+        metrosbien = new javax.swing.JTextField();
+        jLabel33 = new javax.swing.JLabel();
+        tipobien = new javax.swing.JComboBox();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -287,6 +291,12 @@ public class VistaOperaciones extends javax.swing.JFrame {
             }
         });
 
+        jLabel32.setText("Metros cuadrados");
+
+        jLabel33.setText("Tipo bien");
+
+        tipobien.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione...", "Casa", "Departamento", "Terreno" }));
+
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
@@ -303,14 +313,18 @@ public class VistaOperaciones extends javax.swing.JFrame {
                             .addComponent(jLabel12)
                             .addComponent(jLabel11)
                             .addComponent(jLabel30)
-                            .addComponent(jLabel31))
+                            .addComponent(jLabel31)
+                            .addComponent(jLabel32)
+                            .addComponent(jLabel33))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(contrato)
                             .addComponent(operacion, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
                             .addComponent(direccionBien)
                             .addComponent(numeroBien)
-                            .addComponent(CPBien))))
+                            .addComponent(CPBien)
+                            .addComponent(metrosbien)
+                            .addComponent(tipobien, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap(532, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -338,7 +352,15 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel31)
                     .addComponent(CPBien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel32)
+                    .addComponent(metrosbien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(25, 25, 25)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel33)
+                    .addComponent(tipobien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(53, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Detalles de la operación", jPanel2);
@@ -863,9 +885,13 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             // TODO add your handling code here:
+            String a="";
+            if(tipobien.getSelectedIndex()==1){a="Una casa ubicada en: ";}
+            if(tipobien.getSelectedIndex()==2){a="Un departamento ubicado en: ";}
+            if(tipobien.getSelectedIndex()==3){a="Un terreno ubicado en: ";}
             numcontrato=contrato.getText();
             anticipo=Double.parseDouble(MontoAnticipo);
-            descripcion=direccionBien.getText()+numeroBien.getText()+CPBien.getText();
+            descripcion=a+direccionBien.getText()+"numero: "+numeroBien.getText()+"CP:"+CPBien.getText()+"con:"+metrosbien.getText()+"metros cuadrados";
             boolean mo=val.Ingreso(MontoOperacion);
             boolean con=val.alfanumericos(numcontrato);
             
@@ -1357,6 +1383,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel30;
     private javax.swing.JLabel jLabel31;
+    private javax.swing.JLabel jLabel32;
+    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1374,11 +1402,13 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
     private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTextField metrosbien;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField nombreVendedor;
     private javax.swing.JTextField numeroBien;
     private javax.swing.JTextField operacion;
     private javax.swing.JTextField recibeAnticipo;
+    private javax.swing.JComboBox tipobien;
     // End of variables declaration//GEN-END:variables
 
     private void listasNegras(String RFCC, int riesgo) throws ClassNotFoundException {

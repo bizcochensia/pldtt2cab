@@ -117,6 +117,8 @@
                                   <Component id="jLabel11" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel30" alignment="1" min="-2" max="-2" attributes="0"/>
                                   <Component id="jLabel31" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel32" alignment="1" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jLabel33" alignment="1" min="-2" max="-2" attributes="0"/>
                               </Group>
                               <EmptySpace min="-2" pref="31" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="0" max="-2" attributes="0">
@@ -125,6 +127,8 @@
                                   <Component id="direccionBien" alignment="0" max="32767" attributes="0"/>
                                   <Component id="numeroBien" alignment="0" max="32767" attributes="0"/>
                                   <Component id="CPBien" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="metrosbien" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="tipobien" max="32767" attributes="0"/>
                               </Group>
                           </Group>
                       </Group>
@@ -162,7 +166,17 @@
                           <Component id="jLabel31" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="CPBien" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="147" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="29" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel32" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="metrosbien" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace min="-2" pref="25" max="-2" attributes="0"/>
+                      <Group type="103" groupAlignment="3" attributes="0">
+                          <Component id="jLabel33" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="tipobien" alignment="3" min="-2" max="-2" attributes="0"/>
+                      </Group>
+                      <EmptySpace pref="53" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -223,6 +237,30 @@
               </Events>
             </Component>
             <Component class="javax.swing.JTextField" name="CPBien">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel32">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Metros cuadrados"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JTextField" name="metrosbien">
+            </Component>
+            <Component class="javax.swing.JLabel" name="jLabel33">
+              <Properties>
+                <Property name="text" type="java.lang.String" value="Tipo bien"/>
+              </Properties>
+            </Component>
+            <Component class="javax.swing.JComboBox" name="tipobien">
+              <Properties>
+                <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
+                  <StringArray count="4">
+                    <StringItem index="0" value="Seleccione..."/>
+                    <StringItem index="1" value="Casa"/>
+                    <StringItem index="2" value="Departamento"/>
+                    <StringItem index="3" value="Terreno"/>
+                  </StringArray>
+                </Property>
+              </Properties>
             </Component>
           </SubComponents>
         </Container>
