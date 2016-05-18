@@ -176,6 +176,10 @@ public class VistaOperaciones extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
         direccionBien = new javax.swing.JTextField();
+        jLabel30 = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
+        numeroBien = new javax.swing.JTextField();
+        CPBien = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -273,7 +277,15 @@ public class VistaOperaciones extends javax.swing.JFrame {
 
         jLabel19.setText("Escriba los datos necesarios para registrar una operación");
 
-        direccionBien.setText("jTextField1");
+        jLabel30.setText("Numero");
+
+        jLabel31.setText("Codigo postal");
+
+        numeroBien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                numeroBienActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -289,12 +301,16 @@ public class VistaOperaciones extends javax.swing.JFrame {
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel13)
                             .addComponent(jLabel12)
-                            .addComponent(jLabel11))
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel30)
+                            .addComponent(jLabel31))
                         .addGap(31, 31, 31)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(contrato)
                             .addComponent(operacion, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                            .addComponent(direccionBien))))
+                            .addComponent(direccionBien)
+                            .addComponent(numeroBien)
+                            .addComponent(CPBien))))
                 .addContainerGap(532, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
@@ -314,7 +330,15 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
                     .addComponent(direccionBien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(232, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(numeroBien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel30))
+                .addGap(27, 27, 27)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel31)
+                    .addComponent(CPBien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(147, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Detalles de la operación", jPanel2);
@@ -841,7 +865,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
             // TODO add your handling code here:
             numcontrato=contrato.getText();
             anticipo=Double.parseDouble(MontoAnticipo);
-            descripcion=direccionBien.getText();
+            descripcion=direccionBien.getText()+numeroBien.getText()+CPBien.getText();
             boolean mo=val.Ingreso(MontoOperacion);
             boolean con=val.alfanumericos(numcontrato);
             
@@ -850,7 +874,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
             mone= (Monetario) combomonetario.getSelectedItem();
             
             
-            if(contrato.getText().equals("") || operacion.getText().equals("") || direccionBien.getText().equals("")){
+            if(contrato.getText().equals("") || operacion.getText().equals("") || direccionBien.getText().equals("") || numeroBien.getText().equals("") || CPBien.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "Todos los campos en detalle de la operacion son requeridos");
             }
             else{
@@ -1152,6 +1176,10 @@ public class VistaOperaciones extends javax.swing.JFrame {
             recibeAnticipo.setText(formato.format(monto));}
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
+    private void numeroBienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroBienActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_numeroBienActionPerformed
+
     public void cargarClientes() throws SQLException {
      Statement st;
         try {
@@ -1282,6 +1310,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JTextField CPBien;
     private javax.swing.JComboBox ClienteVendedor;
     private javax.swing.JButton SeleccionaClienteV;
     private javax.swing.JTextField act;
@@ -1326,6 +1355,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1345,6 +1376,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField nombreVendedor;
+    private javax.swing.JTextField numeroBien;
     private javax.swing.JTextField operacion;
     private javax.swing.JTextField recibeAnticipo;
     // End of variables declaration//GEN-END:variables
