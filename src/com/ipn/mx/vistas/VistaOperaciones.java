@@ -173,17 +173,10 @@ public class VistaOperaciones extends javax.swing.JFrame {
         contrato = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         operacion = new javax.swing.JTextField();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        direccionBien = new javax.swing.JTextField();
-        numeroBien = new javax.swing.JTextField();
-        CPBien = new javax.swing.JTextField();
-        metrosBien = new javax.swing.JTextField();
-        tipoBien = new javax.swing.JComboBox();
         jLabel13 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        des = new javax.swing.JTextArea();
+        jLabel19 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -277,19 +270,18 @@ public class VistaOperaciones extends javax.swing.JFrame {
             }
         });
 
+        jLabel13.setText("Descripción del Bien: ");
+
+        des.setColumns(20);
+        des.setRows(5);
+        des.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                desMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(des);
+
         jLabel19.setText("Escriba los datos necesarios para registrar una operación");
-
-        jLabel30.setText("Direccion del bien");
-
-        jLabel31.setText("Número");
-
-        jLabel32.setText("Codigo postal");
-
-        jLabel33.setText("Metros cuadrados");
-
-        tipoBien.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione...", "Casa", "Departamento", "Terreno" }));
-
-        jLabel13.setText("Tipo de bien");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -303,23 +295,16 @@ public class VistaOperaciones extends javax.swing.JFrame {
                     .addGroup(jPanel2Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jLabel13)
                             .addComponent(jLabel12)
-                            .addComponent(jLabel11)
-                            .addComponent(jLabel30)
-                            .addComponent(jLabel31)
-                            .addComponent(jLabel32)
-                            .addComponent(jLabel33)
-                            .addComponent(jLabel13))
+                            .addComponent(jLabel11))
                         .addGap(31, 31, 31)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(tipoBien, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(contrato)
-                            .addComponent(operacion, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
-                            .addComponent(direccionBien)
-                            .addComponent(numeroBien)
-                            .addComponent(CPBien)
-                            .addComponent(metrosBien))))
-                .addContainerGap(532, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(contrato)
+                                .addComponent(operacion, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(180, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -334,27 +319,11 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(operacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(25, 25, 25)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel30)
-                    .addComponent(direccionBien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel31)
-                    .addComponent(numeroBien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel32)
-                    .addComponent(CPBien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel33)
-                    .addComponent(metrosBien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(30, 30, 30)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(tipoBien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel13))
-                .addContainerGap(69, Short.MAX_VALUE))
+                .addGap(29, 29, 29)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel13)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(102, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Detalles de la operación", jPanel2);
@@ -879,13 +848,9 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         try {
             // TODO add your handling code here:
-            String a="";
-            if(tipoBien.getSelectedIndex()==1){a="Una Casa ubicada en:";}
-            if(tipoBien.getSelectedIndex()==2){a="Un departamento ubicado en:";}
-            if(tipoBien.getSelectedIndex()==3){a="Un terreno ubicado en:";}
             numcontrato=contrato.getText();
             anticipo=Double.parseDouble(MontoAnticipo);
-            descripcion=a+direccionBien.getText()+" "+numeroBien.getText()+"CP: " +CPBien.getText()+" con :"+metrosBien.getText()+"metros cuadrados";
+            descripcion=des.getText();
             boolean mo=val.Ingreso(MontoOperacion);
             boolean con=val.alfanumericos(numcontrato);
             
@@ -894,7 +859,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
             mone= (Monetario) combomonetario.getSelectedItem();
             
             
-            if(contrato.getText().equals("") || operacion.getText().equals("") || direccionBien.getText().equals("") || numeroBien.getText().equals("") || CPBien.getText().equals("") || metrosBien.getText().equals("")){
+            if(contrato.getText().equals("") || operacion.getText().equals("") || des.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "Todos los campos en detalle de la operacion son requeridos");
             }
             else{
@@ -1162,6 +1127,23 @@ public class VistaOperaciones extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combomonedaActionPerformed
 
+    private void desMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desMouseClicked
+        // TODO add your handling code here:
+      
+        
+        
+             if(operacion.getText().equals("")){}
+             else{
+            MontoOperacion = operacion.getText()+".00";
+            DecimalFormat formato = new DecimalFormat("$#,###.00");
+    
+            monto=Double.parseDouble(operacion.getText());
+            System.out.println(MontoOperacion+"<<<");
+            //formato=NumberFormat.getInstance().format(monto);
+            operacion.setText(formato.format(monto));}
+
+    }//GEN-LAST:event_desMouseClicked
+
     private void operacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_operacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_operacionActionPerformed
@@ -1326,7 +1308,6 @@ public class VistaOperaciones extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JTextField CPBien;
     private javax.swing.JComboBox ClienteVendedor;
     private javax.swing.JButton SeleccionaClienteV;
     private javax.swing.JTextField act;
@@ -1340,7 +1321,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private javax.swing.JComboBox combomonetario;
     private javax.swing.JComboBox combooperacion;
     private javax.swing.JTextField contrato;
-    private javax.swing.JTextField direccionBien;
+    private javax.swing.JTextArea des;
     private javax.swing.JTextField ing;
     private javax.swing.JTextField ingresoVendedor;
     private javax.swing.JButton jButton1;
@@ -1371,10 +1352,6 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1391,14 +1368,12 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTextField metrosBien;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField nombreVendedor;
-    private javax.swing.JTextField numeroBien;
     private javax.swing.JTextField operacion;
     private javax.swing.JTextField recibeAnticipo;
-    private javax.swing.JComboBox tipoBien;
     // End of variables declaration//GEN-END:variables
 
     private void listasNegras(String RFCC, int riesgo) throws ClassNotFoundException {
