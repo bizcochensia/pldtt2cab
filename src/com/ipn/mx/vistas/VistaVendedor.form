@@ -147,10 +147,13 @@
               <Group type="102" alignment="0" attributes="0">
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="ClienteFisico" alignment="0" pref="257" max="32767" attributes="0"/>
-                      <Component id="ClienteMoral" alignment="0" max="32767" attributes="0"/>
-                      <Component id="Modificar" alignment="0" max="32767" attributes="0"/>
-                      <Component id="VerCliente" alignment="0" max="32767" attributes="0"/>
+                      <Component id="Operación2" pref="257" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                          <Component id="ClienteFisico" alignment="0" pref="257" max="32767" attributes="0"/>
+                          <Component id="ClienteMoral" alignment="0" max="32767" attributes="0"/>
+                          <Component id="Modificar" alignment="0" max="32767" attributes="0"/>
+                          <Component id="VerCliente" alignment="0" max="32767" attributes="0"/>
+                      </Group>
                   </Group>
                   <EmptySpace pref="62" max="32767" attributes="0"/>
               </Group>
@@ -167,7 +170,9 @@
                   <Component id="Modificar" min="-2" max="-2" attributes="0"/>
                   <EmptySpace type="unrelated" max="-2" attributes="0"/>
                   <Component id="VerCliente" min="-2" max="-2" attributes="0"/>
-                  <EmptySpace pref="110" max="32767" attributes="0"/>
+                  <EmptySpace type="unrelated" max="-2" attributes="0"/>
+                  <Component id="Operación2" min="-2" max="-2" attributes="0"/>
+                  <EmptySpace pref="50" max="32767" attributes="0"/>
               </Group>
           </Group>
         </DimensionLayout>
@@ -215,6 +220,18 @@
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="VerClienteActionPerformed"/>
+          </Events>
+        </Component>
+        <Component class="javax.swing.JButton" name="Operaci&#xf3;n2">
+          <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/ipn/mx/imagenes/botonDocumento.png"/>
+            </Property>
+            <Property name="text" type="java.lang.String" value="Estudio Socioecon&#xf3;mico"/>
+            <Property name="toolTipText" type="java.lang.String" value=""/>
+          </Properties>
+          <Events>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="Operaci&#xf3;n2ActionPerformed"/>
           </Events>
         </Component>
       </SubComponents>

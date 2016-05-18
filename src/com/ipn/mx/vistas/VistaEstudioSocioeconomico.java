@@ -21,6 +21,8 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import javax.swing.text.DefaultFormatterFactory;
+import javax.swing.text.NumberFormatter;
 
 /**
  *
@@ -35,12 +37,24 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
     int mes;
     int respuesta;
     int a;
+    double ttingreso = 0, ttegreso = 0;
+    Object total;
+    
+    
     
     /**
      * Creates new form VistaRegistroClienteMoral
      */
     public VistaEstudioSocioeconomico() throws SQLException {
         initComponents();
+        jButton1.setEnabled(false);
+        totalingreso.setEnabled(false);
+        totalegresos.setEnabled(false);
+        tegreso.setEnabled(false);
+        tingreso.setEnabled(false);
+        remanencia.setEnabled(false);
+        jButton3.setEnabled(false);
+        
         JPasswordField pwd = new JPasswordField(10);
          JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
          
@@ -67,6 +81,38 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
        setSize(1000, 800);                  // Setting dimensions...
         setTitle("SisPLD");
         setResizable(false);
+   NumberFormatter defaultFormatter = new NumberFormatter(new DecimalFormat("#.##"));
+   NumberFormatter displayFormatter = new NumberFormatter(new DecimalFormat("$ #,###.00"));
+   NumberFormatter editFormatter = new NumberFormatter(new DecimalFormat("#.##")); 
+// set their value classes
+   defaultFormatter.setValueClass(Double.class);
+   displayFormatter.setValueClass(Double.class);
+   editFormatter.setValueClass(Double.class);   
+// create and set the DefaultFormatterFactory
+   DefaultFormatterFactory salaryFactory = 
+       new DefaultFormatterFactory(defaultFormatter,displayFormatter,editFormatter);
+   jefe.setFormatterFactory(salaryFactory);
+   conyuge.setFormatterFactory(salaryFactory);
+   otro.setFormatterFactory(salaryFactory);
+   totalingreso.setFormatterFactory(salaryFactory);
+   alimento.setFormatterFactory(salaryFactory);
+   agua.setFormatterFactory(salaryFactory);
+   electricidad.setFormatterFactory(salaryFactory);
+   combustible.setFormatterFactory(salaryFactory);
+   telefono.setFormatterFactory(salaryFactory);
+   gas.setFormatterFactory(salaryFactory);
+   renta.setFormatterFactory(salaryFactory);
+   educacion.setFormatterFactory(salaryFactory);
+   transporte.setFormatterFactory(salaryFactory);
+   otrosgastos.setFormatterFactory(salaryFactory);
+   totalegresos.setFormatterFactory(salaryFactory);
+   tegreso.setFormatterFactory(salaryFactory);
+   tingreso.setFormatterFactory(salaryFactory);
+   remanencia.setFormatterFactory(salaryFactory);
+   
+   
+   
+   
     }
 
     /**
@@ -109,7 +155,7 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
         educacion = new javax.swing.JFormattedTextField();
         transporte = new javax.swing.JFormattedTextField();
         otrosgastos = new javax.swing.JFormattedTextField();
-        otrosgastos1 = new javax.swing.JFormattedTextField();
+        totalegresos = new javax.swing.JFormattedTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
         jLabel19 = new javax.swing.JLabel();
@@ -124,6 +170,7 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         comboCliente = new javax.swing.JComboBox();
         jButton4 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -224,26 +271,36 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
         jLabel32.setText("Total: ");
 
         alimento.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        alimento.setValue(0.00);
 
         agua.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        agua.setValue(0.00);
 
         electricidad.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        electricidad.setValue(0.00);
 
         combustible.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        combustible.setValue(0.00);
 
         telefono.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        telefono.setValue(0.00);
 
         gas.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        gas.setValue(0.00);
 
         renta.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        renta.setValue(0.00);
 
         educacion.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        educacion.setValue(0.00);
 
         transporte.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        transporte.setValue(0.00);
 
         otrosgastos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        otrosgastos.setValue(0.00);
 
-        otrosgastos1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        totalegresos.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -279,13 +336,13 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
                     .addComponent(electricidad, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(agua, javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(alimento, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(otrosgastos1))
+                    .addComponent(totalegresos))
                 .addContainerGap(20, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(32, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel22)
                     .addComponent(alimento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -328,7 +385,7 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel32)
-                    .addComponent(otrosgastos1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(totalegresos, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Ingresos Mensuales ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -342,18 +399,42 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
 
         jLabel21.setText("Total: ");
 
-        try {
-            jefe.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("$###,###.00")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
+        jefe.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
         jefe.setToolTipText("");
+        jefe.setValue(0.00);
+        jefe.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jefeKeyReleased(evt);
+            }
+        });
 
         conyuge.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        conyuge.setValue(0.00);
+        conyuge.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                conyugeKeyReleased(evt);
+            }
+        });
 
         otro.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        otro.setValue(0.00);
+        otro.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                otroKeyReleased(evt);
+            }
+        });
 
         totalingreso.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(java.text.NumberFormat.getCurrencyInstance())));
+        totalingreso.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                totalingresoActionPerformed(evt);
+            }
+        });
+        totalingreso.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                totalingresoKeyReleased(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -383,9 +464,9 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
                     .addComponent(jLabel18)
                     .addComponent(jefe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel19)
-                    .addComponent(conyuge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(conyuge, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel19))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel20)
@@ -453,6 +534,15 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
                 .addContainerGap())
         );
 
+        jButton3.setBackground(new java.awt.Color(0, 153, 51));
+        jButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jButton3.setText("Calcular");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -460,7 +550,7 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(132, 132, 132)
+                        .addGap(80, 80, 80)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(146, 146, 146)
@@ -468,11 +558,13 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
                             .addComponent(jLabel16)
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(layout.createSequentialGroup()
-                                        .addGap(10, 10, 10)
-                                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addGap(29, 29, 29)
+                                        .addGap(136, 136, 136)
+                                        .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 125, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(37, 37, 37)
                                 .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addContainerGap()
@@ -492,14 +584,17 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jButton2)
+                            .addComponent(jButton1)))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton2)
-                    .addComponent(jButton1))
+                        .addComponent(jButton3)
+                        .addGap(9, 9, 9)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(69, 69, 69))
         );
 
@@ -510,7 +605,7 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
         // TODO add your handling code here:
         Validaciones v=new Validaciones();
                                                 ClienteDao cliente=new ClienteDao(); 
-                                        double aux= Double.parseDouble(remanencia.getText());
+                                        double aux= (double)remanencia.getValue();
                                     try {
                                         cliente.ActualizarIngreso(aux, a);
                                     } catch (ClassNotFoundException ex) {
@@ -518,13 +613,18 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
                                     } catch (SQLException ex) {
                                         Logger.getLogger(VistaEstudioSocioeconomico.class.getName()).log(Level.SEVERE, null, ex);
                                     }
-                                        JOptionPane.showMessageDialog(null, "El registro fue exitoso!");
                                          if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realizar otro registro?",
                                             "Registro nuevo", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION)
                                      {
                                          this.dispose();
                                      }else{
-                                        
+                                                VistaEstudioSocioeconomico ve;
+                                            try {
+                                                ve = new VistaEstudioSocioeconomico();
+                                                ve.setVisible(true);
+                                            } catch (SQLException ex) {
+                                                Logger.getLogger(VistaVendedor.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
                                          }
                                                 
                                       
@@ -550,10 +650,66 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
             a=c.getIdCLiente();
             System.out.println(a+"id <==== conocer");
             jButton4.setEnabled(false);
+            jButton3.setEnabled(true);
 
         
         
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void totalingresoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_totalingresoActionPerformed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_totalingresoActionPerformed
+
+    private void totalingresoKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_totalingresoKeyReleased
+        // TODO add your handling code here:
+       
+    }//GEN-LAST:event_totalingresoKeyReleased
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        double jef= (double) jefe.getValue();
+        double coni =(double)conyuge.getValue();
+        double otr =(double) otro.getValue();
+        totalingreso.setValue(new Double(jef+coni+otr));
+        tingreso.setValue(new Double(jef+coni+otr));
+       
+        double al = (double)alimento.getValue();
+        double ag = (double)agua.getValue();
+        double el = (double)electricidad.getValue();
+        double com =(double)combustible.getValue();
+        double tel =(double)telefono.getValue();
+        double ga = (double)gas.getValue();
+        double ren = (double)renta.getValue();
+        double edu = (double)educacion.getValue();
+        double trans = (double)transporte.getValue();
+        double og = (double)otrosgastos.getValue();
+        totalegresos.setValue(new Double(al+ag+el+com+tel+ga+ren+edu+trans+og));
+        tegreso.setValue(new Double(al+ag+el+com+tel+ga+ren+edu+trans+og));
+        
+        
+        remanencia.setValue(new Double((double)tingreso.getValue()-(double)tegreso.getValue()));
+        
+        
+        
+        
+        jButton1.setEnabled(true);
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jefeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jefeKeyReleased
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_jefeKeyReleased
+
+    private void conyugeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_conyugeKeyReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_conyugeKeyReleased
+
+    private void otroKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_otroKeyReleased
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_otroKeyReleased
 
     public void cargarClientes() throws SQLException {
      
@@ -639,6 +795,7 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField gas;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel16;
@@ -667,12 +824,12 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
     private javax.swing.JFormattedTextField jefe;
     private javax.swing.JFormattedTextField otro;
     private javax.swing.JFormattedTextField otrosgastos;
-    private javax.swing.JFormattedTextField otrosgastos1;
     private javax.swing.JFormattedTextField remanencia;
     private javax.swing.JFormattedTextField renta;
     private javax.swing.JFormattedTextField tegreso;
     private javax.swing.JFormattedTextField telefono;
     private javax.swing.JFormattedTextField tingreso;
+    private javax.swing.JFormattedTextField totalegresos;
     private javax.swing.JFormattedTextField totalingreso;
     private javax.swing.JFormattedTextField transporte;
     // End of variables declaration//GEN-END:variables

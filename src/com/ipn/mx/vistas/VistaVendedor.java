@@ -56,6 +56,7 @@ public class VistaVendedor extends javax.swing.JFrame {
         ClienteFisico = new javax.swing.JButton();
         Modificar = new javax.swing.JButton();
         VerCliente = new javax.swing.JButton();
+        Operación2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         Operación = new javax.swing.JButton();
         Operación1 = new javax.swing.JButton();
@@ -124,6 +125,15 @@ public class VistaVendedor extends javax.swing.JFrame {
             }
         });
 
+        Operación2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ipn/mx/imagenes/botonDocumento.png"))); // NOI18N
+        Operación2.setText("Estudio Socioeconómico");
+        Operación2.setToolTipText("");
+        Operación2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                Operación2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -131,10 +141,12 @@ public class VistaVendedor extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(ClienteFisico, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
-                    .addComponent(ClienteMoral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(Modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(VerCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(Operación2, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(ClienteFisico, javax.swing.GroupLayout.DEFAULT_SIZE, 257, Short.MAX_VALUE)
+                        .addComponent(ClienteMoral, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(Modificar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(VerCliente, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addContainerGap(62, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -148,7 +160,9 @@ public class VistaVendedor extends javax.swing.JFrame {
                 .addComponent(Modificar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(VerCliente)
-                .addContainerGap(110, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(Operación2)
+                .addContainerGap(50, Short.MAX_VALUE))
         );
 
         jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder("Operaciones"));
@@ -381,6 +395,17 @@ public class VistaVendedor extends javax.swing.JFrame {
         
     }//GEN-LAST:event_VerOperacionActionPerformed
 
+    private void Operación2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Operación2ActionPerformed
+        // TODO add your handling code here:
+        VistaEstudioSocioeconomico ve;
+        try {
+            ve = new VistaEstudioSocioeconomico();
+            ve.setVisible(true);
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaVendedor.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_Operación2ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -423,6 +448,7 @@ public class VistaVendedor extends javax.swing.JFrame {
     private javax.swing.JButton Modificar;
     private javax.swing.JButton Operación;
     private javax.swing.JButton Operación1;
+    private javax.swing.JButton Operación2;
     private javax.swing.JButton VerCliente;
     private javax.swing.JButton VerOperacion;
     private javax.swing.JButton jButton7;
