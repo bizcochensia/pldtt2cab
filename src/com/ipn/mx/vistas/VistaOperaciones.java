@@ -174,9 +174,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         operacion = new javax.swing.JTextField();
         jLabel13 = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        des = new javax.swing.JTextArea();
         jLabel19 = new javax.swing.JLabel();
+        direccionBien = new javax.swing.JTextField();
         jPanel3 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
@@ -270,18 +269,11 @@ public class VistaOperaciones extends javax.swing.JFrame {
             }
         });
 
-        jLabel13.setText("Descripción del Bien: ");
-
-        des.setColumns(20);
-        des.setRows(5);
-        des.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                desMouseClicked(evt);
-            }
-        });
-        jScrollPane1.setViewportView(des);
+        jLabel13.setText("Direccion del Bien");
 
         jLabel19.setText("Escriba los datos necesarios para registrar una operación");
+
+        direccionBien.setText("jTextField1");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -299,12 +291,11 @@ public class VistaOperaciones extends javax.swing.JFrame {
                             .addComponent(jLabel12)
                             .addComponent(jLabel11))
                         .addGap(31, 31, 31)
-                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(contrato)
-                                .addComponent(operacion, javax.swing.GroupLayout.PREFERRED_SIZE, 171, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 523, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                .addContainerGap(180, Short.MAX_VALUE))
+                        .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(contrato)
+                            .addComponent(operacion, javax.swing.GroupLayout.DEFAULT_SIZE, 171, Short.MAX_VALUE)
+                            .addComponent(direccionBien))))
+                .addContainerGap(532, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,11 +310,11 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel12)
                     .addComponent(operacion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(29, 29, 29)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGap(26, 26, 26)
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel13)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 147, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(102, Short.MAX_VALUE))
+                    .addComponent(direccionBien, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(232, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Detalles de la operación", jPanel2);
@@ -850,7 +841,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
             // TODO add your handling code here:
             numcontrato=contrato.getText();
             anticipo=Double.parseDouble(MontoAnticipo);
-            descripcion=des.getText();
+            descripcion=direccionBien.getText();
             boolean mo=val.Ingreso(MontoOperacion);
             boolean con=val.alfanumericos(numcontrato);
             
@@ -859,7 +850,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
             mone= (Monetario) combomonetario.getSelectedItem();
             
             
-            if(contrato.getText().equals("") || operacion.getText().equals("") || des.getText().equals("")){
+            if(contrato.getText().equals("") || operacion.getText().equals("") || direccionBien.getText().equals("")){
                 JOptionPane.showMessageDialog(null, "Todos los campos en detalle de la operacion son requeridos");
             }
             else{
@@ -1127,23 +1118,6 @@ public class VistaOperaciones extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_combomonedaActionPerformed
 
-    private void desMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_desMouseClicked
-        // TODO add your handling code here:
-      
-        
-        
-             if(operacion.getText().equals("")){}
-             else{
-            MontoOperacion = operacion.getText()+".00";
-            DecimalFormat formato = new DecimalFormat("$#,###.00");
-    
-            monto=Double.parseDouble(operacion.getText());
-            System.out.println(MontoOperacion+"<<<");
-            //formato=NumberFormat.getInstance().format(monto);
-            operacion.setText(formato.format(monto));}
-
-    }//GEN-LAST:event_desMouseClicked
-
     private void operacionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_operacionActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_operacionActionPerformed
@@ -1321,7 +1295,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private javax.swing.JComboBox combomonetario;
     private javax.swing.JComboBox combooperacion;
     private javax.swing.JTextField contrato;
-    private javax.swing.JTextArea des;
+    private javax.swing.JTextField direccionBien;
     private javax.swing.JTextField ing;
     private javax.swing.JTextField ingresoVendedor;
     private javax.swing.JButton jButton1;
@@ -1368,7 +1342,6 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTextField nombre;
     private javax.swing.JTextField nombreVendedor;
