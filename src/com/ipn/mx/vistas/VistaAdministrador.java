@@ -349,6 +349,7 @@ public class VistaAdministrador extends javax.swing.JFrame {
             }
         });
 
+        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ipn/mx/imagenes/alarma.png"))); // NOI18N
         jButton6.setText("Internas Preocupantes");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

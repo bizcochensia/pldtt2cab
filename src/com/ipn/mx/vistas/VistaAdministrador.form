@@ -536,6 +536,9 @@
         </Component>
         <Component class="javax.swing.JButton" name="jButton6">
           <Properties>
+            <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
+              <Image iconType="3" name="/com/ipn/mx/imagenes/alarma.png"/>
+            </Property>
             <Property name="text" type="java.lang.String" value="Internas Preocupantes"/>
           </Properties>
           <Events>
