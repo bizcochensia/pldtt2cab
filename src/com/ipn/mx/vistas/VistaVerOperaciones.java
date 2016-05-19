@@ -46,22 +46,32 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
      * Creates new form VistaVerOperaciones
      */
     public VistaVerOperaciones() throws SQLException {
-        initComponents();
         JPasswordField pwd = new JPasswordField(10);
-         JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+         respuesta = JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
    
-               if(respuesta==JOptionPane.OK_OPTION){
-            if("".equals(new String(pwd.getPassword()))){
+               if(respuesta==JOptionPane.CANCEL_OPTION){
+            this.setVisible(false);
+        }
+        else{
+                   
+              if("".equals(new String(pwd.getPassword()))){
             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
             }
             else{
         d.addKey(new String(pwd.getPassword()));
+        initComponents();
+                   MiPanel p = new MiPanel();
+        this.add( p , BorderLayout.CENTER);
+        p.repaint();
+        setLayout(null);
+        setLocationRelativeTo(null);        // Centering on screen...
+        setSize(900, 700);               // Setting dimensions...
+        setTitle("SisPLD");
+        setResizable(false);
+        
             }
-        }
-        else{
-        JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-        this.setVisible(false);
+        
         }
         
         cargardatos();
@@ -79,14 +89,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
        
          ///
         
-         MiPanel p = new MiPanel(); 
-      this.add( p , BorderLayout.CENTER); 
-       p.repaint(); 
-         setLayout(null);
-        setLocationRelativeTo(null);        // Centering on screen...
-       setSize(900, 700);                  // Setting dimensions...
-        setTitle("SisPLD");
-        setResizable(false);
+         
     }
 
         public void cargardatos() {

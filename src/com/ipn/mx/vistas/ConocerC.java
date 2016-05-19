@@ -43,8 +43,24 @@ public class ConocerC extends javax.swing.JFrame {
      * Creates new form ConocerC
      */
     public ConocerC() throws SQLException {
+        
+   
+        JPasswordField pwd = new JPasswordField(10);
+         respuesta = JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+   
+               if(respuesta==JOptionPane.CANCEL_OPTION){
+            this.setVisible(false);
+        }
+        else{
+                   
+              if("".equals(new String(pwd.getPassword()))){
+            JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+            JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+            }
+            else{
+        d.addKey(new String(pwd.getPassword()));
         initComponents();
-        MiPanel p = new MiPanel();
+                   MiPanel p = new MiPanel();
         this.add( p , BorderLayout.CENTER);
         p.repaint();
         setLayout(null);
@@ -52,24 +68,14 @@ public class ConocerC extends javax.swing.JFrame {
         setSize(900, 700);               // Setting dimensions...
         setTitle("SisPLD");
         setResizable(false);
-     
-        JPasswordField pwd = new JPasswordField(10);
-         JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-   
-               if(respuesta==JOptionPane.OK_OPTION){
-            if("".equals(new String(pwd.getPassword()))){
-            JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-            JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+        
             }
-            else{
-        d.addKey(new String(pwd.getPassword()));
-            }
+        
         }
-        else{
-        JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-        this.setVisible(false);
-        }
-        cargarClientes();
+               
+        
+     cargarClientes();
+        
                 
     }
 

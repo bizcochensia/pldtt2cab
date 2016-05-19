@@ -47,26 +47,37 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
     String aux;
     int mes;
     int riesgo;
+    int respuesta;
     /**
      * Creates new form VistaRegistroClientes
      */
     public VistaRegistroClientes() throws SQLException, Exception {
-        initComponents();
         JPasswordField pwd = new JPasswordField(10);
-        int respuesta=JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+         respuesta = JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
    
-        if(respuesta==JOptionPane.OK_OPTION){
-            if("".equals(new String(pwd.getPassword()))){
+               if(respuesta==JOptionPane.CANCEL_OPTION){
+            this.setVisible(false);
+        }
+        else{
+                   
+              if("".equals(new String(pwd.getPassword()))){
             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
             }
             else{
         d.addKey(new String(pwd.getPassword()));
+        initComponents();
+                   MiPanel p = new MiPanel();
+        this.add( p , BorderLayout.CENTER);
+        p.repaint();
+        setLayout(null);
+        setLocationRelativeTo(null);        // Centering on screen...
+        setSize(900, 700);               // Setting dimensions...
+        setTitle("SisPLD");
+        setResizable(false);
+        
             }
-        }
-        else{
-        JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-        this.setVisible(false);
+        
         }
         cargaractividades();
         cargarpais();
@@ -75,14 +86,7 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
         
        Calendar c2 = new GregorianCalendar();
         calendario.setCalendar(c2);
-         MiPanel p = new MiPanel(); 
-      this.add( p , BorderLayout.CENTER); 
-       p.repaint(); 
-         setLayout(null);
-        setLocationRelativeTo(null);        // Centering on screen...
-       setSize(900, 700);                  // Setting dimensions...
-        setTitle("SisPLD");
-        setResizable(false);
+         
     }
     /**
      * This method is called from within the constructor to initialize the form.

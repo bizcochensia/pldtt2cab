@@ -38,32 +38,33 @@ AESDemo d = new AESDemo();
      * @throws java.sql.SQLException
      */
     public Interfaz() throws SQLException {
-        initComponents();
-         MiPanel p = new MiPanel(); 
-      this.add( p , BorderLayout.CENTER); 
-       p.repaint(); 
-         setLayout(null);
-        setLocationRelativeTo(null);        // Centering on screen...
-       setSize(900, 700);                  // Setting dimensions...
-        setTitle("SisPLD");
-        setResizable(false);
-        int cancelar;
         JPasswordField pwd = new JPasswordField(10);
-         JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-          if(respuesta==JOptionPane.OK_OPTION){
-            if("".equals(new String(pwd.getPassword()))){
+         respuesta = JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+   
+               if(respuesta==JOptionPane.CANCEL_OPTION){
+            this.setVisible(false);
+        }
+        else{
+                   
+              if("".equals(new String(pwd.getPassword()))){
             JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
             JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
             }
             else{
         d.addKey(new String(pwd.getPassword()));
-            }
-        }
-        else{
-        JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-        this.setVisible(false);
-        }
+        initComponents();
+                   MiPanel p = new MiPanel();
+        this.add( p , BorderLayout.CENTER);
+        p.repaint();
+        setLayout(null);
+        setLocationRelativeTo(null);        // Centering on screen...
+        setSize(900, 700);               // Setting dimensions...
+        setTitle("SisPLD");
+        setResizable(false);
         
+            }
+        
+        }
     
         
         actualizarTabla();

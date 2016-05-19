@@ -46,7 +46,33 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
      * Creates new form VistaRegistroClienteMoral
      */
     public VistaEstudioSocioeconomico() throws SQLException {
+        JPasswordField pwd = new JPasswordField(10);
+         respuesta = JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+   
+               if(respuesta==JOptionPane.CANCEL_OPTION){
+            this.setVisible(false);
+        }
+        else{
+                   
+              if("".equals(new String(pwd.getPassword()))){
+            JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+            JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+            }
+            else{
+        d.addKey(new String(pwd.getPassword()));
         initComponents();
+                   MiPanel p = new MiPanel();
+        this.add( p , BorderLayout.CENTER);
+        p.repaint();
+        setLayout(null);
+        setLocationRelativeTo(null);        // Centering on screen...
+        setSize(1000, 800);               // Setting dimensions...
+        setTitle("SisPLD");
+        setResizable(false);
+        
+            }
+        
+        }
         jButton1.setEnabled(false);
         totalingreso.setEnabled(false);
         totalegresos.setEnabled(false);
@@ -55,32 +81,10 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
         remanencia.setEnabled(false);
         jButton3.setEnabled(false);
         
-        JPasswordField pwd = new JPasswordField(10);
-         JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-         
-          if(respuesta==JOptionPane.OK_OPTION){
-            if("".equals(new String(pwd.getPassword()))){
-            JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-            JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-            }
-            else{
-        d.addKey(new String(pwd.getPassword()));
-            }
-        }
-        else{
-        JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-        this.setVisible(false);
-        }
+        
           cargarClientes();
           ///
-         MiPanel p = new MiPanel(); 
-      this.add( p , BorderLayout.CENTER); 
-       p.repaint(); 
-         setLayout(null);
-        setLocationRelativeTo(null);        // Centering on screen...
-       setSize(1000, 800);                  // Setting dimensions...
-        setTitle("SisPLD");
-        setResizable(false);
+        
    NumberFormatter defaultFormatter = new NumberFormatter(new DecimalFormat("#.##"));
    NumberFormatter displayFormatter = new NumberFormatter(new DecimalFormat("$ #,###.00"));
    NumberFormatter editFormatter = new NumberFormatter(new DecimalFormat("#.##")); 
