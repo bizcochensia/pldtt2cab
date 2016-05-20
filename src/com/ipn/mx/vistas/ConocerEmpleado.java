@@ -34,7 +34,7 @@ public class ConocerEmpleado extends javax.swing.JFrame {
     Connection reg=con.conectar();
     int valid=0;
     int respuesta;
-    Cliente c=new Cliente();
+    Empleado c=new Empleado();
     int eva[] = new int[50];
     int i=0, b=0;
     String des = "";
@@ -45,20 +45,7 @@ public class ConocerEmpleado extends javax.swing.JFrame {
      * Creates new form ConocerC
      */
     public ConocerEmpleado() throws SQLException {
-        JPasswordField pwd = new JPasswordField(10);
-         respuesta = JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-   
-               if(respuesta==JOptionPane.CANCEL_OPTION){
-            this.setVisible(false);
-        }
-        else{
-                   
-              if("".equals(new String(pwd.getPassword()))){
-            JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-            JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-            }
-            else{
-        d.addKey(new String(pwd.getPassword()));
+        
         initComponents();
                    MiPanel p = new MiPanel();
         this.add( p , BorderLayout.CENTER);
@@ -68,10 +55,6 @@ public class ConocerEmpleado extends javax.swing.JFrame {
         setSize(900, 700);               // Setting dimensions...
         setTitle("SisPLD");
         setResizable(false);
-        
-            }
-        
-        }
         cargarClientes();
                 
     }
@@ -529,11 +512,13 @@ public class ConocerEmpleado extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Emp= (Empleado) comboCliente.getSelectedItem();
         System.out.println("el empleado elegido es:"+Emp);
-        /*try {
-        Empleado c=(Empleado) comboCliente.getSelectedItem();
         int a=c.getIdEmpleado();
+        /* try {
+        Empleado c=(Empleado) comboCliente.getSelectedItem();
+        
         System.out.println(a+"RFC <==== conocer");
-        String aux="Select * from operaciones where id_Empleado='"+a+"'";
+        }*/
+        /*String aux="Select * from operaciones where id_Empleado='"+a+"'";
         Statement st;
         st = reg.createStatement();
         ResultSet rs=st.executeQuery(aux);
