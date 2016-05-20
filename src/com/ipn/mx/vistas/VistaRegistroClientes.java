@@ -615,7 +615,7 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
                         }
                         else{JOptionPane.showMessageDialog(null, "La estructura del RFC no es valida");}
                     }
-                    else{JOptionPane.showMessageDialog(null, "El campo ingresos requiere de solo numeros con dos decimales");}
+                    else{JOptionPane.showMessageDialog(null, "El campo ingresos requiere de solo numeros con dos decimales ejemplo:25000.00");}
                 }
                 else{JOptionPane.showMessageDialog(null, "El campo Telefono  solo acepta numeros y necesita 8 digitos");}
             }
