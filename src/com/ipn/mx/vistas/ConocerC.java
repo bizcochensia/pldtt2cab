@@ -101,9 +101,6 @@ public class ConocerC extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        No6 = new javax.swing.JRadioButton();
-        SID = new javax.swing.JRadioButton();
-        jLabel8 = new javax.swing.JLabel();
         Si = new javax.swing.JRadioButton();
         No = new javax.swing.JRadioButton();
         Si1 = new javax.swing.JRadioButton();
@@ -117,7 +114,6 @@ public class ConocerC extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         descrip = new javax.swing.JTextArea();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         Aceptar = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
         Cancelar1 = new javax.swing.JButton();
@@ -135,28 +131,9 @@ public class ConocerC extends javax.swing.JFrame {
 
         jPanel1.setOpaque(false);
 
-        jLabel4.setText("3) ¿El cliente proporcionó la información que se le solicita sobre su persona?");
+        jLabel4.setText("3) ¿El cliente contesto de forma fehaciente? ");
 
-        jLabel5.setText("4) ¿El cliente proporcionó la información que se le solicita sobre el origen de los recursos con que realizó sus pagos?");
-
-        buttonGroup7.add(No6);
-        No6.setSelected(true);
-        No6.setText("No");
-        No6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                No6ActionPerformed(evt);
-            }
-        });
-
-        buttonGroup7.add(SID);
-        SID.setText("Si");
-        SID.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                SIDActionPerformed(evt);
-            }
-        });
-
-        jLabel8.setText("5)¿En caso de pago anticipado, por montos elevados, puede probar el origen de los recursos?");
+        jLabel5.setText("4) ¿El cliente proporcionó la información completa sobre el origen de sus recursos?");
 
         buttonGroup1.add(Si);
         Si.setText("Si");
@@ -226,17 +203,15 @@ public class ConocerC extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("1) ¿El cliente contesto de forma fehaciente? ");
+        jLabel2.setText("1) ¿Ell cliente proporcionó la información personal requerida? ");
 
-        jLabel3.setText("2) ¿El cliento acepto las condiciones del contrato?");
+        jLabel3.setText("2)¿El cliente aceptó las condiciones contractuales?");
 
         descrip.setColumns(20);
         descrip.setRows(5);
         jScrollPane1.setViewportView(descrip);
 
         jLabel10.setText("Observaciones:");
-
-        jLabel11.setText(" Observaciones son obligatorias si selecciono 'si' al punto numero 5");
 
         Aceptar.setBackground(new java.awt.Color(0, 153, 51));
         Aceptar.setForeground(new java.awt.Color(255, 255, 255));
@@ -271,16 +246,12 @@ public class ConocerC extends javax.swing.JFrame {
                 .addGap(31, 31, 31)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jLabel10)
-                        .addContainerGap())
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel4)
                             .addComponent(jLabel3)
                             .addComponent(jLabel5)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel8))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(Si3)
@@ -301,24 +272,20 @@ public class ConocerC extends javax.swing.JFrame {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(Si2)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(No2))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(SID)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(No6)))
+                                        .addComponent(No2)))
                                 .addContainerGap())))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(Cancelar1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Aceptar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(Cancelar)))
-                        .addGap(55, 55, 55))))
+                                .addComponent(Cancelar))
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(jLabel10)
+                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 625, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -344,18 +311,12 @@ public class ConocerC extends javax.swing.JFrame {
                     .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 27, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(Si3)
                     .addComponent(No3))
-                .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(SID)
-                    .addComponent(No6))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, 58, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 76, Short.MAX_VALUE)
                 .addComponent(jLabel10)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
                     .addComponent(Aceptar)
                     .addComponent(Cancelar)
                     .addComponent(Cancelar1))
@@ -435,7 +396,7 @@ public class ConocerC extends javax.swing.JFrame {
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(12, Short.MAX_VALUE))
+                .addContainerGap(113, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -468,26 +429,24 @@ public class ConocerC extends javax.swing.JFrame {
        java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
         String des=descrip.getText();
         //texto=texto.replaceAll(" ", "");
-        if(No.isSelected()&No1.isSelected()&No2.isSelected()&No3.isSelected()){
+        if(Si.isSelected()&Si1.isSelected()&Si2.isSelected()&No3.isSelected()){
             des = "";
             this.dispose();
         }else{
            if(No.isSelected()){
-                des = des +"El cliente no contesto de manera fehaciente"+", ";
+                des = des +"El cliente no proporcionó la información personal requerida"+", ";
            }
            if(No1.isSelected()){
-               des = des + "El cliente no acepto las condiciones del contrato"+", ";
+               des = des + "El cliente no acepto las condiciones contractuales"+", ";
            }
            if(No2.isSelected()){
-               des = des + "El cliente no proporcionó la información que se le solicitó sobre su persona, y en su caso, sobre el origen de los recursos con que realiza sus pagos"+", ";
+               des = des + "El cliente no contesto de forma fehaciente"+", ";
            }
            
            if(No3.isSelected()){
-               des = des +"El cliente no proporcionó la información que se le solicitó sobre el origen de los recursos con que realizó sus pagos"+", ";
+               des = des +"El cliente no proporcionó la información completa sobre el origen de sus recursos"+", ";
            }
-           if(No6.isSelected()){
-               des = des +"En el caso de pago anticipado, el cliente no puede probar el origen de los recursos"+", ";
-           }
+           
            System.out.println(des );
             for (int j=0;j<i;j++){
                 try { 
@@ -602,16 +561,6 @@ public class ConocerC extends javax.swing.JFrame {
         jButton1.setEnabled(true);
         comboCliente.setSelectedItem(0);
     }//GEN-LAST:event_Cancelar1ActionPerformed
-
-    private void No6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_No6ActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_No6ActionPerformed
-
-    private void SIDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SIDActionPerformed
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_SIDActionPerformed
 public void cargarClientes() throws SQLException {
      
     Statement st;
@@ -694,8 +643,6 @@ public void cargarClientes() throws SQLException {
     private javax.swing.JRadioButton No1;
     private javax.swing.JRadioButton No2;
     private javax.swing.JRadioButton No3;
-    private javax.swing.JRadioButton No6;
-    private javax.swing.JRadioButton SID;
     private javax.swing.JRadioButton Si;
     private javax.swing.JRadioButton Si1;
     private javax.swing.JRadioButton Si2;
@@ -712,14 +659,12 @@ public void cargarClientes() throws SQLException {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
