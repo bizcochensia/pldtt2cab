@@ -474,9 +474,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null,"No hay mas operaciones para mostrar");
         }
         else{
-            System.out.println("la posicion  es de:"+posicion+"    ");
             posicion++;
-            System.out.println("la posicion despues es de:"+posicion+"\n");
             try {
                 mostrardatos(posicion);
             } catch (SQLException ex) {

@@ -117,6 +117,7 @@ public class ConocerC extends javax.swing.JFrame {
         Aceptar = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
         Cancelar1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         comboCliente = new javax.swing.JComboBox();
@@ -238,6 +239,13 @@ public class ConocerC extends javax.swing.JFrame {
             }
         });
 
+        jButton2.setText("Ayuda");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -277,6 +285,8 @@ public class ConocerC extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jButton2)
+                                .addGap(18, 18, 18)
                                 .addComponent(Cancelar1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Aceptar)
@@ -319,7 +329,8 @@ public class ConocerC extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Aceptar)
                     .addComponent(Cancelar)
-                    .addComponent(Cancelar1))
+                    .addComponent(Cancelar1)
+                    .addComponent(jButton2))
                 .addContainerGap())
         );
 
@@ -561,6 +572,12 @@ public class ConocerC extends javax.swing.JFrame {
         jButton1.setEnabled(true);
         comboCliente.setSelectedItem(0);
     }//GEN-LAST:event_Cancelar1ActionPerformed
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        VistaAyuda VA=new VistaAyuda();
+        VA.setVisible(true);
+    }//GEN-LAST:event_jButton2MouseClicked
 public void cargarClientes() throws SQLException {
      
     Statement st;
@@ -657,6 +674,7 @@ public void cargarClientes() throws SQLException {
     private javax.swing.JComboBox comboCliente;
     private javax.swing.JTextArea descrip;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel12;
