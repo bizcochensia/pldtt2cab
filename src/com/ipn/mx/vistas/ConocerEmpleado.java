@@ -94,7 +94,6 @@ public class ConocerEmpleado extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         descrip = new javax.swing.JTextArea();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         Aceptar = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
         Cancelar1 = new javax.swing.JButton();
@@ -194,8 +193,6 @@ public class ConocerEmpleado extends javax.swing.JFrame {
 
         jLabel10.setText("Observaciones:");
 
-        jLabel11.setText(" Observaciones son obligatorias si selecciono 'si' al punto numero 5");
-
         Aceptar.setBackground(new java.awt.Color(0, 153, 51));
         Aceptar.setForeground(new java.awt.Color(255, 255, 255));
         Aceptar.setText("Aceptar");
@@ -234,8 +231,6 @@ public class ConocerEmpleado extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jLabel11)
-                                .addGap(146, 146, 146)
                                 .addComponent(Cancelar1)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Aceptar)
@@ -308,7 +303,6 @@ public class ConocerEmpleado extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel11)
                     .addComponent(Aceptar)
                     .addComponent(Cancelar)
                     .addComponent(Cancelar1))
@@ -642,7 +636,6 @@ public void cargarClientes() throws SQLException {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;

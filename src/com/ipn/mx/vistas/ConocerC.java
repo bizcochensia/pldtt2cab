@@ -204,7 +204,7 @@ public class ConocerC extends javax.swing.JFrame {
             }
         });
 
-        jLabel2.setText("1) ¿Ell cliente proporcionó la información personal requerida? ");
+        jLabel2.setText("1) ¿El cliente proporcionó la información personal requerida? ");
 
         jLabel3.setText("2)¿El cliente aceptó las condiciones contractuales?");
 
@@ -243,6 +243,11 @@ public class ConocerC extends javax.swing.JFrame {
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
             }
         });
 
@@ -578,6 +583,10 @@ public class ConocerC extends javax.swing.JFrame {
         VistaAyuda VA=new VistaAyuda();
         VA.setVisible(true);
     }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
 public void cargarClientes() throws SQLException {
      
     Statement st;
