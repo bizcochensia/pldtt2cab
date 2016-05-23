@@ -36,6 +36,7 @@ public class Login extends javax.swing.JFrame {
     /**
      * Creates new form Login
      * @throws javax.swing.UnsupportedLookAndFeelException
+     * @throws java.io.IOException
      */
     public Login() throws UnsupportedLookAndFeelException, IOException {
       initComponents(); 

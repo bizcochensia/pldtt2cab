@@ -1002,6 +1002,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                  if(descripcionAlarma.equals("")){}
                  else{
                  MFD.insertaalarma(l, 3, fecha, descripcionAlarma,1);}
+                 
             }
         } catch (SQLException ex) {
             Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
