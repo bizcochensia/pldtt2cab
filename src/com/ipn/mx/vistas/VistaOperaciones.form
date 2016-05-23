@@ -206,12 +206,14 @@
                 <Property name="toolTipText" type="java.lang.String" value="Monto total de la Venta del Inmueble"/>
               </Properties>
               <Events>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="operacionMouseExited"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="operacionActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="operacionKeyPressed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel13">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Direccion del Bien"/>
+                <Property name="text" type="java.lang.String" value="Calle y Colonia:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel19">
@@ -220,15 +222,18 @@
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="direccionBien">
+              <Events>
+                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="direccionBienMouseClicked"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel30">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Numero"/>
+                <Property name="text" type="java.lang.String" value="Numero:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel31">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Codigo postal"/>
+                <Property name="text" type="java.lang.String" value="Codigo postal:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="numeroBien">
@@ -240,14 +245,14 @@
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel32">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Metros cuadrados"/>
+                <Property name="text" type="java.lang.String" value="Metros cuadrados:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JTextField" name="metrosbien">
             </Component>
             <Component class="javax.swing.JLabel" name="jLabel33">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Tipo bien"/>
+                <Property name="text" type="java.lang.String" value="Tipo bien:"/>
               </Properties>
             </Component>
             <Component class="javax.swing.JComboBox" name="tipobien">
@@ -416,7 +421,9 @@
                 <Property name="toolTipText" type="java.lang.String" value="Este campo debe ser llenado solo si existe un anticipo "/>
               </Properties>
               <Events>
+                <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="recibeAnticipoMouseExited"/>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="recibeAnticipoActionPerformed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="recibeAnticipoKeyPressed"/>
               </Events>
             </Component>
           </SubComponents>

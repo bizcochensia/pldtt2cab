@@ -53,6 +53,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
     int poblacion=0;
     int i=0;
     int l=0;
+    int mouse=0, mouse1=0;
     
     String maximo="";
     String minimo="";
@@ -60,6 +61,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
     ResultSet t;
     MontoFrecuenciaDAO MFD=new MontoFrecuenciaDAO();
     int idCliente;
+    int idVendedor;
     int id[]=new int[50];
     int valid =0;
     
@@ -108,7 +110,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
     ConexionListas con2 = new ConexionListas();
     Connection reg2=con2.conectar();
     private String numcontrato;
-    private double monto;
+    private double monto,monto1;
     private String descripcion;
     
     /**
@@ -275,19 +277,35 @@ public class VistaOperaciones extends javax.swing.JFrame {
         jLabel12.setText("Monto de la operación:");
 
         operacion.setToolTipText("Monto total de la Venta del Inmueble");
+        operacion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                operacionMouseExited(evt);
+            }
+        });
         operacion.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 operacionActionPerformed(evt);
             }
         });
+        operacion.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                operacionKeyPressed(evt);
+            }
+        });
 
-        jLabel13.setText("Direccion del Bien");
+        jLabel13.setText("Calle y Colonia:");
 
         jLabel19.setText("Escriba los datos necesarios para registrar una operación");
 
-        jLabel30.setText("Numero");
+        direccionBien.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                direccionBienMouseClicked(evt);
+            }
+        });
 
-        jLabel31.setText("Codigo postal");
+        jLabel30.setText("Numero:");
+
+        jLabel31.setText("Codigo postal:");
 
         numeroBien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -295,9 +313,9 @@ public class VistaOperaciones extends javax.swing.JFrame {
             }
         });
 
-        jLabel32.setText("Metros cuadrados");
+        jLabel32.setText("Metros cuadrados:");
 
-        jLabel33.setText("Tipo bien");
+        jLabel33.setText("Tipo bien:");
 
         tipobien.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione...", "Casa", "Departamento", "Terreno" }));
 
@@ -396,9 +414,19 @@ public class VistaOperaciones extends javax.swing.JFrame {
         jLabel20.setText("Monto de Anticipo:");
 
         recibeAnticipo.setToolTipText("Este campo debe ser llenado solo si existe un anticipo ");
+        recibeAnticipo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                recibeAnticipoMouseExited(evt);
+            }
+        });
         recibeAnticipo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 recibeAnticipoActionPerformed(evt);
+            }
+        });
+        recibeAnticipo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                recibeAnticipoKeyPressed(evt);
             }
         });
 
@@ -917,7 +945,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                             OperacionDAO op = new OperacionDAO();
                             MontoFrecuenciaDAO MFD= new MontoFrecuenciaDAO();
                             
-                            op.RegistroOperacion(d.encrypt(numcontrato), monto, fecha, RTC , d.encrypt(descripcion), c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario(),anticipo,cl.getIdCLiente());                
+                            op.RegistroOperacion(d.encrypt(numcontrato), monto, fecha, RTC , d.encrypt(descripcion), c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario(),anticipo,idVendedor);                
                         } catch (Exception e) {
                         }
                     }
@@ -993,8 +1021,9 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 String a=cl.getRfc();
                 int r=(int) cl.getRiesgo();
 
-                idCliente =cl.getIdCLiente();
+                idVendedor =cl.getIdCLiente();
                 operacion (idCliente);
+                System.out.println(idCliente+"<==id_cLiente");
                 int b=cl.getIdCLiente();
 
                 try {
@@ -1195,20 +1224,64 @@ public class VistaOperaciones extends javax.swing.JFrame {
 
     private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
         // TODO add your handling code here:
-          if(recibeAnticipo.getText().equals("")){}
-             else{
-            MontoAnticipo = recibeAnticipo.getText()+".00";
-            DecimalFormat formato = new DecimalFormat("$#,###.00");
-    
-            monto=Double.parseDouble(recibeAnticipo.getText());
-            System.out.println(MontoAnticipo+"<<<");
-            //formato=NumberFormat.getInstance().format(monto);
-            recibeAnticipo.setText(formato.format(monto));}
+         
     }//GEN-LAST:event_jTabbedPane1MouseClicked
 
     private void numeroBienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_numeroBienActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_numeroBienActionPerformed
+
+    private void direccionBienMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_direccionBienMouseClicked
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_direccionBienMouseClicked
+
+    private void operacionMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_operacionMouseExited
+        // TODO add your handling code here:
+        
+        if(operacion.getText().equals("")){}
+        else {
+            if(mouse==0){
+                MontoOperacion = operacion.getText()+".00";
+            DecimalFormat formato = new DecimalFormat("$#,###.00");
+    
+            monto=Double.parseDouble(MontoOperacion);
+            System.out.println(operacion+"<<<");
+            //formato=NumberFormat.getInstance().format(monto);
+            operacion.setText(formato.format(monto));
+        mouse = 1;
+            }
+            
+        }
+    }//GEN-LAST:event_operacionMouseExited
+
+    private void recibeAnticipoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_recibeAnticipoMouseExited
+        // TODO add your handling code here:
+         if(recibeAnticipo.getText().equals("")){}
+             else{
+             if(mouse1==0){
+                 MontoAnticipo = recibeAnticipo.getText()+".00";
+            DecimalFormat formato = new DecimalFormat("$#,###.00");
+    
+            monto1=Double.parseDouble(MontoAnticipo);
+            System.out.println(MontoAnticipo+"<<<");
+            //formato=NumberFormat.getInstance().format(monto);
+            recibeAnticipo.setText(formato.format(monto1));
+            mouse1=1;
+             }
+            
+         }
+    }//GEN-LAST:event_recibeAnticipoMouseExited
+
+    private void operacionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_operacionKeyPressed
+        // TODO add your handling code here:
+        mouse=0;
+    }//GEN-LAST:event_operacionKeyPressed
+
+    private void recibeAnticipoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_recibeAnticipoKeyPressed
+        // TODO add your handling code here:
+        mouse1=0;
+    }//GEN-LAST:event_recibeAnticipoKeyPressed
 
     public void cargarClientes() throws SQLException {
      Statement st;

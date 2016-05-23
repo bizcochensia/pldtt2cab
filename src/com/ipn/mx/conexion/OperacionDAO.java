@@ -38,7 +38,7 @@ public class OperacionDAO {
            st.setInt (10, moneda_id);
            st.setInt (11, monetario_id);
            st.setDouble(12,anticipo);
-           st.setInt(12, cliente_vende);
+           st.setInt(13, cliente_vende);
            st.executeUpdate();
            
            JOptionPane.showMessageDialog(null, "El registro fue exitoso!");
