@@ -542,9 +542,8 @@ public class VistaRegistroClienteMoral extends javax.swing.JFrame {
                                         calle.getText(), numero.getText(),0,p.getIdPais(),f.getIdEntidadFederativa(),lo.getIdlocalidad()
                                         , cp.getText(),telefono.getText(),0,act.getId_actividad(),aux);*/
                                          cliente.RegistroCliente(d.encrypt(nombre.getText()),"","",insert,2,d.encrypt(RFC.getText()) ,
-                                        d.encrypt(calle.getText()), d.encrypt(numero.getText()),0,p.getIdPais(),f.getIdEntidadFederativa(),lo.getIdlocalidad()
+                                        d.encrypt(calle.getText()), d.encrypt(numero.getText()),p.getIdPais(),p.getIdPais(),f.getIdEntidadFederativa(),lo.getIdlocalidad()
                                         , d.encrypt(cp.getText()),d.encrypt(telefono.getText()),0 ,act.getId_actividad(),aux);
-                                        JOptionPane.showMessageDialog(null, "El registro fue exitoso!");
                                          if (JOptionPane.showConfirmDialog(rootPane, "¿Desea realizar otro registro?",
                                             "Registro nuevo", JOptionPane.YES_NO_OPTION) == JOptionPane.NO_OPTION)
                                      {
