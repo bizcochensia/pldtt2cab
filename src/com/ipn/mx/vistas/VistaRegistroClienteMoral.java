@@ -498,7 +498,7 @@ public class VistaRegistroClienteMoral extends javax.swing.JFrame {
         boolean cop=v.codigopostal(cp.getText());
         boolean num=v.numerocalle(numero.getText());
         boolean tel=v.numerosTelefonico(telefono.getText());
-        boolean ing=v.sololetras(ingreso.getText());
+        boolean ing=v.Ingreso(ingreso.getText());
         boolean fec=v.sololetras(nombre.getText());
         
         
