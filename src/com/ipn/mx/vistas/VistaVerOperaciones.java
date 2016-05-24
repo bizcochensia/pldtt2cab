@@ -261,6 +261,8 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
 
         muestramonetario.setEditable(false);
 
+        muestracontrato.setEditable(false);
+
         muestramonto.setEditable(false);
         muestramonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
