@@ -22,7 +22,7 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author Clemente
  */
 public class VistaAdministrador extends javax.swing.JFrame {
-
+public static String contraseña;
     /**
      * Creates new form VistaAdministrador
      */

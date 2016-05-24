@@ -80,7 +80,7 @@ public class MontoFrecuenciaDAO {
     
     
         public ResultSet obtenpoblacion(String a,String b){
-    String aux="Select count(*) as poblacion from operaciones o inner join cliente c on c.id_cliente=o.Cliente_id where c.ingreso_Promedio between '"+a+"' and '"+b+"' ";    
+    String aux="Select count(*) as poblacion from operaciones o inner join cliente c on c.id_cliente=o.Cliente_id where c.ingreso_Promedio between '"+a+"' and '"+b+"' and o.riesgo=0";    
     Conexion cn = new Conexion ();
     Connection reg=cn.conectar();
     Statement st;
@@ -110,7 +110,7 @@ public class MontoFrecuenciaDAO {
     }
         
         public ResultSet obtenmontos(String a,String b){
-    String aux="select o.monto from operaciones o inner join cliente c on c.id_cliente=o.Cliente_id where c.ingreso_Promedio between   '"+a+"' and '"+b+"' ";    
+    String aux="select o.monto from operaciones o inner join cliente c on c.id_cliente=o.Cliente_id where c.ingreso_Promedio between   '"+a+"' and '"+b+"' and o.riesgo=0 ";    
     Conexion cn = new Conexion ();
     Connection reg=cn.conectar();
     Statement st;

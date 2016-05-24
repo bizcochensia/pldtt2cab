@@ -75,7 +75,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
     double desviacionfrecuencia=0.0;
     
     //resto variables
-   double RTC=0.0; 
+    
    double APais=0;
    double AA=0;
    double AR=0;
@@ -945,7 +945,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                             OperacionDAO op = new OperacionDAO();
                             MontoFrecuenciaDAO MFD= new MontoFrecuenciaDAO();
                             
-                            op.RegistroOperacion(d.encrypt(numcontrato), monto, fecha, RTC , d.encrypt(descripcion), c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario(),anticipo,idVendedor);                
+                            op.RegistroOperacion(d.encrypt(numcontrato), monto, fecha, 1 , d.encrypt(descripcion), c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario(),anticipo,idVendedor);                
                         } catch (Exception e) {
                         }
                     }
@@ -1117,6 +1117,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
 
                 while(t.next()){
                     poblacion=t.getInt("poblacion");
+                    System.out.println("la poblacion:"+poblacion);
                 }
 
                 t=MFD.obtenmontos(minimo,maximo);
@@ -1140,7 +1141,9 @@ public class VistaOperaciones extends javax.swing.JFrame {
 
                 desviacion=Math.pow(varianza,0.5);
                 System.out.println("num de operaciones obtenidos:"+ poblacion+" promedio de:"+ promedio+"\n"+" varianza de :" +varianza+"desviacion "+desviacion);
-                //frecuencia
+                
+
+//frecuencia
 
                 t=MFD.obtenPoblacionFrecuencia(minimo, maximo);
                 while(t.next()){

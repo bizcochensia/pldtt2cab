@@ -6,6 +6,7 @@
 package com.ipn.mx.vistas;
 
 import com.ipn.mx.conexion.logindao;
+import com.mx.ipn.clases.AESDemo;
 import com.mx.ipn.clases.CaptchaImage;
 import java.awt.BorderLayout;
 import java.util.logging.Level;
@@ -32,7 +33,9 @@ public class Login extends javax.swing.JFrame {
     String pass="";
     String capt="";
     String captcha1="";
+    
     public static int vendedor;
+    
     /**
      * Creates new form Login
      * @throws javax.swing.UnsupportedLookAndFeelException
@@ -270,6 +273,7 @@ public class Login extends javax.swing.JFrame {
                 String res=l.aceso(usuario, pass);
         String nombre=l.obtennombre(usuario, pass);
         vendedor=l.obtenid(usuario,pass);
+        
             switch (res){
         
             case "1":
