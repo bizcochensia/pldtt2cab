@@ -196,6 +196,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="muestratipoOperacion">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel5">
       <Properties>
@@ -213,6 +216,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="muestrafecha">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel7">
       <Properties>
@@ -230,6 +236,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="muestracliente">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton1">
       <Properties>
@@ -246,6 +255,9 @@
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="muestraempleado">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel1">
       <Properties>
@@ -253,6 +265,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="muestrainmobiliaria">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="muestrainmobiliariaActionPerformed"/>
       </Events>
@@ -263,6 +278,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="muestramoneda">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="jLabel3">
       <Properties>
@@ -270,15 +288,24 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="muestramonetario">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="muestracontrato">
     </Component>
     <Component class="javax.swing.JTextField" name="muestramonto">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="muestramontoActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JTextField" name="muestradescripcion">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
     <Component class="javax.swing.JButton" name="jButton2">
       <Properties>
@@ -338,6 +365,9 @@
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="numeroalarma">
+      <Properties>
+        <Property name="editable" type="boolean" value="false"/>
+      </Properties>
     </Component>
   </SubComponents>
 </Form>

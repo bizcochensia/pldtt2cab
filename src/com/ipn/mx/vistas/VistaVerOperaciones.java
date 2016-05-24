@@ -215,17 +215,23 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
 
         jLabel4.setText("Cliente asociado");
 
+        muestratipoOperacion.setEditable(false);
+
         jLabel5.setText("Empleado asociado");
 
         jLabel10.setText("Fecha");
 
         jLabel6.setText("Inmobiliaria asociada");
 
+        muestrafecha.setEditable(false);
+
         jLabel7.setText("Moneda utilizada");
 
         jLabel8.setText("Tipo de pago");
 
         jLabel9.setText("Tipo Operación");
+
+        muestracliente.setEditable(false);
 
         jButton1.setBackground(new java.awt.Color(0, 153, 51));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
@@ -236,8 +242,11 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
             }
         });
 
+        muestraempleado.setEditable(false);
+
         jLabel1.setText("Numero de Contrato");
 
+        muestrainmobiliaria.setEditable(false);
         muestrainmobiliaria.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 muestrainmobiliariaActionPerformed(evt);
@@ -246,13 +255,20 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
 
         jLabel2.setText("Monto");
 
+        muestramoneda.setEditable(false);
+
         jLabel3.setText("Descripción del bien");
 
+        muestramonetario.setEditable(false);
+
+        muestramonto.setEditable(false);
         muestramonto.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 muestramontoActionPerformed(evt);
             }
         });
+
+        muestradescripcion.setEditable(false);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/com/ipn/mx/imagenes/botonflechaderecha.png"))); // NOI18N
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -289,6 +305,8 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
         jLabel14.setText("Selecciona la flecha para ver la operación siguiente");
 
         jLabel12.setText("Numero de alarmas");
+
+        numeroalarma.setEditable(false);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

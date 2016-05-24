@@ -923,7 +923,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
             if(tipobien.getSelectedIndex()==3){a="Un terreno ubicado en: ";}
             numcontrato=contrato.getText();
             anticipo=Double.parseDouble(MontoAnticipo);
-            descripcion=a+direccionBien.getText()+"numero: "+numeroBien.getText()+"CP:"+CPBien.getText()+"con:"+metrosbien.getText()+"metros cuadrados";
+            descripcion=a+direccionBien.getText()+" numero: "+numeroBien.getText()+"\n CP:"+CPBien.getText()+" con:"+metrosbien.getText()+" metros cuadrados";
             boolean mo=val.Ingreso(MontoOperacion);
             boolean con=val.alfanumericos(numcontrato);
             
