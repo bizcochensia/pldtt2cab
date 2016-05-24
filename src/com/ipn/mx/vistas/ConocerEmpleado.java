@@ -96,7 +96,6 @@ public class ConocerEmpleado extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         Aceptar = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
-        Cancelar1 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         comboCliente = new javax.swing.JComboBox();
@@ -210,14 +209,6 @@ public class ConocerEmpleado extends javax.swing.JFrame {
             }
         });
 
-        Cancelar1.setForeground(new java.awt.Color(0, 153, 51));
-        Cancelar1.setText("Nueva Evaluacion");
-        Cancelar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Cancelar1ActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -231,8 +222,6 @@ public class ConocerEmpleado extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(Cancelar1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Aceptar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Cancelar))
@@ -304,8 +293,7 @@ public class ConocerEmpleado extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Aceptar)
-                    .addComponent(Cancelar)
-                    .addComponent(Cancelar1))
+                    .addComponent(Cancelar))
                 .addContainerGap())
         );
 
@@ -434,8 +422,9 @@ public class ConocerEmpleado extends javax.swing.JFrame {
            }
            System.out.println(des );
            
+           
                 try { 
-                    
+                        
                         ac.RegistroDescripcionListas(7, sqlDate, des+descrip.getText(),0,Emp.getIdEmpleado());
                         JOptionPane.showMessageDialog(null, "La Alarma se ha enviado");
                     
@@ -497,6 +486,7 @@ public class ConocerEmpleado extends javax.swing.JFrame {
 
     private void comboClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboClienteMouseClicked
         // TODO add your handling code here:
+        jButton1.setEnabled(true);
     }//GEN-LAST:event_comboClienteMouseClicked
 
     private void comboClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboClienteActionPerformed
@@ -507,6 +497,7 @@ public class ConocerEmpleado extends javax.swing.JFrame {
         Emp= (Empleado) comboCliente.getSelectedItem();
         System.out.println("el empleado elegido es:"+Emp);
         int a=c.getIdEmpleado();
+        jButton1.setEnabled(false);
         /* try {
         Empleado c=(Empleado) comboCliente.getSelectedItem();
         
@@ -541,18 +532,12 @@ public class ConocerEmpleado extends javax.swing.JFrame {
         
         }*/
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void Cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancelar1ActionPerformed
-        // TODO add your handling code here:
-        jButton1.setEnabled(true);
-        comboCliente.setSelectedItem(0);
-    }//GEN-LAST:event_Cancelar1ActionPerformed
 public void cargarClientes() throws SQLException {
      
     Statement st;
         try {
             st = reg.createStatement();
-            ResultSet rs=st.executeQuery("Select * from empleado");
+            ResultSet rs=st.executeQuery("Select * from empleado e inner join tipoempleado te where e.tipo_empleado=te.id_TipoEmpleado ");
             while(rs.next()){
                 Empleado act=new Empleado();
                 act.setIdEmpleado(rs.getInt(1));
@@ -615,7 +600,6 @@ public void cargarClientes() throws SQLException {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar;
     private javax.swing.JButton Cancelar;
-    private javax.swing.JButton Cancelar1;
     private javax.swing.JRadioButton No;
     private javax.swing.JRadioButton No1;
     private javax.swing.JRadioButton No2;

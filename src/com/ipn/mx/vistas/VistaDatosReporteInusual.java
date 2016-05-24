@@ -5,6 +5,9 @@
  */
 package com.ipn.mx.vistas;
 
+import com.mx.ipn.clases.MiPanel;
+import java.awt.BorderLayout;
+
 /**
  *
  * @author Clemente
@@ -16,6 +19,16 @@ public class VistaDatosReporteInusual extends javax.swing.JFrame {
      */
     public VistaDatosReporteInusual() {
         initComponents();
+        
+        MiPanel p = new MiPanel(); 
+      this.add( p , BorderLayout.CENTER); 
+       p.repaint(); 
+         setLayout(null);
+        setLocationRelativeTo(null);        // Centering on screen...
+       // Setting dimensions...
+        setTitle("SisPLD");
+        setResizable(false);
+        
     }
 
     /**
@@ -33,7 +46,7 @@ public class VistaDatosReporteInusual extends javax.swing.JFrame {
         PeriodoInforme = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Nombre del Archivo:");
 

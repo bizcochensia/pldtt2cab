@@ -87,7 +87,7 @@
                               <Component id="muestrafecha" alignment="0" max="32767" attributes="0"/>
                               <Component id="muestratipoOperacion" alignment="0" pref="168" max="32767" attributes="0"/>
                           </Group>
-                          <Component id="muestradescripcion" min="-2" pref="369" max="-2" attributes="0"/>
+                          <Component id="muestradescripcion" alignment="0" min="-2" pref="369" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="141" max="-2" attributes="0"/>
                   </Group>

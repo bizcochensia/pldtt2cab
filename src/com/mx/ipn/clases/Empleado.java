@@ -119,7 +119,17 @@ public class Empleado {
     
      @Override
     public String toString() {
-        String regreso= nombre+"  "+apellPat;
+        String rol = null;
+        if (tipoempleado==1){
+            rol="Administrador";
+        }
+        if (tipoempleado==3){
+            rol="Vendedor";
+        }
+        if (tipoempleado==2){
+            rol="Oficial de Cumplimiento";
+        }
+        String regreso= nombre+"  "+apellPat+" Rol: "+ rol;
         return regreso; //To change body of generated methods, choose Tools | Templates.
     }
     

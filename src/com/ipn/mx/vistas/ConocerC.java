@@ -17,6 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -116,7 +117,6 @@ public class ConocerC extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         Aceptar = new javax.swing.JButton();
         Cancelar = new javax.swing.JButton();
-        Cancelar1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jPanel2 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
@@ -231,15 +231,8 @@ public class ConocerC extends javax.swing.JFrame {
             }
         });
 
-        Cancelar1.setForeground(new java.awt.Color(0, 153, 51));
-        Cancelar1.setText("Nueva Evaluacion");
-        Cancelar1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                Cancelar1ActionPerformed(evt);
-            }
-        });
-
-        jButton2.setText("Ayuda");
+        jButton2.setText("Politicas");
+        jButton2.setActionCommand("Politicas");
         jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton2MouseClicked(evt);
@@ -288,12 +281,10 @@ public class ConocerC extends javax.swing.JFrame {
                                         .addComponent(No2)))
                                 .addContainerGap())))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jButton2)
-                                .addGap(18, 18, 18)
-                                .addComponent(Cancelar1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(Aceptar)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(Cancelar))
@@ -334,7 +325,6 @@ public class ConocerC extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(Aceptar)
                     .addComponent(Cancelar)
-                    .addComponent(Cancelar1)
                     .addComponent(jButton2))
                 .addContainerGap())
         );
@@ -441,13 +431,15 @@ public class ConocerC extends javax.swing.JFrame {
     private void AceptarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AceptarActionPerformed
         // TODO add your handling code here:
         ConocerDao ac = new ConocerDao();
+        int limpio=0;
         
        java.sql.Date sqlDate = new java.sql.Date(Calendar.getInstance().getTimeInMillis());
         String des=descrip.getText();
         //texto=texto.replaceAll(" ", "");
-        if(Si.isSelected()&Si1.isSelected()&Si2.isSelected()&No3.isSelected()){
+        if(Si.isSelected()&Si1.isSelected()&Si2.isSelected()&Si3.isSelected()){
             des = "";
-            this.dispose();
+            limpio =1;
+            
         }else{
            if(No.isSelected()){
                 des = des +"El cliente no proporcionó la información personal requerida"+", ";
@@ -467,7 +459,7 @@ public class ConocerC extends javax.swing.JFrame {
             for (int j=0;j<i;j++){
                 try { 
                     ValidaOp(eva[j]);
-                   if(valid == 0)
+                   if(valid == 0 & limpio==0)
                         ac.RegistroDescripcion(eva[j], 7, sqlDate, des+descrip.getText(),1);
                     
                     
@@ -477,12 +469,12 @@ public class ConocerC extends javax.swing.JFrame {
                     Logger.getLogger(ConocerC.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-            JOptionPane.showMessageDialog(null, "La Alarma se ha enviado");
+            
             
      
             
         }
-
+        JOptionPane.showMessageDialog(null, "La Alarma se ha enviado");
         
 
      
@@ -530,6 +522,8 @@ public class ConocerC extends javax.swing.JFrame {
 
     private void comboClienteMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_comboClienteMouseClicked
         // TODO add your handling code here:
+        jButton1.setEnabled(true);
+        Arrays.fill(eva,0);
     }//GEN-LAST:event_comboClienteMouseClicked
 
     private void comboClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboClienteActionPerformed
@@ -537,9 +531,11 @@ public class ConocerC extends javax.swing.JFrame {
     }//GEN-LAST:event_comboClienteActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        
         try {
             Cliente c=(Cliente) comboCliente.getSelectedItem();
             int a=c.getIdCLiente();
+           
             System.out.println(a+"RFC <==== conocer");
             String aux="Select * from operaciones where Cliente_id='"+a+"'";
             Statement st;
@@ -549,18 +545,18 @@ public class ConocerC extends javax.swing.JFrame {
             i=0;
               try {
                 while (rs.next()) {
-                    System.out.println(rs.getString("id_Operacion") );
+                    System.out.println(rs.getString("id_Operacion" ));
                     eva[i] = Integer.parseInt(rs.getString("id_Operacion"));
                     i++;
                 }
+                
             } catch (SQLException | NumberFormatException sQLException) {
                 System.out.println(sQLException);
             }
-           
-         
-                    
-               
-            
+              if(eva[0]==0){
+                    JOptionPane.showMessageDialog(null,"El Cliente no tiene operaciones asociadas"); 
+                }
+
              
            jButton1.setEnabled(false);
 
@@ -571,12 +567,6 @@ public class ConocerC extends javax.swing.JFrame {
         }
 
     }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void Cancelar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Cancelar1ActionPerformed
-        // TODO add your handling code here:
-        jButton1.setEnabled(true);
-        comboCliente.setSelectedItem(0);
-    }//GEN-LAST:event_Cancelar1ActionPerformed
 
     private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
         // TODO add your handling code here:
@@ -664,7 +654,6 @@ public void cargarClientes() throws SQLException {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton Aceptar;
     private javax.swing.JButton Cancelar;
-    private javax.swing.JButton Cancelar1;
     private javax.swing.JRadioButton No;
     private javax.swing.JRadioButton No1;
     private javax.swing.JRadioButton No2;
@@ -701,14 +690,22 @@ public void cargarClientes() throws SQLException {
     public void ValidaOp(int op) {
     ResultSet res;
     PreparedStatement pstm;
+    System.out.println("validando Operacion" + op);
         try{
-            pstm = reg.prepareStatement("SELECT * FROM intermedia_operacion_alarma WHERE Operacion_id = '" + op+ "' and Alarma_id= 7 " );
+            pstm = reg.prepareStatement("SELECT * FROM intermedia_operacion_alarma WHERE Operacion_id = '"+ op+"' and Alarma_id=7 " );
             res = pstm.executeQuery();
             if(res.next()){
+                System.out.println(res.getString("Operacion_id") + "existe con alarma: "+ res.getInt("Alarma_id"));
+               
+                    
                 valid= 1;
+                
+                
                  
-} else
-            valid = 0;
+            } else{
+                valid = 0;
+            }
+            
             res.close();
         } catch(SQLException e){
             JOptionPane.showMessageDialog(null, e);
