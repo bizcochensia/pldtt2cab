@@ -54,6 +54,15 @@ public class Validaciones {
       }
       return respuesta;
       }
+       public boolean solonumeros(String cadena){
+      boolean respuesta= false;
+      Pattern pat= Pattern.compile("[0-9]{1,6}"); 
+      Matcher mat=pat.matcher(cadena);
+      if(mat.find()){
+      respuesta=true;
+      }
+      return respuesta;
+      }
       
       public boolean alfanumericos(String cadena){
       boolean respuesta= false;

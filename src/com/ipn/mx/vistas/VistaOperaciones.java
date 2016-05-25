@@ -112,6 +112,10 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private String numcontrato;
     private double monto,monto1;
     private String descripcion;
+    private String descripcionB;
+    private String numeroB;
+    private String cpB;
+    private String metrosB;
     
     /**
      * Creates new form VistaOperaciones
@@ -870,10 +874,10 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton3)
-                .addGap(18, 18, 18)
                 .addComponent(jButton2)
-                .addGap(69, 69, 69))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jButton3)
+                .addGap(50, 50, 50))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -884,8 +888,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 .addComponent(jTabbedPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 454, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton3)
-                    .addComponent(jButton2))
+                    .addComponent(jButton2)
+                    .addComponent(jButton3))
                 .addContainerGap(68, Short.MAX_VALUE))
         );
 
@@ -907,10 +911,20 @@ public class VistaOperaciones extends javax.swing.JFrame {
             if(tipobien.getSelectedIndex()==2){a="Un departamento ubicado en: ";}
             if(tipobien.getSelectedIndex()==3){a="Un terreno ubicado en: ";}
             numcontrato=contrato.getText();
+            descripcionB=direccionBien.getText();
+            numeroB=numeroBien.getText();
+            cpB=numeroBien.getText();
+            metrosB=metrosbien.getText();
             anticipo=Double.parseDouble(MontoAnticipo);
+            
             descripcion=a+direccionBien.getText()+" numero: "+numeroBien.getText()+"\n CP:"+CPBien.getText()+" con:"+metrosbien.getText()+" metros cuadrados";
             boolean mo=val.Ingreso(MontoOperacion);
+            boolean moa=val.Ingreso(MontoAnticipo);
             boolean con=val.alfanumericos(numcontrato);
+            boolean db=val.sololetras(descripcionB);
+            boolean cop=val.codigopostal(cpB);
+            boolean num=val.numerocalle(numeroB);
+            boolean num1=val.solonumeros(metrosB);
             
             moneda= (Moneda) combomoneda.getSelectedItem();
             tp= (TipoOperacion) combooperacion.getSelectedItem();
@@ -925,14 +939,34 @@ public class VistaOperaciones extends javax.swing.JFrame {
                     JOptionPane.showMessageDialog(null, "Los combobox deben tener una eleccion al igual que el cliente asociado.");
                 }
                 else{
-                    if(mo && con){
-                        try {
-                            OperacionDAO op = new OperacionDAO();
-                            MontoFrecuenciaDAO MFD= new MontoFrecuenciaDAO();
-                            
-                            op.RegistroOperacion(d.encrypt(numcontrato), monto, fecha, 1 , d.encrypt(descripcion), c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario(),anticipo,idVendedor);                
-                        } catch (Exception e) {
+                    if(mo && con && moa){
+                        if(db){
+                            if(cop){
+                                if(num){
+                                    if(num1){
+                                       try {
+                                            OperacionDAO op = new OperacionDAO();
+                                            MontoFrecuenciaDAO MFD= new MontoFrecuenciaDAO();
+
+                                            op.RegistroOperacion(d.encrypt(numcontrato), monto, fecha, 1 , d.encrypt(descripcion), c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario(),anticipo,idVendedor);                
+                                        } catch (Exception e) {
+                                        }   
+                                    }else{
+                                        JOptionPane.showMessageDialog(null, "El campo Metros Cuadrados solo acepta numeros");
+                                    }
+                                    
+                                }else{
+                                    JOptionPane.showMessageDialog(null, "El campo Numero solo acepta numeros");
+                                }
+                                
+                            }else{
+                                 JOptionPane.showMessageDialog(null, "Texto invalido en el campo codigo postal");
+                            }
+                          
+                        }else{
+                            JOptionPane.showMessageDialog(null, "El campo Calle y Colonia debe tener solo letras");
                         }
+                        
                     }
                     else{
                         JOptionPane.showMessageDialog(null, "El monto debe tener decimales");
