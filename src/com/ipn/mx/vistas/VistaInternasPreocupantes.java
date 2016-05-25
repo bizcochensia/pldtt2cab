@@ -45,6 +45,7 @@ public class VistaInternasPreocupantes extends javax.swing.JFrame {
         
         cargardatos();
         mostrardatos(posicion);
+        Razones.setLineWrap(true);
         Nombre.setEditable(false);
         ApellidoPat.setEditable(false);
         ApellidoMat.setEditable(false);

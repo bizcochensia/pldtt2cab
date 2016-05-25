@@ -59,6 +59,8 @@ public class VistaVerOperacionesV extends javax.swing.JFrame {
    
         cargardatos();
         mostrardatos(posicion);
+        muestradescripcion.setLineWrap(true);
+        
         muestracliente.setEditable(false);
         muestracontrato.setEditable(false);
         muestradescripcion.setEditable(false);
@@ -182,7 +184,6 @@ public class VistaVerOperacionesV extends javax.swing.JFrame {
         muestramonetario = new javax.swing.JTextField();
         muestracontrato = new javax.swing.JTextField();
         muestramonto = new javax.swing.JTextField();
-        muestradescripcion = new javax.swing.JTextField();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -194,6 +195,8 @@ public class VistaVerOperacionesV extends javax.swing.JFrame {
         jLabel14 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         numeroalarma = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        muestradescripcion = new javax.swing.JTextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -269,6 +272,10 @@ public class VistaVerOperacionesV extends javax.swing.JFrame {
 
         jLabel12.setText("Numero de alarmas");
 
+        muestradescripcion.setColumns(20);
+        muestradescripcion.setRows(5);
+        jScrollPane1.setViewportView(muestradescripcion);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -328,7 +335,7 @@ public class VistaVerOperacionesV extends javax.swing.JFrame {
                             .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                 .addComponent(muestrafecha, javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(muestratipoOperacion, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 168, Short.MAX_VALUE))
-                            .addComponent(muestradescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 311, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(141, 141, 141))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addComponent(jButton5)
@@ -396,9 +403,9 @@ public class VistaVerOperacionesV extends javax.swing.JFrame {
                     .addComponent(muestrafecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(muestradescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 99, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel3))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 33, Short.MAX_VALUE)
+                    .addComponent(jLabel3)
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
                 .addComponent(jButton5)
                 .addGap(20, 20, 20))
         );
@@ -525,9 +532,10 @@ public class VistaVerOperacionesV extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField muestracliente;
     private javax.swing.JTextField muestracontrato;
-    private javax.swing.JTextField muestradescripcion;
+    private javax.swing.JTextArea muestradescripcion;
     private javax.swing.JTextField muestraempleado;
     private javax.swing.JTextField muestrafecha;
     private javax.swing.JTextField muestrainmobiliaria;

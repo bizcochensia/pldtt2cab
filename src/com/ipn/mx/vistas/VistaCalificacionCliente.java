@@ -87,6 +87,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
           
         muestratodo();
         /// 
+       descripcionC.setLineWrap(true);
        Calendar c2 = new GregorianCalendar();
                 
     }

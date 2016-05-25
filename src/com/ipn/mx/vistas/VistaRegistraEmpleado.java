@@ -487,7 +487,7 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
                            // op.RegistroOperacion(d.encrypt("0"), "0", "0", RTC , d.encrypt(descripcion), c.getIdCLiente(), vendedorid.getIdEmpleado(), 1, tp.getId_tipoOp(), moneda.getId_moneda(), mone.getId_clavemonetario(),anticipo);                
                         } catch (Exception e) {
                         } 
-                  asignacionlistas("El empleado se encuentra en Listas Negras",2);
+                  asignacionlistas("El empleado se encuentra con "+"estatus:"+rs.getString("estatus")+", en la dependencia: "+rs.getString("dependencia")+", puesto:"+rs.getString("puesto"),2);
                    
                   JOptionPane.showMessageDialog(rootPane, "estatus:"+rs.getString("estatus")+", en la dependencia: "+rs.getString("dependencia")+", puesto:"+rs.getString("puesto"), "Persona Encontrada en Listas negras ", JOptionPane.WARNING_MESSAGE);
                      }
@@ -508,7 +508,7 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
             ResultSet rs=st.executeQuery(aux);
               while (rs.next()){
                   System.out.println(rs.getString("estatus")+","+rs.getString("dependencia")+","+rs.getString("puesto"));
-                 asignacionlistas("El empleado se considera PPE",6);
+                 asignacionlistas("El empleado se encuentra con "+"estatus:"+rs.getString("estatus")+", en la dependencia: "+rs.getString("dependencia")+", puesto:"+rs.getString("puesto"),6);
                 JOptionPane.showMessageDialog(rootPane, "estatus:"+rs.getString("estatus")+", en la dependencia: "+rs.getString("dependencia")+", puesto:"+rs.getString("puesto"), "Persona Encontrada en Listas negras ", JOptionPane.WARNING_MESSAGE);
 
               }
