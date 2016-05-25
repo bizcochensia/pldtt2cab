@@ -314,8 +314,8 @@ public class VistaDatosReporte extends javax.swing.JFrame {
                 for(int f=0;f<list2.size()+1;f++){
                     /* crear las filas*/
                     
-                    System.out.println("el valor del auxfor es de "+auxfor);
-                    String []datos2=list2.get(auxfor);
+                    
+                    
                     Row fila = hoja.createRow(f);
                     if(auxfor<=list2.size()-1){auxfor++;}
                     for(int c=0;c<encabezados.length;c++){
@@ -327,6 +327,7 @@ public class VistaDatosReporte extends javax.swing.JFrame {
                             celda.setCellValue(encabezados[c]);
                         }else{
                             /*Si no es la primera fila establecemos un valor*/
+                            String []datos2=list2.get(f-1);
                             celda.setCellValue(datos2[c]);
                             System.out.println("tiene en :"+encabezados[c]+"el dato de:"+datos2[c]+"\n");
                         }
