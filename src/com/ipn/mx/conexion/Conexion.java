@@ -23,8 +23,8 @@ public class Conexion {
         //104.197.195.129   gYnqLB4a
         
        Class.forName("com.mysql.jdbc.Driver");
-       //con=DriverManager.getConnection("jdbc:mysql://localhost/pldtt2cab","root","admin" );
-       con=DriverManager.getConnection("jdbc:mysql://104.197.195.129/pldtt2cab","root","gYnqLB4a");
+       con=DriverManager.getConnection("jdbc:mysql://localhost/pldtt2cab","root","admin" );
+       //con=DriverManager.getConnection("jdbc:mysql://104.197.195.129/pldtt2cab","root","gYnqLB4a");
        System.out.println("conexion establecida");
     } catch(ClassNotFoundException | SQLException e){
         System.out.println("error de conexion");

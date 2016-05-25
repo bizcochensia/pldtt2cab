@@ -32,7 +32,7 @@ public class VistaRegistraEmpleado extends javax.swing.JFrame {
     Connection reg2=con2.conectar();
     int tipo=-1;
     String []TipoEmpleado= {"Administrador","Oficial de Cumplimiento","Vendedor"};
-    AESDemo d = new AESDemo();
+   
     int idEmpleado=0;
     
     /**

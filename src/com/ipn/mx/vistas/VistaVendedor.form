@@ -148,12 +148,10 @@
                   <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
                       <Component id="Operación2" pref="257" max="32767" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="ClienteFisico" alignment="0" pref="257" max="32767" attributes="0"/>
-                          <Component id="ClienteMoral" alignment="0" max="32767" attributes="0"/>
-                          <Component id="Modificar" alignment="0" max="32767" attributes="0"/>
-                          <Component id="VerCliente" alignment="0" max="32767" attributes="0"/>
-                      </Group>
+                      <Component id="ClienteFisico" alignment="0" pref="257" max="32767" attributes="0"/>
+                      <Component id="ClienteMoral" alignment="0" max="32767" attributes="0"/>
+                      <Component id="Modificar" alignment="0" max="32767" attributes="0"/>
+                      <Component id="VerCliente" alignment="0" max="32767" attributes="0"/>
                   </Group>
                   <EmptySpace pref="62" max="32767" attributes="0"/>
               </Group>

@@ -35,6 +35,8 @@ public class Login extends javax.swing.JFrame {
     String captcha1="";
     
     public static int vendedor;
+    public static String contraseñafinal ="J2+fQYS9CW4HO22eKJhMIg==";
+    public static String contraseña ;
     
     /**
      * Creates new form Login

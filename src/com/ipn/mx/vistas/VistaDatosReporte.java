@@ -82,22 +82,8 @@ public class VistaDatosReporte extends javax.swing.JFrame {
      */
     public VistaDatosReporte() {
         initComponents();
-        JPasswordField pwd = new JPasswordField(10);
-         JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-   
-               if(respuesta==JOptionPane.OK_OPTION){
-            if("".equals(new String(pwd.getPassword()))){
-            JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-            JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-            }
-            else{
-        daes.addKey(new String(pwd.getPassword()));
-            }
-        }
-        else{
-        JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-        this.setVisible(false);
-        }
+        
+        daes.addKey(Login.contraseña);
          MiPanel p = new MiPanel(); 
       this.add( p , BorderLayout.CENTER); 
        p.repaint(); 

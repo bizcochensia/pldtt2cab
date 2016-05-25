@@ -5,6 +5,7 @@
  */
 package com.ipn.mx.vistas;
 
+import com.mx.ipn.clases.AESDemo;
 import com.mx.ipn.clases.MiPanel;
 import java.awt.BorderLayout;
 import java.awt.Component;
@@ -15,6 +16,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JInternalFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 import javax.swing.UnsupportedLookAndFeelException;
 
 /**
@@ -22,32 +24,63 @@ import javax.swing.UnsupportedLookAndFeelException;
  * @author Clemente
  */
 public class VistaAdministrador extends javax.swing.JFrame {
-public static String contraseña;
+
+AESDemo d = new AESDemo();
+int respuesta;
+String pass = "";
+String correcto= Login.contraseñafinal;
+String nada="";
+
     /**
      * Creates new form VistaAdministrador
      */
     public VistaAdministrador() {
         
-        initComponents();
+        JPasswordField pwd = new JPasswordField(10);
+         respuesta = JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+          pass = new String(pwd.getPassword());
+          
+               if(respuesta==JOptionPane.CANCEL_OPTION){
+             JOptionPane.showMessageDialog(null,"El modulo necesita la contraseña de cifrado para continuar");
+             this.setVisible(false);
+        }
+        else{
+                  
+               
+              if("".equals(new String(pwd.getPassword()))){
+            JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
+            JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+            pass = new String(pwd.getPassword());
+            System.out.println(pass);
+            }
+            else{
+                 
+                  pass = new String(pwd.getPassword());
+                  d.addKey(pass);
+                  nada = d.encrypt(pass);
+   
+                  if(nada.equals(correcto) ){
+                        Login.contraseña = pass;
+                      initComponents();
         ///
-       
-         MiPanel p = new MiPanel();
-        this.add( p , BorderLayout.CENTER);
-        p.repaint();
-        setLayout(null);
-        setLocationRelativeTo(null);        // Centering on screen...
-        setSize(1200, 700);               // Setting dimensions...
-        setTitle("SisPLD");
-        setResizable(false);
-        
-        //setResizable(false);
-        //botones
-      
 
-  
-        
-                                             
- 
+                        MiPanel p = new MiPanel();
+                       this.add( p , BorderLayout.CENTER);
+                       p.repaint();
+                       setLayout(null);
+                       setLocationRelativeTo(null);        // Centering on screen...
+                       setSize(1200, 700);               // Setting dimensions...
+                       setTitle("SisPLD");
+                       setResizable(false);
+                  }else{
+                      
+                      JOptionPane.showMessageDialog(null,"Contraseña incorrecta");
+                      JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
+                      pass = new String(pwd.getPassword()); 
+                     
+               }
+              }                              
+               }
  
     }
 

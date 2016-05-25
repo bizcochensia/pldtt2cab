@@ -45,21 +45,8 @@ public class ConocerC extends javax.swing.JFrame {
      */
     public ConocerC() throws SQLException {
         
-   
-        JPasswordField pwd = new JPasswordField(10);
-         respuesta = JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-   
-               if(respuesta==JOptionPane.CANCEL_OPTION){
-            this.setVisible(false);
-        }
-        else{
-                   
-              if("".equals(new String(pwd.getPassword()))){
-            JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-            JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-            }
-            else{
-        d.addKey(new String(pwd.getPassword()));
+       
+        d.addKey(Login.contraseña);
         initComponents();
                    MiPanel p = new MiPanel();
         this.add( p , BorderLayout.CENTER);
@@ -70,9 +57,9 @@ public class ConocerC extends javax.swing.JFrame {
         setTitle("SisPLD");
         setResizable(false);
         
-            }
+            
         
-        }
+        
                
         
      cargarClientes();

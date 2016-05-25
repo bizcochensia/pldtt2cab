@@ -47,20 +47,9 @@ AESDemo d = new AESDemo();
        setSize(900, 700);                  // Setting dimensions...
         setTitle("SisPLD");
         setResizable(false);
-        JPasswordField pwd = new JPasswordField(10);
-                if(respuesta==JOptionPane.OK_OPTION){
-            if("".equals(new String(pwd.getPassword()))){
-            JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-            JOptionPane.showConfirmDialog(null, pwd,"Ingrese Contraseña",JOptionPane.OK_CANCEL_OPTION);
-            }
-            else{
-        d.addKey(new String(pwd.getPassword()));
-            }
-        }
-        else{
-        JOptionPane.showMessageDialog(null,"Se necesita contraseña para continuar");
-        this.setVisible(false);
-        }
+       
+        d.addKey(Login.contraseña);
+           
         
         actualizarTabla();
         
