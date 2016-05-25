@@ -1018,7 +1018,9 @@ public class VistaOperaciones extends javax.swing.JFrame {
                  }
                  
                  //introduce Alarma monto o frecuencia
-                 if(descripcionAlarma.equals("")){}
+                 if(descripcionAlarma.equals("")){
+                 MFD.actualizarRiesgo(l);
+                 }
                  else{
                  MFD.insertaalarma(l, 3, fecha, descripcionAlarma,1);}
                  
