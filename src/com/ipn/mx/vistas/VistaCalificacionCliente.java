@@ -43,7 +43,7 @@ import javax.swing.JPasswordField;
  */
 public class VistaCalificacionCliente extends javax.swing.JFrame {
     
-    public ArrayList <Operacion> istaOpReportes= new ArrayList<Operacion>();
+    public static ArrayList <Operacion> listaOpReportes= new ArrayList<Operacion>();
     int riesgoresidencia;
     int respuesta;
     ResultSet t;
@@ -402,7 +402,10 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        
+        listaOpReportes.add(Operacionid);
+        for(int a=0;a<listaOpReportes.size();a++){
+        System.out.println("el # de id  es de:"+listaOpReportes.get(a));
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     

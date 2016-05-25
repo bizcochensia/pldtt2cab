@@ -57,7 +57,7 @@ public class OperacionDAO {
         ResultSet rs = null;
         try{
             st=reg.createStatement();
-            rs = st.executeQuery("select i.clave,i.calle,i.numero,i.EntidadFede,i.codigoPostal,tp.clave as clavetipoOp,"
+            rs = st.executeQuery("select count(*) as numalarmas,c.id_cliente,i.clave,i.calle,i.numero,i.EntidadFede,i.codigoPostal,tp.clave as clavetipoOp,"
                     + "m.clave as monetarioclave,op.numeroContrato, op.monto, mo.clave as claveMoneda,op.fecha as fechaOperacion,"
                     + "p.id_Pais as paisOrigen,tipoc.id_tipo,c.nombre,c.apellido_Pat,c.apellido_Mat,c.RFC,c.fecha_nac,"
                     + "c.calle,c.numero,l.clave as clave,c.numero_Telefono,act.folio,op.descripcion as detalleop from operaciones op inner "
@@ -65,7 +65,7 @@ public class OperacionDAO {
                     + " on op.tipo_id=tp.id_tipoOp inner join monetario m on op.monetario_id=m.id_clavemonetario inner join moneda mo"
                     + " on op.moneda_id=mo.id_moneda inner join cliente c on op.Cliente_id=c.id_cliente inner join tcliente tipoc on"
                     + " c.tipo=tipoc.id_tipo inner join pais p on c.pais_Origen=p.id_Pais join actividades act on "
-                    + "c.actividad_Principal=act.id_actividad inner join localidad l on c.localidad=l.id_Localidad "
+                    + "c.actividad_Principal=act.id_actividad inner join localidad l on c.localidad=l.id_Localidad inner join  intermedia_operacion_alarma ioa on ioa.Operacion_id=op.id_Operacion"
                     + "  where op.id_Operacion='"+a+"'  ");
         } catch (Exception ex){
             System.out.println(ex);
