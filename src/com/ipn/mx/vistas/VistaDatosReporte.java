@@ -36,17 +36,21 @@ import org.apache.poi.ss.usermodel.Workbook;
  */
 public class VistaDatosReporte extends javax.swing.JFrame {
 
-    public Operacion ope= new Operacion(VistaVerOperaciones.operacion);
+//public Operacion ope= new Operacion(VistaVerOperaciones.operacion);
     ReporteDAO nrep=new ReporteDAO();
     AESDemo daes = new AESDemo();
-    String nombrearchivo="";
+    ArrayList<Operacion> listareportes = new ArrayList <Operacion>(VistaCalificacionCliente.listaOpReportes); //pasa el array list de la vista 
+    ArrayList<String[]> list2 = new ArrayList<String[]>();
     int respuesta;
     int numContrato=0;
     int i=0;
+    int auxfor=0;
     int auxalarmas=0;
-    int idCliente=VistaVerOperaciones.idCliente;
-    int alarmas=VistaVerOperaciones.numalarmas;
-    int idOperacion=VistaVerOperaciones.idOperacion;
+    //int idCliente=VistaVerOperaciones.idCliente;
+    int idCliente=0;
+    //int alarmas=VistaVerOperaciones.numalarmas;
+    int alarmas=0;
+    //int idOperacion=VistaVerOperaciones.idOperacion;
     ResultSet t;
     
     String []encabezados= {"TIPO DE REPORTE","PERIODO DEL REPORTE","FOLIO","ORGANISMO SUPERVISOR","CLAVE DEL SUJETO OBLIGADO","LOCALIDAD",
@@ -180,21 +184,29 @@ public class VistaDatosReporte extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        nombrearchivo=recibenombre.getText();
+    String nombrearchivo=recibenombre.getText();
         periodo=recibeperiodo.getText();
         Validaciones val=new Validaciones();
         boolean n=val.sololetras(nombrearchivo);
         boolean p=val.periodo(periodo);
         
         if(n && p){
-            try {                                         
-            String rutaArchivo = "C:/Users/bdfe_/Desktop"+"/"+nombrearchivo+".xls";
+            try {  
+                //C:\Users\Clemente\Desktop\ESCOM\lavadodinero\nuevacarpetatt2\pldtt2cab
+            String rutaArchivo = "\\Users\\Clemente\\Desktop\\ESCOM\\lavadodinero\\nuevacarpetatt2\\pldtt2cab"+"\\"+nombrearchivo+".xls";
             System.out.println(rutaArchivo);
             OperacionDAO d=new OperacionDAO();
+                
+                for(int z=0;z<listareportes.size();z++){
+                    System.out.println("el valor de z es"+z);
+            Operacion ope=listareportes.get(z); //puse esta en vez de la primera linea comentada
             String a=Integer.toString(ope.getIdOperacion());
+                    System.out.println("el valor de a es"+a);
             rs=d.DatosReportes(a);
             
              while(rs.next()){
+                 alarmas=rs.getInt("numalarmas");
+                idCliente=rs.getInt("id_Cliente");
                 clave=rs.getString("clave");
                 CPINM=rs.getString("codigoPostal");
                 tipoOp=rs.getString("clavetipoOp");
@@ -267,16 +279,24 @@ public class VistaDatosReporte extends javax.swing.JFrame {
              folio=aux2.getString("folio");
              }
              
-            ResultSet t=nrep.VerAlarmas(idOperacion);
+            ResultSet t=nrep.VerAlarmas(ope.getIdOperacion()); //modifique el parametro
             while(t.next()){
             razones=razones+t.getString("Descripcion");
-            } 
+            }
+            
+            String []datos= {tipoReporte,periodo,folio,organosup,clave,localidad,CPINM,tipoOp,Instrumento,numCuenta,monto,moneda,fechaop,fechadet,
+                     nacionalidad,tipopersona,Razonsocial,nombre,ApPat,ApMat,RFC,CURP,fechanac,domicilio,colonia,ciudad,telefono,actividad,
+                    consecutivo,numcuenta2,clave2,nombre2,appat2,apmat2,descripcion,razones};
+            
+            list2.add(datos);
+                 } 
+            //}cierra el try
             
             try {
                 File archivoXLS = new File(rutaArchivo);
-                String []datos= {tipoReporte,periodo,folio,organosup,clave,localidad,CPINM,tipoOp,Instrumento,numCuenta,monto,moneda,fechaop,fechadet,
+                /*String []datos= {tipoReporte,periodo,folio,organosup,clave,localidad,CPINM,tipoOp,Instrumento,numCuenta,monto,moneda,fechaop,fechadet,
                      nacionalidad,tipopersona,Razonsocial,nombre,ApPat,ApMat,RFC,CURP,fechanac,domicilio,colonia,ciudad,telefono,actividad,
-                    consecutivo,numcuenta2,clave2,nombre2,appat2,apmat2,descripcion,razones};
+                    consecutivo,numcuenta2,clave2,nombre2,appat2,apmat2,descripcion,razones};*/
                 
                 if(archivoXLS.exists()) archivoXLS.delete();
                 
@@ -291,10 +311,13 @@ public class VistaDatosReporte extends javax.swing.JFrame {
                 Sheet hoja = libro.createSheet("Reporte");
                 
                 
-                for(int f=0;f<2;f++){
+                for(int f=0;f<list2.size()+1;f++){
                     /* crear las filas*/
-                    Row fila = hoja.createRow(f);
                     
+                    System.out.println("el valor del auxfor es de "+auxfor);
+                    String []datos2=list2.get(auxfor);
+                    Row fila = hoja.createRow(f);
+                    if(auxfor<=list2.size()-1){auxfor++;}
                     for(int c=0;c<encabezados.length;c++){
                         /*Creamos la celda a partir de la fila actual*/
                         Cell celda = fila.createCell(c);
@@ -304,8 +327,8 @@ public class VistaDatosReporte extends javax.swing.JFrame {
                             celda.setCellValue(encabezados[c]);
                         }else{
                             /*Si no es la primera fila establecemos un valor*/
-                            celda.setCellValue(datos[c]);
-                            System.out.println("tiene en :"+encabezados[c]+"el dato de:"+datos[c]+"\n");
+                            celda.setCellValue(datos2[c]);
+                            System.out.println("tiene en :"+encabezados[c]+"el dato de:"+datos2[c]+"\n");
                         }
                     }
                 }
@@ -320,6 +343,8 @@ public class VistaDatosReporte extends javax.swing.JFrame {
                 Logger.getLogger(VistaDatosReporte.class.getName()).log(Level.SEVERE, null, ex);
                 JOptionPane.showMessageDialog(null,"Ocurrio un error intentelo nuevamente");
             }
+            
+            
         } catch (SQLException ex) {
              Logger.getLogger(VistaDatosReporte.class.getName()).log(Level.SEVERE, null, ex);
              JOptionPane.showMessageDialog(null,"Ocurrio un error intentelo nuevamente");
@@ -327,8 +352,7 @@ public class VistaDatosReporte extends javax.swing.JFrame {
         }
         else{
             JOptionPane.showMessageDialog(null,"Valores en los campos invalidos"+"\n"+"El nombre solo acpeta letras y una longitud de 15\n"+"El periodo debe tener el formato de AAAAMM ");
-        }
-        
+        }    
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void recibenombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recibenombreActionPerformed
