@@ -133,6 +133,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
         Muestrafecha = new javax.swing.JLabel();
         MuestraMonto = new javax.swing.JLabel();
         anticipo = new javax.swing.JLabel();
+        Frecuencia = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -324,24 +325,31 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
         jPanel5Layout.setHorizontalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(61, 61, 61)
                 .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addComponent(Muestrafecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(MuestraMonto, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
-                    .addComponent(anticipo, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(342, Short.MAX_VALUE))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(44, 44, 44)
+                        .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(MuestraMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(Muestrafecha, javax.swing.GroupLayout.PREFERRED_SIZE, 348, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(anticipo, javax.swing.GroupLayout.PREFERRED_SIZE, 677, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(jPanel5Layout.createSequentialGroup()
+                        .addGap(57, 57, 57)
+                        .addComponent(Frecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, 487, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(72, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
-                .addGap(57, 57, 57)
+                .addGap(19, 19, 19)
                 .addComponent(Muestrafecha, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(45, 45, 45)
+                .addGap(18, 18, 18)
                 .addComponent(MuestraMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(71, 71, 71)
+                .addGap(54, 54, 54)
                 .addComponent(anticipo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(87, Short.MAX_VALUE))
+                .addGap(35, 35, 35)
+                .addComponent(Frecuencia, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(114, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Monto y Frecuencia", jPanel5);
@@ -504,11 +512,29 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
             anticipo.setText("La operacion fue detectada en:"+fechadeteccion);
             anticipo.setText(descripcionalarma);
             }
-            
         } catch (SQLException ex) {
             Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
         
+        //Alarma para Frecuencia
+        
+         t=MFD.obtenalarmaFrecuencia(Operacionid.getIdOperacion());
+        try {
+            while(t.next()){
+                descripcionalarma=t.getString("Descripcion");
+                fechadeteccion=t.getString("fechadeteccion");
+                alarmaid=t.getInt("Alarma_id");
+            }
+            
+            if(alarmaid!=4){
+            Frecuencia.setText("La operacion no es considerada sospechosa por frecuencia");  
+            }
+            else{
+            Frecuencia.setText("La operacion fue detectada en:"+fechadeteccion+" por que "+descripcionalarma);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
         
         
@@ -636,6 +662,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField Actividad;
+    private javax.swing.JLabel Frecuencia;
     private javax.swing.JLabel MuestraMonto;
     private javax.swing.JLabel Muestrafecha;
     private javax.swing.JTextField Nacionalidad;

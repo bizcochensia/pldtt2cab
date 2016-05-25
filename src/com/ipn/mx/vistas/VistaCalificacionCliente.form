@@ -405,29 +405,39 @@
           <Layout>
             <DimensionLayout dim="0">
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
+                  <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                              <Component id="Muestrafecha" max="32767" attributes="0"/>
-                              <Component id="MuestraMonto" pref="348" max="32767" attributes="0"/>
+                          <Group type="102" attributes="0">
+                              <EmptySpace min="44" pref="44" max="-2" attributes="0"/>
+                              <Group type="103" groupAlignment="0" attributes="0">
+                                  <Group type="103" alignment="0" groupAlignment="1" attributes="0">
+                                      <Component id="MuestraMonto" min="-2" pref="348" max="-2" attributes="0"/>
+                                      <Component id="Muestrafecha" min="-2" pref="348" max="-2" attributes="0"/>
+                                  </Group>
+                                  <Component id="anticipo" alignment="0" min="-2" pref="677" max="-2" attributes="0"/>
+                              </Group>
                           </Group>
-                          <Component id="anticipo" min="-2" pref="390" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                              <Component id="Frecuencia" min="-2" pref="487" max="-2" attributes="0"/>
+                          </Group>
                       </Group>
-                      <EmptySpace pref="342" max="32767" attributes="0"/>
+                      <EmptySpace pref="72" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
             <DimensionLayout dim="1">
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="57" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="19" max="-2" attributes="0"/>
                       <Component id="Muestrafecha" min="-2" pref="18" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
+                      <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Component id="MuestraMonto" min="-2" pref="20" max="-2" attributes="0"/>
-                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="54" max="-2" attributes="0"/>
                       <Component id="anticipo" min="-2" pref="15" max="-2" attributes="0"/>
-                      <EmptySpace pref="87" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="35" max="-2" attributes="0"/>
+                      <Component id="Frecuencia" min="-2" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace pref="114" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -438,6 +448,8 @@
             <Component class="javax.swing.JLabel" name="MuestraMonto">
             </Component>
             <Component class="javax.swing.JLabel" name="anticipo">
+            </Component>
+            <Component class="javax.swing.JLabel" name="Frecuencia">
             </Component>
           </SubComponents>
         </Container>
