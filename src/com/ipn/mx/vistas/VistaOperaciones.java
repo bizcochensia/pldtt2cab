@@ -64,15 +64,13 @@ public class VistaOperaciones extends javax.swing.JFrame {
     int idVendedor;
     int id[]=new int[50];
     int valid =0;
+
     
-    //frecuencia
-    int ids=0;
-    int z=0;
-    int op=0;
-    double sumatoria=0.0;
-    double promediofrecuencia=0.0;
-    double varianzafrecuencia=0.0;
-    double desviacionfrecuencia=0.0;
+    //frecuencias
+    int ventas=0;
+    int compras=0;
+    int Clientevendedor=0;
+    int Clientecomprador=0;
     
     //resto variables
     
@@ -1000,22 +998,23 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 descripcionAlarma= " "+descripcionAlarma+razon+"";
                 }
                 
-                 
-                 t=MFD.operacionesxCliente(c.getIdCLiente());
-                 while(t.next()){
-                 op=t.getInt("NumOpCl");
-                 }
-                 
-                 //introducexFrecuencia
-                 
-                 if((promediofrecuencia+2*desviacionfrecuencia)<op){
-                t=MFD.obtenidcontrato(d.encrypt(numcontrato));
+                 //Frecuencia
+                t=MFD.ObtenIDSClientes(l);
                 while(t.next()){
-                l=t.getInt("id_Operacion");
+                Clientecomprador=t.getInt("Cliente_id");
+                Clientevendedor=t.getInt("Cliente_CA_id");
                 }
-                double razon=op-(promediofrecuencia+2*desviacionfrecuencia);
-                descripcionAlarma=" "+descripcionAlarma+razon+"";
-                 }
+                
+                
+                
+                t=MFD.NumeroCompras(Clientecomprador);
+                while(t.next()){
+                compras=t.getInt("compras");
+                }
+                t=MFD.NumeroVentas(Clientevendedor);
+                 while(t.next()){
+                ventas=t.getInt("ventas");
+                }
                  
                  //introduce Alarma monto o frecuencia
                  if(descripcionAlarma.equals("")){
@@ -1163,48 +1162,8 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 desviacion=Math.pow(varianza,0.5);
                 System.out.println("num de operaciones obtenidos:"+ poblacion+" promedio de:"+ promedio+"\n"+" varianza de :" +varianza+"desviacion "+desviacion);
                 
-
-//frecuencia
-
-                t=MFD.obtenPoblacionFrecuencia(minimo, maximo);
-                while(t.next()){
-                    ids=t.getInt("numeroIDS");
-                }
-
-                int[] totalIds=new int[ids];
-                int[] dias=new int[ids];
-
-                t=MFD.obtenIdsFrecuencia(minimo, maximo);
-                while(t.next()){
-                    totalIds[z]=t.getInt("Cliente_id");
-                    z++;
-                }
-                for(int u=0;u<totalIds.length;u++){
-                }
-
-                //hasta aqui tengo los ids en una arreglo
-
-                //recorro el arreglo y obtengo las operaciones x persona
-                for (int y=0;y<totalIds.length;y++){
-                    t=MFD.operacionesxPersona(totalIds[y],"2016-01-01",fecha);
-                    while(t.next()){
-                        dias[y]=t.getInt("operacionxPersona");
-                        sumatoria=sumatoria+t.getInt("operacionxPersona");
-                    }
-                }
-
-                promediofrecuencia=sumatoria/ids;
-                sumatoria=0.0;
-
-                for(int j=0;j<dias.length;j++){
-                    sumatoria=sumatoria+Math.pow(dias[j]-promediofrecuencia,2);
-                }
-                varianzafrecuencia=sumatoria/ids;
-
-                desviacionfrecuencia=Math.pow(varianzafrecuencia,0.5);
-
-                System.out.println("num de ids obtenidos:"+ ids+" promedio de:"+ promediofrecuencia+"\n"+" varianza de :" +varianzafrecuencia+"desviacion "+desviacionfrecuencia);
-
+                //FRecuencia
+                
             } catch (SQLException ex) {
                 Logger.getLogger(VistaOperaciones.class.getName()).log(Level.SEVERE, null, ex);
             }

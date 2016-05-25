@@ -140,72 +140,7 @@ public class MontoFrecuenciaDAO {
         }
         return rs;
     }
-       
-        
-            public ResultSet obtenIdsFrecuencia(String a,String b){
-    String aux="Select distinct o.Cliente_id from operaciones o inner join cliente c on c.id_cliente=o.Cliente_id where c.ingreso_Promedio between   '"+a+"' and '"+b+"' ";    
-    Conexion cn = new Conexion ();
-    Connection reg=cn.conectar();
-    Statement st;
-    ResultSet rs = null;
-        try{
-            st=reg.createStatement();
-            rs = st.executeQuery(aux);
-        } catch (Exception ex){
-            System.out.println(ex);
-        }
-        return rs;
-    } 
-     
-    
-    public ResultSet obtenPoblacionFrecuencia(String a,String b){
-    String aux="Select count(distinct o.Cliente_id) as numeroIDS from operaciones o inner join cliente c on c.id_cliente=o.Cliente_id where c.ingreso_Promedio between   '"+a+"' and '"+b+"' ";    
-    Conexion cn = new Conexion ();
-    Connection reg=cn.conectar();
-    Statement st;
-    ResultSet rs = null;
-        try{
-            st=reg.createStatement();
-            rs = st.executeQuery(aux);
-        } catch (Exception ex){
-            System.out.println(ex);
-        }
-        return rs;
-    }        
-            
-            
-            
-            
-         public ResultSet operacionesxPersona(int a,String b,String c){
-    String aux= "Select count(*) as operacionxPersona from operaciones where Cliente_id="+a+" and fecha between '"+b+"' and '"+c+"' ";    
-    Conexion cn = new Conexion ();
-    Connection reg=cn.conectar();
-    Statement st;
-    ResultSet rs = null;
-        try{
-            st=reg.createStatement();
-            rs = st.executeQuery(aux);
-        } catch (Exception ex){
-            System.out.println(ex);
-        }
-        return rs;
-    }   
-       
-                  public ResultSet operacionesxCliente(int a){
-    String aux= "select count(*) as NumOpCl from operaciones where Cliente_id="+a;    
-    Conexion cn = new Conexion ();
-    Connection reg=cn.conectar();
-    Statement st;
-    ResultSet rs = null;
-        try{
-            st=reg.createStatement();
-            rs = st.executeQuery(aux);
-        } catch (Exception ex){
-            System.out.println(ex);
-        }
-        return rs;
-    }
-                  
+                       
         public void actualizarRiesgo(int a){
         String aux= "update operaciones set riesgo=0 where id_Operacion="+a;
         Conexion cn = new Conexion ();
@@ -221,5 +156,57 @@ public class MontoFrecuenciaDAO {
                     
         }
                   }
+        
+        
+        //frecuencias
+        
+        public ResultSet ObtenIDSClientes(int idoperacion){
+        String aux="select Cliente_id,Cliente_CA_id from operaciones where Cliente_id="+idoperacion;
+        Conexion cn = new Conexion ();
+        Connection reg=cn.conectar();
+        Statement st;
+        ResultSet rs = null;
+            try{
+                st=reg.createStatement();
+                rs = st.executeQuery(aux);
+            } catch (Exception ex){
+                System.out.println(ex);
+            }
+            return rs;
+        }
+        
+        
+        public ResultSet NumeroCompras(int a){
+        String aux="select count(*) as compras from operaciones where Cliente_id="+a;
+        Conexion cn = new Conexion ();
+        Connection reg=cn.conectar();
+        Statement st;
+        ResultSet rs = null;
+            try{
+                st=reg.createStatement();
+                rs = st.executeQuery(aux);
+            } catch (Exception ex){
+                System.out.println(ex);
+            }
+            return rs;
+        }
+        
+        public ResultSet NumeroVentas(int a){
+        String aux="select count(*) as ventas from operaciones where Cliente_CA_id="+a;
+        Conexion cn = new Conexion ();
+        Connection reg=cn.conectar();
+        Statement st;
+        ResultSet rs = null;
+            try{
+                st=reg.createStatement();
+                rs = st.executeQuery(aux);
+            } catch (Exception ex){
+                System.out.println(ex);
+            }
+            return rs;
+        }
+        
+        
+        
          
 }
