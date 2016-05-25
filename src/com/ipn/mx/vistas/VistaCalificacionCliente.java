@@ -502,7 +502,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
             }
             else{
             anticipo.setText("La operacion fue detectada en:"+fechadeteccion);
-            anticipo.setText("Es considerada sospechosa ya que cuenta con un anticipo de: "+descripcionalarma);
+            anticipo.setText(descripcionalarma);
             }
             
         } catch (SQLException ex) {

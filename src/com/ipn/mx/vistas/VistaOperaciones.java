@@ -979,7 +979,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
              while(t.next()){
                 l=t.getInt("id_Operacion");
                 }
-             MFD.insertaalarma(l, 1, fecha,"El anticipo supero el limite de $500,000 en efectivo",1);
+             MFD.insertaalarma(l, 1, fecha,"El anticipo supero el limite de $500,000 en efectivo ya que tuvo un anticipo de: "+anticipo,1);
              
             }
             
