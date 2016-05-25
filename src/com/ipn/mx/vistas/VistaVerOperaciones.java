@@ -83,8 +83,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
             ResultSet rs=st.executeQuery("Select distinct id_Operacion from operaciones o inner join intermedia_operacion_alarma ioa where o.id_Operacion=ioa.Operacion_id and ioa.realizaOp=1 order by fecha");
             while(rs.next()){
                 Operacion op=new Operacion();
-                op.setIdOperacion(rs.getInt(1));
-              /*
+                op.setIdOperacion(rs.getInt(1));           
                 op.setContrato(d.decrypt(rs.getString(2)));
                 op.setMonto(rs.getDouble(3));
                 op.setFecha(rs.getString(4));
@@ -95,7 +94,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
                 op.setInmobiliariaid(rs.getInt(9));
                 op.setTipoid(rs.getInt(10));
                 op.setMonedaid(rs.getInt(11));
-                op.setMonetarioid(rs.getInt(12));*/
+                op.setMonetarioid(rs.getInt(12));
                 lista.add(op);
                 
                 
@@ -109,12 +108,12 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
         op=lista.get(posicion);
         String a=Integer.toString(op.getIdOperacion());
         String e="Select count(*) as numeroalarmas,op.id_Operacion, op.numeroContrato,op.monto,op.fecha,op.descripcion,tiop.tipo_operacion,mo.instrumento_monetario,m.clave,c.id_cliente,c.nombre,e.nombre as empleado,i.nombre as inmobiliaria from operaciones op inner join monetario mo on op.monetario_id=mo.id_clavemonetario inner join moneda m on op.moneda_id=m.id_moneda inner join cliente c on op.Cliente_id=c.id_cliente inner join empleado e on op.Empleado_id=e.id_Empleado inner join inmobiliaria i on op.Inmobiliaria_id=i.id_inmobiliaria inner join tipo_operacion tiop on op.tipo_id=tiop.id_tipoOp inner join  intermedia_operacion_alarma ioa on ioa.Operacion_id=op.id_Operacion where op.id_Operacion='"+a+"'    ";    
-        String nom="Select count(*) as numeroalarmas,op.id_Operacion, op.numeroContrato,op.monto,op.fecha,op.descripcion,tiop.tipo_operacion,mo.instrumento_monetario,m.clave,c.id_cliente,c.nombre,e.nombre as empleado,i.nombre as inmobiliaria from operaciones op inner join monetario mo on op.monetario_id=mo.id_clavemonetario inner join moneda m on op.moneda_id=m.id_moneda inner join cliente c on op.Cliente_id=c.id_cliente inner join empleado e on op.Empleado_id=e.id_Empleado inner join inmobiliaria i on op.Inmobiliaria_id=i.id_inmobiliaria inner join tipo_operacion tiop on op.tipo_id=tiop.id_tipoOp inner join  intermedia_operacion_alarma ioa on ioa.Operacion_id=op.id_Operacion where op.id_Operacion='"+a+"' and c.nombre='"+nombre+"'    ";
+        
        
         Statement st;
         st = reg.createStatement();
         
-        if(parametro==0){
+     
         ResultSet rs=st.executeQuery(e);
         while(rs.next()){
         operacion=rs.getInt("id_Operacion");
@@ -133,25 +132,9 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
         idOperacion=rs.getInt("id_Operacion");
         idCliente=rs.getInt("id_cliente");
         }
-        }
-        else if(parametro==1){
-                ResultSet s=st.executeQuery(nom);
-        while(s.next()){
-        operacion=s.getInt("id_Operacion");
-        muestracontrato.setText(s.getString("numeroContrato"));
-        muestramonto.setText(s.getString("monto"));
-        muestradescripcion.setText(s.getString("descripcion"));
-        muestrafecha.setText(s.getString("fecha"));
-        muestracliente.setText(s.getString("nombre"));
-        muestraempleado.setText(s.getString("empleado"));
-        muestrainmobiliaria.setText(s.getString("inmobiliaria"));
-        muestramoneda.setText(s.getString("clave"));
-        muestramonetario.setText(s.getString("instrumento_monetario"));
-        muestratipoOperacion.setText(s.getString("tipo_operacion"));
-        idOperacion=s.getInt("id_Operacion");
-        idCliente=s.getInt("id_cliente");
-        }
-        }
+        
+ 
+        
         
     }
     
