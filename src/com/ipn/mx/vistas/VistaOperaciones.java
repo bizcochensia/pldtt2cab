@@ -71,6 +71,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
     int compras=0;
     int Clientevendedor=0;
     int Clientecomprador=0;
+    String descripcionFrecuencia="";
     
     //resto variables
     
@@ -1014,6 +1015,13 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 t=MFD.NumeroVentas(Clientevendedor);
                  while(t.next()){
                 ventas=t.getInt("ventas");
+                }
+                 
+                if(2<=compras){descripcionFrecuencia="El Cliente Comprador tiene mas de una compra recientemente";
+                MFD.insertaalarma(l,4,fecha,descripcionFrecuencia,1);
+                }
+                if(2<=ventas){descripcionFrecuencia="El Cliente Vendedor a realizado mas de una venta recientemente";
+                MFD.insertaalarma(l,4,fecha,descripcionFrecuencia,1);
                 }
                  
                  //introduce Alarma monto o frecuencia
