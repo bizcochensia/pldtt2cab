@@ -132,6 +132,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         Muestrafecha = new javax.swing.JLabel();
         MuestraMonto = new javax.swing.JLabel();
+        anticipo = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
@@ -324,10 +325,12 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel5Layout.createSequentialGroup()
                 .addGap(61, 61, 61)
-                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(Muestrafecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(MuestraMonto, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
-                .addContainerGap(384, Short.MAX_VALUE))
+                .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addComponent(Muestrafecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(MuestraMonto, javax.swing.GroupLayout.DEFAULT_SIZE, 348, Short.MAX_VALUE))
+                    .addComponent(anticipo, javax.swing.GroupLayout.PREFERRED_SIZE, 390, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(342, Short.MAX_VALUE))
         );
         jPanel5Layout.setVerticalGroup(
             jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -336,7 +339,9 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
                 .addComponent(Muestrafecha, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(45, 45, 45)
                 .addComponent(MuestraMonto, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(173, Short.MAX_VALUE))
+                .addGap(71, 71, 71)
+                .addComponent(anticipo, javax.swing.GroupLayout.PREFERRED_SIZE, 15, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(87, Short.MAX_VALUE))
         );
 
         jTabbedPane2.addTab("Monto y Frecuencia", jPanel5);
@@ -481,6 +486,32 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
         } catch (SQLException ex) {
             Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        //Alarma para monto en anticipo
+        
+        t=MFD.obtenalarmaAnticipo(Operacionid.getIdOperacion());
+        try {
+            while(t.next()){
+                descripcionalarma=t.getString("Descripcion");
+                fechadeteccion=t.getString("fechadeteccion");
+                alarmaid=t.getInt("Alarma_id");
+            }
+            
+            if(alarmaid!=1){
+            anticipo.setText("La operacion no es considerada sospechosa por monto en el anticipo");  
+            }
+            else{
+            anticipo.setText("La operacion fue detectada en:"+fechadeteccion);
+            anticipo.setText("Es considerada sospechosa ya que cuenta con un anticipo de: "+descripcionalarma);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaCalificacionCliente.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+        
+        
      
     }
     
@@ -609,6 +640,7 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
     private javax.swing.JLabel Muestrafecha;
     private javax.swing.JTextField Nacionalidad;
     private javax.swing.JTextField Residencia;
+    private javax.swing.JLabel anticipo;
     private javax.swing.JTextArea descripcionC;
     private javax.swing.JTextField fechaC;
     private javax.swing.JButton jButton1;

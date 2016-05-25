@@ -407,11 +407,14 @@
               <Group type="103" groupAlignment="0" attributes="0">
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="-2" pref="61" max="-2" attributes="0"/>
-                      <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                          <Component id="Muestrafecha" max="32767" attributes="0"/>
-                          <Component id="MuestraMonto" pref="348" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="0" attributes="0">
+                          <Group type="103" groupAlignment="0" max="-2" attributes="0">
+                              <Component id="Muestrafecha" max="32767" attributes="0"/>
+                              <Component id="MuestraMonto" pref="348" max="32767" attributes="0"/>
+                          </Group>
+                          <Component id="anticipo" min="-2" pref="390" max="-2" attributes="0"/>
                       </Group>
-                      <EmptySpace pref="384" max="32767" attributes="0"/>
+                      <EmptySpace pref="342" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -422,7 +425,9 @@
                       <Component id="Muestrafecha" min="-2" pref="18" max="-2" attributes="0"/>
                       <EmptySpace min="-2" pref="45" max="-2" attributes="0"/>
                       <Component id="MuestraMonto" min="-2" pref="20" max="-2" attributes="0"/>
-                      <EmptySpace pref="173" max="32767" attributes="0"/>
+                      <EmptySpace min="-2" pref="71" max="-2" attributes="0"/>
+                      <Component id="anticipo" min="-2" pref="15" max="-2" attributes="0"/>
+                      <EmptySpace pref="87" max="32767" attributes="0"/>
                   </Group>
               </Group>
             </DimensionLayout>
@@ -431,6 +436,8 @@
             <Component class="javax.swing.JLabel" name="Muestrafecha">
             </Component>
             <Component class="javax.swing.JLabel" name="MuestraMonto">
+            </Component>
+            <Component class="javax.swing.JLabel" name="anticipo">
             </Component>
           </SubComponents>
         </Container>

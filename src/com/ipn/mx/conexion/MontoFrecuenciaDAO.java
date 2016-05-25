@@ -44,7 +44,7 @@ public class MontoFrecuenciaDAO {
         
     public ResultSet obtenalarmas(int a){
  
-    String aux="Select Alarma_id,fechadeteccion,Descripcion from intermedia_operacion_alarma  where Operacion_id="+a;    
+    String aux="Select Alarma_id,fechadeteccion,Descripcion from intermedia_operacion_alarma  where Operacion_id='"+a+"' and Alarma_id=3";    
     Conexion cn = new Conexion ();
     Connection reg=cn.conectar();
     Statement st;
@@ -58,7 +58,21 @@ public class MontoFrecuenciaDAO {
         return rs;
     } 
     
-    
+       public ResultSet obtenalarmaAnticipo(int a){
+ 
+    String aux="Select Alarma_id,fechadeteccion,Descripcion from intermedia_operacion_alarma  where Operacion_id='"+a+"' and Alarma_id=1";    
+    Conexion cn = new Conexion ();
+    Connection reg=cn.conectar();
+    Statement st;
+    ResultSet rs = null;
+        try{
+            st=reg.createStatement();
+            rs = st.executeQuery(aux);
+        } catch (Exception ex){
+            System.out.println(ex);
+        }
+        return rs;
+    }
     
     
     public ResultSet obtenidcontrato(String a){
