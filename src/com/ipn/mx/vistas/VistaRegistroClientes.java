@@ -209,6 +209,11 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
                 comboEntidadFedeMouseClicked(evt);
             }
         });
+        comboEntidadFede.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comboEntidadFedeActionPerformed(evt);
+            }
+        });
 
         jLabel6.setText("*Localidad:");
 
@@ -642,6 +647,10 @@ public class VistaRegistroClientes extends javax.swing.JFrame {
             Logger.getLogger(VistaRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void comboEntidadFedeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comboEntidadFedeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comboEntidadFedeActionPerformed
 
     public void cargarpais() throws SQLException {
      Statement st;
