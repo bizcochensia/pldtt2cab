@@ -86,7 +86,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
             while(rs.next()){
                 Operacion opera=new Operacion();
                 opera.setIdOperacion(rs.getInt(1));           
-                opera.setContrato(d.decrypt(rs.getString(2)));
+                /*opera.setContrato(d.decrypt(rs.getString(2)));
                 opera.setMonto(rs.getDouble(3));
                 opera.setFecha(rs.getString(4));
                 opera.setRiesgo(rs.getDouble(5));
@@ -96,7 +96,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
                 opera.setInmobiliariaid(rs.getInt(9));
                 opera.setTipoid(rs.getInt(10));
                 opera.setMonedaid(rs.getInt(11));
-                opera.setMonetarioid(rs.getInt(12));
+                opera.setMonetarioid(rs.getInt(12));*/
                 lista.add(opera);
                 
                 
