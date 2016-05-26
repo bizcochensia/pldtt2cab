@@ -41,7 +41,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
     public static int numalarmas=0;
     AESDemo d = new AESDemo ();
     int respuesta;
-    
+    String patBusqueda="";
     /**
      * Creates new form VistaVerOperaciones
      */
@@ -350,8 +350,8 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
                                 .addComponent(opcion, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
                                 .addComponent(busqueda, javax.swing.GroupLayout.PREFERRED_SIZE, 187, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(42, 42, 42)
-                                .addComponent(jButton1)))))
+                                .addGap(18, 18, 18)
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(141, 141, 141))
         );
         layout.setVerticalGroup(
@@ -489,7 +489,39 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
         if(opcion.getSelectedIndex()==0 || busqueda.getText().equals("")){
         JOptionPane.showMessageDialog(null,"Se debe seleccionar una opcion de busqueda y un parametro");
         }
-        else{}
+        else{
+        if(opcion.getSelectedIndex()==1){
+                     Statement st;
+        try {
+            patBusqueda=busqueda.getText();
+            lista.clear();
+            st = reg.createStatement();
+            ResultSet rs=st.executeQuery("Select distinct id_Operacion from operaciones o inner join intermedia_operacion_alarma ioa where o.id_Operacion=ioa.Operacion_id and o.numeroContrato='"+patBusqueda+"' ");
+            while(rs.next()){
+                Operacion opera=new Operacion();
+                opera.setIdOperacion(rs.getInt(1));           
+                opera.setContrato(d.decrypt(rs.getString(2)));
+                opera.setMonto(rs.getDouble(3));
+                opera.setFecha(rs.getString(4));
+                opera.setRiesgo(rs.getDouble(5));
+                opera.setDescripcion(d.decrypt(rs.getString(6)));
+                opera.setClienteid(rs.getInt(7));
+                opera.setEmpleadoid(rs.getInt(8));
+                opera.setInmobiliariaid(rs.getInt(9));
+                opera.setTipoid(rs.getInt(10));
+                opera.setMonedaid(rs.getInt(11));
+                opera.setMonetarioid(rs.getInt(12));
+                lista.add(opera);              
+     }
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        }
+        if(opcion.getSelectedIndex()==2){}
+        if(opcion.getSelectedIndex()==3){}
+        if(opcion.getSelectedIndex()==4){}
+        
+        }
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
