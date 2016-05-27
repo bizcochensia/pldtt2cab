@@ -613,7 +613,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
 
         jLabel17.setText("Seleccione el cliente para asociarlo a la operacion con los datos registrados previamente:");
 
-        parametros.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione...", "Nombre" }));
+        parametros.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione...", "Nombre", "Apellido Paterno", "RFC" }));
 
         jButton5.setText("Buscar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -1335,18 +1335,17 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
         if(parametros.getSelectedIndex()==0 || busqueda.getText().equals("")){
-        JOptionPane.showMessageDialog(null, "");
+        JOptionPane.showMessageDialog(null, "Selecciona una opcion de busqueda y proporciona \n un parametro para iniciar");
         }
         else{
         if(parametros.getSelectedIndex()==1){
-            
+            parametroBusqueda=d.encrypt(busqueda.getText());
          try {
-            combocliente.removeAllItems();
             String consulta="Select * from cliente where nombre='"+parametroBusqueda+"' ";
+            System.out.println(consulta);
             Statement st2=reg.createStatement();
             ResultSet rs2=st2.executeQuery(consulta);
             while(rs2.next()){
-                while(rs2.next()){
                 Cliente act=new Cliente();
                 act.setIdCLiente(rs2.getInt(1));
                 act.setNombre(d.decrypt(rs2.getString(2)));
@@ -1366,60 +1365,102 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 act.setRiesgo(rs2.getInt(16));
                 act.setActividad(rs2.getString(17));
                 act.setIngreso(rs2.getDouble(18));
+                System.out.println("Si entre al while");
+              combocliente.removeAllItems();
             combocliente.addItem(act);
-            }
+            
             }   
         } catch (SQLException ex) {
             Logger.getLogger(VistaRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null,"Elige una entidad Federativa");
+            JOptionPane.showMessageDialog(null,"Ocurrio un error");
         }
         }
+        if(parametros.getSelectedIndex()==2){
+        
+                    parametroBusqueda=d.encrypt(busqueda.getText());
+         try {
+            String consulta="Select * from cliente where apellido_Pat='"+parametroBusqueda+"' ";
+            System.out.println(consulta);
+            Statement st2=reg.createStatement();
+            ResultSet rs2=st2.executeQuery(consulta);
+            while(rs2.next()){
+                Cliente act=new Cliente();
+                act.setIdCLiente(rs2.getInt(1));
+                act.setNombre(d.decrypt(rs2.getString(2)));
+                act.setApellPat(d.decrypt(rs2.getString(3)));
+                act.setApellMat(d.decrypt(rs2.getString(4)));
+                act.setFecha_nac(rs2.getString(5));
+                act.setTipo(rs2.getInt(6));
+                act.setRfc(d.decrypt(rs2.getString(7)));
+                act.setCalle(d.decrypt(rs2.getString(8)));
+                act.setNumero(d.decrypt(rs2.getString(9)));
+                act.setPaisOrigen(rs2.getInt(10));
+                act.setPaisResidencia(rs2.getInt(11));
+                act.setEntidad(rs2.getInt(12));
+                act.setLocalidad(rs2.getInt(13));
+                act.setCodigoPostal(d.decrypt(rs2.getString(14)));
+                act.setNumTel(d.decrypt(rs2.getString(15)));
+                act.setRiesgo(rs2.getInt(16));
+                act.setActividad(rs2.getString(17));
+                act.setIngreso(rs2.getDouble(18));
+                System.out.println("Si entre al while");
+              combocliente.removeAllItems();
+            combocliente.addItem(act);
+            
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"Ocurrio un error");
+        }
+        
+        }
+        
+        if(parametros.getSelectedIndex()==3){
+        
+                    parametroBusqueda=d.encrypt(busqueda.getText());
+         try {
+            String consulta="Select * from cliente where RFC='"+parametroBusqueda+"' ";
+            System.out.println(consulta);
+            Statement st2=reg.createStatement();
+            ResultSet rs2=st2.executeQuery(consulta);
+            while(rs2.next()){
+                Cliente act=new Cliente();
+                act.setIdCLiente(rs2.getInt(1));
+                act.setNombre(d.decrypt(rs2.getString(2)));
+                act.setApellPat(d.decrypt(rs2.getString(3)));
+                act.setApellMat(d.decrypt(rs2.getString(4)));
+                act.setFecha_nac(rs2.getString(5));
+                act.setTipo(rs2.getInt(6));
+                act.setRfc(d.decrypt(rs2.getString(7)));
+                act.setCalle(d.decrypt(rs2.getString(8)));
+                act.setNumero(d.decrypt(rs2.getString(9)));
+                act.setPaisOrigen(rs2.getInt(10));
+                act.setPaisResidencia(rs2.getInt(11));
+                act.setEntidad(rs2.getInt(12));
+                act.setLocalidad(rs2.getInt(13));
+                act.setCodigoPostal(d.decrypt(rs2.getString(14)));
+                act.setNumTel(d.decrypt(rs2.getString(15)));
+                act.setRiesgo(rs2.getInt(16));
+                act.setActividad(rs2.getString(17));
+                act.setIngreso(rs2.getDouble(18));
+                System.out.println("Si entre al while");
+              combocliente.removeAllItems();
+            combocliente.addItem(act);
+            
+            }   
+        } catch (SQLException ex) {
+            Logger.getLogger(VistaRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null,"Ocurrio un error");
+        }
+            
+        }
+        
+        
         }
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        if(parametros.getSelectedIndex()==0 || busqueda.getText().equals("")){
-        JOptionPane.showMessageDialog(null, "");
-        }
-        else{
-        if(parametros.getSelectedIndex()==1){
-            parametroBusqueda= busquedas2.getText();
-         try {
-            combocliente.removeAllItems();
-            String consulta="Select * from cliente where nombre='"+parametroBusqueda+"' ";
-            Statement st2=reg.createStatement();
-            ResultSet rs2=st2.executeQuery(consulta);
-            while(rs2.next()){
-                while(rs2.next()){
-                Cliente act=new Cliente();
-                act.setIdCLiente(rs2.getInt(1));
-                act.setNombre(d.decrypt(rs2.getString(2)));
-                act.setApellPat(d.decrypt(rs2.getString(3)));
-                act.setApellMat(d.decrypt(rs2.getString(4)));
-                act.setFecha_nac(rs2.getString(5));
-                act.setTipo(rs2.getInt(6));
-                act.setRfc(d.decrypt(rs2.getString(7)));
-                act.setCalle(d.decrypt(rs2.getString(8)));
-                act.setNumero(d.decrypt(rs2.getString(9)));
-                act.setPaisOrigen(rs2.getInt(10));
-                act.setPaisResidencia(rs2.getInt(11));
-                act.setEntidad(rs2.getInt(12));
-                act.setLocalidad(rs2.getInt(13));
-                act.setCodigoPostal(d.decrypt(rs2.getString(14)));
-                act.setNumTel(d.decrypt(rs2.getString(15)));
-                act.setRiesgo(rs2.getInt(16));
-                act.setActividad(rs2.getString(17));
-                act.setIngreso(rs2.getDouble(18));
-            combocliente.addItem(act);
-            }
-            }   
-        } catch (SQLException ex) {
-            Logger.getLogger(VistaRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
-            JOptionPane.showMessageDialog(null,"Elige una entidad Federativa");
-        }
-        }
-        }
     }//GEN-LAST:event_jButton7ActionPerformed
 
     public void cargarClientes() throws SQLException {
