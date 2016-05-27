@@ -109,7 +109,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
     public void mostrardatos(int posicion) throws SQLException{
         op=lista.get(posicion);
         String a=Integer.toString(op.getIdOperacion());
-        String e="Select count(*) as numeroalarmas,op.id_Operacion, op.numeroContrato,op.monto,op.fecha,op.descripcion,tiop.tipo_operacion,mo.instrumento_monetario,m.clave,c.id_cliente,c.nombre,c.apellido_Pat,c.apellido_Mat,e.nombre as empleado,e.apellido_Pat as eapellidoP,e.apellido_Mat as eapellidoP ,i.nombre as inmobiliaria from operaciones op inner join monetario mo on op.monetario_id=mo.id_clavemonetario inner join moneda m on op.moneda_id=m.id_moneda inner join cliente c on op.Cliente_id=c.id_cliente inner join empleado e on op.Empleado_id=e.id_Empleado inner join inmobiliaria i on op.Inmobiliaria_id=i.id_inmobiliaria inner join tipo_operacion tiop on op.tipo_id=tiop.id_tipoOp inner join  intermedia_operacion_alarma ioa on ioa.Operacion_id=op.id_Operacion where op.id_Operacion='"+a+"'    ";    
+        String e="Select count(*) as numeroalarmas,op.id_Operacion, op.numeroContrato,op.monto,op.fecha,op.descripcion,tiop.tipo_operacion,mo.instrumento_monetario,m.clave,c.id_cliente,c.nombre,e.nombre as empleado,i.nombre as inmobiliaria from operaciones op inner join monetario mo on op.monetario_id=mo.id_clavemonetario inner join moneda m on op.moneda_id=m.id_moneda inner join cliente c on op.Cliente_id=c.id_cliente inner join empleado e on op.Empleado_id=e.id_Empleado inner join inmobiliaria i on op.Inmobiliaria_id=i.id_inmobiliaria inner join tipo_operacion tiop on op.tipo_id=tiop.id_tipoOp inner join  intermedia_operacion_alarma ioa on ioa.Operacion_id=op.id_Operacion where op.id_Operacion='"+a+"'    ";    
         
        
         Statement st;
@@ -123,8 +123,8 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
         muestramonto.setText(rs.getString("monto"));
         muestradescripcion.setText(d.decrypt(rs.getString("descripcion")));
         muestrafecha.setText(rs.getString("fecha"));
-        muestracliente.setText(d.decrypt(rs.getString("nombre"))+" "+d.decrypt(rs.getString("apellido_Pat"))+" "+d.decrypt("apellido_Mat"));
-        muestraempleado.setText(rs.getString("empleado")+" "+rs.getString("eapellidoP")+" "+rs.getString("eapellidoM"));
+        muestracliente.setText(d.decrypt(rs.getString("nombre"))+" "/*+d.decrypt(rs.getString("apellido_Pat"))+" "+d.decrypt("apellido_Mat")*/);
+        muestraempleado.setText(rs.getString("empleado")+" "/*+rs.getString("eapellidoP")+" "+rs.getString("eapellidoM")*/);
         muestrainmobiliaria.setText(rs.getString("inmobiliaria"));
         muestramoneda.setText(rs.getString("clave"));
         muestramonetario.setText(rs.getString("instrumento_monetario"));
@@ -497,6 +497,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
             lista.clear();
             st = reg.createStatement();
             ResultSet rs=st.executeQuery("Select distinct id_Operacion from operaciones o inner join intermedia_operacion_alarma ioa where o.id_Operacion=ioa.Operacion_id and o.numeroContrato='"+patBusqueda+"' ");
+           
             while(rs.next()){
                 Operacion opera=new Operacion();
                 opera.setIdOperacion(rs.getInt(1));           
@@ -513,10 +514,14 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
                 opera.setMonetarioid(rs.getInt(12));
                 lista.add(opera);              
      }
+            
         } catch (SQLException ex) {
-            Logger.getLogger(VistaRegistroClientes.class.getName()).log(Level.SEVERE, null, ex);
+           JOptionPane.showMessageDialog(null,"No hay Coincidencias");
+            ex.printStackTrace();
         }
+        
         }
+        
         if(opcion.getSelectedIndex()==2){}
         if(opcion.getSelectedIndex()==3){}
         if(opcion.getSelectedIndex()==4){}

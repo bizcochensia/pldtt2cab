@@ -22,8 +22,8 @@ public class ConexionListas {
     try{
          //104.197.195.129   gYnqLB4a
        Class.forName("com.mysql.jdbc.Driver");
-      con=DriverManager.getConnection("jdbc:mysql://104.197.195.129/listasnegras","root","gYnqLB4a");
-      //con=DriverManager.getConnection("jdbc:mysql://localhost/listasnegras","root","admin");
+      //con=DriverManager.getConnection("jdbc:mysql://104.197.195.129/listasnegras","root","gYnqLB4a");
+      con=DriverManager.getConnection("jdbc:mysql://localhost/listasnegras","root","admin");
        System.out.println("conexion a listas establecida");
     } catch(ClassNotFoundException | SQLException e){
         System.out.println("error de conexion");

@@ -8,6 +8,7 @@ package com.ipn.mx.vistas;
 import com.ipn.mx.conexion.Conexion;
 import com.ipn.mx.conexion.ConocerDao;
 import com.mx.ipn.clases.AESDemo;
+import com.mx.ipn.clases.AutoCompletado;
 import com.mx.ipn.clases.Cliente;
 import com.mx.ipn.clases.Empleado;
 import com.mx.ipn.clases.MiPanel;
@@ -56,6 +57,7 @@ public class ConocerEmpleado extends javax.swing.JFrame {
         setTitle("SisPLD");
         setResizable(false);
         cargarClientes();
+        AutoCompletado.enable(comboCliente);
                 
     }
 

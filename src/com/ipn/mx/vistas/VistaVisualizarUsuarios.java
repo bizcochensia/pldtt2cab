@@ -62,23 +62,7 @@ public class VistaVisualizarUsuarios extends javax.swing.JFrame {
                     }
     }
     
-    public void filtro() {
-        int columnaABuscar = 0;
-        if (comboFiltro.getSelectedItem() == "Nombre") {
-            columnaABuscar = 0;
-        }
-        if ("Apellido Paterno".equals(comboFiltro.getSelectedItem().toString())) {
-            columnaABuscar = 1;
-        }
-        if (comboFiltro.getSelectedItem() == "RFC") {
-            columnaABuscar = 3;
-        }
-        if (comboFiltro.getSelectedItem() == "Usuario") {
-            columnaABuscar = 4;
-        }
-        trsFiltro.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), columnaABuscar));
-    }
-
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -91,7 +75,7 @@ public class VistaVisualizarUsuarios extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
-        comboFiltro = new javax.swing.JComboBox<String>();
+        comboFiltro = new javax.swing.JComboBox<>();
         txtFiltro = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         jLabel3 = new javax.swing.JLabel();
@@ -118,8 +102,13 @@ public class VistaVisualizarUsuarios extends javax.swing.JFrame {
 
         jLabel1.setText("Buscar :");
 
-        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Nombre", "Apellido Paterno", "RFC", "Usuario" }));
+        comboFiltro.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nombre", "Apellido Paterno", "RFC", "Usuario" }));
 
+        txtFiltro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtFiltroActionPerformed(evt);
+            }
+        });
         txtFiltro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txtFiltroKeyTyped(evt);
@@ -208,6 +197,10 @@ public class VistaVisualizarUsuarios extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void txtFiltroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtFiltroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtFiltroActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -248,6 +241,23 @@ public class VistaVisualizarUsuarios extends javax.swing.JFrame {
             }
         });
     }
+     public void filtro() {
+        int columnaABuscar = 0;
+        if (comboFiltro.getSelectedItem() == "Nombre") {
+            columnaABuscar = 0;
+        }
+        if ("Apellido Paterno".equals(comboFiltro.getSelectedItem().toString())) {
+            columnaABuscar = 1;
+        }
+        if (comboFiltro.getSelectedItem() == "RFC") {
+            columnaABuscar = 3;
+        }
+        if (comboFiltro.getSelectedItem() == "Usuario") {
+            columnaABuscar = 4;
+        }
+        trsFiltro.setRowFilter(RowFilter.regexFilter(txtFiltro.getText(), columnaABuscar));
+    }
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comboFiltro;

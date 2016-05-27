@@ -8,6 +8,7 @@ package com.ipn.mx.vistas;
 import com.ipn.mx.conexion.ClienteDao;
 import com.ipn.mx.conexion.Conexion;
 import com.mx.ipn.clases.AESDemo;
+import com.mx.ipn.clases.AutoCompletado;
 import com.mx.ipn.clases.Cliente;
 import com.mx.ipn.clases.MiPanel;
 import com.mx.ipn.clases.Validaciones;
@@ -68,7 +69,7 @@ public class VistaEstudioSocioeconomico extends javax.swing.JFrame {
         tingreso.setEnabled(false);
         remanencia.setEnabled(false);
         jButton3.setEnabled(false);
-        
+        AutoCompletado.enable(comboCliente);
         
           cargarClientes();
           ///

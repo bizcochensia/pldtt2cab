@@ -321,6 +321,8 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
 
         jTabbedPane2.addTab("Listas Negras y (PPE)", jPanel3);
 
+        jPanel5.setOpaque(false);
+
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
         jPanel5Layout.setHorizontalGroup(

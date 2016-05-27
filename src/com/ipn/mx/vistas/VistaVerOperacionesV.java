@@ -260,6 +260,17 @@ public class VistaVerOperacionesV extends javax.swing.JFrame {
         jLabel13.setText("Filtrar por:");
 
         filtro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Seleccione...", "Nombre", "Fecha" }));
+        filtro.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                filtroActionPerformed(evt);
+            }
+        });
+
+        recibepara.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                recibeparaActionPerformed(evt);
+            }
+        });
 
         jButton6.setText("Buscar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -471,6 +482,14 @@ public class VistaVerOperacionesV extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void filtroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_filtroActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_filtroActionPerformed
+
+    private void recibeparaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_recibeparaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_recibeparaActionPerformed
 
     /**
      * @param args the command line arguments
