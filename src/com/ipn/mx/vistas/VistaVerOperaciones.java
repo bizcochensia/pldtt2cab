@@ -289,7 +289,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(26, Short.MAX_VALUE)
+                .addContainerGap(60, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -313,14 +313,13 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
                                             .addComponent(muestracontrato, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(muestraempleado, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
                                             .addComponent(muestracliente, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGap(201, 201, 201))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                                            .addComponent(muestrainmobiliaria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(muestramoneda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(muestramonetario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)))
+                                        .addGap(163, 163, 163))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addComponent(muestrainmobiliaria, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(muestramoneda, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(muestramonetario, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 168, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 331, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(layout.createSequentialGroup()
                                         .addGap(37, 37, 37)
@@ -492,8 +491,9 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
         else{
         if(opcion.getSelectedIndex()==1){
                      Statement st;
+            patBusqueda=d.encrypt(busqueda.getText());
+            System.out.println("obtuve:"+opcion.getSelectedIndex()+"y cifre:"+patBusqueda);
         try {
-            patBusqueda=busqueda.getText();
             lista.clear();
             st = reg.createStatement();
             ResultSet rs=st.executeQuery("Select distinct id_Operacion from operaciones o inner join intermedia_operacion_alarma ioa where o.id_Operacion=ioa.Operacion_id and o.numeroContrato='"+patBusqueda+"' ");
@@ -501,7 +501,7 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
             while(rs.next()){
                 Operacion opera=new Operacion();
                 opera.setIdOperacion(rs.getInt(1));           
-                opera.setContrato(d.decrypt(rs.getString(2)));
+                /*opera.setContrato(d.decrypt(rs.getString(2)));
                 opera.setMonto(rs.getDouble(3));
                 opera.setFecha(rs.getString(4));
                 opera.setRiesgo(rs.getDouble(5));
@@ -511,8 +511,10 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
                 opera.setInmobiliariaid(rs.getInt(9));
                 opera.setTipoid(rs.getInt(10));
                 opera.setMonedaid(rs.getInt(11));
-                opera.setMonetarioid(rs.getInt(12));
-                lista.add(opera);              
+                opera.setMonetarioid(rs.getInt(12));*/
+                lista.add(opera); 
+                posicion=0;
+                mostrardatos(posicion);
      }
             
         } catch (SQLException ex) {
@@ -522,9 +524,105 @@ public class VistaVerOperaciones extends javax.swing.JFrame {
         
         }
         
-        if(opcion.getSelectedIndex()==2){}
-        if(opcion.getSelectedIndex()==3){}
-        if(opcion.getSelectedIndex()==4){}
+        if(opcion.getSelectedIndex()==2){
+                             Statement st;
+            patBusqueda=d.encrypt(busqueda.getText());
+            System.out.println("obtuve:"+opcion.getSelectedIndex()+"y cifre:"+patBusqueda);
+        try {
+            lista.clear();
+            st = reg.createStatement();
+            ResultSet rs=st.executeQuery("Select distinct id_Operacion from operaciones o inner join cliente c on c.id_Cliente=o.Cliente_id inner join intermedia_operacion_alarma ioa where o.id_Operacion=ioa.Operacion_id and c.nombre='"+patBusqueda+"' ");
+           
+            while(rs.next()){
+                Operacion opera=new Operacion();
+                opera.setIdOperacion(rs.getInt(1));           
+                /*opera.setContrato(d.decrypt(rs.getString(2)));
+                opera.setMonto(rs.getDouble(3));
+                opera.setFecha(rs.getString(4));
+                opera.setRiesgo(rs.getDouble(5));
+                opera.setDescripcion(d.decrypt(rs.getString(6)));
+                opera.setClienteid(rs.getInt(7));
+                opera.setEmpleadoid(rs.getInt(8));
+                opera.setInmobiliariaid(rs.getInt(9));
+                opera.setTipoid(rs.getInt(10));
+                opera.setMonedaid(rs.getInt(11));
+                opera.setMonetarioid(rs.getInt(12));*/
+                lista.add(opera); 
+                posicion=0;
+                mostrardatos(posicion);
+     }
+            
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null,"No hay Coincidencias");
+            ex.printStackTrace();
+        }
+        }
+        if(opcion.getSelectedIndex()==3){
+                             Statement st;
+            patBusqueda=d.encrypt(busqueda.getText());
+            System.out.println("obtuve:"+opcion.getSelectedIndex()+"y cifre:"+patBusqueda);
+        try {
+            lista.clear();
+            st = reg.createStatement();
+            ResultSet rs=st.executeQuery("Select distinct id_Operacion from operaciones o inner join intermedia_operacion_alarma ioa where o.id_Operacion=ioa.Operacion_id and o.numeroContrato='"+patBusqueda+"' ");
+           
+            while(rs.next()){
+                Operacion opera=new Operacion();
+                opera.setIdOperacion(rs.getInt(1));           
+                /*opera.setContrato(d.decrypt(rs.getString(2)));
+                opera.setMonto(rs.getDouble(3));
+                opera.setFecha(rs.getString(4));
+                opera.setRiesgo(rs.getDouble(5));
+                opera.setDescripcion(d.decrypt(rs.getString(6)));
+                opera.setClienteid(rs.getInt(7));
+                opera.setEmpleadoid(rs.getInt(8));
+                opera.setInmobiliariaid(rs.getInt(9));
+                opera.setTipoid(rs.getInt(10));
+                opera.setMonedaid(rs.getInt(11));
+                opera.setMonetarioid(rs.getInt(12));*/
+                lista.add(opera); 
+                posicion=0;
+                mostrardatos(posicion);
+     }
+            
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null,"No hay Coincidencias");
+            ex.printStackTrace();
+        }
+        }
+        if(opcion.getSelectedIndex()==4){
+                             Statement st;
+            patBusqueda=busqueda.getText();
+            System.out.println("obtuve:"+opcion.getSelectedIndex()+"y cifre:"+patBusqueda);
+        try {
+            lista.clear();
+            st = reg.createStatement();
+            ResultSet rs=st.executeQuery("Select distinct id_Operacion from operaciones o inner join intermedia_operacion_alarma ioa where o.id_Operacion=ioa.Operacion_id and o.fecha='"+patBusqueda+"' ");
+           
+            while(rs.next()){
+                Operacion opera=new Operacion();
+                opera.setIdOperacion(rs.getInt(1));           
+                /*opera.setContrato(d.decrypt(rs.getString(2)));
+                opera.setMonto(rs.getDouble(3));
+                opera.setFecha(rs.getString(4));
+                opera.setRiesgo(rs.getDouble(5));
+                opera.setDescripcion(d.decrypt(rs.getString(6)));
+                opera.setClienteid(rs.getInt(7));
+                opera.setEmpleadoid(rs.getInt(8));
+                opera.setInmobiliariaid(rs.getInt(9));
+                opera.setTipoid(rs.getInt(10));
+                opera.setMonedaid(rs.getInt(11));
+                opera.setMonetarioid(rs.getInt(12));*/
+                lista.add(opera); 
+                posicion=0;
+                mostrardatos(posicion);
+     }
+            
+        } catch (SQLException ex) {
+           JOptionPane.showMessageDialog(null,"No hay Coincidencias");
+            ex.printStackTrace();
+        }
+        }
         
         }
     }//GEN-LAST:event_jButton1ActionPerformed
