@@ -91,6 +91,16 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
        Calendar c2 = new GregorianCalendar();
                 
     }
+    
+    
+        public boolean encuentraop(Operacion op){
+            boolean resultado=false;
+            for(int i=0;i<listaOpReportes.size();i++){
+                if(listaOpReportes.get(i).equals(Operacionid)){resultado=true ;}
+            }
+            
+        return resultado;
+        }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -418,9 +428,17 @@ public class VistaCalificacionCliente extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        if(listaOpReportes.size()==0){
         listaOpReportes.add(Operacionid);
-        for(int a=0;a<listaOpReportes.size();a++){
-        System.out.println("el # de id  es de:"+listaOpReportes.get(a));
+        JOptionPane.showMessageDialog(null,"Operacion Agregada");
+        }
+        else{
+        Boolean bu=encuentraop(Operacionid);
+        if(bu){JOptionPane.showMessageDialog(null,"Operacion Agregada Previamente");}
+        else{
+        listaOpReportes.add(Operacionid);
+        JOptionPane.showMessageDialog(null,"Operacion Agregada");
+        }
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
