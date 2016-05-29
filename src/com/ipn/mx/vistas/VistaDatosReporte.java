@@ -193,7 +193,7 @@ public class VistaDatosReporte extends javax.swing.JFrame {
         if(n && p){
             try {  
                 //C:\Users\Clemente\Desktop\ESCOM\lavadodinero\nuevacarpetatt2\pldtt2cab
-            String rutaArchivo = "\\Users\\Clemente\\Desktop\\ESCOM\\lavadodinero\\nuevacarpetatt2\\pldtt2cab"+"\\"+nombrearchivo+".xls";
+            String rutaArchivo = "C:\\Users\\bdfe_\\Desktop\\pldtt2cab"+"\\"+nombrearchivo+".xls";
             System.out.println(rutaArchivo);
             OperacionDAO d=new OperacionDAO();
                 

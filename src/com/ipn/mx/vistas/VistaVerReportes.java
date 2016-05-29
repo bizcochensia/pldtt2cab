@@ -5,6 +5,8 @@
  */
 package com.ipn.mx.vistas;
 
+import com.mx.ipn.clases.MiPanel;
+import java.awt.BorderLayout;
 import java.awt.Button;
 import java.io.File;
 import java.io.IOException;
@@ -20,9 +22,9 @@ import javax.swing.table.DefaultTableModel;
  * @author Clemente
  */
 public class VistaVerReportes extends javax.swing.JFrame {
-    
+    //\\Users\\Clemente\\Desktop\\ESCOM\\lavadodinero\\nuevacarpetatt2\\pldtt2cab
     ArrayList <String> lista= new ArrayList<String>();
-    String path = "\\Users\\Clemente\\Desktop\\ESCOM\\lavadodinero\\nuevacarpetatt2\\pldtt2cab"; 
+    String path = "C:\\Users\\bdfe_\\Desktop\\pldtt2cab"; 
     DefaultTableModel tableModel = new DefaultTableModel();
     String[] columnNames = {"Archivo"};
     String aux1="";
@@ -33,7 +35,17 @@ int seleccion=-1;
      */
     public VistaVerReportes() {
         initComponents();
+        initComponents();
+        MiPanel p = new MiPanel();
+        this.add( p , BorderLayout.CENTER);
+        p.repaint();
+        setLayout(null);
+        setLocationRelativeTo(null);        // Centering on screen...
+        setSize(1000, 800);               // Setting dimensions...
+        setTitle("SisPLD");
+        setResizable(false);
         llenatabla();
+        
     }
     
     public void llenatabla(){
@@ -76,12 +88,18 @@ int seleccion=-1;
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jSplitPane1 = new javax.swing.JSplitPane();
         jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+        jButton2 = new javax.swing.JButton();
+        jLabel19 = new javax.swing.JLabel();
+        jLabel16 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        jButton1.setBackground(new java.awt.Color(0, 153, 51));
+        jButton1.setForeground(new java.awt.Color(255, 255, 255));
         jButton1.setText("Abrir Archivo");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -107,25 +125,54 @@ int seleccion=-1;
         });
         jScrollPane1.setViewportView(jTable1);
 
+        jButton2.setForeground(new java.awt.Color(0, 153, 51));
+        jButton2.setText("Regresar");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+
+        jLabel19.setText("Selecciona el Reporte previamente creado:");
+
+        jLabel16.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel16.setText("Reportes Previamente Realizados");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(59, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 435, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1))
-                .addGap(61, 61, 61))
+                .addContainerGap(645, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(38, 38, 38)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 101, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(21, 21, 21))
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane1)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel16)
+                            .addComponent(jLabel19))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(67, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(57, 57, 57)
-                .addComponent(jButton1)
-                .addGap(89, 89, 89))
+                .addGap(94, 94, 94)
+                .addComponent(jLabel16)
+                .addGap(34, 34, 34)
+                .addComponent(jLabel19)
+                .addGap(18, 18, 18)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(78, 78, 78)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addContainerGap(119, Short.MAX_VALUE))
         );
 
         pack();
@@ -135,7 +182,8 @@ int seleccion=-1;
         // TODO add your handling code here:
         System.out.println("La seleccion vale"+seleccion);
         if(seleccion<=0){
-            String path = "\\Users\\Clemente\\Desktop\\ESCOM\\lavadodinero\\nuevacarpetatt2\\pldtt2cab"; 
+            //\\Users\\Clemente\\Desktop\\ESCOM\\lavadodinero\\nuevacarpetatt2\\pldtt2cab
+            String path = "C:\\Users\\bdfe_\\Desktop\\pldtt2cab"; 
 
                    try {
                         Runtime.getRuntime().exec("cmd /c start "+path+"\\"+aux1);
@@ -159,6 +207,11 @@ int seleccion=-1;
             aux1=(jTable1.getValueAt(fila, 0).toString());
         }
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -197,7 +250,11 @@ int seleccion=-1;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JLabel jLabel16;
+    private javax.swing.JLabel jLabel19;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JSplitPane jSplitPane1;
     private javax.swing.JTable jTable1;
     // End of variables declaration//GEN-END:variables
 }

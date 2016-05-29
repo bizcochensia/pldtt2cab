@@ -997,7 +997,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                 else{
                     if(mo && con && moa){
                         if(db){
-                            if(cop){
+                            
                                 if(num){
                                     if(num1){
                                        try {
@@ -1015,9 +1015,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
                                     JOptionPane.showMessageDialog(null, "El campo Numero solo acepta numeros");
                                 }
                                 
-                            }else{
-                                 JOptionPane.showMessageDialog(null, "Texto invalido en el campo codigo postal");
-                            }
+                           
                           
                         }else{
                             JOptionPane.showMessageDialog(null, "El campo Calle y Colonia debe tener solo letras");
