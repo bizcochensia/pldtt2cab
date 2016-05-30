@@ -1098,7 +1098,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
     private void SeleccionaClienteVActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_SeleccionaClienteVActionPerformed
         // TODO add your handling code here:
 
-        if(ClienteVendedor.getSelectedIndex()!=0){
+        if(ClienteVendedor.getSelectedIndex()!=0 || parametros2.getSelectedIndex()!=0){
             try {
 
                 cl=(Cliente) ClienteVendedor.getSelectedItem();
@@ -1155,7 +1155,7 @@ public class VistaOperaciones extends javax.swing.JFrame {
         año=aux.substring(24, 28);
         fecha=año+"-"+mes+"-"+dia;
 
-        if(combocliente.getSelectedIndex()!=0){
+        if(combocliente.getSelectedIndex()!=0 || parametros.getSelectedIndex()!=0){
             try {
                 try {
 
