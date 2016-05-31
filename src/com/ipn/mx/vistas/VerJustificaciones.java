@@ -31,8 +31,11 @@ public class VerJustificaciones extends javax.swing.JFrame {
     /**
      * Creates new form VerJustificaciones
      */
-    public VerJustificaciones() {
+    public VerJustificaciones() throws SQLException {
         initComponents();
+        d.addKey(Login.contraseña);
+        cargardatos();
+        mostrardatos(posicion);
     }
     
             public void cargardatos() {
@@ -66,7 +69,7 @@ public class VerJustificaciones extends javax.swing.JFrame {
     public void mostrardatos(int posicion) throws SQLException{
         op=lista.get(posicion);
         String a=Integer.toString(op.getIdOperacion());
-        String e="Select op.contrato,e.justificacion from employees e inner join operaciones op where op.id_Operacion='"+a+"'    ";    
+        String e="Select op.numeroContrato,e.justificacion from employees e inner join operaciones op where op.id_Operacion='"+a+"'    ";    
         
        
         Statement st;
@@ -76,7 +79,7 @@ public class VerJustificaciones extends javax.swing.JFrame {
         ResultSet rs=st.executeQuery(e);
         while(rs.next()){
         Justificacion.setText(rs.getString("justificacion"));
-        muestracontrato.setText(d.decrypt(rs.getString("contrato")));
+        muestracontrato.setText(d.decrypt(rs.getString("numeroContrato")));
         }
         
  
@@ -231,7 +234,11 @@ public class VerJustificaciones extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new VerJustificaciones().setVisible(true);
+                try {
+                    new VerJustificaciones().setVisible(true);
+                } catch (SQLException ex) {
+                    Logger.getLogger(VerJustificaciones.class.getName()).log(Level.SEVERE, null, ex);
+                }
             }
         });
     }
