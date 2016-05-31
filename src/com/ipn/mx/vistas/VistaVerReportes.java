@@ -34,7 +34,7 @@ int seleccion=-1;
      * Creates new form VistaVerReportes
      */
     public VistaVerReportes() {
-        initComponents();
+       
         initComponents();
         MiPanel p = new MiPanel();
         this.add( p , BorderLayout.CENTER);
