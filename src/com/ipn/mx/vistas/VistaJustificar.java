@@ -5,6 +5,8 @@
  */
 package com.ipn.mx.vistas;
 
+import com.ipn.mx.conexion.ReporteDAO;
+import com.mx.ipn.clases.Operacion;
 import javax.swing.JOptionPane;
 
 /**
@@ -12,6 +14,8 @@ import javax.swing.JOptionPane;
  * @author bdfe_
  */
 public class VistaJustificar extends javax.swing.JFrame {
+    
+    public Operacion Operacionid= new Operacion(VistaVerOperaciones.idOperacion);
 
     /**
      * Creates new form VistaJustificar
@@ -74,9 +78,11 @@ public class VistaJustificar extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
+        ReporteDAO ins=new ReporteDAO();
         if(Justificacion.getText().equals("")){JOptionPane.showMessageDialog(null,"Debe ingresar una justificacion para la opreación");}
         else{
         String insertar=Justificacion.getText();
+        ins.Justificacion(Operacionid.getIdOperacion(), insertar);
         JOptionPane.showMessageDialog(null,"Operacion justificada correctamente");
         this.dispose();
         }

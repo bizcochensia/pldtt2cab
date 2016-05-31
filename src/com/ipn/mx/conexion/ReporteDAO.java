@@ -21,6 +21,7 @@ import javax.swing.JOptionPane;
 public class ReporteDAO{
     static PreparedStatement st;
     private static final String Insert = "INSERT INTO reporte (Operaciones_id,ruta) values (?,?)";
+    private static final String Insert2 = "INSERT INTO employee (id_Op,justificacion) values (?,?)";
     static PreparedStatement prState;
     ResultSet result;
     
@@ -108,6 +109,29 @@ public class ReporteDAO{
         }
         return result;
   }
+        
+        
+     ////desde aqui
+        
+           public void Justificacion(int operacion,String justificacion){
+    Conexion cn = new Conexion ();
+    Connection reg=cn.conectar();
+       
+        try{
+           
+           st = reg.prepareStatement(Insert2);
+           st.setInt (1, operacion);
+           st.setString (2, justificacion);
+           st.executeUpdate();
+           
+           JOptionPane.showMessageDialog(null, "Justificacion guardada exitosamente");
+           }
+        catch(Exception ex) {
+            System.out.println(ex);
+            JOptionPane.showMessageDialog(null, "Ocurrio un error");
+                    
+        }
+    }
         
         
 }
