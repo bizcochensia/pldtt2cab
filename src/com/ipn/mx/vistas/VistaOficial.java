@@ -278,8 +278,12 @@ String nada="";
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        VerJustificaciones VJ=new VerJustificaciones();
-        VJ.setVisible(true);
+    try {
+         VerJustificaciones VJ = new VerJustificaciones();
+          VJ.setVisible(true);
+    } catch (SQLException ex) {
+        Logger.getLogger(VistaOficial.class.getName()).log(Level.SEVERE, null, ex);
+    }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     /**

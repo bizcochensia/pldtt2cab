@@ -3,19 +3,6 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaVerReportes.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaDatosReporte.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaDatosReporteInusual.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaInternasPreocupantes.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaOperaciones.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaVerOperaciones.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaRegistraEmpleado.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaEstudioSocioeconomico.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaRegistroClientes.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaOficial.java</file>
-            <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaCalificacionCliente.java</file>
-        </group>
-        <group>
             <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/conexion/ConexionListas.java</file>
             <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaVerReportes.java</file>
             <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaDatosReporteInusual.java</file>
@@ -31,5 +18,6 @@
             <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaEstudioSocioeconomico.java</file>
             <file>file:/C:/Users/bdfe_/Desktop/pldtt2cab/src/com/ipn/mx/vistas/VistaOficial.java</file>
         </group>
+        <group/>
     </open-files>
 </project-private>

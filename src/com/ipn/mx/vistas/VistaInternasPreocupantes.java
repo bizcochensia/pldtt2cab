@@ -125,7 +125,7 @@ public class VistaInternasPreocupantes extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(0, 153, 51));
         jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setText("Generar Reporte");
+        jButton1.setText("Agregar");
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -319,8 +319,9 @@ public class VistaInternasPreocupantes extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        VistaDatosReporteInusual vdr=new VistaDatosReporteInusual();
-        vdr.setVisible(true);
+       // VistaDatosReporteInusual vdr=new VistaDatosReporteInusual();
+        //vdr.setVisible(true);
+        JOptionPane.showMessageDialog(null,"Operacion agregada");
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
